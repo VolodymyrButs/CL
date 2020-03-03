@@ -1,0 +1,53 @@
+image: node:12.16.1
+
+stages:
+    - test
+    - build
+    - pages
+
+
+.build_template:
+    before_script:
+        - yarn install
+    script:
+        - yarn run build
+    artifacts:
+        when: on_success
+        paths:
+            - build/
+        name: 'cl-website-$CI_COMMIT_SHORT_SHA'
+        expire_in: 1 week
+    cache:
+        paths:
+            - node_modules/
+
+lint:
+    stage: test
+    before_script:
+        - yarn install
+    script:
+        - yarn run lint
+    only:
+        - merge_requests
+
+build:
+    stage: build
+    variables:
+        PUBLIC_URL: 'https://clearline.gitlab.io/cl-website'
+    only:
+        - merge_requests
+        - master
+    extends:
+        - .build_template
+
+pages:
+  stage: pages
+  script:
+    - yarn install
+    - node_modules/.bin/gatsby build --prefix-paths
+  artifacts:
+    paths:
+      - public
+  only:
+        - merge_requests
+        - master

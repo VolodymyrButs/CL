@@ -34,22 +34,15 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "eslint 'src/**/*.{tsx,ts}' ",
+    "lint": "eslint '**/*.{tsx,ts,json,md,js}' ",
     "type-check": "tsc --noEmit",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,js}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "husky": {
     "hooks": {
@@ -57,7 +50,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
+    "**/*.{ts,tsx,json,md,js}": [
       "eslint  --fix",
       "prettier --write"
     ]
