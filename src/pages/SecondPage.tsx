@@ -2,18 +2,19 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 
 import { LocalizedLink } from "i18n/LocalizedLink"
+import { About } from "blocks/About"
 import { Header } from "blocks/Header"
 
-const IndexPage = () => {
+const SecondPage = () => {
     const { t } = useTranslation()
 
     return (
-        <>
+        <div>
             <Header />
-            <h1>{t("hi")}</h1>
-            <LocalizedLink to="/SecondPage/">page2</LocalizedLink>
-        </>
+            <About />
+            <LocalizedLink to="/">{t("hi")}</LocalizedLink>
+        </div>
     )
 }
 
-export default IndexPage
+export default SecondPage
