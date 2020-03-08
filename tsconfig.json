@@ -6,7 +6,8 @@
     "lib": ["dom", "esnext"],
     "strict": true,
     "noEmit": true,
-    "baseUrl": "src",
+    "baseUrl": "./src",
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noImplicitAny": true,
@@ -14,5 +15,6 @@
     "noUnusedLocals": false,
     "allowJs": true
   },
+  "include": ["**/*"],
   "exclude": ["node_modules", "public", ".cache"]
 }

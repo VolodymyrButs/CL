@@ -1,58 +1,64 @@
 module.exports = {
     root: true,
-    parser: '@typescript-eslint/parser',
+    parser: "@typescript-eslint/parser",
     parserOptions: {
+        endOfLine: "lf",
+        semi: false,
+        singleQuote: false,
+        tabWidth: 4,
+        trailingComma: "es5",
         ecmaVersion: 11,
         sourceType: "module",
         ecmaFeatures: {
-            tsx: true
-        }
+            tsx: true,
+        },
     },
-    extends: ["eslint:recommended",
-        "plugin:react/recommended",
-        "prettier"],
-    plugins: ["react",
+    extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
+    plugins: [
+        "react",
         "brackets",
         "@typescript-eslint",
         "prettier",
         "react-hooks",
         "cypress",
-        "no-only-tests"],
+        "no-only-tests",
+    ],
     settings: {
         "import/resolver": {
-            "node": {
-                "paths": ["./src"],
-                "extensions": [".js", ".jsx", ".ts", ".tsx"]
-            }
+            node: {
+                paths: ["./src"],
+                extensions: [".js", ".jsx", ".ts", ".tsx"],
+            },
         },
-        "react": {
-            "version": "16.13.0"
-        }
+        react: {
+            version: "16.13.0",
+        },
     },
     rules: {
-        'no-case-declarations': 'error',
-        'no-duplicate-imports': 'error',
-        'no-console': 'error',
-        'no-alert': 'error',
-        'new-cap': 'error',
-        'prefer-template': 'error',
-        'no-shadow': 'error',
-        'no-underscore-dangle': 'error',
-        'prefer-rest-params': 'error',
-        'consistent-return': 'error',
-        camelcase: 'error',
-        'object-shorthand': 'error',
-        'no-param-reassign': ['error', { props: true }],
-        'react/no-unused-prop-types': 'error',
-        'spaced-comment': [
-            'error',
-            'always',
+        "no-case-declarations": "error",
+        "no-duplicate-imports": "error",
+        "no-console": "error",
+        "no-alert": "error",
+        "new-cap": "error",
+        "prefer-template": "error",
+        "no-shadow": "error",
+        "no-underscore-dangle": "error",
+        "prefer-rest-params": "error",
+        "consistent-return": "error",
+        camelcase: "error",
+        "object-shorthand": "error",
+        "no-param-reassign": ["error", { props: true }],
+        "react/no-unused-prop-types": "error",
+        "react/prop-types": "off",
+        "spaced-comment": [
+            "error",
+            "always",
             {
                 line: {
-                    exceptions: ['-', '+'],
+                    exceptions: ["-", "+"],
                 },
                 block: {
-                    exceptions: ['*'],
+                    exceptions: ["*"],
                     balanced: true,
                 },
             },
