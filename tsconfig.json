@@ -1,20 +1,20 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "jsx": "react",
-    "lib": ["dom", "esnext"],
-    "strict": true,
-    "noEmit": true,
-    "baseUrl": "./src",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
-    "noUnusedLocals": false,
-    "allowJs": true
-  },
-  "include": ["**/*"],
-  "exclude": ["node_modules", "public", ".cache"]
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "lib": ["dom", "esnext"],
+        "strict": true,
+        "noEmit": true,
+        "baseUrl": "./src",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "noUnusedLocals": false,
+        "allowJs": true
+    },
+    "include": ["**/*"],
+    "exclude": ["node_modules", "public", ".cache"]
 }
