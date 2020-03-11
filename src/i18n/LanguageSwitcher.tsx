@@ -1,13 +1,14 @@
-import React from "react"
-import { Link, withPrefix } from "gatsby"
-import { useLocation } from "@reach/router"
-import { useTranslation } from "react-i18next"
-import styled from "styled-components"
+import React from 'react'
+import { Link, withPrefix } from 'gatsby'
+import { useLocation } from '@reach/router'
+import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
-import { languages } from "./languages"
+import { languages } from './languages'
+
 const languagesList = Object.keys(languages)
 
-const activeClassName = "active"
+const activeClassName = 'active'
 const LinkStyled = styled(Link).attrs({
     activeClassName,
 })`
@@ -35,8 +36,7 @@ export const LanguageSwitcher = () => {
                         .replace(withPrefix(""), "")
                         .slice(3)
                 }
-                const pathPrefix = languages[lang].isDefault ? "/" : `/${lang}`
-
+                const pathPrefix = languages[lang].isDefault ? '/' : `/${lang}`
                 return (
                     <li key={lang}>
                         <LinkStyled to={`${pathPrefix}/${getPagePath()}`}>

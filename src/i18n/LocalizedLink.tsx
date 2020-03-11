@@ -1,8 +1,8 @@
-import React from "react"
-import { Link } from "gatsby"
-import { useTranslation } from "react-i18next"
+import React from 'react'
+import { Link } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 
-import { languages } from "i18n/languages"
+import { languages } from 'i18n/languages'
 
 interface ILocalizedLinkProps {
     to: string

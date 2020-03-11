@@ -1,3 +1,3 @@
-import CustomWrapper from "./wrapElement"
+import CustomWrapper from './wrapElement'
 
 export const wrapPageElement = CustomWrapper
