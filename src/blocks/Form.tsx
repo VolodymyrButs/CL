@@ -1,14 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-interface ILocalizedLinkProps {
-    to: string
-}
-export const About = () => {
+
+export const Form = () => {
     const { t, i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         {
-            allFile(filter: { relativeDirectory: { eq: "about" } }) {
+            allFile(filter: { relativeDirectory: { eq: "form" } }) {
                 edges {
                     node {
                         name
