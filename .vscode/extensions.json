@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "dkneeland.yarn-task-provider",
+        "DotJoshJohnson.xml",
+        "esbenp.prettier-vscode",
+        "jpoissonnier.vscode-styled-components",
+        "ritwickdey.LiveServer"
+    ]
+}

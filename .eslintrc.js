@@ -22,6 +22,7 @@ module.exports = {
         'react-hooks',
         'cypress',
         'no-only-tests',
+        'markdown',
     ],
     settings: {
         'import/resolver': {
