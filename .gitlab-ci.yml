@@ -5,7 +5,6 @@ stages:
     - build
     - pages
 
-
 .build_template:
     before_script:
         - yarn install
@@ -41,13 +40,24 @@ build:
         - .build_template
 
 pages:
-  stage: pages
-  script:
-    - yarn install
-    - node_modules/.bin/gatsby build --prefix-paths
-  artifacts:
-    paths:
-      - public
-  only:
-        - merge_requests
+    stage: pages
+    script:
+        - yarn install
+        - node_modules/.bin/gatsby build --prefix-paths
+    artifacts:
+        paths:
+            - public
+    only:
         - master
+
+pages:
+    stage: pages
+    script:
+        - yarn install
+        - node_modules/.bin/gatsby build --prefix-paths
+    artifacts:
+        paths:
+            - public
+    when: manual
+    only:
+        - merge_requests

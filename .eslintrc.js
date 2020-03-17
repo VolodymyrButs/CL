@@ -46,6 +46,8 @@ module.exports = {
         'no-underscore-dangle': 'error',
         'prefer-rest-params': 'error',
         'consistent-return': 'error',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 'error',
         camelcase: 'error',
         'object-shorthand': 'error',
         'no-param-reassign': ['error', { props: true }],

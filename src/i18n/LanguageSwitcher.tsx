@@ -30,16 +30,19 @@ export const LanguageSwitcher = () => {
             {languagesList.map(lang => {
                 const getPagePath = () => {
                     if (languages[i18n.language].isDefault) {
-                        return location.pathname.replace(withPrefix(""), "")
+                        return `/${location.pathname.replace(
+                            withPrefix(''),
+                            ''
+                        )}`
                     }
-                    return location.pathname
-                        .replace(withPrefix(""), "")
-                        .slice(3)
+                    return `/${location.pathname
+                        .replace(withPrefix(''), '')
+                        .slice(3)}`
                 }
                 const pathPrefix = languages[lang].isDefault ? '/' : `/${lang}`
                 return (
                     <li key={lang}>
-                        <LinkStyled to={`${pathPrefix}/${getPagePath()}`}>
+                        <LinkStyled to={`${pathPrefix}${getPagePath()}`}>
                             {languages[lang].label}
                         </LinkStyled>
                     </li>
