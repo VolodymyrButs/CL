@@ -1,0 +1,14 @@
+title: faq en
+levels:
+    - level: info en
+      message: And this paragraph is bold en
+      svg: svg2.svg
+    - level: !markdown |
+          ## Heading
+
+          - Article content.
+      message: look out en
+      svg: svg1.svg
+    - level: warning en
+      message: look out en
+      svg: apple.svg

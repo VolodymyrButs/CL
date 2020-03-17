@@ -9,6 +9,22 @@ module.exports = {
     },
     plugins: [
         `gatsby-alias-imports`,
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /assets/, // See below to configure properly
+                },
+            },
+        },
+        {
+            resolve: `gatsby-transformer-yaml-full`,
+            options: {
+                plugins: [
+                    `gatsby-yaml-full-markdown`, // Enable !markdown tags
+                ],
+            },
+        },
         'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
