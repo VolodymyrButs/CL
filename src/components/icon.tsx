@@ -1,12 +1,14 @@
 import React from 'react'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare function require(name: string): any
 
 interface IIconProps {
     iconName: string
     styles?: FlattenSimpleInterpolation
 }
+
 export const Icon: React.FC<IIconProps> = ({
     iconName,
     styles,
@@ -18,5 +20,5 @@ export const Icon: React.FC<IIconProps> = ({
         width: 100px;
         ${styles};
     `
-    return <IconStyled src={logo} {...restProps} />
+    return <IconStyled src={{ logo }} {...restProps} />
 }

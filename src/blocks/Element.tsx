@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
 
-export const Form = () => {
+export const Element = () => {
     const { t, i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         {

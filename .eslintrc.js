@@ -36,6 +36,7 @@ module.exports = {
         },
     },
     rules: {
+        '@typescript-eslint/no-explicit-any': 'error',
         'no-case-declarations': 'error',
         'no-duplicate-imports': 'error',
         'no-console': 'error',
