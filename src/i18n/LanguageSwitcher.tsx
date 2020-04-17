@@ -4,7 +4,7 @@ import { useLocation } from '@reach/router'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { languages } from './languages'
+import { languages } from 'i18n/languages'
 
 const languagesList = Object.keys(languages)
 

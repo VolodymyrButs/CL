@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 require('source-map-support').install()
 require('ts-node').register({
     compilerOptions: {

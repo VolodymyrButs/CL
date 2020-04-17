@@ -13,6 +13,13 @@ module.exports = {
             tsx: true,
         },
     },
+    globals: {
+        require: 'false',
+        console: 'false',
+        module: 'false',
+        __dirname: 'false',
+        exports: 'false',
+    },
     extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
     plugins: [
         'react',
