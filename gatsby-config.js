@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+const { createProxyMiddleware } = require('http-proxy-middleware')
+
 module.exports = {
     pathPrefix: '/cl-website',
     siteMetadata: {
@@ -6,6 +7,15 @@ module.exports = {
         description:
             'The company «Clearline» develops interior design projects for residential and non-residential premises, working drawings for construction and finishing works, design drawings for the production of furniture and kitchens on an individual order, we carry out all types of repair work, we carry out supervision of compliance with project documentation, we are engaged in final decoration premises',
         author: 'Buts Development',
+    },
+    developMiddleware: app => {
+        app.use(
+            '/send-form',
+            createProxyMiddleware({
+                target: 'http://localhost:8004',
+                changeOrigin: true,
+            })
+        )
     },
     plugins: [
         `gatsby-alias-imports`,
