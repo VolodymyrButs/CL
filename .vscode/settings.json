@@ -12,5 +12,8 @@
     "javascript.updateImportsOnFileMove.enabled": "never",
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
     }
 }

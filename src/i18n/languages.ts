@@ -12,18 +12,18 @@ interface LocaleConfigs {
 export const languages: LocaleConfigs = {
     ua: {
         locale: 'uk_UA',
-        label: 'UA',
+        label: 'УКР',
         pathPrefix: '',
         isDefault: true,
     },
     ru: {
         locale: 'ru_RU',
-        label: 'RU',
+        label: 'РУС',
         pathPrefix: 'ru',
     },
     en: {
         locale: 'en_GB',
-        label: 'EN',
+        label: 'ENG',
         pathPrefix: 'en',
     },
 }
