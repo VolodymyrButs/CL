@@ -39,7 +39,7 @@ module.exports = {
             },
         },
         react: {
-            version: '16.13.0',
+            version: '16.13.1',
         },
     },
     rules: {

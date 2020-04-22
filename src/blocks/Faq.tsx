@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
 import { css, FlattenSimpleInterpolation } from 'styled-components'
 
-import { Icon } from 'components/icon'
+import { Icon } from 'components/Icon'
 
 const iconStyle: FlattenSimpleInterpolation = css`
     color: violet;

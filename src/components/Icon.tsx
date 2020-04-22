@@ -14,11 +14,10 @@ export const Icon: React.FC<IIconProps> = ({
     styles,
     ...restProps
 }) => {
-    const logo = require(`assets/icons/${iconName}`)
+    const icon = require(`assets/icons/${iconName}`)
 
-    const IconStyled = styled(logo)`
-        width: 100px;
+    const IconStyled = styled(icon)`
         ${styles};
     `
-    return <IconStyled src={{ logo }} {...restProps} />
+    return <IconStyled src={{ icon }} {...restProps} />
 }

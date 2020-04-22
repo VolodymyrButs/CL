@@ -1,10 +1,8 @@
 title: faq ua
 levels:
-- level: info ua
-  message: hurray ua
-- level: info ua
-  message: it works ua
-- level: warning ua
-  message: look out ua
-
-
+  - level: info ua
+    message: hurray ua
+  - level: info ua
+    message: it works ua
+  - level: warning ua
+    message: look out ua
