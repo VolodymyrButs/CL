@@ -1,5 +1,8 @@
 {
     "hi": "hello",
     "home": "Home",
-    "callUs": "Call Us Call Us \u2000 Call Us Call Us \u2000 "
+    "callUs": "Call Us Call Us \u2000 Call Us Call Us \u2000 ",
+    "address": "Address:",
+    "contacts": "Contacts:",
+    "contactUs": "Contact us:"
 }
