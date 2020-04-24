@@ -8,7 +8,7 @@ import { SocialIcons } from 'components/SocialIcons'
 import { contactInformation } from 'components/contactInformation'
 import { PhoneLink } from 'components/PhoneLink'
 import { colors } from 'styles/colors'
-import { Icon } from 'components/Icon'
+import { Logo } from 'components/Logo'
 
 const HeaderWraper = styled.div`
     display: flex;
@@ -17,10 +17,6 @@ const HeaderWraper = styled.div`
     max-height: 80px;
     border-bottom: 1px solid #231f20;
     z-index: 3;
-`
-const Logo = styled(Icon)`
-    min-width: 56px;
-    padding: 12px;
 `
 
 const ContactLinks = styled.div`
@@ -34,7 +30,7 @@ const ContactLinks = styled.div`
 export const Header = () => {
     return (
         <HeaderWraper>
-            <Logo iconName={'Logo.svg'} />
+            <Logo />
             <Container columns={'7fr 5fr'}>
                 <MainMenu />
                 <ContactLinks>

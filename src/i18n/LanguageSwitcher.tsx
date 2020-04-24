@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import styled, { keyframes } from 'styled-components'
 
 import { languages } from 'i18n/languages'
-import Shevron from 'assets/icons/ShevronDown.svg'
+import ShevronIcon from 'assets/icons/ShevronDown.svg'
 
 const languagesList = Object.keys(languages)
 
@@ -30,7 +30,7 @@ const LangItem = styled.li`
     padding: 3px 10px;
 `
 
-const IconStyled = styled(Shevron)`
+const IconStyled = styled(ShevronIcon)`
     width: 10px;
     color: #231f20;
     padding-left: 6px;

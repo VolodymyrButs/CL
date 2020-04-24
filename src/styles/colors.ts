@@ -7,4 +7,5 @@ export const backgroundColors = {
 }
 export const colors = {
     dark: '#231F20',
+    white: '#fff',
 }
