@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet'
+import { useTranslation } from 'react-i18next'
+
 import { Header } from 'blocks/Header/Header'
 import { Footer } from 'blocks/Footer'
+import { languages } from 'i18n/languages'
+import { usePagePath } from 'hooks/usePagePath'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -22,10 +27,27 @@ const BlocksWrapper = styled.div`
     overflow-y: auto;
     box-sizing: content-box;
 `
-
+const languagesList = Object.keys(languages)
 export const Layout = (props: { children: React.ReactNode }) => {
+    const { i18n } = useTranslation()
+    const { getPagePath } = usePagePath()
     return (
         <LayoutWraper>
+            <Helmet>
+                <html lang={i18n.language} />
+                <title>Page name</title>
+                {languagesList.map(lang => {
+                    return (
+                        <link
+                            key={lang}
+                            rel="alternate"
+                            hrefLang={lang}
+                            href={getPagePath(lang)}
+                        />
+                    )
+                })}
+                <meta name="description" content="Clearline" />
+            </Helmet>
             <Header />
             <BlocksWrapper>
                 <div>{props.children}</div>

@@ -43,6 +43,8 @@ module.exports = {
         },
     },
     rules: {
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
         'no-case-declarations': 'error',
         'no-duplicate-imports': 'error',
