@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Link, withPrefix } from 'gatsby'
-import { useLocation } from '@reach/router'
+import { Link } from 'gatsby'
 import { useTranslation } from 'react-i18next'
 import styled, { keyframes } from 'styled-components'
 
 import { languages } from 'i18n/languages'
 import ShevronIcon from 'assets/icons/ShevronDown.svg'
+import { usePagePath } from 'hooks/usePagePath'
 
 const languagesList = Object.keys(languages)
 
@@ -58,18 +58,12 @@ const LinkStyled = styled(Link).attrs({
 export const LanguageSwitcher = () => {
     const [isVisible, setIsVisible] = useState(false)
     const { i18n } = useTranslation()
-    const location = useLocation()
-    const getPagePath = languages[i18n.language].isDefault
-        ? `${location.pathname.replace(withPrefix(''), '')}`
-        : `${location.pathname.replace(withPrefix(''), '').slice(3)}`
-
+    const { getPagePath } = usePagePath()
     return (
         <LanguageList>
             {languagesList.map(lang => {
-                const pathPrefix = languages[lang].isDefault ? '' : `/${lang}`
-                const path = `${pathPrefix}/${getPagePath}`
                 const langLabel = languages[lang].label
-
+                const path = getPagePath(lang)
                 if (!isVisible && lang === i18n.language) {
                     return (
                         <LangItem
