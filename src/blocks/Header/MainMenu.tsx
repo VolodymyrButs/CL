@@ -18,7 +18,6 @@ const MenuItem = styled(LocalizedLink).attrs({
 })`
     position: relative;
     color: #151414;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     letter-spacing: 0.8px;
     line-height: 19px;
@@ -50,9 +49,9 @@ export const MainMenu = () => {
     return (
         <MenuWraper>
             <MenuItem to="/">{t('home')}</MenuItem>
-            <MenuItem to="/second-page/">{t('home')}</MenuItem>
-            <MenuItem to="/aaa/">{t('home')}</MenuItem>
-            <MenuItem to="/bbb/">{t('home')}</MenuItem>
+            <MenuItem to="/promo/">Promo</MenuItem>
+            <MenuItem to="/projects/">Projects</MenuItem>
+            <MenuItem to="/contacts/">Contacts</MenuItem>
         </MenuWraper>
     )
 }
