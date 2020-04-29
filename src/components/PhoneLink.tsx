@@ -11,7 +11,6 @@ const PhoneLinkWrapper = styled.a`
     text-decoration: none;
     height: inherit;
     color: #000000;
-    font-family: 'Open Sans';
     font-size: 21px;
     font-weight: bold;
     letter-spacing: 0;
