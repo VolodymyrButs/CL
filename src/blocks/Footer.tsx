@@ -91,7 +91,7 @@ export const Footer = () => {
 
                 <FooterColumn>
                     <h3>{t('contactUs')}</h3>
-                    <SocialIcons fill={'white'} showAllIcons />
+                    <SocialIcons fill={colors.white} showAllIcons />
                 </FooterColumn>
             </FooterContainer>
             <FooterLogo2 fill={colors.white} />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { useTranslation } from 'react-i18next'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import { languages } from 'i18n/languages'
 import ShevronIcon from 'assets/icons/ShevronDown.svg'
@@ -9,13 +9,6 @@ import { usePagePath } from 'hooks/usePagePath'
 
 const languagesList = Object.keys(languages)
 
-const fadeIn = keyframes`
-  0% {
-    font-size: 0;
-  }
-  100% {
-     font-size: 14px;
-  }`
 const LanguageList = styled.div`
     display: flex;
     flex-direction: column;
@@ -45,7 +38,15 @@ const LinkStyled = styled(Link).attrs({
     font-weight: 600;
     letter-spacing: 0;
     line-height: 19px;
-    animation: 0.1s ${fadeIn} ease-in;
+    animation: 0.1s fadeIn ease-in;
+    @keyframes fadeIn {
+        0% {
+            font-size: 0;
+        }
+        100% {
+            font-size: 14px;
+        }
+    }
     :hover {
         text-decoration: underline;
     }
