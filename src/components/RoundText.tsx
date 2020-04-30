@@ -1,16 +1,7 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import { TFunction } from 'i18next'
-
-const rotate = keyframes`
-        from {
-            transform: rotate(360deg);
-        }
-        to {
-            transform: rotate(0);
-        }
-    `
 
 const ContainerSvg = styled.div`
     width: 80px;
@@ -32,10 +23,18 @@ const Circle = styled.div`
         top: -25%;
         width: 150%;
         height: 150%;
-        animation-name: ${rotate};
+        animation-name: rotate;
         animation-duration: 5s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        @keyframes rotate {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0);
+            }
+        }
     }
 `
 interface IRoundTextProps {

@@ -24,8 +24,12 @@ const BlocksWrapper = styled.div`
     width: 100%;
     top: 80px;
     bottom: 0;
-    overflow-y: auto;
+    overflow-y: scroll;
     box-sizing: content-box;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
 `
 const languagesList = Object.keys(languages)
 export const Layout = (props: { children: React.ReactNode }) => {

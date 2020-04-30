@@ -1,0 +1,26 @@
+title: 'Что входит в дизай за 99$en'
+items:
+  - content: !markdown |
+      В составе проекта **все необходимые чертежи**для проведения ремонта  и подбора мебели EN
+    svg: pen.svg
+  - content: !markdown |
+      Количество вариантов перепланировки и расстановки мебели **не ограничено** EN
+    svg: no_limits.svg
+  - content: !markdown |
+      **Без ограничений** по количеству встреч с дизайнером EN
+    svg: infinity.svg
+  - content: !markdown |
+      Для начала работы требуется **обмерочный чертеж** помещения EN
+    svg: ruler.svg
+  - content: !markdown |
+      Срок исполнения дизайн-проекта:             **2 недели** EN
+    svg: clock.svg
+  - content: !markdown |
+      Работа происходит в офисе по адресу: **ул. Льва Толстого 21/2 ** EN
+    svg: location.svg
+  - content: !markdown |
+      К вашим услугам **команда опытных дизайнеров** EN
+    svg: team.svg
+  - content: !markdown |
+      Для начала предоставляется **бесплатная консультация** дизайнера в офисе или по телефону EN
+    svg: consultation.svg

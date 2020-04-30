@@ -1,9 +1,19 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import { Icon } from 'components/Icon'
 
-const jump = keyframes`
+const PhoneSvg = styled(Icon)`
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    left: 35%;
+    top: 35%;
+    animation-name: jump;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    @keyframes jump {
         0% {
             transform: rotate(30deg);
         }
@@ -34,18 +44,7 @@ const jump = keyframes`
         100% {
             transform: rotate(30deg);
         }
-    `
-
-const PhoneSvg = styled(Icon)`
-    position: absolute;
-    width: 30%;
-    height: 30%;
-    left: 35%;
-    top: 35%;
-    animation-name: ${jump};
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    }
 `
 
 export const PhoneSvgAnimated = () => {
