@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { Icon } from 'components/Icon'
 
-const IconListWrapper = styled.div`
-    background-color: ${colors.white};
+const IconListWrapper = styled.div<{ background: string }>`
+    background-color: ${props => props.background};
     display: flex;
     flex-wrap: wrap;
     padding: 40px;
@@ -33,14 +33,16 @@ interface IItem {
 interface IIconListProps {
     items?: IItem[]
     fill?: string
+    background?: string
 }
 
 export const IconList: React.FC<IIconListProps> = ({
     items = [],
     fill = colors.dark,
+    background = colors.white,
 }) => {
     return (
-        <IconListWrapper>
+        <IconListWrapper background={background}>
             {items.map((item: IItem, index: number) => {
                 return (
                     <IconItem key={index}>
