@@ -1,0 +1,20 @@
+title: 'Преимущества визуализации en'
+items:
+  - content: !markdown |
+      Выбор **подходящего стиля** для планируемого пространства EN
+    svg: style.svg
+  - content: !markdown |
+      подбор **материалов** и **фактур** для всех поверхностей   EN
+    svg: materials.svg
+  - content: !markdown |
+      выбор **цветосочетаний** и **контрастных элементов** EN
+    svg: palette.svg
+  - content: !markdown |
+      подбор **мебели и осветительных приборов** по форме EN
+    svg: lampVizual.svg
+  - content: !markdown |
+      применение **световых сценариев** EN
+    svg: sun.svg
+  - content: !markdown |
+      возможность увидеть **окончательный вид** EN
+    svg: view.svg
