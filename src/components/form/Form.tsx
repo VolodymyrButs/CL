@@ -1,11 +1,15 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import fetch from 'node-fetch'
+import { TFunction } from 'i18next'
+
+import { Button } from 'components/Button'
 
 interface IFormProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: any
     formName?: string
+    buttonText?: TFunction
 }
 export interface IChildrenProps {
     register: ReturnType<typeof useForm>['register']
@@ -14,6 +18,7 @@ export interface IChildrenProps {
 export const Form: React.FC<IFormProps> = ({
     children,
     formName = 'Clearline Form',
+    buttonText = 'Send',
 }) => {
     const { register, errors, handleSubmit } = useForm()
     const onSubmit = (data: object) => {
@@ -29,11 +34,10 @@ export const Form: React.FC<IFormProps> = ({
         })
     }
     const childrenProps: IChildrenProps = { register, errors }
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             {children(childrenProps)}
-            <button type="submit">Click</button>
+            <Button type="submit">{buttonText}</Button>
         </form>
     )
 }

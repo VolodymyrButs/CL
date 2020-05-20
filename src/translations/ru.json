@@ -7,5 +7,12 @@
     "contactUs": "Cвяжитесь с нами:",
     "callbackButton": "Callback buttonRu",
     "learnMore": "Learn More ru",
-    "designProject99": "ru long sentense "
+    "designProject99": "ru long sentense ",
+    "send": "Oтправить",
+    "formTitle": "formTitle ru",
+    "formDescription": "formDescription ru",
+    "name": "Имя",
+    "phone": "Телефон",
+    "email": "Email (не обязательно)",
+    "message": "Вопрос"
 }

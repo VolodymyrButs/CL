@@ -7,5 +7,12 @@
     "contactUs": "Contact us:",
     "callbackButton": "Callback buttonEn",
     "learnMore": "Learn More en",
-    "designProject99": "en long sentense "
+    "designProject99": "en long sentense ",
+    "send": "Send",
+    "formTitle": "formTitle en",
+    "formDescription": "formDescription en",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email (not required)",
+    "message": "Question"
 }
