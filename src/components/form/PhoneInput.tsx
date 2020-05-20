@@ -1,9 +1,12 @@
 import React from 'react'
 import InputMask from 'react-input-mask'
+
 import { Input } from 'components/form/Input'
 import { IInputProps } from 'components/form/Types'
+import { useTranslation } from 'react-i18next'
 
 export const PhoneInput = ({ err, inputRef }: IInputProps) => {
+    const { t } = useTranslation()
     return (
         <InputMask
             maskChar={null}
@@ -17,7 +20,7 @@ export const PhoneInput = ({ err, inputRef }: IInputProps) => {
                     {...inputMaskProps}
                     borderColor={err}
                     name="phone"
-                    placeholder="phone"
+                    placeholder={t('phone')}
                     ref={inputRef}
                 />
             )}
