@@ -10,6 +10,7 @@ import { PhoneLink } from 'components/PhoneLink'
 import { colors } from 'styles/colors'
 import { Logo } from 'components/Logo'
 import { displayWidth } from 'styles/width'
+import { MobileHeader } from './MobileHeader'
 
 const HeaderWraper = styled.div`
     display: none;
@@ -33,16 +34,19 @@ const ContactLinks = styled.div`
 
 export const Header = () => {
     return (
-        <HeaderWraper>
-            <Logo />
-            <Container tabletColumns={'1fr 1fr'} desktopColunms={'7fr 5fr'}>
-                <MainMenu />
-                <ContactLinks>
-                    <PhoneLink phone={contactInformation.primaryPhone} />
-                    <SocialIcons fill={colors.dark} />
-                </ContactLinks>
-            </Container>
-            <LanguageSwitcher />
-        </HeaderWraper>
+        <>
+            <MobileHeader />
+            <HeaderWraper>
+                <Logo />
+                <Container tabletColumns={'1fr 1fr'} desktopColunms={'7fr 5fr'}>
+                    <MainMenu />
+                    <ContactLinks>
+                        <PhoneLink phone={contactInformation.primaryPhone} />
+                        <SocialIcons fill={colors.dark} />
+                    </ContactLinks>
+                </Container>
+                <LanguageSwitcher />
+            </HeaderWraper>
+        </>
     )
 }

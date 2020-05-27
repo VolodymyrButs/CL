@@ -7,10 +7,15 @@ import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 const MenuWraper = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    outline: 1px solid ${colors.dark};
-    height: 100%;
+    height: 50%;
+    @media (min-width: ${displayWidth.tablet}) {
+        flex-direction: row;
+        outline: 1px solid ${colors.dark};
+        height: 100%;
+    }
 `
 
 const activeClassName = 'active'
@@ -18,7 +23,7 @@ const MenuItem = styled(LocalizedLink).attrs({
     activeClassName,
 })`
     position: relative;
-    color: ${colors.dark};
+    color: ${colors.white};
     font-weight: 600;
     letter-spacing: 0.8px;
     line-height: 19px;
@@ -26,6 +31,7 @@ const MenuItem = styled(LocalizedLink).attrs({
     text-decoration: none;
     @media (min-width: ${displayWidth.tablet}) {
         font-size: 14px;
+        color: ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
         font-size: 1em;
@@ -37,8 +43,11 @@ const MenuItem = styled(LocalizedLink).attrs({
         bottom: -6px;
         width: 0;
         left: 0;
-        border-top: 2px solid ${colors.dark};
+        border-top: 2px solid ${colors.white};
         content: '';
+        @media (min-width: ${displayWidth.tablet}) {
+            border-top: 2px solid ${colors.dark};
+        }
     }
 
     &:hover,
@@ -48,16 +57,33 @@ const MenuItem = styled(LocalizedLink).attrs({
         }
     }
 `
+interface IMainMenuProps {
+    onMenuItemClick?: (
+        event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    ) => void
+}
 
-export const MainMenu = () => {
+export const MainMenu: React.FC<IMainMenuProps> = ({
+    onMenuItemClick = () => {},
+}) => {
     const { t } = useTranslation()
     return (
         <MenuWraper>
-            <MenuItem to="/">{t('home')}</MenuItem>
-            <MenuItem to="/promo/">Promo</MenuItem>
-            <MenuItem to="/">Work</MenuItem>
-            <MenuItem to="/projects/">Projects</MenuItem>
-            <MenuItem to="/contacts/">Contacts</MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/">
+                {t('home')}
+            </MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/promo/">
+                Promo
+            </MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/works/">
+                Works
+            </MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/projects/">
+                Projects
+            </MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/contacts/">
+                Contacts
+            </MenuItem>
         </MenuWraper>
     )
 }

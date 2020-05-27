@@ -6,6 +6,8 @@ import { languages } from 'i18n/languages'
 
 interface ILocalizedLinkProps {
     to: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any
 }
 
 export const LocalizedLink: React.FC<ILocalizedLinkProps> = ({
