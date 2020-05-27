@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { TFunction } from 'i18next'
+import { colors } from 'styles/colors'
 
 const ContainerSvg = styled.div`
     width: 80px;
     height: 80px;
     position: relative;
 `
-const Circle = styled.div`
+const Circle = styled.div<{ color: string | undefined }>`
     position: relative;
     width: 100%;
     padding-bottom: 100%;
@@ -19,6 +20,7 @@ const Circle = styled.div`
     }
     svg {
         position: absolute;
+        ${({ color }) => (color ? `fill:${color}` : `fill:${colors.dark}`)};
         left: -25%;
         top: -25%;
         width: 150%;
@@ -40,12 +42,17 @@ const Circle = styled.div`
 interface IRoundTextProps {
     children: React.ReactElement
     text: TFunction
+    color?: string | undefined
 }
 
-export const RoundText: React.FC<IRoundTextProps> = ({ children, text }) => {
+export const RoundText: React.FC<IRoundTextProps> = ({
+    children,
+    text,
+    color,
+}) => {
     return (
         <ContainerSvg>
-            <Circle>
+            <Circle color={color}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"

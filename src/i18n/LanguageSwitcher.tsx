@@ -8,6 +8,7 @@ import ShevronIcon from 'assets/icons/ShevronDown.svg'
 import { usePagePath } from 'hooks/usePagePath'
 import { headerHeight } from 'styles/height'
 import { colors } from 'styles/colors'
+import { displayWidth } from 'styles/width'
 
 const languagesList = Object.keys(languages)
 
@@ -17,69 +18,82 @@ const LanguageList = styled.div<{ open: boolean }>`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: ${headerHeight.desktop};
-    ${props =>
-        props.open
-            ? css`
-                  color: ${colors.white};
-                  background: ${colors.dark};
-              `
-            : css`
-                  color: ${colors.dark};
-                  background: transparent;
-              `}
+    width: ${headerHeight.mobile};
+    height: ${headerHeight.mobile};
+
+    @media (min-width: ${displayWidth.tablet}) {
+        ${props =>
+            props.open
+                ? css`
+                      color: ${colors.white};
+                      background: ${colors.dark};
+                  `
+                : css`
+                      color: ${colors.dark};
+                      background: transparent;
+                  `}
+        width:${headerHeight.desktop};
+        height: ${headerHeight.desktop};
+    }
 `
 const LangItem = styled.li<{ open: boolean }>`
     display: flex;
     align-items: center;
+    justify-content: center;
     list-style: none;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 10px 0 20px;
-    height: ${headerHeight.desktop};
-    border-bottom: ${({ open }) => open && `1px solid ${colors.dark}`};
+    height: ${headerHeight.mobile};
+    border-right: 1px solid ${colors.white};
+    border-bottom: 1px solid ${colors.white};
+    @media (min-width: ${displayWidth.tablet}) {
+        height: ${headerHeight.desktop};
+        border-right: none;
+        border-bottom: ${({ open }) => open && `1px solid ${colors.dark}`};
+        padding: 0 10px 0 20px;
+    }
 `
 
 const IconStyled = styled(ShevronIcon)<{ open: boolean }>`
     width: 10px;
-    fill: ${({ open }) => (open ? colors.white : colors.dark)};
-    padding: 6px;
+    fill: ${colors.white};
+    ${({ open }) => (open ? 'padding-right:6px;' : 'padding-left: 6px;')};
     transform: ${({ open }) => open && 'rotate(180deg)'};
     cursor: pointer;
+    @media (min-width: ${displayWidth.tablet}) {
+        fill: ${({ open }) => (open ? colors.white : colors.dark)};
+    }
 `
 const activeClassName = 'active'
 const LinkStyled = styled(Link).attrs({
     activeClassName,
 })<{ open: boolean }>`
-    color: ${({ open }) => (open ? colors.white : colors.dark)};
+    color: ${colors.white};
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 19px;
-    animation: 0.1s fadeIn ease-in;
-    @keyframes fadeIn {
-        0% {
-            font-size: 0;
+    @media (min-width: ${displayWidth.tablet}) {
+        color: ${({ open }) => (open ? colors.white : colors.dark)};
+        :hover {
+            text-decoration: underline;
         }
-        100% {
-            font-size: 14px;
-        }
-    }
-    :hover {
-        text-decoration: underline;
     }
 `
 const Wrapper = styled.div`
     position: absolute;
     left: 0;
-    top: ${headerHeight.desktop};
-    width: 80px;
+    top: ${headerHeight.mobile};
+    width: ${headerHeight.mobile};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        width: ${headerHeight.desktop};
+        top: ${headerHeight.desktop};
+    }
 `
 export const LanguageSwitcher = () => {
     const [isOpen, setIsOpen] = useState(false)

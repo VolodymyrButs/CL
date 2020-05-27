@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { About } from 'blocks/About'
 
-const ProjectPage = () => {
+const WorksPage = () => {
     const { t } = useTranslation()
 
     return (
@@ -15,4 +15,4 @@ const ProjectPage = () => {
     )
 }
 
-export default ProjectPage
+export default WorksPage

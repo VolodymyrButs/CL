@@ -2,13 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Icon } from 'components/Icon'
+import { colors } from 'styles/colors'
 
-const PhoneSvg = styled(Icon)`
+const PhoneSvg = styled(Icon)<{ color: string | undefined }>`
     position: absolute;
     width: 30%;
     height: 30%;
     left: 35%;
     top: 35%;
+    ${({ color }) => (color ? `fill:${color}` : `fill:${colors.dark}`)};
     animation-name: jump;
     animation-duration: 3s;
     animation-iteration-count: infinite;
@@ -47,6 +49,6 @@ const PhoneSvg = styled(Icon)`
     }
 `
 
-export const PhoneSvgAnimated = () => {
-    return <PhoneSvg iconName={'Phone.svg'} />
+export const PhoneSvgAnimated = ({ color }: { color: string | undefined }) => {
+    return <PhoneSvg color={color} iconName={'Phone.svg'} />
 }
