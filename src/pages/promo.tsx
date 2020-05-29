@@ -6,8 +6,6 @@ import { ProjectStructure } from 'blocks/ProjectStructure'
 import { RunningLine } from 'components/RunningLine'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 
-
-
 const Promo = () => {
     const { t } = useTranslation()
     return (
