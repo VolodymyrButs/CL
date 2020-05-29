@@ -49,7 +49,8 @@ const LangItem = styled.li<{ open: boolean }>`
     @media (min-width: ${displayWidth.tablet}) {
         height: ${headerHeight.desktop};
         border-right: none;
-        border-bottom: ${({ open }) => open && `1px solid ${colors.dark}`};
+        border-bottom: ${({ open }) =>
+            open ? `1px solid ${colors.dark}` : 'none'};
         padding: 0 10px 0 20px;
     }
 `
