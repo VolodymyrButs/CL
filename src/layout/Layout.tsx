@@ -7,6 +7,7 @@ import { Header } from 'blocks/Header/Header'
 import { Footer } from 'blocks/Footer'
 import { languages } from 'i18n/languages'
 import { usePagePath } from 'hooks/usePagePath'
+import { displayWidth } from 'styles/width'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -22,7 +23,7 @@ const BlocksWrapper = styled.div`
     justify-content: space-between;
     position: absolute;
     width: 100%;
-    top: 80px;
+    top: 65px;
     bottom: 0;
     overflow-y: scroll;
     box-sizing: content-box;
@@ -30,6 +31,9 @@ const BlocksWrapper = styled.div`
         display: none;
     }
     -ms-overflow-style: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        top: 80px;
+    }
 `
 const languagesList = Object.keys(languages)
 export const Layout = (props: { children: React.ReactNode }) => {

@@ -51,8 +51,11 @@ const BurgerButton = styled.span`
     padding: 10px;
 `
 const PhoneLink = styled.a`
-    padding: 70px;
+    padding: 30px;
     margin: 0 auto;
+    @media (min-height: 450px) {
+        padding: 70px;
+    }
 `
 export const MobileHeader = () => {
     const { t } = useTranslation()

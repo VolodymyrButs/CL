@@ -43,6 +43,13 @@ module.exports = {
                 path: `${__dirname}/data/blocks`,
             },
         },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `images`,
+                path: `${__dirname}/src/assets/images`,
+            },
+        },
         `gatsby-transformer-remark`,
         'gatsby-transformer-sharp',
         'gatsby-plugin-sharp',
@@ -66,6 +73,10 @@ module.exports = {
                     {
                         family: `Open Sans`,
                         variants: [`400`, `600`],
+                    },
+                    {
+                        family: `Yeseva One`,
+                        variants: [`400`],
                     },
                 ],
             },
