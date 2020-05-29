@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 
 import BigShevronDown from 'assets/icons/BigShrvronDown.svg'
 import { colors } from 'styles/colors'
+import { displayWidth } from 'styles/width'
 
 const jump = keyframes`
         0% {
@@ -38,10 +39,12 @@ const jump = keyframes`
         }
     `
 const ArrowWrapper = styled.div`
-    position: relative;
-    width: 27px;
-    height: 57px;
-    :hover {
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        position: relative;
+        width: 27px;
+        height: 57px;
         animation-name: ${jump};
         animation-duration: 3s;
         animation-iteration-count: infinite;

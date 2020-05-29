@@ -11,8 +11,10 @@ export const Container = styled.div<IContainerProps>`
     grid-template-columns: ${props => props.columns};
     width: 100%;
     height: 100%;
+    padding: 0 10px;
     @media (min-width: ${displayWidth.tablet}) {
         width: calc(100% - 160px);
+        padding: 0;
         grid-template-columns: ${props => props.tabletColumns};
     }
     outline: 1px solid #231f20;

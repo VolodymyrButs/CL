@@ -9,11 +9,13 @@ import { NameInput } from 'components/form/NameInput'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { EmailInput } from 'components/form/EmailInput'
 import { MessageInput } from 'components/form/MessageInput'
+import { HomeHero } from 'blocks/Heros/HomeHero'
 
 const IndexPage = () => {
     const { t } = useTranslation()
     return (
         <>
+            <HomeHero />
             <h1>{t('hi')}</h1>
             <Element />
             <Form>
@@ -41,7 +43,6 @@ const IndexPage = () => {
                     </>
                 )}
             </Form>
-
             <LocalizedLink to="/SecondPage/">page2</LocalizedLink>
             <Faq />
         </>
