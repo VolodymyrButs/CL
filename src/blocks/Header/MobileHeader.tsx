@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'gatsby'
 
 import { LanguageSwitcher } from 'i18n/LanguageSwitcher'
 import PhoneLinesSvg from 'assets/icons/PhoneLines.svg'
@@ -15,6 +14,7 @@ import { MainMenu } from './MainMenu'
 import { RoundText } from 'components/RoundText'
 import { contactInformation } from 'components/contactInformation'
 import { headerHeight } from 'styles/height'
+import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -61,9 +61,9 @@ export const MobileHeader = () => {
     return (
         <>
             <MobileHeaderWraper isMenuOpen={isMenuOpen}>
-                <Link to="/">
+                <LocalizedLink to="/">
                     <Logo />
-                </Link>
+                </LocalizedLink>
                 <a href={`tel:${contactInformation.primaryPhone}`}>
                     <PhoneLinesSvg />
                 </a>
