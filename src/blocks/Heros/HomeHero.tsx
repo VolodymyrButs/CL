@@ -16,7 +16,8 @@ const HomeHeroWraper = styled.div`
     width: 100%;
     height: calc(100vh - ${headerHeight.mobile});
     min-height: 503px;
-    outline: 1px solid ${colors.dark};
+    border-top: 1px solid ${colors.dark};
+    border-bottom: 1px solid ${colors.dark};
     background-color: ${backgroundColors.index};
     align-items: stretch;
 
