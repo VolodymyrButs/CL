@@ -26,8 +26,10 @@ const RightSidebar = styled(LeftSidebar)`
     background-color: ${colors.white};
     border-left: 1px solid ${colors.dark};
 `
-
-export const ProjectStructure = () => {
+interface IProjectStructureProps {
+    id?: string
+}
+export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -57,7 +59,7 @@ export const ProjectStructure = () => {
     const { title, items } = projectStructureData
 
     return (
-        <ProjectStructureWrapper>
+        <ProjectStructureWrapper id={id}>
             <LeftSidebar />
             <Container columns={'1fr 2fr'}>
                 <HeroColumn>{title}</HeroColumn>

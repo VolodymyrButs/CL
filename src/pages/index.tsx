@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { Element } from 'blocks/Element'
@@ -9,14 +8,14 @@ import { NameInput } from 'components/form/NameInput'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { EmailInput } from 'components/form/EmailInput'
 import { MessageInput } from 'components/form/MessageInput'
+import { OurServices } from 'blocks/OurServices'
 import { HomeHero } from 'blocks/Heros/HomeHero'
 
 const IndexPage = () => {
-    const { t } = useTranslation()
     return (
         <>
             <HomeHero />
-            <h1>{t('hi')}</h1>
+            <OurServices />
             <Element />
             <Form>
                 {({ register, errors }: IChildrenProps) => (

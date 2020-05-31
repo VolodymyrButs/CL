@@ -12,7 +12,7 @@ const Promo = () => {
         <>
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
-            <ProjectStructure />
+            <ProjectStructure id="design" />
             <DefaultFormBlock />
         </>
     )
