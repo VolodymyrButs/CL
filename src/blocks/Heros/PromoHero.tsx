@@ -1,49 +1,194 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useTranslation } from 'react-i18next'
+import Img from 'gatsby-image'
 
+import { headerBg } from 'styles/headerBg'
 import { colors, backgroundColors } from 'styles/colors'
 import { Container } from 'components/Container'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { Button } from 'components/Button'
 import LampIcon from 'assets/icons/Lamp.svg'
+import sofaDesktopRight from 'assets/images/sofaDesktopRight.svg'
 import i18n from 'i18n/config'
+import { displayWidth } from 'styles/width'
+import { headerHeight } from 'styles/height'
+import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const PromoHeroWraper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    border-bottom: 1px solid ${colors.dark};
     background-color: ${backgroundColors.promotion};
-    align-items: flex-end;
+    height: calc(100vh - ${headerHeight.mobile});
+    min-height: 503px;
+    border-top: 1px solid ${colors.dark};
+    border-bottom: 1px solid ${colors.dark};
     :before {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        background-color: inherit;
-        content: '';
+        ${headerBg}
+    }
+    @media (orientation: landscape) {
+        min-height: 590px;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        height: 500px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        height: 600px;
     }
 `
+
 const PromoHeroColumn = styled.div`
-    display: flex;
-    flex-shrink: 0;
+    display: none;
+    :first-child {
+        display: flex;
+    }
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    outline: 1px solid ${colors.dark};
+    border-left: 1px solid ${colors.dark};
+    border-right: 1px solid ${colors.dark};
+    @media (min-width: ${displayWidth.tablet}) {
+        display: flex;
+        position: relative;
+        border-left: none;
+        border-right: none;
+        justify-content: center;
+        outline: 1px solid ${colors.dark};
+        :nth-child(2n) {
+            outline: none;
+        }
+    }
+`
+const ContainerStyled = styled(Container)``
+
+const JumpingArrowStyled = styled(JumpingArrow)`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+    }
+`
+const LampIconStyled = styled(LampIcon)`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        position: absolute;
+        width: 190px;
+        right: 10px;
+        bottom: -55px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 265px;
+        bottom: 10px;
+    }
+`
+const Title = styled.h2`
+    position: relative;
+    font-family: Yeseva One;
+    font-size: 48px;
+    line-height: 52px;
+    letter-spacing: 0.666667px;
+    margin: 37px 16px;
+    text-align: center;
+    color: ${colors.dark};
+    @media (min-width: ${displayWidth.tablet}) {
+        box-sizing: border-box;
+        font-size: 56px;
+        line-height: 56px;
+        letter-spacing: 0.8px;
+        text-align: left;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding-left: 47px;
+        font-size: 70px;
+        line-height: 74px;
+    }
+`
+const Price = styled.span`
+    font-family: Yeseva One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 74px;
+    letter-spacing: 0.888889px;
+    color: ${colors.accentText};
+    margin: 0 10px;
+    @media (min-width: ${displayWidth.tablet}) {
+        position: absolute;
+        left: 110%;
+        bottom: 0px;
+        font-size: 120px;
+        line-height: 120px;
+        letter-spacing: 1.52778px;
+    }
+`
+const MobileImage = styled(Img)`
+    width: 70%;
+    height: auto;
+    align-self: flex-end;
+    margin-top: 30px;
+    @media (orientation: landscape) {
+        max-width: 50vw;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
+const DesktopImageRight = styled(sofaDesktopRight)`
+    display: none;
+    width: 75%;
+    fill: ${backgroundColors.promotion};
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 30px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        bottom: 40px;
+    }
+`
+const DesktopImageLeft = styled(Img)`
+    display: none;
+    width: 82%;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        position: absolute;
+        left: 9%;
+        bottom: -151px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        bottom: -147px;
+    }
+`
+const ButtonStyled = styled(Button)`
+    @media (min-width: ${displayWidth.tablet}) {
+        margin: 30px 0;
+    }
+`
+const LocalizedLinkStyled = styled(LocalizedLink)`
+    text-decoration: none;
 `
 export const PromoHero = () => {
-    const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
+            allImageSharp {
+                edges {
+                    node {
+                        fluid {
+                            originalName
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+            }
             allPromoHeroYaml {
                 edges {
                     node {
                         title
+                        price
+                        buttonText
+                        image
                         parent {
                             ... on File {
                                 name
@@ -59,19 +204,37 @@ export const PromoHero = () => {
             return elem.node.parent.name.slice(-2) === i18n.language
         }
     ).node
+
+    const imageSofa = data.allImageSharp.edges.find(
+        (elem: { node: { fluid: { originalName: string } } }) => {
+            return elem.node.fluid.originalName === promoHeroData.image
+        }
+    ).node
     return (
         <PromoHeroWraper>
-            <Container columns={'1fr 1fr 1fr'}>
+            <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
                 <PromoHeroColumn>
-                    <h2>{promoHeroData.title}</h2>
-                    <Button>{t('learnMore')}</Button>
-                    <JumpingArrow />
+                    <Title>
+                        {promoHeroData.title}
+                        <Price>{promoHeroData.price}</Price>
+                    </Title>
+                    <LocalizedLinkStyled to={'promo#design'}>
+                        <ButtonStyled>
+                            <p>{promoHeroData.buttonText}</p>
+                        </ButtonStyled>
+                    </LocalizedLinkStyled>
+
+                    <JumpingArrowStyled />
+                    <MobileImage fluid={imageSofa.fluid} />
                 </PromoHeroColumn>
-                <PromoHeroColumn>{promoHeroData.title}</PromoHeroColumn>
                 <PromoHeroColumn>
-                    <LampIcon />
+                    <DesktopImageLeft fluid={imageSofa.fluid} />
                 </PromoHeroColumn>
-            </Container>
+                <PromoHeroColumn>
+                    <DesktopImageRight />
+                    <LampIconStyled />
+                </PromoHeroColumn>
+            </ContainerStyled>
         </PromoHeroWraper>
     )
 }

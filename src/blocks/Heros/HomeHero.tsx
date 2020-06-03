@@ -9,6 +9,7 @@ import { Container } from 'components/Container'
 import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { headerHeight } from 'styles/height'
+import { headerBg } from 'styles/headerBg'
 
 const HomeHeroWraper = styled.div`
     display: flex;
@@ -22,16 +23,7 @@ const HomeHeroWraper = styled.div`
     align-items: stretch;
 
     :before {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: ${headerHeight.mobile};
-        background-color: inherit;
-        content: '';
-        @media (min-width: ${displayWidth.tablet}) {
-            height: ${headerHeight.desktop};
-        }
+        ${headerBg}
     }
     @media (min-width: ${displayWidth.tablet}) {
         height: 600px;

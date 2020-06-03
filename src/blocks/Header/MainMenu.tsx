@@ -69,19 +69,19 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
     const { t } = useTranslation()
     return (
         <MenuWraper>
-            <MenuItem onClick={onMenuItemClick} to="/">
+            <MenuItem onClick={onMenuItemClick} to="">
                 {t('home')}
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/promo/">
+            <MenuItem onClick={onMenuItemClick} to="promo">
                 Promo
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/works/">
+            <MenuItem onClick={onMenuItemClick} to="works">
                 Works
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/projects/">
+            <MenuItem onClick={onMenuItemClick} to="projects">
                 Projects
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/contacts/">
+            <MenuItem onClick={onMenuItemClick} to="contacts">
                 Contacts
             </MenuItem>
         </MenuWraper>
