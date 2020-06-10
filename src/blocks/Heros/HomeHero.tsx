@@ -30,7 +30,9 @@ const HomeHeroWraper = styled.div`
     }
 `
 const ContainerStyled = styled(Container)`
+    padding: 0 15px;
     @media (min-width: ${displayWidth.tablet}) {
+        padding: 0;
         position: relative;
         :after {
             position: absolute;
@@ -103,7 +105,7 @@ const MobileImage = styled(Img)`
     width: 100%;
     height: 90%;
     max-width: 55%;
-
+    z-index: 2;
     @media (min-width: 360px) {
         max-width: 75%;
     }

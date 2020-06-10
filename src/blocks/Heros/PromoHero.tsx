@@ -60,7 +60,12 @@ const PromoHeroColumn = styled.div`
         }
     }
 `
-const ContainerStyled = styled(Container)``
+const ContainerStyled = styled(Container)`
+    padding: 0 15px;
+    @media (min-width: ${displayWidth.tablet}) {
+        padding: 0;
+    }
+`
 
 const JumpingArrowStyled = styled(JumpingArrow)`
     display: none;

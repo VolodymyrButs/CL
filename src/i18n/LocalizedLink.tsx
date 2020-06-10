@@ -16,7 +16,7 @@ export const LocalizedLink: React.FC<ILocalizedLinkProps> = ({
 }) => {
     const { i18n } = useTranslation()
     const { isDefault, pathPrefix } = languages[i18n.language]
-    const pathTo = isDefault ? `/${to}` : `/${pathPrefix}/${to}`
+    const pathTo = isDefault ? `/${to}/` : `/${pathPrefix}/${to}/`
 
     return <Link {...props} to={pathTo} />
 }
