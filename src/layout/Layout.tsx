@@ -54,6 +54,10 @@ export const Layout = (props: { children: React.ReactNode }) => {
                         />
                     )
                 })}
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Yeseva+One&display=swap"
+                    rel="stylesheet"
+                ></link>
                 <meta name="description" content="Clearline" />
             </Helmet>
             <Header />

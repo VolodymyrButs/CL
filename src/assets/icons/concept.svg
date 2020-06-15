@@ -1,0 +1,9 @@
+<svg width="67" height="58" viewBox="0 0 67 58" fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+    <circle className="iconCircle" cx="25" cy="30" r="25"></circle>
+    <path d="M65 47H21C20.448 47 20 46.553 20 46V2C20 1.448 20.448 1 21 1H65C65.552 1 66 1.448 66 2V46C66 46.553 65.552 47 65 47Z" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round" fill='transparent'/>
+    <path d="M27.0767 32.8467V38.2387C27.0767 38.7347 27.2827 38.7437 27.7787 38.7437H32.9737" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M57.7437 32.8467V38.2387C57.7437 38.7347 57.4627 38.7437 56.9667 38.7437H51.8467" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27.0767 15.1538V9.86284C27.0767 9.36584 27.2827 9.25684 27.7787 9.25684H32.9737" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M57.7437 15.1538V9.86284C57.7437 9.36584 57.4627 9.25684 56.9667 9.25684H51.8467" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -6,33 +6,46 @@ import { Icon } from 'components/Icon'
 import { displayWidth } from 'styles/width'
 
 const IconListWrapper = styled.div<{ background: string }>`
-    position: relative;
     background-color: ${props => props.background};
     display: flex;
     flex-wrap: wrap;
-    padding: 40px;
+    padding: 40px 16px;
+    box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         outline: 1px solid ${colors.dark};
+        padding: 46px 10px 46px 30px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: 56px 48px;
     }
 `
 const IconItem = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
+    padding: 20px 16px;
     box-sizing: border-box;
     align-items: center;
     @media (min-width: ${displayWidth.tablet}) {
         width: 50%;
         align-items: flex-start;
     }
-    position: relative;
 `
 const Text = styled.div`
+    margin-top: 15px;
     p {
         text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 26px;
+        letter-spacing: 0.4px;
         @media (min-width: ${displayWidth.tablet}) {
             text-align: left;
+        }
+        strong {
+            font-weight: 700;
         }
     }
 `

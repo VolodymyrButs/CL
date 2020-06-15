@@ -43,7 +43,7 @@ const FooterWrapper = styled.div`
     }
 `
 const FooterContainer = styled(Container)`
-    padding: 20px 16px 40px;
+    padding: 30px 16px;
     border-bottom: 1px solid ${colors.white};
     > :last-child {
         justify-content: space-between;
@@ -56,7 +56,7 @@ const FooterContainer = styled(Container)`
 `
 
 const FooterColumn = styled.div`
-    padding: 10px;
+    padding: 24px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,13 +70,14 @@ const FooterColumn = styled.div`
     }
 `
 const Header = styled.h3`
-    font-family: Open Sans;
+    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
     text-align: center;
     letter-spacing: 0.4px;
+    margin-bottom: 16px;
 `
 const Paragraph = styled(Header)`
     font-weight: normal;
@@ -91,6 +92,7 @@ const FooterLogo = styled(Logo)`
 
 const FooterLogo2 = styled(Logo)`
     fill: ${colors.white};
+    height: 55px;
     @media (min-width: ${displayWidth.tablet}) {
         fill: transparent;
     }

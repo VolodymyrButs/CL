@@ -1,5 +1,5 @@
 ---
-title: ru title form
+title: title form
 ---
 
-ru form
+form

@@ -1,8 +1,8 @@
-title: faq ru
+title: faq
 levels:
-  - level: info ru
-    message: And this paragraph is bold ru
-  - level: info ru
-    message: it works ru
-  - level: warning ru
-    message: look out ru
+  - level: info
+    message: And this paragraph is bold
+  - level: info
+    message: it works
+  - level: warning
+    message: look out

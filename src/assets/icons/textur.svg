@@ -1,0 +1,11 @@
+<svg width="69" height="58" viewBox="0 0 69 58" fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+    <circle className="iconCircle" cx="25" cy="30" r="25"></circle>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M67 47H23C22.448 47 22 46.553 22 46V2C22 1.448 22.448 1 23 1H67C67.552 1 68 1.448 68 2V46C68 46.553 67.552 47 67 47Z" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round" fill='transparent'/>
+    <path d="M22 16.5H68" stroke="#231F20"/>
+    <path d="M22 31.5H68" stroke="#231F20"/>
+    <path d="M58.5 16V32" stroke="#231F20"/>
+    <path d="M31.5 16V32" stroke="#231F20"/>
+    <path d="M45 1V16.5" stroke="#231F20"/>
+    <path d="M45 32V47.5" stroke="#231F20"/>
+</svg>

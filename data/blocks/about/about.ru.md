@@ -1,5 +1,5 @@
 ---
-title: ru title
+title: title
 ---
 
-ru about
+about

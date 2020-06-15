@@ -54,6 +54,7 @@ module.exports = {
         'gatsby-transformer-sharp',
         'gatsby-plugin-sharp',
         'gatsby-plugin-typescript',
+        'gatsby-plugin-styled-components',
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
@@ -66,23 +67,5 @@ module.exports = {
                 icon: `static/icon.png`,
             },
         },
-        {
-            resolve: `gatsby-plugin-prefetch-google-fonts`,
-            options: {
-                fonts: [
-                    {
-                        family: `Open Sans`,
-                        variants: [`400`, `600`],
-                    },
-                    {
-                        family: `Yeseva One`,
-                        variants: [`400`],
-                    },
-                ],
-            },
-        },
-        // this (optional) plugin enables Progressive Web App + Offline functionality
-        // To learn more, visit: https://gatsby.dev/offline
-        // 'gatsby-plugin-offline',
     ],
 }
