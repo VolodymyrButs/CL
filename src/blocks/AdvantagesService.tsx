@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import cupboardWithVase from 'assets/images/cupboardWithVase.svg'
+import collage from 'assets/images/collage.svg'
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
@@ -15,7 +15,7 @@ const VisualizationAdvantagesWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.project};
+    background-color: ${backgroundColors.services};
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
@@ -29,12 +29,13 @@ const IconListStyled = styled(IconList)`
 const Title = styled.div`
     ${titleStyles}
 `
-const Image = styled(cupboardWithVase)`
-    width: 100%;
+const Image = styled(collage)`
+    width: 90%;
     height: auto;
     color: transparent;
+    align-self: flex-end;
     @media (min-width: ${displayWidth.desktop}) {
-        color: ${backgroundColors.project};
+        color: ${backgroundColors.services};
     }
 `
 const HeroColumn = styled.div`
@@ -52,7 +53,7 @@ const LeftSidebar = styled.div`
         display: flex;
         flex-grow: 1;
         min-width: 80px;
-        background-color: ${backgroundColors.project};
+        background-color: ${backgroundColors.services};
         box-sizing: border-box;
     }
 `
@@ -63,11 +64,11 @@ const RightSidebar = styled(LeftSidebar)`
         border-left: 1px solid ${colors.dark};
     }
 `
-export const VisualizationAdvantages = () => {
+export const AdvantagesServices = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allVisualizationAdvantagesYaml {
+            allAdvantagesServiceYaml {
                 edges {
                     node {
                         title
@@ -85,12 +86,12 @@ export const VisualizationAdvantages = () => {
             }
         }
     `)
-    const projectStructureData = data.allVisualizationAdvantagesYaml.edges.find(
+    const advantagesServiceData = data.allAdvantagesServiceYaml.edges.find(
         (elem: { node: { parent: { name: string } } }) => {
             return elem.node.parent.name.slice(-2) === i18n.language
         }
     ).node
-    const { title, items } = projectStructureData
+    const { title, items } = advantagesServiceData
 
     return (
         <VisualizationAdvantagesWrapper>
@@ -101,7 +102,10 @@ export const VisualizationAdvantages = () => {
 
                     <Image />
                 </HeroColumn>
-                <IconListStyled items={items} fill={backgroundColors.project} />
+                <IconListStyled
+                    items={items}
+                    fill={backgroundColors.services}
+                />
             </Container>
             <RightSidebar />
         </VisualizationAdvantagesWrapper>

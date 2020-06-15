@@ -1,0 +1,9 @@
+<svg width="63" height="62" viewBox="0 0 63 62" fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+    <circle className="iconCircle" cx="25" cy="30" r="25"></circle>
+    <path d="M49.4952 12.2505C55.7289 16.9582 59.0978 24.9571 57.5067 33.1423V33.1423C55.2817 44.5891 44.1977 52.0645 32.7509 49.8395C21.3042 47.6145 13.8276 36.5312 16.0526 25.0845C18.2778 13.6367 29.3618 6.16133 40.8086 8.38635" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round" fill='transparent'/>
+    <path d="M36.3345 4.45996L41.1851 8.30467L36.8155 12.0289" stroke="#231F20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M37 30.4854C37.5523 30.4854 38 30.0376 38 29.4854C38 28.9331 37.5523 28.4854 37 28.4854C36.4477 28.4854 36 28.9331 36 29.4854C36 30.0376 36.4477 30.4854 37 30.4854Z" fill="#231F20"/>
+    <path d="M36.9995 29.4858L37.0298 19" stroke="#231F20" stroke-linecap="round"/>
+    <path d="M45.0019 29.5369L37.0215 29.5159" stroke="#231F20" stroke-linecap="round"/>
+</svg>

@@ -123,7 +123,7 @@ export const LanguageSwitcher = () => {
                                 <LangItem open={isOpen} key={lang}>
                                     <LinkStyled
                                         open={!isOpen}
-                                        to={path}
+                                        to={`${path}`}
                                         onClick={() => setIsOpen(!isOpen)}
                                     >
                                         {langLabel}

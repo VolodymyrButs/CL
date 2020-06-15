@@ -6,6 +6,7 @@ export const backgroundColors = {
     projectDark: '#C3D6D4',
     footer: '#231F20',
     formPromo: '#EBEBEB',
+    services: '#CBCCDF',
 }
 export const colors = {
     dark: '#231F20',

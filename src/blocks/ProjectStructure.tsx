@@ -9,63 +9,34 @@ import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import tableFlower from 'assets/images/tableFlower.svg'
+import { mobileAfterBorder } from 'styles/mobileAfterBorder'
+import { titleStyles } from 'styles/titleStyles'
 
 const ProjectStructureWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
     background-color: ${backgroundColors.promotion};
+    position: relative;
     border-bottom: 1px solid ${colors.dark};
+    ${mobileAfterBorder}
+`
+const IconListStyled = styled(IconList)`
+    border-bottom: 1px solid ${colors.dark};
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: none;
+    }
+`
+const Title = styled.div`
+    ${titleStyles}
 `
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 0 16px;
-    box-sizing: border-box;
-    position: relative;
-    border-top: 1px solid ${colors.dark};
+    justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
-    z-index: 1;
     @media (min-width: ${displayWidth.tablet}) {
-        justify-content: space-between;
-        border-top: none;
         border-bottom: none;
-        padding: 40px 0 0;
-    }
-    :after {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 16px;
-        right: 16px;
-        outline: 1px solid ${colors.dark};
-        content: '';
-        z-index: -1;
-        @media (min-width: ${displayWidth.tablet}) {
-            outline: none;
-        }
-    }
-`
-const IconListStyled = styled(IconList)`
-    :after {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 16px;
-        right: 16px;
-        outline: 1px solid ${colors.dark};
-        content: '';
-        z-index: 2;
-        @media (min-width: ${displayWidth.tablet}) {
-            outline: none;
-        }
-    }
-`
-const ContainerStyled = styled(Container)`
-    @media (min-width: ${displayWidth.tablet}) {
-        padding: 0;
     }
 `
 const LeftSidebar = styled.div`
@@ -85,36 +56,16 @@ const RightSidebar = styled(LeftSidebar)`
         border-left: 1px solid ${colors.dark};
     }
 `
-const Title = styled.div`
-    font-family: Yeseva One;
-    font-size: 48px;
-    line-height: 52px;
-    font-style: normal;
-    font-weight: normal;
-    letter-spacing: 0.666667px;
-    margin: 16px;
-    text-align: center;
-    color: ${colors.dark};
-    @media (min-width: ${displayWidth.tablet}) {
-        font-size: 56px;
-        line-height: 56px;
-        letter-spacing: 0.8px;
-        text-align: left;
-    }
-`
-const PriceWrapper = styled.div`
+
+const PriceWrapper = styled.span`
     display: inline-block;
-    position: relative;
     width: 120px;
-    margin: 0;
-    @media (min-width: ${displayWidth.tablet}) {
-        width: 150px;
-    }
+    position: relative;
 `
 const Price = styled.p`
     position: absolute;
-    bottom: -50px;
-    font-family: Yeseva One;
+    bottom: -36px;
+    font-family: 'Yeseva One', cursive;
     font-style: normal;
     font-weight: normal;
     font-size: 64px;
@@ -126,6 +77,7 @@ const Price = styled.p`
         position: absolute;
         font-size: 80px;
         line-height: 92px;
+        bottom: -50px;
         letter-spacing: 1.11111px;
     }
 `
@@ -175,6 +127,7 @@ const Image = styled(Img)`
     width: 70%;
     height: auto;
     align-self: flex-end;
+    margin-right: 3px;
     @media (orientation: landscape) {
         max-width: 50vw;
     }
@@ -233,7 +186,7 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
     return (
         <ProjectStructureWrapper id={id}>
             <LeftSidebar />
-            <ContainerStyled columns={'1fr'} tabletColumns={'1fr 2fr'}>
+            <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <Title>
                         {title}
@@ -252,7 +205,7 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
                     items={items}
                     fill={backgroundColors.promotion}
                 />
-            </ContainerStyled>
+            </Container>
             <RightSidebar />
         </ProjectStructureWrapper>
     )
