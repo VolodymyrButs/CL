@@ -10,6 +10,8 @@ import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { headerHeight } from 'styles/height'
 import { headerBg } from 'styles/headerBg'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const HomeHeroWraper = styled.div`
     display: flex;
@@ -169,21 +171,16 @@ export const HomeHero = () => {
             }
         }
     `)
-    const homeHeroData = data.allHomeHeroYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
-    const homeHeroImageMobile = data.allImageSharp.edges.find(
-        (elem: { node: { fluid: { originalName: string } } }) => {
-            return elem.node.fluid.originalName === homeHeroData.mobileImage
-        }
-    ).node
-    const homeHeroImageDesktop = data.allImageSharp.edges.find(
-        (elem: { node: { fluid: { originalName: string } } }) => {
-            return elem.node.fluid.originalName === homeHeroData.desktopImage
-        }
-    ).node
+    const homeHeroData = getDataByLanguage(data.allHomeHeroYaml, i18n.language)
+    const homeHeroImageMobile = getImageByImageName(
+        data.allImageSharp,
+        homeHeroData.mobileImage
+    )
+    const homeHeroImageDesktop = getImageByImageName(
+        data.allImageSharp,
+        homeHeroData.desktopImage
+    )
+
     return (
         <HomeHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr'}>

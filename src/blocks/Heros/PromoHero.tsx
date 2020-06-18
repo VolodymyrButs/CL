@@ -14,6 +14,8 @@ import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { headerHeight } from 'styles/height'
 import { LocalizedLink } from 'i18n/LocalizedLink'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -204,17 +206,16 @@ export const PromoHero = () => {
             }
         }
     `)
-    const promoHeroData = data.allPromoHeroYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
+    const promoHeroData = getDataByLanguage(
+        data.allPromoHeroYaml,
+        i18n.language
+    )
 
-    const imageSofa = data.allImageSharp.edges.find(
-        (elem: { node: { fluid: { originalName: string } } }) => {
-            return elem.node.fluid.originalName === promoHeroData.image
-        }
-    ).node
+    const imageSofa = getImageByImageName(
+        data.allImageSharp,
+        promoHeroData.image
+    )
+
     return (
         <PromoHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>

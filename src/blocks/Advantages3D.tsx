@@ -9,7 +9,8 @@ import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import fikus from 'assets/images/fikus.svg'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { titleStyles } from 'styles/titleStyles'
+import { Title } from 'components/titleComponent'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const Advantages3DWrapper = styled.div`
     display: flex;
@@ -26,9 +27,7 @@ const IconListStyled = styled(IconList)`
         border-bottom: none;
     }
 `
-const Title = styled.div`
-    ${titleStyles}
-`
+
 const Image = styled(fikus)`
     width: 60%;
     height: auto;
@@ -87,11 +86,10 @@ export const Advantages3D = () => {
             }
         }
     `)
-    const advantages3DData = data.allAdvantages3DYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
+    const advantages3DData = getDataByLanguage(
+        data.allAdvantages3DYaml,
+        i18n.language
+    )
     const { title, items } = advantages3DData
 
     return (

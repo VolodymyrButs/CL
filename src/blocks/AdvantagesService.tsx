@@ -9,7 +9,8 @@ import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { titleStyles } from 'styles/titleStyles'
+import { Title } from 'components/titleComponent'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const VisualizationAdvantagesWrapper = styled.div`
     display: flex;
@@ -26,9 +27,7 @@ const IconListStyled = styled(IconList)`
         border-bottom: none;
     }
 `
-const Title = styled.div`
-    ${titleStyles}
-`
+
 const Image = styled(collage)`
     width: 90%;
     height: auto;
@@ -86,11 +85,10 @@ export const AdvantagesServices = () => {
             }
         }
     `)
-    const advantagesServiceData = data.allAdvantagesServiceYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
+    const advantagesServiceData = getDataByLanguage(
+        data.allAdvantagesServiceYaml,
+        i18n.language
+    )
     const { title, items } = advantagesServiceData
 
     return (

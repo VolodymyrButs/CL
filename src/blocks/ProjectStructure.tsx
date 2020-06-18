@@ -10,7 +10,9 @@ import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import tableFlower from 'assets/images/tableFlower.svg'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { titleStyles } from 'styles/titleStyles'
+import { Title } from 'components/titleComponent'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const ProjectStructureWrapper = styled.div`
     display: flex;
@@ -27,9 +29,7 @@ const IconListStyled = styled(IconList)`
         border-bottom: none;
     }
 `
-const Title = styled.div`
-    ${titleStyles}
-`
+
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
@@ -172,17 +172,16 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
             }
         }
     `)
-    const projectStructureData = data.allProjectStructureYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
+    const projectStructureData = getDataByLanguage(
+        data.allProjectStructureYaml,
+        i18n.language
+    )
     const { title, items, price } = projectStructureData
-    const imageTable = data.allImageSharp.edges.find(
-        (elem: { node: { fluid: { originalName: string } } }) => {
-            return elem.node.fluid.originalName === projectStructureData.image
-        }
-    ).node
+    const imageTable = getImageByImageName(
+        data.allImageSharp,
+        projectStructureData.image
+    )
+
     return (
         <ProjectStructureWrapper id={id}>
             <LeftSidebar />

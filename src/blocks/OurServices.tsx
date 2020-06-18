@@ -8,6 +8,7 @@ import i18n from 'i18n/config'
 import { Button } from 'components/Button'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { displayWidth } from 'styles/width'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const OurServicesWrapper = styled.div`
     width: 100%;
@@ -130,11 +131,10 @@ export const OurServices = () => {
             }
         }
     `)
-    const allOurServicesData = data.allOurServicesYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
+    const allOurServicesData = getDataByLanguage(
+        data.allOurServicesYaml,
+        i18n.language
+    )
     return (
         <>
             <OurServicesWrapper>
@@ -145,7 +145,7 @@ export const OurServices = () => {
                             <Price>{allOurServicesData.pricePromo}</Price>
                         </Title>
                         <SubTitle>{allOurServicesData.subTitlePromo}</SubTitle>
-                        <LocalizedLink to={'promo'}>
+                        <LocalizedLink to={'/promo'}>
                             <ButtonStyled>
                                 {allOurServicesData.buttonTextPromo}
                             </ButtonStyled>
@@ -163,7 +163,7 @@ export const OurServices = () => {
                     <DesignBlock>
                         <Title>{allOurServicesData.titleDesign}</Title>
                         <SubTitle>{allOurServicesData.subTitleDesign}</SubTitle>
-                        <LocalizedLink to={'promo#design'}>
+                        <LocalizedLink to={'/promo#design'}>
                             <ButtonStyled>
                                 {allOurServicesData.buttonTextDesign}
                             </ButtonStyled>

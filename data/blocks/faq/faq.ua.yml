@@ -1,8 +1,26 @@
-title: faq ua
-levels:
-  - level: info ua
-    message: hurray ua
-  - level: info ua
-    message: it works ua
-  - level: warning ua
-    message: look out ua
+title: FAQ ua
+image: lampFAQ.png
+subTitle: Здесь вы найдете ответы на часто задающиеся вопросы ua
+buttonTextOpen: Раскрыть все вопросы ua
+buttonTextClose: 3акрыть все вопросы ua
+questions:
+  - question: Сколько видов планировок вы предлагаете?
+    answer: Мы предлагаем 2 вида планировок в рамках одного проекта.
+  - question: Работаете ли вы за пределами Киева / Киевской области?
+    answer: 'yes'
+  - question: Что такое сопровождение дизайнера?
+    answer: look out
+  - question: Что такое техническое задание?
+    answer: look out
+  - question: Учитываете ли вы наш бюджет при выборе материалов, мебели и т. д.?
+    answer: look out
+  - question: Каким образом осуществляется оплата дизайн-проекта?
+    answer: look out
+  - question: Какое время, в среднем, занимает разработка дизайн-проекта?
+    answer: look out
+  - question: Как часто необходимо приезжать к вам в офис?
+    answer: look out
+  - question: Есть ли ограничение по количеству корректировок визуализации?
+    answer: look out
+  - question: Есть ли у вас услуги по ремонту и отделке квартир/домов?
+    answer: look out
