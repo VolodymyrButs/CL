@@ -10,6 +10,7 @@ import { SocialIcons } from 'components/SocialIcons'
 import { contactInformation } from 'components/contactInformation'
 import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const FooterWrapper = styled.div`
     position: relative;
@@ -117,12 +118,9 @@ export const Footer = () => {
             }
         }
     `)
-    const addressData = data.allAddressYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name.slice(-2) === i18n.language
-        }
-    ).node
+    const addressData = getDataByLanguage(data.allAddressYaml, i18n.language)
     const { companyName, street, city } = addressData
+
     return (
         <FooterWrapper>
             <FooterLogo />

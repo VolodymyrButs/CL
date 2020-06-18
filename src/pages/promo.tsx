@@ -7,6 +7,7 @@ import { Advantages3D } from 'blocks/Advantages3D'
 import { ProjectStructure } from 'blocks/ProjectStructure'
 import { VisualizationAdvantages } from 'blocks/VisualizationAdvantages'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
+import { Faq } from 'blocks/FAQ/FAQ'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -18,6 +19,7 @@ const Promo = () => {
             <Advantages3D />
             <VisualizationAdvantages />
             <AdvantagesServices />
+            <Faq />
             <p id="design" />
         </>
     )
