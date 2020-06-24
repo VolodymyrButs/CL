@@ -25,7 +25,7 @@ const RunningTextContainer = styled.div`
     height: 100px;
     background-color: ${colors.white};
     color: ${colors.dark};
-    outline: 1px solid ${colors.dark};
+    border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.dark};
         color: ${colors.white};
