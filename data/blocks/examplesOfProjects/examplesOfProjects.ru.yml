@@ -1,0 +1,12 @@
+title: Пример проекта за
+price: 99$
+project: !markdown |
+  Проект квартиры: **42м **
+location: !markdown |
+  Локация: **ЖК New York, Киев**
+description: Обмерный план — основа, на которой строится весь проект. Наличие рабочих чертежей гарантирует ремонт без этих ошибок.
+images:
+  - image: markup.png
+  - image: lampFAQ.png
+  - image: table.png
+  - image: homeHeroMobile.png
