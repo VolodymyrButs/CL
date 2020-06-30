@@ -2,7 +2,10 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+* {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
 html,
 body,
 div,

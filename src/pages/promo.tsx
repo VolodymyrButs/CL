@@ -9,6 +9,7 @@ import { VisualizationAdvantages } from 'blocks/VisualizationAdvantages'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
 import { Faq } from 'blocks/FAQ/FAQ'
 import { ExamplesOfProjects } from 'blocks/ExamplesOfProjects'
+import { Reviews } from 'blocks/Reviews'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -17,6 +18,7 @@ const Promo = () => {
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
             <ExamplesOfProjects />
+            <Reviews />
             <ProjectStructure />
             <Advantages3D />
             <VisualizationAdvantages />
