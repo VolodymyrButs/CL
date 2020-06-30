@@ -8,10 +8,10 @@ import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { Title } from 'components/titleComponent'
+import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
-import { SliderStyled } from 'components/SliderStyled'
+import { SliderComponent } from 'components/SliderComponent'
 
 const Advantages3DWrapper = styled.div`
     display: flex;
@@ -204,7 +204,7 @@ export const ExamplesOfProjects = () => {
                     <Line />
                     <SubTitle> {description}</SubTitle>
                 </HeroColumn>
-                <SliderStyled {...settings}>
+                <SliderComponent {...settings}>
                     {images.map((item: { image: string }, index: number) => {
                         const ImageNode = getImageByImageName(
                             data.allImageSharp,
@@ -221,7 +221,7 @@ export const ExamplesOfProjects = () => {
                             />
                         )
                     })}
-                </SliderStyled>
+                </SliderComponent>
             </Container>
             <RightSidebar />
         </Advantages3DWrapper>

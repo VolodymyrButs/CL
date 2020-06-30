@@ -9,7 +9,7 @@ import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import fikus from 'assets/images/fikus.svg'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { Title } from 'components/titleComponent'
+import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const Advantages3DWrapper = styled.div`

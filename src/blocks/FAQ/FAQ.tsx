@@ -11,7 +11,7 @@ import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Button } from 'components/Button'
 import { FAQItem } from './FAQItem'
 import Chair from 'assets/images/chair.svg'
-import { Title } from 'components/titleComponent'
+import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 

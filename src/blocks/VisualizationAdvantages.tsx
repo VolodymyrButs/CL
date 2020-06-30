@@ -9,7 +9,7 @@ import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { Title } from 'components/titleComponent'
+import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const VisualizationAdvantagesWrapper = styled.div`
