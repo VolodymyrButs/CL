@@ -60,11 +60,11 @@ export const Layout = (props: { children: React.ReactNode }) => {
                 ></link>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171507829-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.dataLayer = window.dataLayer || []
+  function gtag(){dataLayer.push(arguments)}
+  gtag('js', new Date())
 
-  gtag('config', 'UA-171507829-1');
+  gtag('config', 'UA-171507829-1')
 </script>
                 <meta name="description" content="Clearline" />
             </Helmet>
