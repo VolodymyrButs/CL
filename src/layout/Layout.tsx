@@ -58,15 +58,6 @@ export const Layout = (props: { children: React.ReactNode }) => {
                     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Yeseva+One&display=swap"
                     rel="stylesheet"
                 ></link>
-                <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171507829-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-171507829-1');
-</script>
                 <meta name="description" content="Clearline" />
             </Helmet>
             <Header />
