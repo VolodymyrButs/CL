@@ -10,6 +10,7 @@ import { AdvantagesServices } from 'blocks/AdvantagesService'
 import { Faq } from 'blocks/FAQ/FAQ'
 import { ExamplesOfProjects } from 'blocks/ExamplesOfProjects'
 import { Reviews } from 'blocks/Reviews'
+import { Project3D } from 'blocks/Project3D'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -18,13 +19,13 @@ const Promo = () => {
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
             <ExamplesOfProjects />
+            <Project3D />
             <Reviews />
             <ProjectStructure />
             <Advantages3D />
             <VisualizationAdvantages />
             <AdvantagesServices />
             <Faq />
-
             <p id="design" />
         </>
     )
