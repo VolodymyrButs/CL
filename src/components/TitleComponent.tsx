@@ -20,7 +20,7 @@ export const Title = styled.div`
         letter-spacing: 1px;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        font-size: 30px;
+        font-size: 28px;
         line-height: 35px;
         letter-spacing: 1px;
         margin: 80px 20px 50px;
