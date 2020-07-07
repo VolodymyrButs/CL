@@ -69,10 +69,12 @@ const ContainerStyled = styled(Container)`
     }
 `
 
-const JumpingArrowStyled = styled(JumpingArrow)`
+const JumpingArrowWrapper = styled.div`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
-        display: block;
+        display: flex;
+        align-self: center;
+        justify-content: center;
     }
 `
 const LampIconStyled = styled(LampIcon)`
@@ -229,8 +231,10 @@ export const PromoHero = () => {
                             <p>{promoHeroData.buttonText}</p>
                         </ButtonStyled>
                     </LocalizedLinkStyled>
+                    <JumpingArrowWrapper>
+                        <JumpingArrow />
+                    </JumpingArrowWrapper>
 
-                    <JumpingArrowStyled />
                     <MobileImage fluid={imageSofa.fluid} />
                 </PromoHeroColumn>
                 <PromoHeroColumn>

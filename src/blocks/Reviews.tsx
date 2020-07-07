@@ -147,6 +147,7 @@ const Review = styled.div`
         height: 330px;
         padding: 30px;
         align-items: flex-start;
+        margin: 30px;
     }
     @media (min-width: ${displayWidth.desktop}) {
         padding: 50px;
@@ -162,6 +163,7 @@ const HeroColumn = styled.div`
     padding: 0 32px 56px;
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
+
     @media (min-width: ${displayWidth.tablet}) {
         align-items: flex-start;
         border-bottom: none;
@@ -223,7 +225,7 @@ export const Reviews = () => {
     const { rating, reviewsQuantity, link } = commonData
     const reviewsYaml = getDataByLanguage(data.allReviewsYaml, i18n.language)
     const { title, ourRank, reviewsArr, quantity1, quantity2 } = reviewsYaml
-    const settings = {
+    const sliderSettings = {
         dots: true,
         infinite: true,
         speed: 1000,
@@ -254,7 +256,10 @@ export const Reviews = () => {
                         {quantity2}
                     </SubTitle>
                 </HeroColumn>
-                <SliderStyled {...settings}>
+                <SliderStyled
+                    {...sliderSettings}
+                    background={backgroundColors.contact}
+                >
                     {RandomList.map(i => {
                         return (
                             <SlideWrapper key={i}>

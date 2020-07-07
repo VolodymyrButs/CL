@@ -16,7 +16,7 @@ const VisualizationAdvantagesWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.project};
+    background-color: ${backgroundColors.vizualization};
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
@@ -33,7 +33,7 @@ const Image = styled(cupboardWithVase)`
     height: auto;
     color: transparent;
     @media (min-width: ${displayWidth.desktop}) {
-        color: ${backgroundColors.project};
+        color: ${backgroundColors.vizualization};
     }
 `
 const HeroColumn = styled.div`
@@ -51,7 +51,7 @@ const LeftSidebar = styled.div`
         display: flex;
         flex-grow: 1;
         min-width: 80px;
-        background-color: ${backgroundColors.project};
+        background-color: ${backgroundColors.vizualization};
         box-sizing: border-box;
     }
 `
@@ -99,7 +99,10 @@ export const VisualizationAdvantages = () => {
 
                     <Image />
                 </HeroColumn>
-                <IconListStyled items={items} fill={backgroundColors.project} />
+                <IconListStyled
+                    items={items}
+                    fill={backgroundColors.vizualization}
+                />
             </Container>
             <RightSidebar />
         </VisualizationAdvantagesWrapper>
