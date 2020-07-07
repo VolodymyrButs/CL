@@ -61,6 +61,10 @@ const HomeHeroColumn = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         border-left: none;
         border-right: none;
+        justify-content: space-evenly;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        justify-content: center;
     }
 `
 const Title = styled.h1`
@@ -68,20 +72,26 @@ const Title = styled.h1`
     font-size: 48px;
     line-height: 52px;
     letter-spacing: 0.666667px;
-    margin: 0px 16px 24px;
+    margin: 0px auto 24px;
     text-align: center;
     color: ${colors.dark};
+    @media (max-width: 355px) {
+        font-size: 30px;
+        line-height: 35px;
+        letter-spacing: 1px;
+    }
     @media (min-width: ${displayWidth.tablet}) {
-        font-size: 64px;
-        line-height: 74px;
         letter-spacing: 0.888889px;
         overflow: visible;
         word-spacing: 500px;
         text-align: left;
         z-index: 3;
+        padding-left: 18px;
     }
     @media (min-width: ${displayWidth.desktop}) {
         padding-left: 48px;
+        font-size: 64px;
+        line-height: 74px;
     }
 `
 
@@ -136,10 +146,13 @@ const DesktopImage = styled(Img)`
     }
 `
 const JumpingArrowWrapper = styled.div`
-    display: flex;
-    align-self: flex-start;
-    justify-content: center;
-    width: 66.6%;
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: flex;
+        align-self: flex-start;
+        justify-content: center;
+        width: 66.6%;
+    }
 `
 export const HomeHero = () => {
     const data = useStaticQuery(graphql`

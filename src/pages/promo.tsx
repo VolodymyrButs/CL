@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { PromoHero } from 'blocks/Heros/PromoHero'
 import { RunningLine } from 'components/RunningLine'
 import { Advantages3D } from 'blocks/Advantages3D'
+import { Visualization3d } from 'blocks/Visualization3d'
 import { ProjectStructure } from 'blocks/ProjectStructure'
 import { VisualizationAdvantages } from 'blocks/VisualizationAdvantages'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
@@ -18,6 +19,7 @@ const Promo = () => {
         <>
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
+            <Visualization3d />
             <ExamplesOfProjects />
             <Project3D />
             <Reviews />

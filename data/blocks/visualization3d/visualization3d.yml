@@ -1,0 +1,10 @@
+images:
+  - image: homeHeroMobile.png
+  - image: visualization.png
+mobileImages:
+  - image: mobileVisualization3d1.png
+  - image: mobileVisualization3d2.png
+  - image: mobileVisualization3d3.png
+  - image: mobileVisualization3d4.png
+  - image: mobileVisualization3d5.png
+  - image: mobileVisualization3d6.png

@@ -66,11 +66,17 @@ const DesignBlock = styled(Block)`
 const Title = styled.h2`
     font-family: 'Yeseva One', cursive;
     font-style: normal;
-    font-size: 34px;
-    line-height: 39px;
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    margin-top: 24px;
     text-align: center;
-    letter-spacing: 1.68px;
     color: ${colors.darkText};
+    @media (min-width: ${displayWidth.desktop}) {
+        font-size: 34px;
+        line-height: 39px;
+        letter-spacing: 1.68px;
+    }
 `
 const Price = styled.p`
     font-family: 'Yeseva One', cursive;

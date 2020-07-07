@@ -13,7 +13,6 @@ import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
-import { getImageByImageName } from 'utils/getImageByImageName'
 
 const Visualization3dWrapper = styled.div`
     display: flex;
@@ -76,11 +75,14 @@ const RightSidebar = styled(LeftSidebar)`
     }
 `
 const ImgStyled = styled(Img)`
-    height: 60vw;
-    max-height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px;
+    align-self: center;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: calc((100vw - 160px) * 0.6666);
         max-height: 450px;
+        padding: 0;
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 793px;
@@ -109,11 +111,12 @@ export const Project3D = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
+            allImageSharp(
+                filter: { fluid: { originalName: { eq: "picture3D.png" } } }
+            ) {
                 edges {
                     node {
                         fluid {
-                            originalName
                             ...GatsbyImageSharpFluid
                         }
                     }
@@ -139,9 +142,8 @@ export const Project3D = () => {
         data.allProject3DYaml,
         i18n.language
     )
+    const image = data.allImageSharp.edges[0].node
     const { title, subTitle, buttonText } = project3DYaml
-
-    const image = getImageByImageName(data.allImageSharp, 'picture3D.png')
 
     return (
         <Visualization3dWrapper>

@@ -79,8 +79,11 @@ const SubTitle = styled.h3`
     margin-bottom: 32px;
 `
 const TitleStyled = styled(Title)`
+    @media (min-width: ${displayWidth.tablet}) {
+        margin: 20px 0;
+    }
     @media (min-width: ${displayWidth.desktop}) {
-        margin: 80px 10px 48px;
+        margin: 80px 0 48px;
     }
 `
 const HeroColumn = styled.div`
@@ -115,17 +118,24 @@ const ImgStyled = styled(Img)`
     height: 60vw;
     max-height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
-        max-width: calc((100vw - 160px) * 0.6);
-        max-height: 450px;
+        max-width: calc((100vw - 160px) * 0.666666);
+        padding: 0;
+        max-height: 500px;
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 686px;
-        max-height: 550px;
+        max-height: 600px;
     }
 `
 
+const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+    background-color: ${colors.white};
+`
 export const ExamplesOfProjects = () => {
     const { i18n } = useTranslation()
+
     const data = useStaticQuery(graphql`
         query {
             allImageSharp {
@@ -159,25 +169,39 @@ export const ExamplesOfProjects = () => {
             }
         }
     `)
+
     const examplesOfProjectsYaml = getDataByLanguage(
         data.allExamplesOfProjectsYaml,
         i18n.language
     )
+
+    const commonImages = data.allExamplesOfProjectsYaml.edges.find(
+        (elem: { node: { parent: { name: string } } }) => {
+            return elem.node.parent.name === 'examplesOfProjects'
+        }
+    ).node
+
     const {
         price,
         description,
         location,
         project,
         title,
-        images,
     } = examplesOfProjectsYaml
-    const settings = {
-        dots: true,
+    const sliderSettings = {
         infinite: true,
         speed: 1000,
-        arrows: false,
         autoplay: true,
         autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    arrows: false,
+                    dots: true,
+                },
+            },
+        ],
     }
     return (
         <Advantages3DWrapper>
@@ -204,24 +228,28 @@ export const ExamplesOfProjects = () => {
                     <Line />
                     <SubTitle> {description}</SubTitle>
                 </HeroColumn>
-                <SliderComponent {...settings}>
-                    {images.map((item: { image: string }, index: number) => {
-                        const ImageNode = getImageByImageName(
-                            data.allImageSharp,
-                            item.image
-                        )
+                <Wrapper>
+                    <SliderComponent {...sliderSettings}>
+                        {commonImages.images.map(
+                            (item: { image: string }, index: number) => {
+                                const ImageNode = getImageByImageName(
+                                    data.allImageSharp,
+                                    item.image
+                                )
 
-                        return (
-                            <ImgStyled
-                                key={index}
-                                fluid={ImageNode.fluid}
-                                imgStyle={{
-                                    objectFit: 'containe',
-                                }}
-                            />
-                        )
-                    })}
-                </SliderComponent>
+                                return (
+                                    <ImgStyled
+                                        key={index}
+                                        fluid={ImageNode.fluid}
+                                        imgStyle={{
+                                            objectFit: 'containe',
+                                        }}
+                                    />
+                                )
+                            }
+                        )}
+                    </SliderComponent>
+                </Wrapper>
             </Container>
             <RightSidebar />
         </Advantages3DWrapper>
