@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Icon } from 'components/Icon'
 import { colors } from 'styles/colors'
 
-const PhoneSvg = styled(Icon)<{ color: string | undefined }>`
+const PhoneSvg = styled(Icon)<{ color?: string }>`
     position: absolute;
     width: 30%;
     height: 30%;
@@ -49,6 +49,6 @@ const PhoneSvg = styled(Icon)<{ color: string | undefined }>`
     }
 `
 
-export const PhoneSvgAnimated = ({ color }: { color: string | undefined }) => {
+export const PhoneSvgAnimated = ({ color }: { color?: string }) => {
     return <PhoneSvg color={color} iconName={'Phone.svg'} />
 }

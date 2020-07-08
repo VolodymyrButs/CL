@@ -21,7 +21,7 @@ export const Title = styled.div`
     }
     @media (min-width: ${displayWidth.tablet}) {
         font-size: 28px;
-        line-height: 35px;
+        line-height: 32px;
         letter-spacing: 1px;
         margin: 80px 20px 50px;
         text-align: left;
@@ -30,6 +30,6 @@ export const Title = styled.div`
         font-size: 36px;
         line-height: 42px;
         letter-spacing: 1.77882px;
-        margin: 80px 48px 50px;
+        margin: 80px 25px 50px 48px;
     }
 `

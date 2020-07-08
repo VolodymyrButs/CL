@@ -24,10 +24,10 @@ interface IPhoneLinkProps {
     phone: string
 }
 
-export const PhoneLink: React.FC<IPhoneLinkProps> = ({ phone }) => {
+export const PhoneLink: React.FC<IPhoneLinkProps> = ({ phone, ...props }) => {
     const { t } = useTranslation()
     return (
-        <PhoneLinkWrapper href={`tel:${phone}`}>
+        <PhoneLinkWrapper {...props} href={`tel:${phone}`}>
             <RoundText text={t('callUs')}>
                 <PhoneSvgAnimated />
             </RoundText>
