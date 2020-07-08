@@ -12,6 +12,7 @@ import { Faq } from 'blocks/FAQ/FAQ'
 import { ExamplesOfProjects } from 'blocks/ExamplesOfProjects'
 import { Reviews } from 'blocks/Reviews'
 import { Project3D } from 'blocks/Project3D'
+import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 
@@ -31,6 +32,7 @@ const Promo = () => {
             <Connection />
             <SelectionOfPaints />
             <AdvantagesServices />
+            <DefaultFormBlock />
             <RunningLine>{t('designProject99')}</RunningLine>
             <Visualization3d />
             <VisualizationAdvantages />
