@@ -35,7 +35,7 @@ const Text = styled.div`
     margin-top: 15px;
     p {
         text-align: center;
-        font-family: 'Open Sans', sans-serif;
+
         font-style: normal;
         font-weight: normal;
         font-size: 16px;

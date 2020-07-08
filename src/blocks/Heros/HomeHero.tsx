@@ -96,7 +96,6 @@ const Title = styled.h1`
 `
 
 const SubTitle = styled.p`
-    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 26px;
     text-align: center;

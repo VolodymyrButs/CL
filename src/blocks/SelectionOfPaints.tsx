@@ -14,11 +14,11 @@ import { LocalizedLink } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 
-const Visualization3dWrapper = styled.div`
+const SelectionOfPaintWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.project};
+    background-color: ${backgroundColors.services};
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
@@ -62,26 +62,23 @@ const LeftSidebar = styled.div`
         display: flex;
         flex-grow: 1;
         min-width: 80px;
-        background-color: ${backgroundColors.project};
+        background-color: ${backgroundColors.services};
         box-sizing: border-box;
     }
 `
 const RightSidebar = styled(LeftSidebar)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
-        background-color: ${backgroundColors.project};
+        background-color: ${backgroundColors.services};
         border-left: 1px solid ${colors.dark};
     }
 `
 const ImgStyled = styled(Img)`
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 16px;
-    align-self: center;
+    height: 70vw;
+    max-height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: calc((100vw - 160px) * 0.6666);
         max-height: 450px;
-        padding: 0;
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 793px;
@@ -112,12 +109,14 @@ const ButtonStyled = styled(Button)`
     }
 `
 
-export const Project3D = () => {
+export const SelectionOfPaints = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
             allImageSharp(
-                filter: { fluid: { originalName: { eq: "picture3D.png" } } }
+                filter: {
+                    fluid: { originalName: { eq: "colorsAndTextur.png" } }
+                }
             ) {
                 edges {
                     node {
@@ -127,7 +126,7 @@ export const Project3D = () => {
                     }
                 }
             }
-            allProject3DYaml {
+            allSelectionOfPaintYaml {
                 edges {
                     node {
                         title
@@ -143,15 +142,16 @@ export const Project3D = () => {
             }
         }
     `)
-    const project3DYaml = getDataByLanguage(
-        data.allProject3DYaml,
+    const selectionOfPaintYaml = getDataByLanguage(
+        data.allSelectionOfPaintYaml,
         i18n.language
     )
+    const { title, subTitle, buttonText } = selectionOfPaintYaml
+
     const image = data.allImageSharp.edges[0].node
-    const { title, subTitle, buttonText } = project3DYaml
 
     return (
-        <Visualization3dWrapper>
+        <SelectionOfPaintWrapper>
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
@@ -167,6 +167,6 @@ export const Project3D = () => {
                 </ImgWrapper>
             </Container>
             <RightSidebar />
-        </Visualization3dWrapper>
+        </SelectionOfPaintWrapper>
     )
 }

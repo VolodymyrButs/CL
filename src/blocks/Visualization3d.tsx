@@ -27,7 +27,6 @@ const Visualization3dWrapper = styled.div`
 `
 
 const SubTitle = styled.h3`
-    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-size: 16px;
     line-height: 26px;
@@ -137,7 +136,7 @@ const VisualizationBlock = styled.div`
     height: 48px;
     background-color: ${colors.dark};
     color: ${colors.white};
-    font-family: 'Open Sans', sans-serif;
+
     font-style: normal;
     font-weight: normal;
     font-size: 16px;

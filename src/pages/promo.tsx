@@ -12,6 +12,7 @@ import { Faq } from 'blocks/FAQ/FAQ'
 import { ExamplesOfProjects } from 'blocks/ExamplesOfProjects'
 import { Reviews } from 'blocks/Reviews'
 import { Project3D } from 'blocks/Project3D'
+import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 
 const Promo = () => {
@@ -20,15 +21,19 @@ const Promo = () => {
         <>
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
-            <Visualization3d />
-            <ExamplesOfProjects />
-            <Project3D />
-            <Reviews />
             <ProjectStructure />
+
+            <ExamplesOfProjects />
+            <Reviews />
+            <RunningLine>{t('designProject99')}</RunningLine>
+            <Project3D />
             <Advantages3D />
-            <VisualizationAdvantages />
             <Connection />
+            <SelectionOfPaints />
             <AdvantagesServices />
+            <RunningLine>{t('designProject99')}</RunningLine>
+            <Visualization3d />
+            <VisualizationAdvantages />
             <Faq />
             <p id="design" />
         </>

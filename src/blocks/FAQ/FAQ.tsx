@@ -40,7 +40,6 @@ const FaqListStyled = styled.div<{ showFaqListMobile: boolean }>`
 `
 
 const SubTitle = styled.p`
-    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
