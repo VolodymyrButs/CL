@@ -89,7 +89,6 @@ const Price = styled.p`
     margin: 0;
 `
 const SubTitle = styled.h3`
-    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-size: 16px;
     line-height: 26px;

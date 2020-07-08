@@ -28,7 +28,6 @@ const RankTextWrapper = styled.div`
     justify-content: center;
     color: ${colors.dark};
     span {
-        font-family: 'Open Sans', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 24px;
@@ -45,7 +44,6 @@ const RankTextWrapper = styled.div`
     }
 `
 const Rank = styled.p`
-    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 32px;
@@ -82,7 +80,6 @@ const Text = styled.div`
     overflow-y: auto;
     p {
         text-align: center;
-        font-family: 'Open Sans', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
@@ -98,7 +95,6 @@ const Text = styled.div`
 `
 
 const SubTitle = styled.a`
-    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -109,7 +105,6 @@ const SubTitle = styled.a`
     color: ${colors.dark};
 `
 const BottomText = styled.div`
-    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-size: 16px;
     line-height: 26px;

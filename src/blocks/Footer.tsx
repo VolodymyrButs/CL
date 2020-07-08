@@ -71,7 +71,6 @@ const FooterColumn = styled.div`
     }
 `
 const Header = styled.h3`
-    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;

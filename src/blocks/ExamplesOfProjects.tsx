@@ -50,7 +50,6 @@ const Text = styled.div`
     margin-top: 15px;
     p {
         text-align: center;
-        font-family: 'Open Sans', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
@@ -69,7 +68,6 @@ const Line = styled.div`
     margin: 32px 0;
 `
 const SubTitle = styled.h3`
-    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-size: 16px;
     line-height: 26px;
