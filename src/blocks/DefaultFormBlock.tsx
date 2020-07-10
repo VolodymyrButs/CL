@@ -58,7 +58,7 @@ export const DefaultFormBlock = () => {
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <DefaultFormHero />
                 <FormColumn>
-                    <FormTitle>{t('defFormTitle')}</FormTitle>
+                    <FormTitle>{t('defaultFormTitle')}</FormTitle>
                     <Form buttonText={t('send')}>
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>

@@ -1,13 +1,12 @@
-import { CustomElement, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 export interface IInputProps {
     inputRef: (
-        ref:
-            | HTMLInputElement
-            | HTMLSelectElement
-            | HTMLTextAreaElement
-            | CustomElement
-            | null
+        ref: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null
     ) => void | ReturnType<typeof useForm>['register']
-    err: string
+    err?: string
+    isValid?: string
+    placeholder?: string
+    name?: string
+    children?: HTMLOptionElement
 }

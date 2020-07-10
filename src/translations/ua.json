@@ -15,5 +15,16 @@
     "phone": "Телефон",
     "email": "Email (не обов'язково)",
     "message": "Питання",
-    "defFormTitle": "Напишіть нам і ми Вам зателефонуємо!"
+    "defaultFormTitle": "Напишіть нам і ми Вам зателефонуємо!",
+    "ComercialProposalFormTitle": "Отримайте комерційну пропозицію!",
+    "homeType": {
+        "flat": "Квартира",
+        "house": "Будинок, таунхаус, котедж",
+        "comercialBuilding": "Нежитлове приміщення"
+    },
+    "homeTypeQuestion": "Тип приміщення",
+    "roomSize": "Mетраж приміщення",
+    "availabilityDrawings": "Наявність обмірного креслення",
+    "yes": "Так",
+    "no": "Ні"
 }

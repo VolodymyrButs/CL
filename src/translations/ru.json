@@ -15,5 +15,16 @@
     "phone": "Телефон",
     "email": "Email (не обязательно)",
     "message": "Вопрос",
-    "defFormTitle": "Напишите нам и мы Вам перезвоним!"
+    "defaultFormTitle": "Напишите нам и мы Вам перезвоним!",
+    "ComercialProposalFormTitle": "Получите коммерческое предложение!",
+    "homeType": {
+        "flat": "Квартира",
+        "house": "Дом, таунхаус, коттедж",
+        "comercialBuilding": " Нежилое помещение"
+    },
+    "homeTypeQuestion": "Тип помещения",
+    "roomSize": "Метраж помещения",
+    "availabilityDrawings": "Наличие обмерочного чертежа",
+    "yes": "Да",
+    "no": "Нет"
 }

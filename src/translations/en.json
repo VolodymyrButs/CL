@@ -15,5 +15,16 @@
     "phone": "Phone",
     "email": "Email (not required)",
     "message": "Question",
-    "defFormTitle": "Write to us and we will call you back!"
+    "defaultFormTitle": "Write to us and we will call you back!",
+    "ComercialProposalFormTitle": "Get a commercial offer!",
+    "homeType": {
+        "flat": "Flat",
+        "house": "House, townhouse, cottage",
+        "comercialBuilding": "Non-residential premises"
+    },
+    "homeTypeQuestion": "Type of premises",
+    "roomSize": "Area of the room",
+    "availabilityDrawings": "Dimensional drawings are available",
+    "yes": "Yes",
+    "no": "No"
 }
