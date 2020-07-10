@@ -12,7 +12,7 @@ export const NameInput = ({ inputRef, err }: IInputProps) => {
             name="name"
             placeholder={t('name')}
             ref={inputRef}
-            borderColor={err}
+            isValid={err}
         />
     )
 }

@@ -18,7 +18,7 @@ export const PhoneInput = ({ err, inputRef }: IInputProps) => {
             {(inputMaskProps: React.InputHTMLAttributes<HTMLInputElement>) => (
                 <Input
                     {...inputMaskProps}
-                    borderColor={err}
+                    isValid={err}
                     name="phone"
                     placeholder={t('phone')}
                     ref={inputRef}

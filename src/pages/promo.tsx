@@ -15,6 +15,7 @@ import { Project3D } from 'blocks/Project3D'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
+import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -23,10 +24,9 @@ const Promo = () => {
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
             <ProjectStructure />
-
             <ExamplesOfProjects />
             <Reviews />
-            <RunningLine>{t('designProject99')}</RunningLine>
+            <CommercialProposalFormBlock />
             <Project3D />
             <Advantages3D />
             <Connection />

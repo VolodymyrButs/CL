@@ -12,7 +12,7 @@ export const EmailInput = ({ inputRef, err }: IInputProps) => {
             name="email"
             placeholder={t('email')}
             ref={inputRef}
-            borderColor={err}
+            isValid={err}
         />
     )
 }

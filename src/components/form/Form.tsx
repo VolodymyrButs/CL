@@ -44,7 +44,9 @@ export const Form: React.FC<IFormProps> = ({
     formName = 'Clearline Form',
     buttonText = 'Send',
 }) => {
-    const { register, errors, handleSubmit } = useForm()
+    const { register, errors, handleSubmit } = useForm({
+        mode: 'onBlur',
+    })
     const onSubmit = (data: object) => {
         fetch('/send-form', {
             method: 'POST',
