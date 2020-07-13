@@ -226,7 +226,7 @@ export const PromoHero = () => {
                         {promoHeroData.title}
                         <Price>{promoHeroData.price}</Price>
                     </Title>
-                    <LocalizedLinkStyled to={'promo#design'}>
+                    <LocalizedLinkStyled to={'/promo#design'}>
                         <ButtonStyled>
                             <p>{promoHeroData.buttonText}</p>
                         </ButtonStyled>

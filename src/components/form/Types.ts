@@ -8,5 +8,6 @@ export interface IInputProps {
     isValid?: string
     placeholder?: string
     name?: string
-    children?: HTMLOptionElement
+    defaultValue?: string
+    children?: React.ReactNode
 }

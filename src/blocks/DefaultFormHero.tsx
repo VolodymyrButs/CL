@@ -14,10 +14,11 @@ const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     padding: 0 32px;
     box-sizing: border-box;
     border-bottom: 1px solid ${colors.dark};
-    @media (min-width: ${displayWidth.tablet}) {
+    @media (min-width: ${displayWidth.desktop}) {
         border-bottom: none;
         justify-content: space-between;
         align-items: flex-start;

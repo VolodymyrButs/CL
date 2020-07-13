@@ -21,7 +21,7 @@ const FormWrapper = styled.div`
     background-color: ${backgroundColors.formPromo};
     width: 100%;
     ${mobileAfterBorder};
-    border-bottom: 1px solid #231f20;
+    border-bottom: 1px solid ${colors.dark};
 `
 
 const InputBlock = styled.div`
@@ -125,19 +125,14 @@ export const CommercialProposalFormBlock = () => {
                                 </Wrapper>
                                 <Select
                                     name="availabilityDrawings"
-                                    defaultValue="none"
                                     inputRef={register({
                                         required: true,
                                         validate: value => value !== 'none',
                                     })}
                                     err={errors.availabilityDrawings}
+                                    defaultValue="none"
                                 >
-                                    <option
-                                        value="none"
-                                        title={t('availabilityDrawings')}
-                                        disabled
-                                        hidden
-                                    >
+                                    <option value="none" disabled hidden>
                                         {t('availabilityDrawings')}
                                     </option>
                                     <option value="yes">{t('yes')}</option>

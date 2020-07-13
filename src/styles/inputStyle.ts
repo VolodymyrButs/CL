@@ -15,16 +15,6 @@ export const inputStyle = css`
     margin: 20px 0;
     padding: 5px;
     box-sizing: border-box;
-    ::placeholder {
-        color: ${colors.dark};
-        opacity: 1;
-    }
-    :-ms-input-placeholder {
-        color: ${colors.dark};
-    }
-    ::-ms-input-placeholder {
-        color: ${colors.dark};
-    }
     ::-webkit-outer-spin-button,
     ::-webkit-inner-spin-button {
         -webkit-appearance: none;

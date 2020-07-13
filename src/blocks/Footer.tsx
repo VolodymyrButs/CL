@@ -81,6 +81,9 @@ const Header = styled.h3`
 `
 const Paragraph = styled(Header)`
     font-weight: normal;
+    @media (min-width: ${displayWidth.tablet}) {
+        text-align: left;
+    }
 `
 const FooterLogo = styled(Logo)`
     display: none;

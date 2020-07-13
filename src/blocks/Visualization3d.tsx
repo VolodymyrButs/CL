@@ -227,7 +227,7 @@ export const Visualization3d = () => {
                 <HeroColumn>
                     <TitleStyled>{title}</TitleStyled>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled to={'promo#design'}>
+                    <LocalizedLinkStyled to={'/promo#design'}>
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>
                     <JumpingArrow />

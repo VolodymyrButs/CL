@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { displayWidth, containerWidth } from 'styles/width'
+import { colors } from 'styles/colors'
 
 interface IContainerProps {
     columns?: string
@@ -14,7 +15,7 @@ export const Container = styled.div<IContainerProps>`
     @media (min-width: ${displayWidth.tablet}) {
         width: calc(100% - 160px);
         padding: 0;
-        outline: 1px solid #231f20;
+        outline: 1px solid ${colors.dark};
         grid-template-columns: ${props => props.tabletColumns};
     }
     @media (min-width: ${displayWidth.desktop}) {
