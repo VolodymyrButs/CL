@@ -19,7 +19,7 @@ const FormWrapper = styled.div`
     background-color: ${backgroundColors.formPromo};
     width: 100%;
     ${mobileAfterBorder};
-    border-bottom: 1px solid #231f20;
+    border-bottom: 1px solid ${colors.dark};
 `
 
 const InputBlock = styled.div`

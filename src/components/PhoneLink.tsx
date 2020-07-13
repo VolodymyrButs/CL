@@ -2,21 +2,38 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-import { RoundText } from 'components/RoundText'
+import { RoundText, Svg } from 'components/RoundText'
 import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
+import { colors } from 'styles/colors'
 
-const PhoneLinkWrapper = styled.a`
+export const PhoneLinkWrapper = styled.a`
     display: flex;
     align-items: center;
     text-decoration: none;
     height: inherit;
-    color: #000000;
+    color: ${colors.dark};
     font-size: 21px;
     font-weight: bold;
     letter-spacing: 0;
     line-height: 28px;
     p {
         white-space: nowrap;
+    }
+    &:hover {
+        ${Svg} {
+            animation-name: rotate;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            @keyframes rotate {
+                from {
+                    transform: rotate(360deg);
+                }
+                to {
+                    transform: rotate(0);
+                }
+            }
+        }
     }
 `
 

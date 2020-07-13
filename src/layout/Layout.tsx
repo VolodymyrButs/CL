@@ -25,12 +25,13 @@ const BlocksWrapper = styled.div`
     width: 100%;
     top: 65px;
     bottom: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
     box-sizing: content-box;
     ::-webkit-scrollbar {
         display: none;
     }
     -ms-overflow-style: none;
+    scroll-behavior: smooth;
     @media (min-width: ${displayWidth.tablet}) {
         top: 80px;
     }
@@ -61,7 +62,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
                 <meta name="description" content="Clearline" />
             </Helmet>
             <Header />
-            <BlocksWrapper>
+            <BlocksWrapper id="blockWrapper">
                 <div>{props.children}</div>
                 <Footer />
             </BlocksWrapper>

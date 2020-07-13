@@ -49,6 +49,7 @@ const BurgerButton = styled.span`
     justify-content: center;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
 `
 const PhoneLink = styled.a`
     padding: 30px;

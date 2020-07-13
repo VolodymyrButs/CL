@@ -9,6 +9,7 @@ const ContainerSvg = styled.div`
     height: 80px;
     position: relative;
 `
+export const Svg = styled.svg``
 const Circle = styled.div<{ color: string | undefined }>`
     position: relative;
     width: 100%;
@@ -25,18 +26,6 @@ const Circle = styled.div<{ color: string | undefined }>`
         top: -25%;
         width: 150%;
         height: 150%;
-        animation-name: rotate;
-        animation-duration: 5s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        @keyframes rotate {
-            from {
-                transform: rotate(360deg);
-            }
-            to {
-                transform: rotate(0);
-            }
-        }
     }
 `
 interface IRoundTextProps {
@@ -53,7 +42,7 @@ export const RoundText: React.FC<IRoundTextProps> = ({
     return (
         <ContainerSvg>
             <Circle color={color}>
-                <svg
+                <Svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
                     width="300"
@@ -73,7 +62,7 @@ export const RoundText: React.FC<IRoundTextProps> = ({
                     <text>
                         <textPath xlinkHref="#circlePath">{text}</textPath>
                     </text>
-                </svg>
+                </Svg>
             </Circle>
             {children}
         </ContainerSvg>

@@ -54,6 +54,7 @@ const Arrow = styled(BigShevronDown)`
     right: 0;
     left: 0;
     bottom: 0;
+    cursor: pointer;
 `
 const Line = styled.div`
     position: absolute;

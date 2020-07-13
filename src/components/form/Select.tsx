@@ -1,28 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { IInputProps } from 'components/form/Types'
 import { inputStyle } from 'styles/inputStyle'
 import { backgroundColors } from 'styles/colors'
 
-const SelectElement = styled.select<{ isValid?: string }>`
+const SelectElement = styled.select<{
+    isValid?: string
+    selectedValue?: string
+}>`
     ${inputStyle}
+    color:   ${props => (props.selectedValue === 'none' ? 'gray' : 'black')};
     background-color: ${backgroundColors.formPromo};
     ${props =>
         props.isValid &&
         css`
             border-bottom-color: red;
         `}
-
 `
 
 export const Select = ({ inputRef, err, children, name }: IInputProps) => {
+    const [selectValue, setSelectValue] = useState('none')
+    const handleSelectChange = (e: {
+        target: { value: React.SetStateAction<string> }
+    }) => {
+        setSelectValue(e.target.value)
+    }
     return (
         <SelectElement
             ref={inputRef}
             defaultValue="none"
             name={name}
             isValid={err}
+            onChange={handleSelectChange}
+            selectedValue={selectValue}
         >
             {children}
         </SelectElement>

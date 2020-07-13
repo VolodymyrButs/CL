@@ -36,10 +36,8 @@ const LanguageList = styled.div<{ open: boolean }>`
         height: ${headerHeight.desktop};
     }
 `
-const LangItem = styled.li<{ open: boolean }>`
+const LangItem = styled.li<{ open: boolean; withBackground?: boolean }>`
     display: flex;
-    align-items: center;
-    justify-content: center;
     list-style: none;
     width: 100%;
     box-sizing: border-box;
@@ -48,10 +46,11 @@ const LangItem = styled.li<{ open: boolean }>`
     border-bottom: 1px solid ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         height: ${headerHeight.desktop};
+        background-color: ${({ withBackground }) =>
+            withBackground ? colors.white : 'transparent'};
         border-right: none;
         border-bottom: ${({ open }) =>
             open ? `1px solid ${colors.dark}` : 'none'};
-        padding: 0 10px 0 20px;
     }
 `
 
@@ -69,6 +68,11 @@ const activeClassName = 'active'
 const LinkStyled = styled(Link).attrs({
     activeClassName,
 })<{ open: boolean }>`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: ${colors.white};
     text-decoration: none;
     font-size: 14px;
@@ -107,8 +111,8 @@ export const LanguageSwitcher = () => {
                 <LangItem onClick={() => setIsOpen(!isOpen)} open={isOpen}>
                     <LinkStyled to={getPagePath(i18n.language)} open={isOpen}>
                         {languages[i18n.language].label}
+                        <IconStyled open={isOpen} />
                     </LinkStyled>
-                    <IconStyled open={isOpen} />
                 </LangItem>
             </LanguageList>
             <Wrapper>
@@ -120,7 +124,11 @@ export const LanguageSwitcher = () => {
                             const path = getPagePath(lang)
 
                             return (
-                                <LangItem open={isOpen} key={lang}>
+                                <LangItem
+                                    open={isOpen}
+                                    key={lang}
+                                    withBackground
+                                >
                                     <LinkStyled
                                         open={!isOpen}
                                         to={`${path}`}
