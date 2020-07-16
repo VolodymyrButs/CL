@@ -2,9 +2,10 @@
     "hi": "привет",
     "home": "Главная",
     "callUs": "Позвоните Нам \u2005 Позвоните Нам ",
-    "address": "Aдрес:",
-    "contacts": "Контакты:",
-    "contactUs": "Cвяжитесь с нами:",
+    "address": "Aдрес",
+    "companyAddress": "Адрес компании",
+    "contacts": "Контакты",
+    "contactUs": "Cвяжитесь с нами",
     "callbackButton": "Callback buttonRu",
     "learnMore": "Learn More ",
     "designProject99": " long sentense ",
@@ -20,7 +21,7 @@
     "homeType": {
         "flat": "Квартира",
         "house": "Дом, таунхаус, коттедж",
-        "comercialBuilding": " Нежилое помещение"
+        "comercialBuilding": "Нежилое помещение"
     },
     "homeTypeQuestion": "Тип помещения",
     "roomSize": "Метраж помещения",
