@@ -109,10 +109,6 @@ section {
 body {
     line-height: 1;
 }
-ol,
-ul {
-    list-style: none;
-}
 blockquote,
 q {
     quotes: none;
@@ -138,4 +134,3 @@ body,
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
-

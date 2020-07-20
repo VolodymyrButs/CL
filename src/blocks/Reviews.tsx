@@ -183,6 +183,7 @@ const RightSidebar = styled(LeftSidebar)`
     }
 `
 const SlideWrapper = styled.div``
+
 export const Reviews = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
