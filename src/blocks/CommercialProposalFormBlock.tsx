@@ -27,6 +27,9 @@ const FormWrapper = styled.div`
 const InputBlock = styled.div`
     display: flex;
     flex-direction: column;
+    @media (min-width: ${displayWidth.desktop}) {
+        margin-right: 150px;
+    }
 `
 const FormTitle = styled.div`
     font-family: 'Yeseva One', cursive;
@@ -58,7 +61,7 @@ const Unit = styled.p`
     position: absolute;
     top: -48px;
     @media (min-width: ${displayWidth.desktop}) {
-        right: 155px;
+        right: 5px;
         top: 24px;
     }
 `
@@ -67,6 +70,13 @@ const Wrapper = styled.div`
     flex-direction: column;
     @media (min-width: ${displayWidth.desktop}) {
         flex-direction: row;
+    }
+`
+const Div = styled.div`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        width: 20%;
+        display: block;
     }
 `
 export const CommercialProposalFormBlock = () => {
@@ -104,7 +114,7 @@ export const CommercialProposalFormBlock = () => {
                                             {t('homeType.comercialBuilding')}
                                         </option>
                                     </Select>
-
+                                    <Div />
                                     <NumberInput
                                         name="roomSize"
                                         placeholder={t('roomSize')}

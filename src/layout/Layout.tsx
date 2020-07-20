@@ -8,6 +8,7 @@ import { Footer } from 'blocks/Footer'
 import { languages } from 'i18n/languages'
 import { usePagePath } from 'hooks/usePagePath'
 import { displayWidth } from 'styles/width'
+import { CallbackButton } from 'components/CallbackButton'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -64,6 +65,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
             <Header />
             <BlocksWrapper id="blockWrapper">
                 <div>{props.children}</div>
+                <CallbackButton />
                 <Footer />
             </BlocksWrapper>
         </LayoutWraper>

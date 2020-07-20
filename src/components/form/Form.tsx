@@ -34,6 +34,7 @@ interface IFormProps {
     children: any
     formName?: string
     buttonText?: TFunction
+    handleFormSubmit?: () => void
 }
 export interface IChildrenProps {
     register: ReturnType<typeof useForm>['register']
@@ -41,6 +42,7 @@ export interface IChildrenProps {
 }
 export const Form: React.FC<IFormProps> = ({
     children,
+    handleFormSubmit = () => {},
     formName = 'Clearline Form',
     buttonText = 'Send',
 }) => {
@@ -58,6 +60,7 @@ export const Form: React.FC<IFormProps> = ({
                 'Content-type': 'application/json',
             },
         })
+        handleFormSubmit()
     }
     const childrenProps: IChildrenProps = { register, errors }
     return (

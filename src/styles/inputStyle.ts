@@ -1,6 +1,5 @@
 import { css } from 'styled-components'
 import { colors } from 'styles/colors'
-import { displayWidth } from 'styles/width'
 
 export const inputStyle = css`
     font-style: normal;
@@ -22,9 +21,5 @@ export const inputStyle = css`
     }
     [type='number'] {
         -moz-appearance: textfield;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        width: calc(100% - 150px);
-        margin-right: 150px;
     }
 `
