@@ -30,7 +30,7 @@ const MenuItem = styled(LocalizedLink).attrs({
     text-transform: uppercase;
     text-decoration: none;
     @media (min-width: ${displayWidth.tablet}) {
-        font-size: 14px;
+        font-size: 13px;
         color: ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
@@ -83,6 +83,9 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
             </MenuItem>
             <MenuItem onClick={onMenuItemClick} to="/contacts">
                 Contacts
+            </MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/services">
+                Services
             </MenuItem>
         </MenuWraper>
     )
