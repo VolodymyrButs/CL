@@ -14,4 +14,7 @@ export const colors = {
     white: '#fff',
     darkText: '#151414',
     accentText: '#E24C1A',
+    viber: '#59267c',
+    telegram: '#0088cc',
+    whatsapp: '#25d366',
 }

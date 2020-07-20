@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useLocation } from '@reach/router'
 import { useTranslation } from 'react-i18next'
 import { languages } from 'i18n/languages'

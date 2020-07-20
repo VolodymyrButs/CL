@@ -6,7 +6,7 @@ export const About = () => {
     const { t, i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         {
-            allFile(filter: { relativeDirectory: { eq: "about" } }) {
+            allFile(filter: { relativeDirectory: { eq: "blocks/about" } }) {
                 edges {
                     node {
                         name

@@ -25,6 +25,10 @@ const FormWrapper = styled.div`
 const InputBlock = styled.div`
     display: flex;
     flex-direction: column;
+    @media (min-width: ${displayWidth.desktop}) {
+        width: calc(100% - 150px);
+        margin-right: 150px;
+    }
 `
 const FormTitle = styled.div`
     font-family: 'Yeseva One', cursive;
