@@ -11,7 +11,7 @@ import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { ServicesItem } from 'blocks/Services/ServicesItem'
+import { ServicesItem, ServicesItemProp } from 'blocks/Services/ServicesItem'
 import { headerBg } from 'styles/headerBg'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
@@ -88,11 +88,6 @@ const ChairImg = styled(Icon)`
         right: 0px;
     }
 `
-export interface IServicesItem {
-    question: string
-    answer: string
-    icon: string
-}
 
 export const Services = () => {
     const { i18n } = useTranslation()
@@ -145,10 +140,10 @@ export const Services = () => {
                             objectFit: 'containe',
                         }}
                     />
-                    <ChairImg iconName="chair2.svg" />
+                    <ChairImg iconName="chairServices.svg" />
                 </HeroColumn>
                 <ServicesListStyled>
-                    {questions.map((item: IServicesItem, index: number) => {
+                    {questions.map((item: ServicesItemProp, index: number) => {
                         return (
                             <ServicesItem
                                 key={index}

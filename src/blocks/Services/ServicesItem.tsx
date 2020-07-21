@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import Arrow from 'assets/icons/close.svg'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
-import { IServicesItem } from './Services'
 import { Icon } from 'components/Icon'
 
 const QuestionWrapper = styled.div<{ isAnswerVisible: boolean }>`
@@ -100,7 +99,7 @@ const Answer = styled.div<{ isAnswerVisible: boolean }>`
 `
 const ArrowStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
     margin: 16px 0;
-    fill: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
+    stroke: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
     transform: ${({ isAnswerVisible }) => !isAnswerVisible && 'rotate(180deg)'};
     cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
@@ -108,19 +107,29 @@ const ArrowStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
     }
 `
 const IconStyled = styled(Icon)<{ isAnswerVisible: boolean }>`
-    width: 50px;
+    width: 45px;
     height: 50px;
-    fill: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
+    min-width: 45px;
+    stroke: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         margin: 0 15px 0 5px;
     }
 `
-
-export const ServicesItem = ({ question, answer, icon }: IServicesItem) => {
+export interface ServicesItemProp {
+    question: string
+    answer: string
+    icon: string
+}
+export const ServicesItem = ({ question, answer, icon }: ServicesItemProp) => {
     const [isAnswerVisible, setIsAnswerVisible] = useState(false)
     return (
         <>
-            <QuestionWrapper isAnswerVisible={isAnswerVisible}>
+            <QuestionWrapper
+                isAnswerVisible={isAnswerVisible}
+                onClick={() => {
+                    setIsAnswerVisible(!isAnswerVisible)
+                }}
+            >
                 <IconStyled isAnswerVisible={isAnswerVisible} iconName={icon} />
                 <Question
                     isAnswerVisible={isAnswerVisible}
@@ -128,12 +137,7 @@ export const ServicesItem = ({ question, answer, icon }: IServicesItem) => {
                         __html: question,
                     }}
                 />
-                <ArrowStyled
-                    isAnswerVisible={isAnswerVisible}
-                    onClick={() => {
-                        setIsAnswerVisible(!isAnswerVisible)
-                    }}
-                />
+                <ArrowStyled isAnswerVisible={isAnswerVisible} />
             </QuestionWrapper>
             <Answer
                 isAnswerVisible={isAnswerVisible}
