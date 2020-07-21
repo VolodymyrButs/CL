@@ -10,4 +10,6 @@ export interface IInputProps {
     name?: string
     defaultValue?: string
     children?: React.ReactNode
+    questionPlaceholder?: string
+    maxHeight?: string
 }

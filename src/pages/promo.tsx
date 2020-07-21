@@ -16,6 +16,7 @@ import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
+import { ButtonWithModal } from 'components/ButtonWithModal'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -29,7 +30,19 @@ const Promo = () => {
             <CommercialProposalFormBlock />
             <Project3D />
             <Advantages3D />
-            <Connection />
+            <Connection text={'Узнай больше о 3D дизайн-проекте'}>
+                <ButtonWithModal
+                    modalTitle={'Оставьте заявку'}
+                    secondModalTitle={'Спасибо!'}
+                    modalDescription={'Напишите нам и мы Вам перезвоним!'}
+                    secondModalDescription={
+                        'Мы с Вами свяжемся в ближайшее время!'
+                    }
+                    buttonLabel={'Связаться с нами'}
+                    questionPlaceholder={'Спитай шось)))'}
+                    submitLabel={'Послати пісьмо'}
+                />
+            </Connection>
             <SelectionOfPaints />
             <AdvantagesServices />
             <DefaultFormBlock />
