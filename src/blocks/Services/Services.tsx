@@ -59,23 +59,6 @@ const HeroColumn = styled.div`
         }
     }
 `
-const LeftSidebar = styled.div`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-        flex-grow: 1;
-        min-width: 80px;
-        background-color: ${backgroundColors.contact};
-        box-sizing: border-box;
-    }
-`
-const RightSidebar = styled(LeftSidebar)`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        background-color: ${backgroundColors.contact};
-        border-left: 1px solid ${colors.dark};
-    }
-`
 const ServicesListStyled = styled.div`
     display: flex;
     flex-direction: column;
@@ -148,7 +131,6 @@ export const Services = () => {
     const imagePalma = getImageByImageName(data.allImageSharp, image)
     return (
         <ServicesWrapper>
-            <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <TitleStyled> {title}</TitleStyled>
@@ -173,7 +155,6 @@ export const Services = () => {
                     })}
                 </ServicesListStyled>
             </Container>
-            <RightSidebar />
         </ServicesWrapper>
     )
 }

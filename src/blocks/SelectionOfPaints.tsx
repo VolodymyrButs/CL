@@ -56,23 +56,6 @@ const HeroColumn = styled.div`
         border-right: 1px solid ${colors.dark};
     }
 `
-const LeftSidebar = styled.div`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-        flex-grow: 1;
-        min-width: 80px;
-        background-color: ${backgroundColors.services};
-        box-sizing: border-box;
-    }
-`
-const RightSidebar = styled(LeftSidebar)`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        background-color: ${backgroundColors.services};
-        border-left: 1px solid ${colors.dark};
-    }
-`
 const ImgStyled = styled(Img)`
     height: 70vw;
     max-height: 100%;
@@ -152,7 +135,6 @@ export const SelectionOfPaints = () => {
 
     return (
         <SelectionOfPaintWrapper>
-            <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <TitleStyled>{title}</TitleStyled>
@@ -166,7 +148,6 @@ export const SelectionOfPaints = () => {
                     <ImgStyled fluid={image.fluid} />
                 </ImgWrapper>
             </Container>
-            <RightSidebar />
         </SelectionOfPaintWrapper>
     )
 }
