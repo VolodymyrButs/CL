@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import Arrow from 'assets/icons/close.svg'
 import { colors } from 'styles/colors'
@@ -13,35 +13,37 @@ const QuestionWrapper = styled.div<{ showansver: boolean }>`
     flex-direction: column;
     align-items: center;
     padding: 22px 16px 0;
-    :after {
-        ${({ showansver }) =>
-            showansver &&
-            `
-        pointer-events: none;
+     :before {
         position: absolute;
-        top: 0;
+        content: '';
         bottom: 0;
         left: 15px;
         right: 15px;
-        border-left: 1px solid ${colors.white};
-        border-right: 1px solid ${colors.white};
-        content: '';
         z-index: 3;
-        @media (min-width: ${displayWidth.tablet}) {
-            display: none;
-        }
-    `}
-    }
-    :before {
-        position: absolute;
-        content: '';
-        bottom: -1px;
-        left: 15px;
-        right: 15px;
         border-bottom: 1px solid ${colors.dark};
-        z-index: 3;
     }
-    background-color: ${({ showansver }) => showansver && colors.dark};
+     ${({ showansver }) =>
+         showansver &&
+         css`
+             background-color: ${colors.dark};
+             :after {
+                 pointer-events: none;
+                 position: absolute;
+                 top: 0;
+                 bottom: 0;
+                 left: 16px;
+                 right: 16px;
+                 border-left: 1px solid ${colors.white};
+                 border-right: 1px solid ${colors.white};
+                 content: '';
+                 @media (min-width: ${displayWidth.tablet}) {
+                     display: none;
+                 }
+             }
+             :before {
+                 border-bottom: none;
+             }
+         `}
     @media (min-width: ${displayWidth.tablet}) {
         margin: 24px 32px 0;
         padding: 5px 0;
@@ -90,6 +92,9 @@ const Answer = styled.div<{ showansver: boolean }>`
     ol,
     ul {
         margin-left: 1em;
+    }
+    ol {
+        list-style: decimal;
     }
 `
 const ArrowStyled = styled(Arrow)<{ showansver: boolean }>`

@@ -11,6 +11,7 @@ import { contactInformation } from 'components/contactInformation'
 import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { indent } from 'styles/indent'
 
 const FooterWrapper = styled.div`
     position: relative;
@@ -28,9 +29,10 @@ const FooterWrapper = styled.div`
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 16px;
-        right: 16px;
-        outline: 1px solid ${colors.white};
+        left: ${indent.mobile};
+        right: ${indent.mobile};
+        border-left: 1px solid ${colors.white};
+        border-right: 1px solid ${colors.white};
         content: '';
         z-index: -1;
         @media (min-width: ${displayWidth.tablet}) {

@@ -16,6 +16,7 @@ import { headerHeight } from 'styles/height'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { indent } from 'styles/indent'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -63,7 +64,7 @@ const PromoHeroColumn = styled.div`
     }
 `
 const ContainerStyled = styled(Container)`
-    padding: 0 15px;
+    padding: 0 ${indent.mobile};
     @media (min-width: ${displayWidth.tablet}) {
         padding: 0;
     }

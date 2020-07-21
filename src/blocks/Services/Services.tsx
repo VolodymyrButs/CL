@@ -14,6 +14,7 @@ import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { ServicesItem } from 'blocks/Services/ServicesItem'
 import { headerBg } from 'styles/headerBg'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { indent } from 'styles/indent'
 
 const ServicesWrapper = styled.div`
     display: flex;
@@ -45,8 +46,8 @@ const HeroColumn = styled.div`
         content: '';
         pointer-events: none;
         bottom: 0;
-        left: 15px;
-        right: 15px;
+        left: ${indent.mobile};
+        right: ${indent.mobile};
         border-bottom: 1px solid ${colors.dark};
         z-index: 3;
     }
@@ -78,10 +79,14 @@ const Image = styled(Img)`
     }
 `
 const ChairImg = styled(Icon)`
-    width: 60%;
-    position: absolute;
-    bottom: -30px;
-    right: 0px;
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: inline;
+        width: 60%;
+        position: absolute;
+        bottom: -30px;
+        right: 0px;
+    }
 `
 export interface IServicesItem {
     question: string
@@ -128,14 +133,14 @@ export const Services = () => {
         data.allServicesYaml,
         i18n.language
     )
-    const imagePalma = getImageByImageName(data.allImageSharp, image)
+    const palmImage = getImageByImageName(data.allImageSharp, image)
     return (
         <ServicesWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <TitleStyled> {title}</TitleStyled>
+                    <TitleStyled>{title}</TitleStyled>
                     <Image
-                        fluid={imagePalma.fluid}
+                        fluid={palmImage.fluid}
                         imgStyle={{
                             objectFit: 'containe',
                         }}

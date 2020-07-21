@@ -12,6 +12,7 @@ import { headerHeight } from 'styles/height'
 import { headerBg } from 'styles/headerBg'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { indent } from 'styles/indent'
 
 const HomeHeroWraper = styled.div`
     display: flex;
@@ -32,7 +33,7 @@ const HomeHeroWraper = styled.div`
     }
 `
 const ContainerStyled = styled(Container)`
-    padding: 0 15px;
+    padding: 0 ${indent.mobile};
     @media (min-width: ${displayWidth.tablet}) {
         padding: 0;
         position: relative;
@@ -43,7 +44,8 @@ const ContainerStyled = styled(Container)`
             bottom: 0;
             left: 33.3%;
             right: 33.3%;
-            outline: 1px solid ${colors.dark};
+            border-left: 1px solid ${colors.dark};
+            border-right: 1px solid ${colors.dark};
             content: '';
         }
     }
