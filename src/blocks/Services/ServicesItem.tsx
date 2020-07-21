@@ -7,7 +7,7 @@ import { displayWidth } from 'styles/width'
 import { IServicesItem } from './Services'
 import { Icon } from 'components/Icon'
 
-const QuestionWrapper = styled.div<{ showansver: boolean }>`
+const QuestionWrapper = styled.div<{ isAnswerVisible: boolean }>`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -22,8 +22,8 @@ const QuestionWrapper = styled.div<{ showansver: boolean }>`
         z-index: 3;
         border-bottom: 1px solid ${colors.dark};
     }
-     ${({ showansver }) =>
-         showansver &&
+     ${({ isAnswerVisible }) =>
+         isAnswerVisible &&
          css`
              background-color: ${colors.dark};
              :after {
@@ -55,20 +55,21 @@ const QuestionWrapper = styled.div<{ showansver: boolean }>`
         }
     }
 `
-const Question = styled.div<{ showansver: boolean }>`
+const Question = styled.div<{ isAnswerVisible: boolean }>`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
-    color: ${({ showansver }) => (showansver ? colors.white : colors.dark)};
+    color: ${({ isAnswerVisible }) =>
+        isAnswerVisible ? colors.white : colors.dark};
     text-align: center;
     @media (min-width: ${displayWidth.tablet}) {
         width: 100%;
         text-align: left;
     }
 `
-const Answer = styled.div<{ showansver: boolean }>`
-    display: ${({ showansver }) => (showansver ? 'block' : 'none')};
+const Answer = styled.div<{ isAnswerVisible: boolean }>`
+    display: ${({ isAnswerVisible }) => (isAnswerVisible ? 'block' : 'none')};
     color: ${colors.darkText};
     background-color: ${colors.white};
     padding: 32px;
@@ -97,45 +98,45 @@ const Answer = styled.div<{ showansver: boolean }>`
         list-style: decimal;
     }
 `
-const ArrowStyled = styled(Arrow)<{ showansver: boolean }>`
+const ArrowStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
     margin: 16px 0;
-    fill: ${({ showansver }) => showansver && colors.white};
-    transform: ${({ showansver }) => !showansver && 'rotate(180deg)'};
+    fill: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
+    transform: ${({ isAnswerVisible }) => !isAnswerVisible && 'rotate(180deg)'};
     cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
         margin: 16px 5px;
     }
 `
-const IconStyled = styled(Icon)<{ showansver: boolean }>`
+const IconStyled = styled(Icon)<{ isAnswerVisible: boolean }>`
     width: 50px;
     height: 50px;
-    fill: ${({ showansver }) => showansver && colors.white};
+    fill: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         margin: 0 15px 0 5px;
     }
 `
 
 export const ServicesItem = ({ question, answer, icon }: IServicesItem) => {
-    const [showAnsver, setShowAnswer] = useState(false)
+    const [isAnswerVisible, setIsAnswerVisible] = useState(false)
     return (
         <>
-            <QuestionWrapper showansver={showAnsver}>
-                <IconStyled showansver={showAnsver} iconName={icon} />
+            <QuestionWrapper isAnswerVisible={isAnswerVisible}>
+                <IconStyled isAnswerVisible={isAnswerVisible} iconName={icon} />
                 <Question
-                    showansver={showAnsver}
+                    isAnswerVisible={isAnswerVisible}
                     dangerouslySetInnerHTML={{
                         __html: question,
                     }}
                 />
                 <ArrowStyled
-                    showansver={showAnsver}
+                    isAnswerVisible={isAnswerVisible}
                     onClick={() => {
-                        setShowAnswer(!showAnsver)
+                        setIsAnswerVisible(!isAnswerVisible)
                     }}
                 />
             </QuestionWrapper>
             <Answer
-                showansver={showAnsver}
+                isAnswerVisible={isAnswerVisible}
                 dangerouslySetInnerHTML={{
                     __html: answer,
                 }}
