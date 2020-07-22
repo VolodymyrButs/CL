@@ -86,6 +86,26 @@ const LinkStyled = styled(Link).attrs({
         }
     }
 `
+const FakeLink = styled.span<{ open: boolean }>`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${colors.white};
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 19px;
+    cursor: pointer;
+    @media (min-width: ${displayWidth.tablet}) {
+        color: ${({ open }) => (open ? colors.white : colors.dark)};
+        :hover {
+            text-decoration: underline;
+        }
+    }
+`
 const Wrapper = styled.div`
     position: absolute;
     left: 0;
@@ -109,10 +129,21 @@ export const LanguageSwitcher = () => {
         <LanguageList open={isOpen}>
             <LanguageList open={isOpen}>
                 <LangItem onClick={() => setIsOpen(!isOpen)} open={isOpen}>
-                    <LinkStyled to={getPagePath(i18n.language)} open={isOpen}>
-                        {languages[i18n.language].label}
-                        <IconStyled open={isOpen} />
-                    </LinkStyled>
+                    {isOpen && (
+                        <LinkStyled
+                            to={getPagePath(i18n.language)}
+                            open={isOpen}
+                        >
+                            {languages[i18n.language].label}
+                            <IconStyled open={isOpen} />
+                        </LinkStyled>
+                    )}
+                    {!isOpen && (
+                        <FakeLink open={isOpen}>
+                            {languages[i18n.language].label}
+                            <IconStyled open={isOpen} />
+                        </FakeLink>
+                    )}
                 </LangItem>
             </LanguageList>
             <Wrapper>
