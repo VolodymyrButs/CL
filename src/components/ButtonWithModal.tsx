@@ -68,10 +68,16 @@ export const ButtonWithModal = ({
     modalDescription,
     secondModalDescription,
     buttonLabel,
-    questionPlaceholder,
+    placeholder,
     submitLabel,
 }: {
-    [key: string]: string
+    modalTitle: string
+    secondModalTitle: string
+    modalDescription: string
+    secondModalDescription: string
+    buttonLabel: string
+    placeholder: string
+    submitLabel: string
 }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
     const [isFormSend, setIsFormSend] = useState(false)
@@ -104,9 +110,7 @@ export const ButtonWithModal = ({
                             <Form
                                 formName={'Callback Form'}
                                 buttonText={submitLabel}
-                                handleFormSubmit={() =>
-                                    setIsFormSend(!isFormSend)
-                                }
+                                handleFormSubmit={() => setIsFormSend(true)}
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <>
@@ -115,9 +119,7 @@ export const ButtonWithModal = ({
                                                 required: true,
                                             })}
                                             err={errors.message}
-                                            questionPlaceholder={
-                                                questionPlaceholder
-                                            }
+                                            placeholder={placeholder}
                                             maxHeight={'90px'}
                                         />
                                         <PhoneInput

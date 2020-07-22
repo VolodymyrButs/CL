@@ -129,7 +129,7 @@ export const LanguageSwitcher = () => {
         <LanguageList open={isOpen}>
             <LanguageList open={isOpen}>
                 <LangItem onClick={() => setIsOpen(!isOpen)} open={isOpen}>
-                    {isOpen && (
+                    {isOpen ? (
                         <LinkStyled
                             to={getPagePath(i18n.language)}
                             open={isOpen}
@@ -137,8 +137,7 @@ export const LanguageSwitcher = () => {
                             {languages[i18n.language].label}
                             <IconStyled open={isOpen} />
                         </LinkStyled>
-                    )}
-                    {!isOpen && (
+                    ) : (
                         <FakeLink open={isOpen}>
                             {languages[i18n.language].label}
                             <IconStyled open={isOpen} />

@@ -17,6 +17,7 @@ import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { ButtonWithModal } from 'components/ButtonWithModal'
+import { backgroundColors } from 'styles/colors'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -30,17 +31,20 @@ const Promo = () => {
             <CommercialProposalFormBlock />
             <Project3D />
             <Advantages3D />
-            <Connection text={'Узнай больше о 3D дизайн-проекте'}>
+            <Connection
+                text={t('connection.text')}
+                backgroundColor={backgroundColors.formPromo}
+            >
                 <ButtonWithModal
-                    modalTitle={'Оставьте заявку'}
-                    secondModalTitle={'Спасибо!'}
-                    modalDescription={'Напишите нам и мы Вам перезвоним!'}
-                    secondModalDescription={
-                        'Мы с Вами свяжемся в ближайшее время!'
-                    }
-                    buttonLabel={'Связаться с нами'}
-                    questionPlaceholder={'Спитай шось)))'}
-                    submitLabel={'Послати пісьмо'}
+                    modalTitle={t('connection.modalTitle')}
+                    secondModalTitle={t('connection.secondModalTitle')}
+                    modalDescription={t('connection.modalDescription')}
+                    secondModalDescription={t(
+                        'connection.secondModalDescription'
+                    )}
+                    buttonLabel={t('connection.buttonLabel')}
+                    placeholder={t('connection.placeholder')}
+                    submitLabel={t('connection.submitLabel')}
                 />
             </Connection>
             <SelectionOfPaints />

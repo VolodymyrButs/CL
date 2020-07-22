@@ -29,5 +29,15 @@
     "roomSize": "Area of the room",
     "availabilityDrawings": "Dimensional drawings are available",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "connection": {
+        "text": "Узнай больше о 3D дизайн-проекте",
+        "modalTitle": "Оставьте заявку",
+        "secondModalTitle": "Спасибо!",
+        "modalDescription": "Напишите нам и мы Вам перезвоним!",
+        "secondModalDescription": "Мы с Вами свяжемся в ближайшее время!",
+        "buttonLabel": "Связаться с нами",
+        "placeholder": "Задайте вопрос",
+        "submitLabel": "Задать вопрос"
+    }
 }

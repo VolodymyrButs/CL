@@ -23,7 +23,7 @@ const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
 export const MessageInput = ({
     inputRef,
     err,
-    questionPlaceholder,
+    placeholder,
     maxHeight,
 }: IInputProps) => {
     const { t } = useTranslation()
@@ -32,9 +32,7 @@ export const MessageInput = ({
             maxheight={maxHeight}
             rows={1}
             name="message"
-            placeholder={
-                questionPlaceholder ? questionPlaceholder : t('message')
-            }
+            placeholder={placeholder ? placeholder : t('message')}
             ref={inputRef}
             isValid={err}
         />
