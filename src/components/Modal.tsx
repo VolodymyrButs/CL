@@ -14,7 +14,7 @@ const ModalWrapper = styled.div<{ open: boolean }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
     z-index: 5;
 `
 const ModalWindow = styled.div`
