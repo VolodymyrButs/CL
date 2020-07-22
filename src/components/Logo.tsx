@@ -8,13 +8,14 @@ const paddingMobile = '11px'
 const paddingDesktop = '12px'
 
 export const Logo = styled(LogoIcon)`
-    width: calc(${headerHeight.mobile} - ${paddingMobile}*2);
-    height: calc(${headerHeight.mobile} - ${paddingMobile}*2);
+    width: ${headerHeight.mobile};
+    height: ${headerHeight.mobile};
     padding: ${paddingMobile};
     fill: ${colors.dark};
+    box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
-        min-width: calc(${headerHeight.desktop} - ${paddingDesktop}*2);
-        min-height: calc(${headerHeight.desktop} - ${paddingDesktop}*2);
+        min-width: ${headerHeight.desktop};
+        min-height: ${headerHeight.desktop};
         padding: ${paddingDesktop};
     }
 `

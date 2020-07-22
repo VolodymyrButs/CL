@@ -78,11 +78,11 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
             <MenuItem onClick={onMenuItemClick} to="/works">
                 Works
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/projects">
-                Projects
-            </MenuItem>
             <MenuItem onClick={onMenuItemClick} to="/contacts">
                 Contacts
+            </MenuItem>
+            <MenuItem onClick={onMenuItemClick} to="/services">
+                Services
             </MenuItem>
         </MenuWraper>
     )

@@ -56,23 +56,6 @@ const HeroColumn = styled.div`
         border-right: 1px solid ${colors.dark};
     }
 `
-const LeftSidebar = styled.div`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-        flex-grow: 1;
-        min-width: 80px;
-        background-color: ${backgroundColors.project};
-        box-sizing: border-box;
-    }
-`
-const RightSidebar = styled(LeftSidebar)`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        background-color: ${backgroundColors.project};
-        border-left: 1px solid ${colors.dark};
-    }
-`
 const ImgStyled = styled(Img)`
     width: 100%;
     box-sizing: border-box;
@@ -152,7 +135,6 @@ export const Project3D = () => {
 
     return (
         <Visualization3dWrapper>
-            <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <TitleStyled>{title}</TitleStyled>
@@ -166,7 +148,6 @@ export const Project3D = () => {
                     <ImgStyled fluid={image.fluid} />
                 </ImgWrapper>
             </Container>
-            <RightSidebar />
         </Visualization3dWrapper>
     )
 }

@@ -60,23 +60,7 @@ const HeroColumn = styled.div`
         padding: 60px 0 40px;
     }
 `
-const LeftSidebar = styled.div`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-        flex-grow: 1;
-        min-width: 80px;
-        background-color: ${backgroundColors.vizualization};
-        box-sizing: border-box;
-    }
-`
-const RightSidebar = styled(LeftSidebar)`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        background-color: ${backgroundColors.vizualization};
-        border-left: 1px solid ${colors.dark};
-    }
-`
+
 const ImgStyled = styled(Img)`
     height: auto;
     max-height: 100%;
@@ -222,7 +206,6 @@ export const Visualization3d = () => {
     }
     return (
         <Visualization3dWrapper>
-            <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <TitleStyled>{title}</TitleStyled>
@@ -257,7 +240,6 @@ export const Visualization3d = () => {
                     <RealizationBlock>{realization}</RealizationBlock>
                 </DesctopWrapper>
                 <MobileWrapper>
-                    {' '}
                     <SliderComponent {...sliderSettings}>
                         {commonImages.mobileImages.map(
                             (item: { image: string }, index: number) => {
@@ -280,7 +262,6 @@ export const Visualization3d = () => {
                     </SliderComponent>
                 </MobileWrapper>
             </Container>
-            <RightSidebar />
         </Visualization3dWrapper>
     )
 }

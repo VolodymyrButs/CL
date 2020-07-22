@@ -45,7 +45,6 @@ const RightSidebar = styled(LeftSidebar)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
-        border-left: 1px solid ${colors.dark};
     }
 `
 

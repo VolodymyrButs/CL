@@ -27,22 +27,22 @@ const Question = styled.div`
     margin-right: 30px;
     padding-bottom: 8px;
 `
-const Answer = styled(Question)<{ showansver: boolean }>`
-    display: ${({ showansver }) => (showansver ? 'block' : 'none')};
+const Answer = styled(Question)<{ isAnswerVisible: boolean }>`
+    display: ${({ isAnswerVisible }) => (isAnswerVisible ? 'block' : 'none')};
     color: ${colors.darkText};
     margin-top: 2px;
     opacity: 0.38;
 `
-const IconStyled = styled(Arrow)<{ showansver: boolean }>`
+const IconStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
     position: absolute;
     bottom: 8px;
     right: 0;
-    transform: ${({ showansver }) => !showansver && 'rotate(180deg)'};
+    transform: ${({ isAnswerVisible }) => !isAnswerVisible && 'rotate(180deg)'};
     cursor: pointer;
 `
 
 export const FAQItem = ({ question, answer }: IFAQItem) => {
-    const [showAnsver, setShowAnswer] = useState(false)
+    const [isAnswerVisible, setIsAnswerVisible] = useState(false)
     return (
         <FaqListItemWrapper>
             <QuestionWrapper>
@@ -53,14 +53,14 @@ export const FAQItem = ({ question, answer }: IFAQItem) => {
                 />
 
                 <IconStyled
-                    showansver={showAnsver}
+                    isAnswerVisible={isAnswerVisible}
                     onClick={() => {
-                        setShowAnswer(!showAnsver)
+                        setIsAnswerVisible(!isAnswerVisible)
                     }}
                 />
             </QuestionWrapper>
             <Answer
-                showansver={showAnsver}
+                isAnswerVisible={isAnswerVisible}
                 dangerouslySetInnerHTML={{
                     __html: answer,
                 }}

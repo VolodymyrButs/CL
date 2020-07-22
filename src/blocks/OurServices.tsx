@@ -9,6 +9,7 @@ import { Button } from 'components/Button'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { displayWidth } from 'styles/width'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { indent } from 'styles/indent'
 
 const OurServicesWrapper = styled.div`
     width: 100%;
@@ -44,13 +45,15 @@ const Block = styled.div`
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 16px;
-        right: 16px;
-        outline: 1px solid ${colors.dark};
+        left: ${indent.mobile};
+        right: ${indent.mobile};
+        border-left: 1px solid ${colors.dark};
+        border-right: 1px solid ${colors.dark};
         content: '';
         z-index: -1;
         @media (min-width: ${displayWidth.tablet}) {
-            outline: none;
+            border-left: none;
+            border-right: none;
         }
     }
 `
