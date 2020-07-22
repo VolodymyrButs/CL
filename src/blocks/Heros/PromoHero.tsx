@@ -13,7 +13,7 @@ import sofaDesktopRight from 'assets/images/sofaDesktopRight.svg'
 import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { headerHeight } from 'styles/height'
-import { LocalizedLink } from 'i18n/LocalizedLink'
+import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 
@@ -175,7 +175,7 @@ const ButtonStyled = styled(Button)`
         margin: 30px 0;
     }
 `
-const LocalizedLinkStyled = styled(LocalizedLink)`
+const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
     text-decoration: none;
 `
 export const PromoHero = () => {
@@ -226,7 +226,7 @@ export const PromoHero = () => {
                         {promoHeroData.title}
                         <Price>{promoHeroData.price}</Price>
                     </Title>
-                    <LocalizedLinkStyled to={'/promo#design'}>
+                    <LocalizedLinkStyled to={'/promo/#design'}>
                         <ButtonStyled>
                             <p>{promoHeroData.buttonText}</p>
                         </ButtonStyled>

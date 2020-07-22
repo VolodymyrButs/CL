@@ -12,7 +12,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { SliderComponent } from 'components/SliderComponent'
-import { LocalizedLink } from 'i18n/LocalizedLink'
+import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 
@@ -89,7 +89,7 @@ const ImgStyled = styled(Img)`
         max-height: 711px;
     }
 `
-const LocalizedLinkStyled = styled(LocalizedLink)`
+const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
     text-decoration: none;
 `
 const ButtonStyled = styled(Button)`
@@ -227,7 +227,7 @@ export const Visualization3d = () => {
                 <HeroColumn>
                     <TitleStyled>{title}</TitleStyled>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled to={'/promo#design'}>
+                    <LocalizedLinkStyled to={'/promo/#design'}>
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>
                     <JumpingArrow />
