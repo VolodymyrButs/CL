@@ -1,23 +1,20 @@
 import React from 'react'
-import styled, { FlattenSimpleInterpolation } from 'styled-components'
+import { CSSProperties } from 'styled-components'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare function require(name: string): any
 
 interface IIconProps {
     iconName: string
-    styles?: FlattenSimpleInterpolation
+    className?: CSSProperties
 }
 
 export const Icon: React.FC<IIconProps> = ({
     iconName,
-    styles,
+    className,
     ...restProps
 }) => {
-    const icon = require(`assets/icons/${iconName}`)
+    const IconStyled = require(`assets/icons/${iconName}`)
 
-    const IconStyled = styled(icon)`
-        ${styles};
-    `
-    return <IconStyled src={{ icon }} {...restProps} />
+    return <IconStyled className={className} {...restProps} />
 }

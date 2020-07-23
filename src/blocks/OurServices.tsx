@@ -6,7 +6,7 @@ import { backgroundColors, colors } from 'styles/colors'
 import { Container } from 'components/Container'
 import i18n from 'i18n/config'
 import { Button } from 'components/Button'
-import { LocalizedLink } from 'i18n/LocalizedLink'
+import { LocalizedLink, LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { displayWidth } from 'styles/width'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { indent } from 'styles/indent'
@@ -171,11 +171,11 @@ export const OurServices = () => {
                     <DesignBlock>
                         <Title>{allOurServicesData.titleDesign}</Title>
                         <SubTitle>{allOurServicesData.subTitleDesign}</SubTitle>
-                        <LocalizedLink to={'/promo#design'}>
+                        <LocalizedLinkAnchor to={'promo/#design'}>
                             <ButtonStyled>
                                 {allOurServicesData.buttonTextDesign}
                             </ButtonStyled>
-                        </LocalizedLink>
+                        </LocalizedLinkAnchor>
                     </DesignBlock>
                 </Container>
             </OurServicesWrapper>

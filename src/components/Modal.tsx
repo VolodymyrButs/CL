@@ -14,27 +14,35 @@ const ModalWrapper = styled.div<{ open: boolean }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
     z-index: 5;
 `
 const ModalWindow = styled.div`
     position: relative;
     width: 100%;
-    height: 100%;
     border: 1px solid ${colors.dark};
     background-color: ${colors.white};
     z-index: 6;
-    padding: 20px 32px;
+    padding: 15px 32px;
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         width: 70%;
-        height: 80%;
+        overflow-y: auto;
+        max-height: 95%;
+    }
+    @media (orientation: portrait) and (min-width: ${displayWidth.tablet}) {
+        width: 80%;
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 600px;
         height: auto;
         max-width: 70%;
-        max-height: 80%;
+        max-height: 95%;
+    }
+    @media (orientation: landscape) and (max-height: 700px) {
+        padding: 10px;
+        overflow-y: auto;
+        justify-content: flex-start;
     }
 `
 const CloseIconStyled = styled(CloseIcon)`

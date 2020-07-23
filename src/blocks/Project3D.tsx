@@ -10,7 +10,7 @@ import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { LocalizedLink } from 'i18n/LocalizedLink'
+import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 
@@ -77,7 +77,7 @@ const ImgWrapper = styled.div`
         padding: 0;
     }
 `
-const LocalizedLinkStyled = styled(LocalizedLink)`
+const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
     text-decoration: none;
 `
 const ButtonStyled = styled(Button)`
@@ -139,7 +139,7 @@ export const Project3D = () => {
                 <HeroColumn>
                     <TitleStyled>{title}</TitleStyled>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled to={'/promo#design'}>
+                    <LocalizedLinkStyled to={'/promo/#design'}>
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>
                     <JumpingArrow />

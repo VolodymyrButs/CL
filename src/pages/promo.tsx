@@ -16,6 +16,7 @@ import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
+import { ButtonWithModal } from 'components/ButtonWithModal'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -29,7 +30,19 @@ const Promo = () => {
             <CommercialProposalFormBlock />
             <Project3D />
             <Advantages3D />
-            <Connection />
+            <Connection text={t('connection.text')}>
+                <ButtonWithModal
+                    modalTitle={t('connection.modalTitle')}
+                    secondModalTitle={t('connection.secondModalTitle')}
+                    modalDescription={t('connection.modalDescription')}
+                    secondModalDescription={t(
+                        'connection.secondModalDescription'
+                    )}
+                    buttonLabel={t('connection.buttonLabel')}
+                    placeholder={t('connection.placeholder')}
+                    submitLabel={t('connection.submitLabel')}
+                />
+            </Connection>
             <SelectionOfPaints />
             <AdvantagesServices />
             <DefaultFormBlock />
