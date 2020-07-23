@@ -17,7 +17,6 @@ import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { ButtonWithModal } from 'components/ButtonWithModal'
-import { backgroundColors } from 'styles/colors'
 
 const Promo = () => {
     const { t } = useTranslation()
@@ -31,10 +30,7 @@ const Promo = () => {
             <CommercialProposalFormBlock />
             <Project3D />
             <Advantages3D />
-            <Connection
-                text={t('connection.text')}
-                backgroundColor={backgroundColors.formPromo}
-            >
+            <Connection text={t('connection.text')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
                     secondModalTitle={t('connection.secondModalTitle')}

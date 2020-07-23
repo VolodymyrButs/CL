@@ -2,16 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Container } from 'components/Container'
-import { colors } from 'styles/colors'
+import { colors, backgroundColors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 
-const CommunicationWrapper = styled.div<{ backgroundcolor: string }>`
+const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${props => props.backgroundcolor};
+    background-color: ${props =>
+        props.backgroundColors
+            ? props.backgroundColors
+            : backgroundColors.formPromo};
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
@@ -34,7 +37,7 @@ const TitleStyled = styled(Title)`
     }
 `
 interface IConnectionProps {
-    backgroundColor: string
+    backgroundColor?: string
     text: string
     children: React.ReactElement
 }
@@ -45,7 +48,7 @@ export const Connection: React.FC<IConnectionProps> = ({
     children,
 }) => {
     return (
-        <CommunicationWrapper backgroundcolor={backgroundColor}>
+        <CommunicationWrapper backgroundColors={backgroundColor}>
             <ContainerStyle columns={'1fr'} tabletColumns={'1fr'}>
                 <TitleStyled>{text}</TitleStyled>
                 {children}
