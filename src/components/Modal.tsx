@@ -20,6 +20,7 @@ const ModalWrapper = styled.div<{ open: boolean }>`
 const ModalWindow = styled.div`
     position: relative;
     width: 100%;
+    max-height: 100%;
     border: 1px solid ${colors.dark};
     background-color: ${colors.white};
     z-index: 6;

@@ -7,7 +7,6 @@ import { inputStyle } from 'styles/inputStyle'
 
 const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
     ${inputStyle}
-    font-family: 'Open Sans', sans-serif;
     ${props =>
         props.isValid &&
         css`

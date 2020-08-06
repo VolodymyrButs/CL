@@ -14,6 +14,7 @@ const QuestionWrapper = styled.div`
     justify-content: space-between;
     position: relative;
     margin-top: 36px;
+    cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
         margin-top: 24px;
     }
@@ -45,19 +46,18 @@ export const FAQItem = ({ question, answer }: IFAQItem) => {
     const [isAnswerVisible, setIsAnswerVisible] = useState(false)
     return (
         <FaqListItemWrapper>
-            <QuestionWrapper>
+            <QuestionWrapper
+                onClick={() => {
+                    setIsAnswerVisible(!isAnswerVisible)
+                }}
+            >
                 <Question
                     dangerouslySetInnerHTML={{
                         __html: question,
                     }}
                 />
 
-                <IconStyled
-                    isAnswerVisible={isAnswerVisible}
-                    onClick={() => {
-                        setIsAnswerVisible(!isAnswerVisible)
-                    }}
-                />
+                <IconStyled isAnswerVisible={isAnswerVisible} />
             </QuestionWrapper>
             <Answer
                 isAnswerVisible={isAnswerVisible}

@@ -42,7 +42,7 @@ const Wrapper = styled.div`
     }
 `
 const TitleStyled = styled(Title)`
-    margin: 50px 0;
+    margin: 20px 0;
     @media (orientation: landscape) {
         margin: 16px 0;
     }
@@ -50,7 +50,6 @@ const TitleStyled = styled(Title)`
 const ButtonStyled = styled(Button)`
     width: 264px;
     margin: 20px auto;
-    z-index: 3;
     @media (max-width: 330px) {
         width: 250px;
     }
@@ -113,7 +112,7 @@ export const ButtonWithModal = ({
                                 handleFormSubmit={() => setIsFormSend(true)}
                             >
                                 {({ register, errors }: IChildrenProps) => (
-                                    <>
+                                    <div>
                                         <MessageInput
                                             inputRef={register({
                                                 required: true,
@@ -133,7 +132,7 @@ export const ButtonWithModal = ({
                                             inputRef={register}
                                             err={errors.email}
                                         />
-                                    </>
+                                    </div>
                                 )}
                             </Form>
                         </>

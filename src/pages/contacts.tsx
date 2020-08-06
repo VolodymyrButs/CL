@@ -39,6 +39,7 @@ const LeftSidebar = styled.div`
         min-width: 80px;
         background-color: ${backgroundColors.contact};
         box-sizing: border-box;
+        margin-left: 1px;
     }
 `
 const RightSidebar = styled(LeftSidebar)`

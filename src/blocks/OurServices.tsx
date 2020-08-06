@@ -162,11 +162,11 @@ export const OurServices = () => {
                     <CadBlock>
                         <Title>{allOurServicesData.titleCad}</Title>
                         <SubTitle>{allOurServicesData.subTitleCad}</SubTitle>
-                        <a href="https://clearline.com.ua/cad/" target="blank">
+                        <LocalizedLink to={'/editor'}>
                             <ButtonStyled>
                                 {allOurServicesData.buttonTextCad}
                             </ButtonStyled>
-                        </a>
+                        </LocalizedLink>
                     </CadBlock>
                     <DesignBlock>
                         <Title>{allOurServicesData.titleDesign}</Title>

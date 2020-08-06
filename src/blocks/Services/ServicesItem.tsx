@@ -85,6 +85,9 @@ const Answer = styled.div<{ isAnswerVisible: boolean }>`
     strong {
         font-weight: bold;
     }
+    a {
+        color: ${colors.dark};
+    }
     p,
     li {
         margin: 1em 0;
