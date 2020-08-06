@@ -55,6 +55,7 @@ const LeftSidebar = styled.div`
         min-width: 80px;
         background-color: ${backgroundColors.project};
         box-sizing: border-box;
+        margin-left: 1px;
     }
 `
 const RightSidebar = styled(LeftSidebar)`
@@ -62,6 +63,10 @@ const RightSidebar = styled(LeftSidebar)`
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
     }
+`
+const ContainerS = styled(Container)`
+    padding-right: 1px;
+    box-sizing: border-box;
 `
 export const Advantages3D = () => {
     const { i18n } = useTranslation()
@@ -94,14 +99,14 @@ export const Advantages3D = () => {
     return (
         <Advantages3DWrapper>
             <LeftSidebar />
-            <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
+            <ContainerS columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <Title>{title}</Title>
 
                     <Image />
                 </HeroColumn>
                 <IconListStyled items={items} fill={backgroundColors.project} />
-            </Container>
+            </ContainerS>
             <RightSidebar />
         </Advantages3DWrapper>
     )
