@@ -101,12 +101,12 @@ const Answer = styled.div<{ isAnswerVisible: boolean }>`
     }
 `
 const ArrowStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
-    margin: 16px 0;
+    margin: 16px 0px;
     stroke: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
     transform: ${({ isAnswerVisible }) => !isAnswerVisible && 'rotate(180deg)'};
     cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 16px 5px;
+        margin: 16px 10px;
     }
 `
 const IconStyled = styled(Icon)<{ isAnswerVisible: boolean }>`

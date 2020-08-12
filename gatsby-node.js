@@ -1,4 +1,5 @@
 require('source-map-support').install()
+const path = require('path')
 require('ts-node').register({
     compilerOptions: {
         module: 'commonjs',
@@ -8,6 +9,57 @@ require('ts-node').register({
 const { languages } = require('./src/i18n/languages')
 const translationsCache = {}
 
+exports.createPages = async function({ actions, graphql }) {
+    const result = await graphql(`
+        {
+            allProjectsYaml(sort: { fields: date }) {
+                edges {
+                    node {
+                        parent {
+                            ... on File {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
+    if (result.errors) {
+        return Promise.reject(result.errors)
+    }
+
+    return result.data.allProjectsYaml.edges.forEach(
+        ({
+            node: {
+                parent: { name },
+            },
+        }) => {
+            Object.keys(languages).map(lang => {
+                // Use the values defined in "locales" to construct the path
+                const { pathPrefix, isDefault } = languages[lang]
+                const localizedPath = isDefault
+                    ? `/works/${name}`
+                    : `${pathPrefix}/works/${name}`
+
+                if (!translationsCache[lang]) {
+                    const translationJson = require(`./src/translations/${lang}`)
+                    translationsCache[lang] = translationJson
+                }
+                actions.createPage({
+                    path: localizedPath,
+                    component: path.resolve(`./src/layout/project.tsx`),
+                    context: {
+                        projectName: `works/${name}/images`,
+                        locale: lang,
+                        localeResources: translationsCache[lang],
+                    },
+                })
+            })
+        }
+    )
+}
 // Based upon https://github.com/gatsbyjs/gatsby/tree/master/examples/using-i18n
 exports.onCreatePage = ({ page, actions }) => {
     const { createPage, deletePage } = actions

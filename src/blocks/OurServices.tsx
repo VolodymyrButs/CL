@@ -18,6 +18,7 @@ const OurServicesWrapper = styled.div`
         display: flex;
         justify-content: center;
         outline: 1px solid ${colors.dark};
+        border-bottom: 1px solid ${colors.dark};
     }
 `
 const Block = styled.div`

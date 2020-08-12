@@ -39,5 +39,6 @@
         "buttonLabel": "Связаться с нами",
         "placeholder": "Задайте вопрос",
         "submitLabel": "Задать вопрос"
-    }
+    },
+    "showProject": "Cмотреть проект"
 }

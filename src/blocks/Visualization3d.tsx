@@ -70,7 +70,7 @@ const ImgStyled = styled(Img)`
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 793px;
-        max-height: 711px;
+        max-height: 600px;
     }
 `
 const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
