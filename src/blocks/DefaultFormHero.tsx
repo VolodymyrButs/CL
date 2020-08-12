@@ -18,7 +18,7 @@ const HeroColumn = styled.div`
     padding: 0 32px;
     box-sizing: border-box;
     border-bottom: 1px solid ${colors.dark};
-    @media (min-width: ${displayWidth.desktop}) {
+    @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
         justify-content: space-between;
         align-items: flex-start;

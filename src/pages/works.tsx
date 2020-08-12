@@ -1,17 +1,33 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { LocalizedLink } from 'i18n/LocalizedLink'
-import { About } from 'blocks/About'
+import { WorksHero } from 'blocks/Works/WorksHero'
+import { Reviews } from 'blocks/Reviews'
+import { Connection } from 'blocks/Connection'
+import { ButtonWithModal } from 'components/ButtonWithModal'
+import { WorksProjectGrid } from 'blocks/Works/WorksProjectGrid'
 
 const WorksPage = () => {
     const { t } = useTranslation()
-
     return (
-        <div>
-            <About />
-            <LocalizedLink to="/">{t('hi')}</LocalizedLink>
-        </div>
+        <>
+            <WorksHero />
+            <WorksProjectGrid />
+            <Reviews />
+            <Connection text={t('connection.text')}>
+                <ButtonWithModal
+                    modalTitle={t('connection.modalTitle')}
+                    secondModalTitle={t('connection.secondModalTitle')}
+                    modalDescription={t('connection.modalDescription')}
+                    secondModalDescription={t(
+                        'connection.secondModalDescription'
+                    )}
+                    buttonLabel={t('connection.buttonLabel')}
+                    placeholder={t('connection.placeholder')}
+                    submitLabel={t('connection.submitLabel')}
+                />
+            </Connection>
+        </>
     )
 }
 

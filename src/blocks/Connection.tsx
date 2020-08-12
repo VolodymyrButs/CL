@@ -18,6 +18,7 @@ const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
+    z-index:100;
 `
 
 const ContainerStyle = styled(Container)`
