@@ -155,7 +155,7 @@ const IconBar = styled.div<{ open: boolean }>`
     flex-direction: column;
     width: 74px;
     height: 270px;
-    animation: ${props => (props.open ? 'show 1s linear' : '')};
+    animation: ${props => (props.open ? 'show 0.5s linear' : '')};
     @keyframes show {
         from {
             opacity: 0;
