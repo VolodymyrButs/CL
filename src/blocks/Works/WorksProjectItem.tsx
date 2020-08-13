@@ -15,7 +15,7 @@ const Image = styled(Img)`
     width: 100%;
     height: 100%;
 `
-const HoverWrapper = styled.div`
+const HoverWrapper = styled(LocalizedLink)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,7 +27,9 @@ const HoverWrapper = styled.div`
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0.8;
-    @media (min-width: ${displayWidth.desktop}) {
+    transition: opacity 0.4s;
+    text-decoration: none;
+    @media (min-width: ${displayWidth.tablet}) {
         opacity: 0;
     }
 `
@@ -40,9 +42,8 @@ const ItemWrapper = styled.div`
     flex: 1;
     &:hover {
         ${HoverWrapper} {
-            @media (min-width: ${displayWidth.desktop}) {
+            @media (min-width: ${displayWidth.tablet}) {
                 opacity: 0.8;
-                transition: opacity 1s;
             }
         }
     }
@@ -74,8 +75,8 @@ const Description = styled.p`
 `
 export interface WorksProjectItemProp {
     image: string
-    description: React.ReactNode
-    link: React.ReactNode
+    description: string
+    link: string
 }
 
 export const WorksProjectItem = ({
@@ -107,12 +108,11 @@ export const WorksProjectItem = ({
                     objectFit: 'containe',
                 }}
             />
-            <HoverWrapper>
+            <HoverWrapper to={`works/${link}`}>
                 <LogoStyled />
                 <Description>{description}</Description>
-                <LocalizedLink to={`works/${link}`}>
-                    <ButtonS>{t('showProject')}</ButtonS>
-                </LocalizedLink>
+
+                <ButtonS>{t('showProject')}</ButtonS>
             </HoverWrapper>
         </ItemWrapper>
     )

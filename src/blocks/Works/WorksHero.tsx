@@ -103,7 +103,7 @@ export const WorksHero = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allProjectsYaml(sort: { fields: date }) {
+            allProjectsYaml(sort: { fields: date, order: DESC }) {
                 edges {
                     node {
                         date
@@ -150,6 +150,10 @@ export const WorksHero = () => {
             }
         }
     `)
+
+    const firstWork = data.allProjectsYaml.edges[0].node
+    const secondWork = data.allProjectsYaml.edges[1].node
+
     const { title, subtitle } = data.allWorksYaml.edges[0].node[i18n.language]
     return (
         <WorksHeroWrapper>
@@ -165,28 +169,16 @@ export const WorksHero = () => {
                 </HeroColumn>
                 <ProjectColumn>
                     <WorksProjectItem
-                        image={
-                            data.allProjectsYaml.edges[0].node.previewImage
-                                .portrait
-                        }
-                        description={
-                            data.allProjectsYaml.edges[0].node[i18n.language]
-                                .name
-                        }
-                        link={data.allProjectsYaml.edges[0].node.parent.name}
+                        image={firstWork.previewImage.portrait}
+                        description={firstWork[i18n.language].name}
+                        link={firstWork.parent.name}
                     />
                 </ProjectColumn>
                 <ProjectColumn>
                     <WorksProjectItem
-                        image={
-                            data.allProjectsYaml.edges[1].node.previewImage
-                                .portrait
-                        }
-                        description={
-                            data.allProjectsYaml.edges[1].node[i18n.language]
-                                .name
-                        }
-                        link={data.allProjectsYaml.edges[1].node.parent.name}
+                        image={secondWork.previewImage.portrait}
+                        description={secondWork[i18n.language].name}
+                        link={secondWork.parent.name}
                     />
                 </ProjectColumn>
             </Container>

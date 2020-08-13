@@ -12,12 +12,13 @@ const translationsCache = {}
 exports.createPages = async function({ actions, graphql }) {
     const result = await graphql(`
         {
-            allProjectsYaml(sort: { fields: date }) {
+            allProjectsYaml(sort: { fields: date, order: DESC }) {
                 edges {
                     node {
                         parent {
                             ... on File {
                                 name
+                                id
                             }
                         }
                     }
@@ -33,7 +34,7 @@ exports.createPages = async function({ actions, graphql }) {
     return result.data.allProjectsYaml.edges.forEach(
         ({
             node: {
-                parent: { name },
+                parent: { name, id },
             },
         }) => {
             Object.keys(languages).map(lang => {
@@ -51,7 +52,8 @@ exports.createPages = async function({ actions, graphql }) {
                     path: localizedPath,
                     component: path.resolve(`./src/layout/project.tsx`),
                     context: {
-                        projectName: `works/${name}/images`,
+                        imageFolder: `works/projects/images/${name}`,
+                        id,
                         locale: lang,
                         localeResources: translationsCache[lang],
                     },
