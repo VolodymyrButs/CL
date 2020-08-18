@@ -50,7 +50,7 @@ exports.createPages = async function({ actions, graphql }) {
                 }
                 actions.createPage({
                     path: localizedPath,
-                    component: path.resolve(`./src/layout/project.tsx`),
+                    component: path.resolve(`./src/layout/Project.tsx`),
                     context: {
                         imageFolder: `works/projects/images/${name}`,
                         id,

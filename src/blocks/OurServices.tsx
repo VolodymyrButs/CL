@@ -68,7 +68,7 @@ const DesignBlock = styled(Block)`
     background-color: ${backgroundColors.project};
 `
 const Title = styled.h2`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-size: 28px;
     line-height: 32px;
@@ -83,7 +83,7 @@ const Title = styled.h2`
     }
 `
 const Price = styled.p`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 64px;

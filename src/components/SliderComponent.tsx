@@ -5,9 +5,7 @@ import { displayWidth } from 'styles/width'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import Next from 'assets/icons/arrowRight.svg'
-import Previous from 'assets/icons/arrowLeft.svg'
-import { colors } from 'styles/colors'
+import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 
 const CarouselWrapper = styled.div`
     width: 100vw;
@@ -31,17 +29,14 @@ const CarouselWrapper = styled.div`
             margin: 0 -30px;
         }
     }
+    img {
+        cursor: grab;
+    }
     .slick-slide > div {
         margin: 0 16px;
         @media (min-width: ${displayWidth.tablet}) {
             margin: 0 30px;
         }
-    }
-    .slick-prev {
-        left: 0;
-    }
-    .slick-next {
-        right: 0;
     }
     .slick-dots {
         bottom: -22px;
@@ -51,39 +46,12 @@ const CarouselWrapper = styled.div`
         }
     }
 `
-const NextArrow = styled(Next)`
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    z-index: 4;
-    border: 1px solid ${colors.white};
-    border-radius: 15px;
-    @media (min-width: ${displayWidth.desktop}) {
-        border-radius: 22.5px;
-        width: 45px;
-        height: 45px;
-        margin-right: 45px;
-    }
-`
-const PreviousArrow = styled(Previous)`
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    z-index: 4;
-    border: 1px solid ${colors.white};
-    border-radius: 15px;
-    @media (min-width: ${displayWidth.desktop}) {
-        width: 45px;
-        height: 45px;
-        margin-left: 45px;
-        border-radius: 22.5px;
-    }
-`
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SliderComponent = ({ children, ...props }: any) => {
     const settings = {
-        nextArrow: <NextArrow />,
-        prevArrow: <PreviousArrow />,
+        nextArrow: <SlickNext />,
+        prevArrow: <SlickPrevious />,
     }
     return (
         <CarouselWrapper {...props}>

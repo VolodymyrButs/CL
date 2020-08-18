@@ -4,9 +4,8 @@ import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 
 export const Title = styled.div`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
-    font-weight: normal;
     font-size: 34px;
     line-height: 39px;
     text-align: center;

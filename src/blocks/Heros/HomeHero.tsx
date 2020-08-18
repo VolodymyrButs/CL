@@ -24,7 +24,7 @@ const HomeHeroWraper = styled.div`
     border-bottom: 1px solid ${colors.dark};
     background-color: ${backgroundColors.index};
     align-items: stretch;
-
+    overflow: hidden;
     :before {
         ${headerBg}
     }
@@ -70,7 +70,7 @@ const HomeHeroColumn = styled.div`
     }
 `
 const Title = styled.h1`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-size: 48px;
     line-height: 52px;
     letter-spacing: 0.666667px;

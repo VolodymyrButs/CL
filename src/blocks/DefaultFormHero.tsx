@@ -40,7 +40,7 @@ const TitleStyledDesktop = styled(Title)`
     }
 `
 const Price = styled.span`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 64px;

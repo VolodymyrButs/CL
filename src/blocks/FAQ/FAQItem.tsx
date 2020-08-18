@@ -28,17 +28,18 @@ const Question = styled.div`
     margin-right: 30px;
     padding-bottom: 8px;
 `
-const Answer = styled(Question)<{ isAnswerVisible: boolean }>`
-    display: ${({ isAnswerVisible }) => (isAnswerVisible ? 'block' : 'none')};
+const Answer = styled(Question)<{ $isAnswerVisible: boolean }>`
+    display: ${({ $isAnswerVisible }) => ($isAnswerVisible ? 'block' : 'none')};
     color: ${colors.darkText};
     margin-top: 2px;
     opacity: 0.38;
 `
-const IconStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
+const IconStyled = styled(Arrow)<{ $isAnswerVisible: boolean }>`
     position: absolute;
     bottom: 8px;
     right: 0;
-    transform: ${({ isAnswerVisible }) => !isAnswerVisible && 'rotate(180deg)'};
+    transform: ${({ $isAnswerVisible }) =>
+        !$isAnswerVisible && 'rotate(180deg)'};
     cursor: pointer;
 `
 
@@ -57,10 +58,10 @@ export const FAQItem = ({ question, answer }: IFAQItem) => {
                     }}
                 />
 
-                <IconStyled isAnswerVisible={isAnswerVisible} />
+                <IconStyled $isAnswerVisible={isAnswerVisible} />
             </QuestionWrapper>
             <Answer
-                isAnswerVisible={isAnswerVisible}
+                $isAnswerVisible={isAnswerVisible}
                 dangerouslySetInnerHTML={{
                     __html: answer,
                 }}

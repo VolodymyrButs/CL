@@ -72,7 +72,7 @@ const HeroColumn = styled.div`
 `
 
 const Title = styled.h2`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;

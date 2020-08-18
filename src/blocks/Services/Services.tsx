@@ -48,7 +48,6 @@ const HeroColumn = styled.div`
         bottom: 0;
         left: ${indent.mobile};
         right: ${indent.mobile};
-        border-bottom: 1px solid ${colors.dark};
         z-index: 3;
     }
     @media (min-width: ${displayWidth.tablet}) {
