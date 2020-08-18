@@ -25,6 +25,7 @@ const FooterWrapper = styled.div`
     border-top: 1px solid ${colors.white};
     padding: 0 10px;
     z-index: 1;
+    overflow: hidden;
     :after {
         position: absolute;
         top: 0;

@@ -74,7 +74,7 @@ const Paragraph = styled(Header)`
     margin: 12px 0 0;
 `
 const Title = styled.h2`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;

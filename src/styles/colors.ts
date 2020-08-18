@@ -12,6 +12,7 @@ export const backgroundColors = {
 export const colors = {
     dark: '#231F20',
     white: '#fff',
+    gray: '#B5B5B5',
     darkText: '#151414',
     accentText: '#E24C1A',
     viber: '#59267c',

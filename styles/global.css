@@ -138,4 +138,17 @@ body,
     height: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+    overscroll-behavior: none;
+}
+@font-face {
+    font-family: 'Yeseva One';
+    src: url('./YesevaOne-Regular.eot');
+    src: url('./YesevaOne-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./YesevaOne-Regular.otf') format('opentype'),
+        url('./YesevaOne-Regular.svg') format('svg'),
+        url('./YesevaOne-Regular.ttf') format('truetype'),
+        url('./YesevaOne-Regular.woff') format('woff'),
+        url('./YesevaOne-Regular.woff2') format('woff2'); /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
 }

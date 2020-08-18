@@ -94,7 +94,7 @@ const LampIconStyled = styled(LampIcon)`
 `
 const Title = styled.h2`
     position: relative;
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-size: 48px;
     line-height: 52px;
     letter-spacing: 0.666667px;
@@ -115,7 +115,7 @@ const Title = styled.h2`
     }
 `
 const Price = styled.span`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 64px;

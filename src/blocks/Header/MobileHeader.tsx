@@ -38,7 +38,7 @@ const MobileMenu = styled.div<{ isMenuOpen: boolean }>`
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 100;
     background-color: ${colors.dark};
 `
 const BurgerButton = styled.span`

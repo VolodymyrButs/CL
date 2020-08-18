@@ -30,7 +30,7 @@ const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
             : `background-color: ${colors.dark}`};
     border: 1px solid ${colors.dark};
     border-radius: 50%;
-    z-index: 4;
+    z-index: 11;
     :after,
     :before {
         content: '';
@@ -145,7 +145,7 @@ const IconBarWrapper = styled.div`
     position: fixed;
     bottom: 76px;
     left: 18px;
-    z-index: 4;
+    z-index: 11;
     height: 270px;
     overflow: hidden;
     pointer-events: none;

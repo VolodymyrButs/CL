@@ -63,6 +63,17 @@ module.exports = {
         'gatsby-plugin-typescript',
         'gatsby-plugin-styled-components',
         {
+            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            options: {
+                fonts: [
+                    {
+                        family: `Open Sans`,
+                        variants: [`400`, `600`, `700`],
+                    },
+                ],
+            },
+        },
+        {
             resolve: 'gatsby-plugin-manifest',
             options: {
                 name: 'gatsby-starter-default',

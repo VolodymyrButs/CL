@@ -30,7 +30,7 @@ const PriceWrapper = styled.span`
 const Price = styled.p`
     position: absolute;
     bottom: -36px;
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 64px;

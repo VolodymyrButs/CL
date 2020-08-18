@@ -31,7 +31,7 @@ const InputBlock = styled.div`
     }
 `
 const FormTitle = styled.div`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;

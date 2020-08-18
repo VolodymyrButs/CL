@@ -32,7 +32,7 @@ const InputBlock = styled.div`
     }
 `
 const FormTitle = styled.div`
-    font-family: 'Yeseva One', cursive;
+    font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 21px;
@@ -59,23 +59,20 @@ const Unit = styled.p`
     pointer-events: none;
     right: 5px;
     position: absolute;
-    top: -48px;
-    @media (min-width: ${displayWidth.desktop}) {
-        right: 5px;
-        top: 24px;
-    }
+    bottom: 28px;
+    color: gray;
 `
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     @media (min-width: ${displayWidth.desktop}) {
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 6fr 1fr 6fr;
     }
 `
 const Div = styled.div`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
-        width: 20%;
         display: block;
     }
 `
@@ -115,16 +112,17 @@ export const CommercialProposalFormBlock = () => {
                                         </option>
                                     </Select>
                                     <Div />
-                                    <NumberInput
-                                        name="roomSize"
-                                        placeholder={t('roomSize')}
-                                        inputRef={register({
-                                            maxLength: 10,
-                                            required: true,
-                                        })}
-                                        err={errors.roomSize}
-                                    />
+
                                     <div style={{ position: 'relative' }}>
+                                        <NumberInput
+                                            name="roomSize"
+                                            placeholder={t('roomSize')}
+                                            inputRef={register({
+                                                maxLength: 10,
+                                                required: true,
+                                            })}
+                                            err={errors.roomSize}
+                                        />
                                         <Unit>
                                             M
                                             <sup>

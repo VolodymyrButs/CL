@@ -41,5 +41,6 @@
         "placeholder": "Задайте вопрос",
         "submitLabel": "Задать вопрос"
     },
-    "showProject": "Cмотреть проект"
+    "showProject": "Cмотреть проект",
+    "lastProjects": "Последние работы"
 }

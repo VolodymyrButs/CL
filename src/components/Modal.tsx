@@ -15,16 +15,19 @@ const ModalWrapper = styled.div<{ open: boolean }>`
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.85);
-    z-index: 5;
+    z-index: 30;
 `
-const ModalWindow = styled.div`
+const ModalWindow = styled.div<{ image: boolean }>`
     position: relative;
     width: 100%;
     max-height: 100%;
-    border: 1px solid ${colors.dark};
-    background-color: ${colors.white};
-    z-index: 6;
-    padding: 15px 32px;
+
+    z-index: 40;
+    ${({ image }) =>
+        image
+            ? 'padding: 0;background-color: transparent;border: none'
+            : `padding: 15px 32px;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
+
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         width: 70%;
@@ -35,7 +38,7 @@ const ModalWindow = styled.div`
         width: 80%;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        width: 600px;
+        ${({ image }) => (image ? `width:100%` : `width:600px`)};
         height: auto;
         max-width: 70%;
         max-height: 95%;
@@ -48,22 +51,28 @@ const ModalWindow = styled.div`
 `
 const CloseIconStyled = styled(CloseIcon)`
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 25px;
-    height: 25px;
+    top: 15px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+    z-index: 4;
+    fill: ${colors.white};
+    stroke: ${colors.darkText};
+    stroke-width: 1px;
 `
 interface IModalProps {
     closeHandler?: () => void
     children: React.ReactElement
     isOpen: boolean
+    image?: boolean
 }
 
 export const Modal: React.FC<IModalProps> = ({
     closeHandler,
     children,
     isOpen = false,
+    image = false,
 }) => {
     const stopPropagation = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -72,7 +81,7 @@ export const Modal: React.FC<IModalProps> = ({
     }
     return (
         <ModalWrapper open={isOpen} onClick={closeHandler}>
-            <ModalWindow onClick={stopPropagation}>
+            <ModalWindow image={image} onClick={stopPropagation}>
                 <CloseIconStyled onClick={closeHandler} />
                 {children}
             </ModalWindow>

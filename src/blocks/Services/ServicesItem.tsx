@@ -6,69 +6,80 @@ import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { Icon } from 'components/Icon'
 
-const QuestionWrapper = styled.div<{ isAnswerVisible: boolean }>`
+const QuestionWrapper = styled.div<{ $isAnswerVisible: boolean }>`
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 22px 16px 0;
-     :before {
+    cursor: pointer;
+    :before {
         position: absolute;
         content: '';
-        bottom: 0;
-        left: 15px;
-        right: 15px;
+        top: 0px;
+        left: 16px;
+        right: 16px;
         z-index: 3;
-        border-bottom: 1px solid ${colors.dark};
+        border-top: 1px solid ${colors.dark};
+        border-bottom:none;
+        bottom:100%;
     }
-     ${({ isAnswerVisible }) =>
-         isAnswerVisible &&
+     ${({ $isAnswerVisible }) =>
+         $isAnswerVisible &&
          css`
              background-color: ${colors.dark};
              :after {
                  pointer-events: none;
                  position: absolute;
                  top: 0;
-                 bottom: 0;
-                 left: 16px;
-                 right: 16px;
+                 bottom: 0px;
+                 left: 15px;
+                 right: 15px;
                  border-left: 1px solid ${colors.white};
                  border-right: 1px solid ${colors.white};
+                 z-index: 3;
                  content: '';
                  @media (min-width: ${displayWidth.tablet}) {
                      display: none;
                  }
              }
              :before {
-                 border-bottom: none;
+                 border-top: none;
              }
          `}
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 24px 32px 0;
-        padding: 5px 0;
+        margin: 0 32px ;
+        padding: 10px 0 ;
         flex-direction: row;
         justify-content: flex-start;
         :before {
-            left: 0px;
-            right: 0px;
+            position: absolute;
+            content: '';
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            border-bottom: 1px solid ${colors.dark};
+            border-top:none;
+            top:100%;
         }
     }
 `
-const Question = styled.div<{ isAnswerVisible: boolean }>`
+const Question = styled.div<{ $isAnswerVisible: boolean }>`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
-    color: ${({ isAnswerVisible }) =>
-        isAnswerVisible ? colors.white : colors.dark};
+    color: ${({ $isAnswerVisible }) =>
+        $isAnswerVisible ? colors.white : colors.dark};
     text-align: center;
     @media (min-width: ${displayWidth.tablet}) {
         width: 100%;
         text-align: left;
     }
 `
-const Answer = styled.div<{ isAnswerVisible: boolean }>`
-    display: ${({ isAnswerVisible }) => (isAnswerVisible ? 'block' : 'none')};
+const Answer = styled.div<{ $isAnswerVisible: boolean }>`
+    display: ${({ $isAnswerVisible }) => ($isAnswerVisible ? 'block' : 'none')};
     color: ${colors.darkText};
     background-color: ${colors.white};
     padding: 32px;
@@ -100,20 +111,21 @@ const Answer = styled.div<{ isAnswerVisible: boolean }>`
         list-style: decimal;
     }
 `
-const ArrowStyled = styled(Arrow)<{ isAnswerVisible: boolean }>`
+const ArrowStyled = styled(Arrow)<{ $isAnswerVisible: boolean }>`
     margin: 16px 0px;
-    stroke: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
-    transform: ${({ isAnswerVisible }) => !isAnswerVisible && 'rotate(180deg)'};
+    stroke: ${({ $isAnswerVisible }) => $isAnswerVisible && colors.white};
+    transform: ${({ $isAnswerVisible }) =>
+        !$isAnswerVisible && 'rotate(180deg)'};
     cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
         margin: 16px 10px;
     }
 `
-const IconStyled = styled(Icon)<{ isAnswerVisible: boolean }>`
+const IconStyled = styled(Icon)<{ $isAnswerVisible: boolean }>`
     width: 45px;
     height: 50px;
     min-width: 45px;
-    stroke: ${({ isAnswerVisible }) => isAnswerVisible && colors.white};
+    stroke: ${({ $isAnswerVisible }) => $isAnswerVisible && colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         margin: 0 15px 0 5px;
     }
@@ -128,22 +140,25 @@ export const ServicesItem = ({ question, answer, icon }: ServicesItemProp) => {
     return (
         <>
             <QuestionWrapper
-                isAnswerVisible={isAnswerVisible}
+                $isAnswerVisible={isAnswerVisible}
                 onClick={() => {
                     setIsAnswerVisible(!isAnswerVisible)
                 }}
             >
-                <IconStyled isAnswerVisible={isAnswerVisible} iconName={icon} />
+                <IconStyled
+                    $isAnswerVisible={isAnswerVisible}
+                    iconName={icon}
+                />
                 <Question
-                    isAnswerVisible={isAnswerVisible}
+                    $isAnswerVisible={isAnswerVisible}
                     dangerouslySetInnerHTML={{
                         __html: question,
                     }}
                 />
-                <ArrowStyled isAnswerVisible={isAnswerVisible} />
+                <ArrowStyled $isAnswerVisible={isAnswerVisible} />
             </QuestionWrapper>
             <Answer
-                isAnswerVisible={isAnswerVisible}
+                $isAnswerVisible={isAnswerVisible}
                 dangerouslySetInnerHTML={{
                     __html: answer,
                 }}
