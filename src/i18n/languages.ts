@@ -10,7 +10,7 @@ interface LocaleConfigs {
 }
 
 export const languages: LocaleConfigs = {
-    ua: {
+    uk: {
         locale: 'uk_UA',
         label: 'УКР',
         pathPrefix: '',

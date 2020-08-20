@@ -13,6 +13,7 @@ import { Container } from 'components/Container'
 import { DefaultFormHero } from './DefaultFormHero'
 import { Select } from 'components/form/Select'
 import { NumberInput } from 'components/form/NumberInput'
+import { Label } from 'components/form/Input'
 
 const FormWrapper = styled.div`
     display: flex;
@@ -89,7 +90,12 @@ export const CommercialProposalFormBlock = () => {
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
                                 <Wrapper>
+                                    <Label htmlFor="SelectHomeTypeCommercialProposalFormBlock">
+                                        Select Home Type Commercial Proposal
+                                        Form Block
+                                    </Label>
                                     <Select
+                                        id="SelectHomeTypeCommercialProposalFormBlock"
                                         name="homeType"
                                         defaultValue="none"
                                         inputRef={register({
@@ -114,7 +120,12 @@ export const CommercialProposalFormBlock = () => {
                                     <Div />
 
                                     <div style={{ position: 'relative' }}>
+                                        <Label htmlFor="NumberInputCommercialProposalFormBlock">
+                                            Number Input Commercial Proposal
+                                            Form Block
+                                        </Label>
                                         <NumberInput
+                                            id="NumberInputCommercialProposalFormBlock"
                                             name="roomSize"
                                             placeholder={t('roomSize')}
                                             inputRef={register({
@@ -131,7 +142,12 @@ export const CommercialProposalFormBlock = () => {
                                         </Unit>
                                     </div>
                                 </Wrapper>
+                                <Label htmlFor="SelectAvailabilityDrawingsCommercialProposalFormBlock">
+                                    Select Availability Drawings Commercial
+                                    Proposal Form Block
+                                </Label>
                                 <Select
+                                    id="SelectAvailabilityDrawingsCommercialProposalFormBlock"
                                     name="availabilityDrawings"
                                     inputRef={register({
                                         required: true,
@@ -146,7 +162,11 @@ export const CommercialProposalFormBlock = () => {
                                     <option value="yes">{t('yes')}</option>
                                     <option value="no">{t('no')}</option>
                                 </Select>
+                                <Label htmlFor="PhoneInputCommercialProposalFormBlock">
+                                    Phone Input Commercial Proposal Form Block
+                                </Label>
                                 <PhoneInput
+                                    id="PhoneInputCommercialProposalFormBlock"
                                     inputRef={register({
                                         minLength: 18,
                                         required: true,

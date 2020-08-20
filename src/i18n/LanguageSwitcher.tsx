@@ -12,7 +12,7 @@ import { displayWidth } from 'styles/width'
 
 const languagesList = Object.keys(languages)
 
-const LanguageList = styled.div<{ open: boolean }>`
+const LanguageList = styled.ul<{ open: boolean }>`
     position: relative;
     display: flex;
     flex-direction: column;

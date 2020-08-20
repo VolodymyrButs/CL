@@ -8,6 +8,7 @@ export interface IInputProps {
     isValid?: string
     placeholder?: string
     name?: string
+    id?: string
     defaultValue?: string
     children?: React.ReactNode
     questionPlaceholder?: string

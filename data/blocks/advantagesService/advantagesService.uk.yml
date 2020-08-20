@@ -1,0 +1,20 @@
+title: Преимущества данной услуги uk
+items:
+  - content: !markdown |+
+      определение **стиля** и **концепции** интерьера uk
+    svg: concept.svg
+  - content: !markdown |
+      подбор цветов для основных поверхностей интерьера из **палитр NCS и RAL** uk
+    svg: materials.svg
+  - content: !markdown |
+      определение **текстур поверхностей**  uk
+    svg: textur.svg
+  - content: !markdown |
+      добавление **контрастирующих** элементов uk
+    svg: contrast.svg
+  - content: !markdown |
+      **экспресс метод** и **альтернатива** визуализации uk
+    svg: express.svg
+  - content: !markdown |
+      ** подбор цветовой схемы** на основные поверхности uk
+    svg: colors.svg

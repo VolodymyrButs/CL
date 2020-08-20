@@ -155,7 +155,7 @@ export const OurServices = () => {
                         </Title>
                         <SubTitle>{allOurServicesData.subTitlePromo}</SubTitle>
                         <LocalizedLink to={'/promo'}>
-                            <ButtonStyled>
+                            <ButtonStyled aria-label="Go to promo">
                                 {allOurServicesData.buttonTextPromo}
                             </ButtonStyled>
                         </LocalizedLink>
@@ -164,7 +164,7 @@ export const OurServices = () => {
                         <Title>{allOurServicesData.titleCad}</Title>
                         <SubTitle>{allOurServicesData.subTitleCad}</SubTitle>
                         <LocalizedLink to={'/editor'}>
-                            <ButtonStyled>
+                            <ButtonStyled aria-label="Go to cad page">
                                 {allOurServicesData.buttonTextCad}
                             </ButtonStyled>
                         </LocalizedLink>
@@ -172,8 +172,8 @@ export const OurServices = () => {
                     <DesignBlock>
                         <Title>{allOurServicesData.titleDesign}</Title>
                         <SubTitle>{allOurServicesData.subTitleDesign}</SubTitle>
-                        <LocalizedLinkAnchor to={'promo/#design'}>
-                            <ButtonStyled>
+                        <LocalizedLinkAnchor to={'promo/#visualization3d'}>
+                            <ButtonStyled aria-label="promo visualization3d block">
                                 {allOurServicesData.buttonTextDesign}
                             </ButtonStyled>
                         </LocalizedLinkAnchor>

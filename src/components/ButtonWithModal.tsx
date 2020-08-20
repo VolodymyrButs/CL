@@ -11,6 +11,7 @@ import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
 import { EmailInput } from './form/EmailInput'
 import { MessageInput } from './form/MessageInput'
+import { Label } from './form/Input'
 
 const SubTitle = styled.h3`
     display: block;
@@ -113,7 +114,11 @@ export const ButtonWithModal = ({
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <div>
+                                        <Label htmlFor="MessageInputButtonWithModal">
+                                            Message Input Button With Modal
+                                        </Label>
                                         <MessageInput
+                                            id="MessageInputButtonWithModal"
                                             inputRef={register({
                                                 required: true,
                                             })}
@@ -121,14 +126,22 @@ export const ButtonWithModal = ({
                                             placeholder={placeholder}
                                             maxHeight={'90px'}
                                         />
+                                        <Label htmlFor="PhoneInputButtonWithModal">
+                                            Phone Input Button With Modal
+                                        </Label>
                                         <PhoneInput
+                                            id="PhoneInputButtonWithModal"
                                             inputRef={register({
                                                 minLength: 18,
                                                 required: true,
                                             })}
                                             err={errors.phone}
                                         />
+                                        <Label htmlFor="EmailInputButtonWithModal">
+                                            Email Input Button With Modal
+                                        </Label>
                                         <EmailInput
+                                            id="EmailInputButtonWithModal"
                                             inputRef={register}
                                             err={errors.email}
                                         />

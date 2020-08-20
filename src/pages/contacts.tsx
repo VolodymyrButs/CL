@@ -36,14 +36,14 @@ const LeftSidebar = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
         flex-grow: 1;
-        min-width: 80px;
+        min-width: 79px;
         background-color: ${backgroundColors.contact};
         box-sizing: border-box;
-        margin-left: 1px;
     }
 `
 const RightSidebar = styled(LeftSidebar)`
     display: none;
+    margin-left: 1px;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
     }

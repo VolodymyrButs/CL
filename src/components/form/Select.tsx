@@ -24,8 +24,8 @@ const SelectElement = styled.select<{
     selectedValue?: string
 }>`
     color: ${props => (props.selectedValue === 'none' ? 'gray' : 'black')};
-    background-color: ${backgroundColors.formPromo};
     ${inputStyle};
+    background-color: ${backgroundColors.formPromo};
     ${props =>
         props.isValid &&
         css`

@@ -33,9 +33,6 @@ const LeftSidebar = styled.div`
         background-color: ${backgroundColors.project};
         box-sizing: border-box;
     }
-    @media (min-width: ${displayWidth.desktop}) {
-        margin-left: 1px;
-    }
 `
 const RightSidebar = styled(LeftSidebar)`
     display: none;
@@ -97,6 +94,7 @@ const ProjectColumn = styled.div`
     width: 100%;
     box-sizing: border-box;
     background-color: ${colors.white};
+    z-index: 1;
     outline: 1px solid ${colors.dark};
 `
 export const WorksHero = () => {
@@ -118,7 +116,7 @@ export const WorksHero = () => {
                             description
                             name
                         }
-                        ua {
+                        uk {
                             description
                             name
                         }
@@ -141,7 +139,7 @@ export const WorksHero = () => {
                             subtitle
                             title
                         }
-                        ua {
+                        uk {
                             subtitle
                             title
                         }

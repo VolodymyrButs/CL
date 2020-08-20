@@ -1,0 +1,20 @@
+title: 'Преимущества визуализации uk'
+items:
+  - content: !markdown |
+      Выбор **подходящего стиля** для планируемого пространства uk
+    svg: style.svg
+  - content: !markdown |
+      подбор **материалов** и **фактур** для всех поверхностей   uk
+    svg: materials.svg
+  - content: !markdown |
+      выбор **цветосочетаний** и **контрастных элементов** uk
+    svg: palette.svg
+  - content: !markdown |
+      подбор **мебели и осветительных приборов** по форме uk
+    svg: lampVizual.svg
+  - content: !markdown |
+      применение **световых сценариев** uk
+    svg: sun.svg
+  - content: !markdown |
+      возможность увидеть **окончательный вид** uk
+    svg: view.svg

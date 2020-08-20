@@ -87,7 +87,7 @@ export const WorksProjectGrid = () => {
                             description
                             name
                         }
-                        ua {
+                        uk {
                             description
                             name
                         }

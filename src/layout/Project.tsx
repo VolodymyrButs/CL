@@ -420,7 +420,7 @@ export const query = graphql`
                         description
                         name
                     }
-                    ua {
+                    uk {
                         description
                         name
                     }
@@ -451,7 +451,7 @@ export const query = graphql`
                         description
                         name
                     }
-                    ua {
+                    uk {
                         description
                         name
                     }

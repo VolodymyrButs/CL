@@ -8,6 +8,7 @@ export const NumberInput = ({
     err,
     placeholder,
     name,
+    ...props
 }: IInputProps) => {
     return (
         <Input
@@ -16,6 +17,7 @@ export const NumberInput = ({
             ref={inputRef}
             isValid={err}
             placeholder={placeholder}
+            {...props}
         />
     )
 }
