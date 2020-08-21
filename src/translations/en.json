@@ -40,5 +40,7 @@
         "submitLabel": "Ask a Question"
     },
     "showProject": "View project",
-    "lastProjects": "Last Projects"
+    "lastProjects": "Last Projects",
+    "goTo": "go to",
+    "cad": "graphics editor"
 }

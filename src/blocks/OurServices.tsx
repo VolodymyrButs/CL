@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { backgroundColors, colors } from 'styles/colors'
 import { Container } from 'components/Container'
-import i18n from 'i18n/config'
+import { useTranslation } from 'react-i18next'
 import { Button } from 'components/Button'
 import { LocalizedLink, LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { displayWidth } from 'styles/width'
@@ -113,6 +113,7 @@ const ButtonStyled = styled(Button)`
     }
 `
 export const OurServices = () => {
+    const { i18n, t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
             allOurServicesYaml {
@@ -142,6 +143,7 @@ export const OurServices = () => {
         data.allOurServicesYaml,
         i18n.language
     )
+
     return (
         <>
             <OurServicesWrapper>
@@ -153,7 +155,7 @@ export const OurServices = () => {
                         </Title>
                         <SubTitle>{allOurServicesData.subTitlePromo}</SubTitle>
                         <LocalizedLink to={'/promo'}>
-                            <ButtonStyled aria-label="Go to promo">
+                            <ButtonStyled aria-label={(t('goTo'), t('promo'))}>
                                 {allOurServicesData.buttonTextPromo}
                             </ButtonStyled>
                         </LocalizedLink>
@@ -162,7 +164,7 @@ export const OurServices = () => {
                         <Title>{allOurServicesData.titleCad}</Title>
                         <SubTitle>{allOurServicesData.subTitleCad}</SubTitle>
                         <LocalizedLink to={'/editor'}>
-                            <ButtonStyled aria-label="Go to cad page">
+                            <ButtonStyled aria-label={(t('goTo'), t('cad'))}>
                                 {allOurServicesData.buttonTextCad}
                             </ButtonStyled>
                         </LocalizedLink>
@@ -171,7 +173,7 @@ export const OurServices = () => {
                         <Title>{allOurServicesData.titleDesign}</Title>
                         <SubTitle>{allOurServicesData.subTitleDesign}</SubTitle>
                         <LocalizedLinkAnchor to={'promo/#visualization3d'}>
-                            <ButtonStyled aria-label="promo visualization3d block">
+                            <ButtonStyled aria-label={(t('goTo'), t('promo'))}>
                                 {allOurServicesData.buttonTextDesign}
                             </ButtonStyled>
                         </LocalizedLinkAnchor>

@@ -69,19 +69,39 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
     const { t } = useTranslation()
     return (
         <MenuWraper>
-            <MenuItem onClick={onMenuItemClick} to="/">
+            <MenuItem
+                onClick={onMenuItemClick}
+                aria-label={(t('goTo'), t('home'))}
+                to="/"
+            >
                 {t('home')}
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/promo">
+            <MenuItem
+                onClick={onMenuItemClick}
+                aria-label={(t('goTo'), t('promo'))}
+                to="/promo"
+            >
                 {t('promo')}
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/works">
+            <MenuItem
+                onClick={onMenuItemClick}
+                aria-label={(t('goTo'), t('works'))}
+                to="/works"
+            >
                 {t('works')}
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/contacts">
+            <MenuItem
+                onClick={onMenuItemClick}
+                aria-label={(t('goTo'), t('contacts'))}
+                to="/contacts"
+            >
                 {t('contacts')}
             </MenuItem>
-            <MenuItem onClick={onMenuItemClick} to="/services">
+            <MenuItem
+                onClick={onMenuItemClick}
+                aria-label={(t('goTo'), t('services'))}
+                to="/services"
+            >
                 {t('services')}
             </MenuItem>
         </MenuWraper>
