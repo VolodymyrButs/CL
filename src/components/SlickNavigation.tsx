@@ -11,8 +11,14 @@ const ArrowWrapper = styled.div`
     position: absolute;
     top: calc(50% - 20px);
     right: 30px;
+    width: 30px;
+    height: 30px;
     :before {
         display: none;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 45px;
+        height: 45px;
     }
 `
 const ArrowWrapperPrevious = styled(ArrowWrapper)`

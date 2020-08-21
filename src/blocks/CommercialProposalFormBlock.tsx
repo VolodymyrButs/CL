@@ -77,13 +77,14 @@ const Div = styled.div`
         display: block;
     }
 `
+
 export const CommercialProposalFormBlock = () => {
     const { t } = useTranslation()
 
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
-                <DefaultFormHero />
+                <DefaultFormHero image />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
                     <Form buttonText={t('send')}>

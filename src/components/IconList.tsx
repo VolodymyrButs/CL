@@ -11,6 +11,7 @@ const IconListWrapper = styled.div<{ background: string }>`
     flex-wrap: wrap;
     padding: 40px 16px;
     box-sizing: border-box;
+    z-index: 1;
     @media (min-width: ${displayWidth.tablet}) {
         outline: 1px solid ${colors.dark};
         padding: 46px 10px 46px 30px;

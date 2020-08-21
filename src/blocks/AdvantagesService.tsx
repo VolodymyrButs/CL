@@ -18,7 +18,9 @@ const VisualizationAdvantagesWrapper = styled.div`
     width: 100%;
     background-color: ${backgroundColors.services};
     position: relative;
-    border-bottom: 1px solid ${colors.dark};
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: 1px solid ${colors.dark};
+    }
     ${mobileAfterBorder}
 `
 const IconListStyled = styled(IconList)`

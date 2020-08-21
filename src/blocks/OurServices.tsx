@@ -29,13 +29,11 @@ const Block = styled.div`
     padding: 16px 32px;
     box-sizing: border-box;
     position: relative;
-    border-top: 1px solid ${colors.dark};
     border-bottom: 1px solid ${colors.dark};
     z-index: 1;
     @media (min-width: ${displayWidth.tablet}) {
         justify-content: space-between;
         outline: 1px solid ${colors.dark};
-        border-top: none;
         border-bottom: none;
         padding: 16px;
     }
