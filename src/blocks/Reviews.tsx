@@ -13,6 +13,7 @@ import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { SliderComponent } from 'components/SliderComponent'
 import Google from 'assets/icons/google.svg'
 import { createRand } from 'utils/getRandomArray'
+import { indent } from 'styles/indent'
 
 const ReviewsWrapper = styled.div`
     display: flex;
@@ -103,6 +104,7 @@ const SubTitle = styled.a`
     text-decoration: underline;
     text-underline-position: under;
     color: ${colors.dark};
+    margin-bottom: 20px;
 `
 const BottomText = styled.div`
     font-style: normal;
@@ -119,8 +121,8 @@ const BottomText = styled.div`
     }
 `
 const TitleStyled = styled(Title)`
-    @media (min-width: ${displayWidth.desktop}) {
-        margin: 80px 10px 48px;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin-left: 0;
     }
 `
 const SliderStyled = styled(SliderComponent)`
@@ -155,11 +157,10 @@ const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 32px 56px;
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
-
     @media (min-width: ${displayWidth.tablet}) {
+        padding: 0 10px 56px ${indent.heroColumnDesktop};
         align-items: flex-start;
         border-bottom: none;
         border-right: 1px solid ${colors.dark};

@@ -24,11 +24,13 @@ const Promo = () => {
         <>
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
+            <div id="projectStructure" />
             <ProjectStructure />
             <ExamplesOfProjects />
             <Reviews />
             <CommercialProposalFormBlock />
             <Project3D />
+            <div id="project3dAdvantages" />
             <Advantages3D />
             <Connection text={t('connection.text')}>
                 <ButtonWithModal
@@ -44,13 +46,15 @@ const Promo = () => {
                 />
             </Connection>
             <SelectionOfPaints />
+            <div id="selectionOfPaintsAdvantages" />
             <AdvantagesServices />
             <DefaultFormBlock />
             <RunningLine>{t('designProject99')}</RunningLine>
+            <div id="visualization3d" />
             <Visualization3d />
+            <div id="visualization3dAdvantages" />
             <VisualizationAdvantages />
             <Faq />
-            <p id="design" />
         </>
     )
 }

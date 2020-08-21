@@ -9,6 +9,9 @@ import { languages } from 'i18n/languages'
 import { usePagePath } from 'hooks/usePagePath'
 import { displayWidth } from 'styles/width'
 import { CallbackButton } from 'components/CallbackButton'
+import { contactInformation } from 'components/contactInformation'
+import { useStaticQuery, graphql } from 'gatsby'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -38,6 +41,73 @@ const languagesList = Object.keys(languages)
 export const Layout = (props: { children: React.ReactNode }) => {
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
+    const data = useStaticQuery(graphql`
+        query {
+            allAddressYaml {
+                edges {
+                    node {
+                        companyName
+                        street
+                        city
+                        parent {
+                            ... on File {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+            allReviewsYaml {
+                edges {
+                    node {
+                        rating
+                        bestRating
+                        worstRating
+                        reviewsArr {
+                            text
+                            name
+                        }
+                        parent {
+                            ... on File {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
+    const commonData = data.allReviewsYaml.edges.find(
+        (elem: { node: { parent: { name: string } } }) => {
+            return elem.node.parent.name === 'reviews'
+        }
+    ).node
+
+    const { rating, bestRating, worstRating } = commonData
+    const addressData = getDataByLanguage(data.allAddressYaml, i18n.language)
+
+    const { companyName, street, city } = addressData
+    const reviewsYaml = getDataByLanguage(data.allReviewsYaml, i18n.language)
+
+    const { reviewsArr } = reviewsYaml
+    const reviewData = reviewsArr.map(
+        (item: { name: string; text: string }) => {
+            return {
+                '@type': 'Review',
+                author: `${item.name}`,
+                name: `${item.name}`,
+                reviewBody: `${item.text.replace(/<[^>]*>/g, '')}`,
+                reviewRating: {
+                    '@type': 'Rating',
+                    bestRating: `${bestRating}`,
+                    ratingValue: `${rating}`,
+                    worstRating: `${worstRating}`,
+                },
+            }
+        }
+    )
+
     return (
         <LayoutWraper>
             <Helmet>
@@ -54,47 +124,39 @@ export const Layout = (props: { children: React.ReactNode }) => {
                     )
                 })}
                 <meta name="description" content="Clearline" />
-                {/* <script type="application/ld+json">
-    {
-     JSON.stringify( '@context': 'https://schema.org',
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "What is the return policy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most unopened items in new condition and returned within <strong>90 days</strong> will receive a refund or exchange. Some items have a modified return policy noted on the receipt or packing slip. Items that are opened or damaged or do not have a receipt may be denied a refund or exchange. Items purchased online or in-store may be returned to any store.<br /><p>Online purchases may be returned via a major parcel carrier. <a href=http://example.com/returns> Click here </a> to initiate a return.</p>"
-        }
-      }, {
-        "@type": "Question",
-        "name": "How long does it take to process a refund?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We will reimburse you for returned items in the same way you paid for them. For example, any amounts deducted from a gift card will be credited back to a gift card. For returns by mail, once we receive your return, we will process it within 4–5 business days. It may take up to 7 days after we process the return to reflect in your account, depending on your financial institution's processing time."
-        }
-      }, {
-        "@type": "Question",
-        "name": "What is the policy for late/non-delivery of items ordered online?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our local teams work diligently to make sure that your order arrives on time, within our normaldelivery hours of 9AM to 8PM in the recipient's time zone. During  busy holiday periods like Christmas, Valentine's and Mother's Day, we may extend our delivery hours before 9AM and after 8PM to ensure that all gifts are delivered on time. If for any reason your gift does not arrive on time, our dedicated Customer Service agents will do everything they can to help successfully resolve your issue. <br/> <p><a href=https://example.com/orders/>Click here</a> to complete the form with your order-related question(s).</p>"
-        }
-      }, {
-        "@type": "Question",
-        "name": "When will my credit card be charged?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We'll attempt to securely charge your credit card at the point of purchase online. If there's a problem, you'll be notified on the spot and prompted to use another card. Once we receive verification of sufficient funds, your payment will be completed and transferred securely to us. Your account will be charged in 24 to 48 hours."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Will I be charged sales tax for online orders?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text":"Local and State sales tax will be collected if your recipient's mailing address is in: <ul><li>Arizona</li><li>California</li><li>Colorado</li></ul>"}
-        }])
-    }
-    </script> */}
+                <script type="application/ld+json">
+                    {`{
+                        "@context": "https://schema.org/",
+                            "@type": "Organization",
+                            "url": "https://clearline.gitlab.io/cl-website/",
+                            "logo": "https://clearline.gitlab.io/cl-website/email-logo.jpg",
+                            "geo": {
+                                    "@type": "GeoCoordinates",
+                                    "latitude": 50.440771,
+                                    "longitude": 30.507301
+                            },
+                            "image": "https://clearline.gitlab.io/cl-website/email-logo.jpg",
+                            "name": "${companyName}",
+                            "telephone": "${contactInformation.primaryPhone}",
+                            "address" :{
+                            "@type": "PostalAddress",
+                            "streetAddress": "${street}",
+                            "addressLocality": "${city}"
+                        },
+                        "reviewRating": {
+                            "@type": "Rating",
+                            "bestRating": "${bestRating}",
+                            "ratingValue": "${rating}",
+                            "worstRating": "${worstRating}"
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "${rating}",
+                            "reviewCount": "70"
+                        },
+                          "review": ${JSON.stringify(reviewData)}
+                        }`}
+                </script>
             </Helmet>
             <Header />
             <BlocksWrapper id="blockWrapper">

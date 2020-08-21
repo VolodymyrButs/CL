@@ -15,6 +15,7 @@ import { SliderComponent } from 'components/SliderComponent'
 import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
+import { indent } from 'styles/indent'
 
 const Visualization3dWrapper = styled.div`
     display: flex;
@@ -35,15 +36,11 @@ const SubTitle = styled.h3`
     color: ${colors.dark};
     margin: 20px;
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 24px;
+        text-align: left;
+        margin: 0 ${indent.heroColumnDesktop};
     }
 `
-const TitleStyled = styled(Title)`
-    margin: 20px auto;
-    @media (min-width: ${displayWidth.tablet}) {
-        margin: 0 24px;
-    }
-`
+
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
@@ -53,11 +50,11 @@ const HeroColumn = styled.div`
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
-        padding: 32px 0;
+        padding: 0 0 32px;
         border-right: 1px solid ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 60px 0 40px;
+        padding: 20px 0;
     }
 `
 
@@ -208,9 +205,11 @@ export const Visualization3d = () => {
         <Visualization3dWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <TitleStyled>{title}</TitleStyled>
+                    <Title>{title}</Title>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled to={'/promo/#design'}>
+                    <LocalizedLinkStyled
+                        to={'/promo/#visualization3dAdvantages'}
+                    >
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>
                     <JumpingArrow />
