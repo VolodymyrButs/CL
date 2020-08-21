@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { IInputProps } from 'components/form/Types'
 import { useTranslation } from 'react-i18next'
 import { inputStyle } from 'styles/inputStyle'
+import { Label } from 'components/form/Label'
 
 const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
     ${inputStyle}
@@ -27,13 +28,15 @@ export const MessageInput = ({
 }: IInputProps) => {
     const { t } = useTranslation()
     return (
-        <TextArea
-            maxheight={maxHeight}
-            rows={1}
-            name="message"
-            placeholder={placeholder ? placeholder : t('message')}
-            ref={inputRef}
-            isValid={err}
-        />
+        <Label placeholder={placeholder || t('message')}>
+            <TextArea
+                maxheight={maxHeight}
+                rows={1}
+                name="message"
+                placeholder={placeholder || t('message')}
+                ref={inputRef}
+                isValid={err}
+            />
+        </Label>
     )
 }

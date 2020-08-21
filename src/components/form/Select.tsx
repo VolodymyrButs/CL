@@ -3,12 +3,19 @@ import styled, { css } from 'styled-components'
 
 import { IInputProps } from 'components/form/Types'
 import { inputStyle } from 'styles/inputStyle'
-import { backgroundColors } from 'styles/colors'
 import Arrow from 'assets/icons/ShevronDown.svg'
+
 const Wrapper = styled.div`
     position: relative;
 `
-
+const LabelSelect = styled.label`
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    left: 6px;
+    bottom: 5px;
+    color: gray;
+`
 const ArrowS = styled(Arrow)`
     width: 15px;
     height: 15px;
@@ -25,7 +32,6 @@ const SelectElement = styled.select<{
 }>`
     color: ${props => (props.selectedValue === 'none' ? 'gray' : 'black')};
     ${inputStyle};
-    background-color: ${backgroundColors.formPromo};
     ${props =>
         props.isValid &&
         css`
@@ -33,7 +39,14 @@ const SelectElement = styled.select<{
         `};
 `
 
-export const Select = ({ inputRef, err, children, name }: IInputProps) => {
+export const Select = ({
+    inputRef,
+    err,
+    children,
+    name,
+    id,
+    placeholder,
+}: IInputProps) => {
     const [selectValue, setSelectValue] = useState('none')
     const handleSelectChange = (e: {
         target: { value: React.SetStateAction<string> }
@@ -42,17 +55,19 @@ export const Select = ({ inputRef, err, children, name }: IInputProps) => {
     }
     return (
         <Wrapper>
-            <ArrowS />
+            <LabelSelect htmlFor={id}>{placeholder}</LabelSelect>
             <SelectElement
                 ref={inputRef}
                 defaultValue="none"
                 name={name}
                 isValid={err}
+                id={id}
                 onChange={handleSelectChange}
                 selectedValue={selectValue}
             >
                 {children}
             </SelectElement>
+            <ArrowS />
         </Wrapper>
     )
 }

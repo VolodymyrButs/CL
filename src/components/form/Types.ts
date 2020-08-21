@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
 export interface IInputProps {
-    inputRef: (
+    inputRef?: (
         ref: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null
     ) => void | ReturnType<typeof useForm>['register']
     err?: string
@@ -10,7 +10,11 @@ export interface IInputProps {
     name?: string
     id?: string
     defaultValue?: string
-    children?: React.ReactNode
+    children?: React.ReactNode | React.ReactChild
     questionPlaceholder?: string
     maxHeight?: string
+}
+export interface ILabelProps {
+    placeholder?: string
+    children?: React.ReactNode
 }
