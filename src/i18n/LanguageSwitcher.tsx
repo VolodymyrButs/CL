@@ -12,7 +12,7 @@ import { displayWidth } from 'styles/width'
 
 const languagesList = Object.keys(languages)
 
-const LanguageList = styled.ul<{ open: boolean }>`
+const LanguageList = styled.div<{ open: boolean }>`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -36,12 +36,13 @@ const LanguageList = styled.ul<{ open: boolean }>`
         height: ${headerHeight.desktop};
     }
 `
-const LangItem = styled.li<{ open: boolean; withBackground?: boolean }>`
+const LangItem = styled.button<{ open: boolean; withBackground?: boolean }>`
     display: flex;
     list-style: none;
     width: 100%;
     box-sizing: border-box;
     height: ${headerHeight.mobile};
+    border: none;
     border-right: 1px solid ${colors.white};
     border-bottom: 1px solid ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {

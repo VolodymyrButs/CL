@@ -73,16 +73,16 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
                 {t('home')}
             </MenuItem>
             <MenuItem onClick={onMenuItemClick} to="/promo">
-                Promo
+                {t('promo')}
             </MenuItem>
             <MenuItem onClick={onMenuItemClick} to="/works">
-                Works
+                {t('works')}
             </MenuItem>
             <MenuItem onClick={onMenuItemClick} to="/contacts">
-                Contacts
+                {t('contacts')}
             </MenuItem>
             <MenuItem onClick={onMenuItemClick} to="/services">
-                Services
+                {t('services')}
             </MenuItem>
         </MenuWraper>
     )
