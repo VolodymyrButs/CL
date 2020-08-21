@@ -17,7 +17,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
-import { Label } from './form/Input'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
@@ -279,11 +278,7 @@ export const CallbackButton = () => {
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <>
-                                        <Label htmlFor="PhoneInputCallbackButton">
-                                            Phone Input Callback Button
-                                        </Label>
                                         <PhoneInput
-                                            id="PhoneInputCallbackButton"
                                             inputRef={register({
                                                 minLength: 18,
                                                 required: true,
