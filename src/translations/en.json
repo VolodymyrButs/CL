@@ -1,6 +1,7 @@
 {
-    "hi": "hello",
     "home": "Home",
+    "promo": "Promo 99$",
+    "services": "Services",
     "works": "Works",
     "callUs": "Call Us Call Us \u2000 Call Us Call Us \u2000 ",
     "address": "Address",
@@ -9,12 +10,9 @@
     "contactUs": "Contact us",
     "callback": "Сallback",
     "goBack": "Go Back",
-    "callbackButton": "Callback buttonEn",
-    "learnMore": "Learn More en",
-    "designProject99": "en long sentense ",
+    "learnMore": "Learn More",
+    "designProject99": "Design project - $99",
     "send": "Send",
-    "formTitle": "formTitle en",
-    "formDescription": "formDescription en",
     "name": "Name",
     "phone": "Phone",
     "email": "Email (not required)",
@@ -32,15 +30,15 @@
     "yes": "Yes",
     "no": "No",
     "connection": {
-        "text": "Узнай больше о 3D дизайн-проекте",
-        "modalTitle": "Оставьте заявку",
-        "secondModalTitle": "Спасибо!",
-        "modalDescription": "Напишите нам и мы Вам перезвоним!",
-        "secondModalDescription": "Мы с Вами свяжемся в ближайшее время!",
-        "buttonLabel": "Связаться с нами",
-        "placeholder": "Задайте вопрос",
-        "submitLabel": "Задать вопрос"
+        "text": "Learn more about 3D design project",
+        "modalTitle": "Leave a request",
+        "secondModalTitle": "Thanks!",
+        "modalDescription": "Write to us and we will call you back!",
+        "secondModalDescription": "We will contact you shortly",
+        "buttonLabel": "To contact us",
+        "placeholder": "Ask a question",
+        "submitLabel": "Ask a Question"
     },
-    "showProject": "Cмотреть проект",
+    "showProject": "View project",
     "lastProjects": "Last Projects"
 }

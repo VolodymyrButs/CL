@@ -1,7 +1,8 @@
 {
-    "hi": "привіт",
     "home": "Гoлoвна",
     "works": "Роботи",
+    "promo": "Aкцiя 99$",
+    "services": "Послуги",
     "callUs": "Подзвоніть Нам Подзвоніть Нам ",
     "address": "Aдреса",
     "companyAddress": "Aдреса компанії",
@@ -9,12 +10,9 @@
     "contactUs": "Зв'яжіться з нами",
     "callback": "Зворотній дзвінок",
     "goBack": "Повернутися назад",
-    "callbackButton": "Callback buttonUa",
-    "learnMore": "Learn More uk",
-    "designProject99": "YKP ",
+    "learnMore": "Дізнатись більше",
+    "designProject99": "Дизайн проект - 99$ ",
     "send": "Відправити",
-    "formTitle": "formTitle uk",
-    "formDescription": "formDescription uk",
     "name": "Імʼя",
     "phone": "Телефон",
     "email": "Email (не обов'язково)",
@@ -32,15 +30,15 @@
     "yes": "Так",
     "no": "Ні",
     "connection": {
-        "text": "Узнай больше о 3D дизайн-проекте",
-        "modalTitle": "Оставьте заявку",
-        "secondModalTitle": "Спасибо!",
-        "modalDescription": "Напишите нам и мы Вам перезвоним!",
-        "secondModalDescription": "Мы с Вами свяжемся в ближайшее время!",
-        "buttonLabel": "Связаться с нами",
-        "placeholder": "Задайте вопрос",
-        "submitLabel": "Задать вопрос"
+        "text": "Дізнайся більше про 3D дизайн-проект",
+        "modalTitle": "Залиште заявку",
+        "secondModalTitle": "Дякую!",
+        "modalDescription": "Напишіть нам і ми Вам зателефонуємо!",
+        "secondModalDescription": "Ми з Вами зв'яжемося найближчим часом!",
+        "buttonLabel": "Зв'язатися з нами",
+        "placeholder": "Задайте питання",
+        "submitLabel": "Задати питання"
     },
-    "showProject": "Cмотреть проект",
-    "lastProjects": "Last Projects"
+    "showProject": "Дивитися проект",
+    "lastProjects": "Останні проекти"
 }
