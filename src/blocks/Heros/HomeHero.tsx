@@ -18,13 +18,12 @@ const HomeHeroWraper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+    max-width: 100vw;
     height: calc(100vh - ${headerHeight.mobile});
     min-height: 503px;
-    border-top: 1px solid ${colors.dark};
-    border-bottom: 1px solid ${colors.dark};
     background-color: ${backgroundColors.index};
     align-items: stretch;
-    overflow: hidden;
+    border-bottom: 1px solid ${colors.dark};
     :before {
         ${headerBg}
     }
@@ -60,6 +59,10 @@ const HomeHeroColumn = styled.div`
     box-sizing: border-box;
     border-left: 1px solid ${colors.dark};
     border-right: 1px solid ${colors.dark};
+    :last-child {
+        justify-content: flex-end;
+        max-height: 100%;
+    }
     @media (min-width: ${displayWidth.tablet}) {
         border-left: none;
         border-right: none;
@@ -96,7 +99,6 @@ const Title = styled.h1`
         line-height: 74px;
     }
 `
-
 const SubTitle = styled.p`
     font-size: 16px;
     line-height: 26px;
@@ -116,33 +118,35 @@ const SubTitle = styled.p`
 `
 const MobileImage = styled(Img)`
     width: 100%;
-    height: 90%;
-    max-width: 55%;
+    height: 105%;
+    bottom: -5%;
     z-index: 2;
-    @media (min-width: 360px) {
-        max-width: 75%;
+    @media (min-width: 630px) {
+        width: 80%;
+        height: 85%;
+        bottom: -4%;
     }
-    @media (orientation: landscape) {
-        max-height: 286px;
-        max-width: 50vw;
-    }
-    @media (orientation: landscape) and (min-width: 670px) {
-        max-height: 338px;
-        max-width: 45vw;
+    @media (min-width: 840px) {
+        width: 60%;
+        height: 75%;
+        bottom: -3%;
     }
     @media (min-width: ${displayWidth.tablet}) {
+        width: 85%;
+        height: 75%;
+        bottom: -3%;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
         display: none;
     }
 `
 const DesktopImage = styled(Img)`
     display: none;
-    width: 200%;
-    @media (min-width: ${displayWidth.tablet}) {
+    @media (min-width: ${displayWidth.desktop}) {
         display: block;
+        width: 100%;
         height: 90%;
-        margin: 70px 50px 0 0;
-        max-width: 120%;
-        max-height: 525px;
+        bottom: -4%;
         z-index: 2;
     }
 `
@@ -208,25 +212,14 @@ export const HomeHero = () => {
                 <HomeHeroColumn>
                     <MobileImage
                         fluid={homeHeroImageMobile.fluid}
-                        style={{
-                            overflow: 'visible',
-                        }}
                         imgStyle={{
                             objectFit: 'containe',
-                            height: '105%',
-                            top: '5%',
                         }}
                     />
                     <DesktopImage
                         fluid={homeHeroImageDesktop.fluid}
-                        style={{
-                            overflow: 'visible',
-                        }}
                         imgStyle={{
                             objectFit: 'containe',
-                            height: '104%',
-                            top: '5px',
-                            left: '-50px',
                         }}
                     />
                 </HomeHeroColumn>

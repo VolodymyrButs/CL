@@ -17,6 +17,7 @@ import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
+import { Title } from 'components/TitleComponent'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -25,8 +26,6 @@ const PromoHeroWraper = styled.div`
     background-color: ${backgroundColors.promotion};
     height: calc(100vh - ${headerHeight.mobile});
     min-height: 503px;
-    border-top: 1px solid ${colors.dark};
-    border-bottom: 1px solid ${colors.dark};
     :before {
         ${headerBg}
     }
@@ -51,6 +50,7 @@ const PromoHeroColumn = styled.div`
     align-items: center;
     border-left: 1px solid ${colors.dark};
     border-right: 1px solid ${colors.dark};
+    flex-grow: 0;
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
         position: relative;
@@ -58,6 +58,7 @@ const PromoHeroColumn = styled.div`
         border-right: none;
         justify-content: center;
         outline: 1px solid ${colors.dark};
+        max-width: calc((100vw - 160px) / 3);
         :nth-child(2n) {
             outline: none;
         }
@@ -92,15 +93,13 @@ const LampIconStyled = styled(LampIcon)`
         bottom: 10px;
     }
 `
-const Title = styled.h2`
+const TitleStyled = styled(Title)`
     position: relative;
-    font-family: 'Yeseva One', sans-serif;
     font-size: 48px;
     line-height: 52px;
     letter-spacing: 0.666667px;
-    margin: 37px 16px;
-    text-align: center;
-    color: ${colors.dark};
+    overflow: visible;
+    max-width: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         box-sizing: border-box;
         font-size: 56px;
@@ -109,7 +108,6 @@ const Title = styled.h2`
         text-align: left;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding-left: 47px;
         font-size: 70px;
         line-height: 74px;
     }
@@ -223,11 +221,11 @@ export const PromoHero = () => {
         <PromoHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
                 <PromoHeroColumn>
-                    <Title>
+                    <TitleStyled>
                         {promoHeroData.title}
                         <Price>{promoHeroData.price}</Price>
-                    </Title>
-                    <LocalizedLinkStyled to={'/promo/#design'}>
+                    </TitleStyled>
+                    <LocalizedLinkStyled to={'/promo/#projectStructure'}>
                         <ButtonStyled>
                             <p>{promoHeroData.buttonText}</p>
                         </ButtonStyled>

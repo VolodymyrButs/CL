@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
-const MenuWraper = styled.div`
+const MenuWraper = styled.menu`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

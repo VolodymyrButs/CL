@@ -49,17 +49,18 @@ const ModalWindow = styled.div<{ image: boolean }>`
         justify-content: flex-start;
     }
 `
-const CloseIconStyled = styled(CloseIcon)`
+const CloseIconStyled = styled(CloseIcon)<{ $image: boolean }>`
     position: absolute;
     top: 15px;
-    right: 10px;
+    right: 15px;
     width: 30px;
     height: 30px;
     cursor: pointer;
     z-index: 4;
-    fill: ${colors.white};
-    stroke: ${colors.darkText};
-    stroke-width: 1px;
+    ${({ $image }) =>
+        $image
+            ? `stroke: ${colors.darkText};stroke-width: 1px;ill: ${colors.white};`
+            : `    fill: ${colors.dark};`};
 `
 interface IModalProps {
     closeHandler?: () => void
@@ -82,7 +83,7 @@ export const Modal: React.FC<IModalProps> = ({
     return (
         <ModalWrapper open={isOpen} onClick={closeHandler}>
             <ModalWindow image={image} onClick={stopPropagation}>
-                <CloseIconStyled onClick={closeHandler} />
+                <CloseIconStyled $image={image} onClick={closeHandler} />
                 {children}
             </ModalWindow>
         </ModalWrapper>

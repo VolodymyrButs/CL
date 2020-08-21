@@ -19,8 +19,6 @@ const ContactsWrapper = styled.div`
     width: 100%;
     background-color: ${backgroundColors.contact};
     position: relative;
-    border-bottom: 1px solid ${colors.dark};
-    
     :before {
         ${headerBg}
     }
@@ -55,6 +53,7 @@ const ContactsColumn = styled.div`
     flex-direction: column;
     align-items: center;
     @media (min-width: ${displayWidth.tablet}) {
+        border-right: 1px solid ${colors.dark};
         padding: 60px 30px 60px 48px;
         align-items: flex-start;
     }
@@ -102,8 +101,8 @@ const MapWrapper = styled.div`
     box-sizing: border-box;
     background-color: ${colors.white};
     border-top: 1px solid ${colors.dark};
-    border-left: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
+        border-top: none;
         height: 100%;
         padding: 0;
     }

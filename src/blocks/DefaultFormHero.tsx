@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 
+import fikus from 'assets/images/fikus.svg'
 import { displayWidth } from 'styles/width'
 import { PhoneLink } from 'components/PhoneLink'
 import { colors } from 'styles/colors'
 import { Title } from 'components/TitleComponent'
 import { contactInformation } from 'components/contactInformation'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { indent } from 'styles/indent'
 
 const HeroColumn = styled.div`
     display: flex;
@@ -20,6 +22,7 @@ const HeroColumn = styled.div`
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
+        padding: 0;
         justify-content: space-between;
         align-items: flex-start;
     }
@@ -29,13 +32,13 @@ const TitleStyledMobile = styled(Title)`
     margin: 56px 0 30px;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
+        padding: 0 32px;
     }
 `
 const TitleStyledDesktop = styled(Title)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
-        margin: 56px 0 30px;
         text-align: left;
     }
 `
@@ -60,6 +63,7 @@ const SubTitle = styled.h3`
         letter-spacing: 0.4px;
         color: ${colors.dark};
         margin-bottom: 32px;
+        padding: 0 ${indent.heroColumnDesktop};
     }
 `
 
@@ -69,10 +73,12 @@ const PhoneLinkStyled = styled(PhoneLink)`
         margin-bottom: 24px;
     }
     margin-bottom: 50px;
+    align-self: center;
     @media (min-width: ${displayWidth.desktop}) {
         flex-direction: row;
         align-items: center;
         margin-bottom: 40px;
+        padding: 0 ${indent.heroColumnDesktop};
         div {
             width: 100px;
             height: 100px;
@@ -84,7 +90,17 @@ const PhoneLinkStyled = styled(PhoneLink)`
     }
 `
 
-export const DefaultFormHero = () => {
+const Image = styled(fikus)`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        width: 80%;
+        height: auto;
+        align-self: center;
+        color: transparent;
+    }
+`
+export const DefaultFormHero = ({ image }: { image?: boolean }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -106,6 +122,7 @@ export const DefaultFormHero = () => {
             }
         }
     `)
+
     const formYaml = getDataByLanguage(data.allFormYaml, i18n.language)
     const { titleMobile, titleDesktop, description, price } = formYaml
     return (
@@ -116,8 +133,9 @@ export const DefaultFormHero = () => {
                 <span>?</span>
             </TitleStyledMobile>
             <TitleStyledDesktop>{titleDesktop}</TitleStyledDesktop>
-            <SubTitle>{description}</SubTitle>
+            {!image && <SubTitle>{description}</SubTitle>}
             <PhoneLinkStyled phone={contactInformation.primaryPhone} />
+            {image && <Image />}
         </HeroColumn>
     )
 }
