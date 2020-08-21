@@ -13,6 +13,7 @@ import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
+import { indent } from 'styles/indent'
 
 const SelectionOfPaintWrapper = styled.div`
     display: flex;
@@ -31,18 +32,13 @@ const SubTitle = styled.h3`
     text-align: center;
     letter-spacing: 0.4px;
     color: ${colors.dark};
-    margin: 20px auto;
-    @media (min-width: ${displayWidth.desktop}) {
-        margin: 0 32px 48px;
+    margin: 0 auto;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin: 0 ${indent.heroColumnDesktop} 48px;
         text-align: left;
     }
 `
-const TitleStyled = styled(Title)`
-    margin: 20px auto;
-    @media (min-width: ${displayWidth.desktop}) {
-        margin: 48px 32px 24px;
-    }
-`
+
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
@@ -52,7 +48,7 @@ const HeroColumn = styled.div`
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
-        padding: 32px 0;
+        padding: 0px 0 32px;
         border-right: 1px solid ${colors.dark};
     }
 `
@@ -79,7 +75,7 @@ const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
 `
 const ButtonStyled = styled(Button)`
     width: 264px;
-    margin: 50px auto;
+    margin: 0 auto 50px;
     z-index: 3;
     @media (max-width: 330px) {
         width: 250px;
@@ -137,9 +133,11 @@ export const SelectionOfPaints = () => {
         <SelectionOfPaintWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <TitleStyled>{title}</TitleStyled>
+                    <Title>{title}</Title>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled to={'/promo/#design'}>
+                    <LocalizedLinkStyled
+                        to={'/promo/#selectionOfPaintsAdvantages'}
+                    >
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>
                     <JumpingArrow />

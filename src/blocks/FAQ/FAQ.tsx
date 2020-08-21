@@ -3,6 +3,7 @@ import Img from 'gatsby-image'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet'
 
 import { colors, backgroundColors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
@@ -21,7 +22,6 @@ const FaqWrapper = styled.div`
     width: 100%;
     background-color: ${backgroundColors.contact};
     position: relative;
-    border-bottom: 1px solid ${colors.dark};
 `
 const FaqListStyled = styled.div<{ showFaqListMobile: boolean }>`
     display: ${({ showFaqListMobile }) =>
@@ -155,9 +155,30 @@ export const Faq = () => {
         title,
         questions,
     } = getDataByLanguage(data.allFaqYaml, i18n.language)
+
     const imageLamp = getImageByImageName(data.allImageSharp, image)
+
+    const faqData = questions.map((item: IFAQItem) => {
+        return {
+            '@type': 'Question',
+            name: `${item.question}`,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: `${item.answer}`,
+            },
+        }
+    })
     return (
         <FaqWrapper>
+            <Helmet>
+                <script type="application/ld+json">
+                    {`{
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": ${JSON.stringify(faqData)}
+                    }`}
+                </script>
+            </Helmet>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <Title>{title}</Title>

@@ -12,6 +12,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { SliderComponent } from 'components/SliderComponent'
+import { indent } from 'styles/indent'
 
 const Advantages3DWrapper = styled.div`
     display: flex;
@@ -75,19 +76,19 @@ const SubTitle = styled.h3`
     letter-spacing: 0.4px;
     color: ${colors.dark};
     margin-bottom: 32px;
+    @media (min-width: ${displayWidth.tablet}) {
+        text-align: left;
+    }
 `
 const TitleStyled = styled(Title)`
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 20px 0;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        margin: 80px 0 48px;
+        margin-left: 0;
     }
 `
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 32px 24px;
+    padding: 0 ${indent.heroColumnDesktop} 24px;
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {

@@ -19,7 +19,9 @@ const FormWrapper = styled.div`
     background-color: ${backgroundColors.formPromo};
     width: 100%;
     ${mobileAfterBorder};
-    border-bottom: 1px solid ${colors.dark};
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: 1px solid ${colors.dark};
+    }
 `
 
 const InputBlock = styled.div`

@@ -21,8 +21,6 @@ const FooterWrapper = styled.div`
     flex-direction: column;
     background-color: ${backgroundColors.footer};
     color: white;
-    outline: 1px solid ${colors.white};
-    border-top: 1px solid ${colors.white};
     padding: 0 10px;
     z-index: 1;
     overflow: hidden;
@@ -52,10 +50,10 @@ const FooterContainer = styled(Container)`
     > :last-child {
         justify-content: space-between;
     }
-
     @media (min-width: ${displayWidth.tablet}) {
-        outline: 1px solid ${colors.white};
         border-bottom: none;
+        border-right: 1px solid ${colors.white};
+        border-left: 1px solid ${colors.white};
     }
 `
 
@@ -64,13 +62,16 @@ const FooterColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    > :last-child {
+    :last-child {
         margin-bottom: 0;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        outline: 1px solid ${colors.white};
         padding: 60px 48px;
         align-items: flex-start;
+        border-right: 1px solid ${colors.white};
+        :last-child {
+            border-right: none;
+        }
     }
 `
 const Header = styled.h3`

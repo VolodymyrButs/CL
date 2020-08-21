@@ -18,7 +18,9 @@ const VisualizationAdvantagesWrapper = styled.div`
     width: 100%;
     background-color: ${backgroundColors.vizualization};
     position: relative;
-    border-bottom: 1px solid ${colors.dark};
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: 1px solid ${colors.dark};
+    }
     ${mobileAfterBorder}
 `
 const IconListStyled = styled(IconList)`
@@ -32,9 +34,6 @@ const Image = styled(cupboardWithVase)`
     width: 100%;
     height: auto;
     color: transparent;
-    @media (min-width: ${displayWidth.desktop}) {
-        color: ${backgroundColors.vizualization};
-    }
 `
 const HeroColumn = styled.div`
     display: flex;
