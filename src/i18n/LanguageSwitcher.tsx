@@ -45,6 +45,7 @@ const LangItem = styled.button<{ open: boolean; withBackground?: boolean }>`
     border: none;
     border-right: 1px solid ${colors.white};
     border-bottom: 1px solid ${colors.white};
+    background-color: transparent;
     @media (min-width: ${displayWidth.tablet}) {
         height: ${headerHeight.desktop};
         background-color: ${({ withBackground }) =>
