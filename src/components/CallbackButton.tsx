@@ -279,7 +279,7 @@ export const CallbackButton = () => {
                                 {({ register, errors }: IChildrenProps) => (
                                     <>
                                         <PhoneInput
-                                            inputRef={register({
+                                            ref={register({
                                                 minLength: 18,
                                                 required: true,
                                             })}

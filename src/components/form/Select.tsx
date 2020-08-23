@@ -39,35 +39,33 @@ const SelectElement = styled.select<{
         `};
 `
 
-export const Select = ({
-    inputRef,
-    err,
-    children,
-    name,
-    id,
-    placeholder,
-}: IInputProps) => {
-    const [selectValue, setSelectValue] = useState('none')
-    const handleSelectChange = (e: {
-        target: { value: React.SetStateAction<string> }
-    }) => {
-        setSelectValue(e.target.value)
+export const Select = React.forwardRef<HTMLSelectElement, IInputProps>(
+    ({ err, children, name, id, placeholder }, ref) => {
+        const [selectValue, setSelectValue] = useState('none')
+        const handleSelectChange = (e: {
+            target: { value: React.SetStateAction<string> }
+        }) => {
+            setSelectValue(e.target.value)
+        }
+
+        return (
+            <Wrapper>
+                <LabelSelect htmlFor={id}>{placeholder}</LabelSelect>
+                <SelectElement
+                    ref={ref}
+                    defaultValue="none"
+                    name={name}
+                    isValid={err}
+                    id={id}
+                    onChange={handleSelectChange}
+                    selectedValue={selectValue}
+                >
+                    {children}
+                </SelectElement>
+                <ArrowS />
+            </Wrapper>
+        )
     }
-    return (
-        <Wrapper>
-            <LabelSelect htmlFor={id}>{placeholder}</LabelSelect>
-            <SelectElement
-                ref={inputRef}
-                defaultValue="none"
-                name={name}
-                isValid={err}
-                id={id}
-                onChange={handleSelectChange}
-                selectedValue={selectValue}
-            >
-                {children}
-            </SelectElement>
-            <ArrowS />
-        </Wrapper>
-    )
-}
+)
+
+Select.displayName = 'Select'

@@ -1,20 +1,28 @@
 import React from 'react'
 
 import { Input } from 'components/form/Input'
-import { IInputProps } from 'components/form/Types'
 import { useTranslation } from 'react-i18next'
 
-export const EmailInput = ({ inputRef, err }: IInputProps) => {
-    const { t } = useTranslation()
-    return (
-        <>
-            <Input
-                type="email"
-                name="email"
-                placeholder={t('email')}
-                ref={inputRef}
-                isValid={err}
-            />
-        </>
-    )
+interface EmailInputProps {
+    err: string
 }
+
+export const EmailInput = React.forwardRef<HTMLInputElement, EmailInputProps>(
+    ({ err }, ref) => {
+        const { t } = useTranslation()
+
+        return (
+            <>
+                <Input
+                    type="email"
+                    name="email"
+                    placeholder={t('email')}
+                    ref={ref}
+                    isValid={err}
+                />
+            </>
+        )
+    }
+)
+
+EmailInput.displayName = 'EmailInput'

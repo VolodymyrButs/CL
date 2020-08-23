@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { IInputProps } from 'components/form/Types'
 import { Label } from 'components/form/Label'
 import { colors } from 'styles/colors'
-import { useForm } from 'react-hook-form'
 
 const InputStyle = styled.input<{ isValid?: string }>`
     font-family: 'Open Sans', sans-serif;
@@ -46,21 +46,8 @@ const InputStyle = styled.input<{ isValid?: string }>`
     }
 `
 
-export const Input = React.forwardRef(
-    ({
-        placeholder,
-        ref,
-        ...props
-    }: {
-        placeholder: string
-        ref: (
-            ref:
-                | HTMLInputElement
-                | HTMLSelectElement
-                | HTMLTextAreaElement
-                | null
-        ) => void | ReturnType<typeof useForm>['register']
-    }) => {
+export const Input = React.forwardRef<HTMLInputElement, IInputProps>(
+    ({ placeholder, ...props }, ref) => {
         return (
             <Label placeholder={placeholder}>
                 <InputStyle placeholder={placeholder} ref={ref} {...props} />

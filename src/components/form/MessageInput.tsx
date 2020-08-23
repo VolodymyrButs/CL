@@ -20,23 +20,22 @@ const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
     overflow-y: auto;
 `
 
-export const MessageInput = ({
-    inputRef,
-    err,
-    placeholder,
-    maxHeight,
-}: IInputProps) => {
-    const { t } = useTranslation()
-    return (
-        <Label placeholder={placeholder || t('message')}>
-            <TextArea
-                maxheight={maxHeight}
-                rows={1}
-                name="message"
-                placeholder={placeholder || t('message')}
-                ref={inputRef}
-                isValid={err}
-            />
-        </Label>
-    )
-}
+export const MessageInput = React.forwardRef<HTMLTextAreaElement, IInputProps>(
+    ({ err, placeholder, maxHeight }, ref) => {
+        const { t } = useTranslation()
+        return (
+            <Label placeholder={placeholder || t('message')}>
+                <TextArea
+                    maxheight={maxHeight}
+                    rows={1}
+                    name="message"
+                    placeholder={placeholder || t('message')}
+                    ref={ref}
+                    isValid={err}
+                />
+            </Label>
+        )
+    }
+)
+
+MessageInput.displayName = 'MessageInput'

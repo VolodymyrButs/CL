@@ -69,20 +69,17 @@ export const DefaultFormBlock = () => {
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
                                 <PhoneInput
-                                    inputRef={register({
+                                    ref={register({
                                         minLength: 18,
                                         required: true,
                                     })}
                                     err={errors.phone}
                                 />
                                 <MessageInput
-                                    inputRef={register}
+                                    ref={register}
                                     err={errors.message}
                                 />
-                                <EmailInput
-                                    inputRef={register}
-                                    err={errors.email}
-                                />
+                                <EmailInput ref={register} err={errors.email} />
 
                                 <input
                                     type="hidden"
