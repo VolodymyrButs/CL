@@ -5,13 +5,33 @@ const nodemailer = require('nodemailer')
 const app = express()
 const port = 8004
 const contactAddress = 'wowabuz@gmail.com'
+
 const mailer = nodemailer.createTransport({
-    service: 'Gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
-        user: 'volodymyrbuts01@gmail.com',
-        pass: 'peptqoopvb',
+        user: 'cl.dev.analytics@gmail.com',
+        pass: '28nkdsfg89{ED[ewpn4w}e9',
+    },
+    tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false,
     },
 })
+
+mailer.verify(function(error) {
+    if (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error while trying to access SMTP')
+        // eslint-disable-next-line no-console
+        console.error(error)
+    } else {
+        // eslint-disable-next-line  no-console
+        console.log('Server is ready to take our messages')
+    }
+})
+
 const formLabelByKey = {
     name: "Ім'я",
     phone: 'Телефон',
@@ -20,6 +40,7 @@ const formLabelByKey = {
 }
 
 app.use(bodyParser.json())
+
 app.post('/send-form', function(req, res) {
     const { formName, ...bodyToHtml } = req.body
     mailer.sendMail(
