@@ -65,10 +65,13 @@ export const MobileHeader = () => {
     return (
         <>
             <MobileHeaderWraper isMenuOpen={isMenuOpen}>
-                <LocalizedLink to="/">
+                <LocalizedLink to="/" aria-label="logo">
                     <Logo />
                 </LocalizedLink>
-                <a href={`tel:${contactInformation.primaryPhone}`}>
+                <a
+                    href={`tel:${contactInformation.primaryPhone}`}
+                    aria-label="phone"
+                >
                     <PhoneLinesSvg />
                 </a>
                 <BurgerButton

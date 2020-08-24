@@ -277,13 +277,15 @@ export const CallbackButton = () => {
                                 }
                             >
                                 {({ register, errors }: IChildrenProps) => (
-                                    <PhoneInput
-                                        inputRef={register({
-                                            minLength: 18,
-                                            required: true,
-                                        })}
-                                        err={errors.phone}
-                                    />
+                                    <>
+                                        <PhoneInput
+                                            ref={register({
+                                                minLength: 18,
+                                                required: true,
+                                            })}
+                                            err={errors.phone}
+                                        />
+                                    </>
                                 )}
                             </Form>
                         </>
@@ -292,10 +294,11 @@ export const CallbackButton = () => {
             </Modal>
             <IconBarWrapper>
                 <IconBar open={isCallbackMenuOpen}>
-                    <ViberIconStyled />
-                    <WhatsappIconStyled />
-                    <TelegramIconStyled />
+                    <ViberIconStyled aria-label="ViberButton" />
+                    <WhatsappIconStyled aria-label="Whatsapp Button" />
+                    <TelegramIconStyled aria-label="Telegram Button" />
                     <CallBackTextButton
+                        aria-label="Callback modal Button"
                         onClick={() => {
                             setModalIsOpen(true), setIsOpenCallbackMenu(false)
                         }}
@@ -306,6 +309,7 @@ export const CallbackButton = () => {
             </IconBarWrapper>
 
             <CallbackButtonWrapperMobile
+                aria-label="Callback Button"
                 open={isCallbackMenuOpen}
                 onClick={() => {
                     setIsOpenCallbackMenu(!isCallbackMenuOpen)
@@ -318,6 +322,7 @@ export const CallbackButton = () => {
                 )}
             </CallbackButtonWrapperMobile>
             <CallbackButtonWrapperDesktop
+                aria-label="Callback Button"
                 onClick={() => {
                     setModalIsOpen(true)
                 }}

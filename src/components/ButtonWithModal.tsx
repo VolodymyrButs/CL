@@ -114,22 +114,24 @@ export const ButtonWithModal = ({
                                 {({ register, errors }: IChildrenProps) => (
                                     <div>
                                         <MessageInput
-                                            inputRef={register({
+                                            ref={register({
                                                 required: true,
                                             })}
                                             err={errors.message}
                                             placeholder={placeholder}
                                             maxHeight={'90px'}
                                         />
+
                                         <PhoneInput
-                                            inputRef={register({
+                                            ref={register({
                                                 minLength: 18,
                                                 required: true,
                                             })}
                                             err={errors.phone}
                                         />
+
                                         <EmailInput
-                                            inputRef={register}
+                                            ref={register}
                                             err={errors.email}
                                         />
                                     </div>

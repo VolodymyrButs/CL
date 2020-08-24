@@ -93,15 +93,19 @@ export const CommercialProposalFormBlock = () => {
                                     <Select
                                         name="homeType"
                                         defaultValue="none"
-                                        inputRef={register({
+                                        ref={register({
                                             required: true,
                                             validate: value => value !== 'none',
                                         })}
                                         err={errors.homeType}
+                                        id={'homeTypeSelect'}
+                                        placeholder={t('homeTypeQuestion')}
                                     >
-                                        <option value="none" disabled hidden>
-                                            {t('homeTypeQuestion')}
-                                        </option>
+                                        <option
+                                            value="none"
+                                            disabled
+                                            hidden
+                                        ></option>
                                         <option value="flat">
                                             {t('homeType.flat')}
                                         </option>
@@ -112,13 +116,14 @@ export const CommercialProposalFormBlock = () => {
                                             {t('homeType.comercialBuilding')}
                                         </option>
                                     </Select>
+
                                     <Div />
 
                                     <div style={{ position: 'relative' }}>
                                         <NumberInput
                                             name="roomSize"
                                             placeholder={t('roomSize')}
-                                            inputRef={register({
+                                            ref={register({
                                                 maxLength: 10,
                                                 required: true,
                                             })}
@@ -134,34 +139,34 @@ export const CommercialProposalFormBlock = () => {
                                 </Wrapper>
                                 <Select
                                     name="availabilityDrawings"
-                                    inputRef={register({
+                                    ref={register({
                                         required: true,
                                         validate: value => value !== 'none',
                                     })}
                                     err={errors.availabilityDrawings}
-                                    defaultValue="none"
+                                    id={'availabilityDrawingsSelect'}
+                                    placeholder={t('availabilityDrawings')}
                                 >
-                                    <option value="none" disabled hidden>
-                                        {t('availabilityDrawings')}
-                                    </option>
+                                    <option
+                                        value="none"
+                                        disabled
+                                        hidden
+                                    ></option>
                                     <option value="yes">{t('yes')}</option>
                                     <option value="no">{t('no')}</option>
                                 </Select>
                                 <PhoneInput
-                                    inputRef={register({
+                                    ref={register({
                                         minLength: 18,
                                         required: true,
                                     })}
                                     err={errors.phone}
                                 />
                                 <MessageInput
-                                    inputRef={register}
+                                    ref={register}
                                     err={errors.message}
                                 />
-                                <EmailInput
-                                    inputRef={register}
-                                    err={errors.email}
-                                />
+                                <EmailInput ref={register} err={errors.email} />
                                 <input
                                     type="hidden"
                                     name="hidden"

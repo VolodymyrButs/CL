@@ -1,15 +1,17 @@
-import { useForm } from 'react-hook-form'
-
 export interface IInputProps {
-    inputRef: (
-        ref: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null
-    ) => void | ReturnType<typeof useForm>['register']
     err?: string
     isValid?: string
     placeholder?: string
+    type?: string
     name?: string
-    defaultValue?: string
-    children?: React.ReactNode
+    id?: string
+    defaultValue?: string | number | string[]
+    children?: React.ReactNode | React.ReactChild
     questionPlaceholder?: string
     maxHeight?: string
+}
+export interface ILabelProps {
+    placeholder?: string
+    withValue?: boolean
+    children?: React.ReactNode
 }

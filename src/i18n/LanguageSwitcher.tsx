@@ -36,14 +36,16 @@ const LanguageList = styled.div<{ open: boolean }>`
         height: ${headerHeight.desktop};
     }
 `
-const LangItem = styled.li<{ open: boolean; withBackground?: boolean }>`
+const LangItem = styled.button<{ open: boolean; withBackground?: boolean }>`
     display: flex;
     list-style: none;
     width: 100%;
     box-sizing: border-box;
     height: ${headerHeight.mobile};
+    border: none;
     border-right: 1px solid ${colors.white};
     border-bottom: 1px solid ${colors.white};
+    background-color: transparent;
     @media (min-width: ${displayWidth.tablet}) {
         height: ${headerHeight.desktop};
         background-color: ${({ withBackground }) =>

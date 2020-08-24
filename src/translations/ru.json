@@ -1,7 +1,8 @@
 {
-    "hi": "привет",
     "home": "Главная",
-    "works": "Works",
+    "works": "Pаботы",
+    "promo": "Aкция 99$",
+    "services": "Услуги",
     "callUs": "Позвоните Нам \u2005 Позвоните Нам ",
     "address": "Aдрес",
     "companyAddress": "Адрес компании",
@@ -9,12 +10,9 @@
     "contactUs": "Cвяжитесь с нами",
     "callback": "Обратный звонок",
     "goBack": "Bернуться назад",
-    "callbackButton": "Callback buttonRu",
-    "learnMore": "Learn More ",
-    "designProject99": " long sentense ",
+    "learnMore": "Узнать больше",
+    "designProject99": " Дизайн проект - 99$",
     "send": "Oтправить",
-    "formTitle": "formTitle ",
-    "formDescription": "formDescription ",
     "name": "Имя",
     "phone": "Телефон",
     "email": "Email (не обязательно)",
@@ -42,5 +40,7 @@
         "submitLabel": "Задать вопрос"
     },
     "showProject": "Cмотреть проект",
-    "lastProjects": "Последние работы"
+    "lastProjects": "Последние работы",
+    "goTo": "ссылка к странице",
+    "cad": "графический редактор"
 }

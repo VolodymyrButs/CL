@@ -133,7 +133,7 @@ const CarouselWrapperMini = styled(CarouselWrapper)`
 
 const ImageBig = styled(Img)`
     width: 100%;
-    height: 150vw;
+    height: 100%;
     ${height}
 `
 const ImageSmall = styled(Img)`
@@ -152,7 +152,7 @@ const Breadcrumbs = styled.p`
     line-height: 14px;
     letter-spacing: 2px;
     span {
-        opacity: 0.5;
+        opacity: 0.7;
     }
     margin: 0 auto;
     @media (min-width: ${displayWidth.tablet}) {
@@ -420,7 +420,7 @@ export const query = graphql`
                         description
                         name
                     }
-                    ua {
+                    uk {
                         description
                         name
                     }
@@ -451,7 +451,7 @@ export const query = graphql`
                         description
                         name
                     }
-                    ua {
+                    uk {
                         description
                         name
                     }

@@ -38,7 +38,7 @@ export const Header = () => {
         <>
             <MobileHeader />
             <HeaderWraper>
-                <LocalizedLink to="/">
+                <LocalizedLink aria-label="logo" to="/">
                     <Logo />
                 </LocalizedLink>
                 <Container tabletColumns={'1fr 1fr'} desktopColunms={'7fr 5fr'}>

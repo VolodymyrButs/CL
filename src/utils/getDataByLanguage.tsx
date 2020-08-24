@@ -1,7 +1,7 @@
 export const getDataByLanguage = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any,
-    language: string = 'ua'
+    language: string = 'uk'
 ) => {
     const langData = data.edges.find(
         (elem: { node: { parent: { name: string } } }) => {

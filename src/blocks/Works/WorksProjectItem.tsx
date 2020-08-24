@@ -108,7 +108,7 @@ export const WorksProjectItem = ({
                     objectFit: 'containe',
                 }}
             />
-            <HoverWrapper to={`works/${link}`}>
+            <HoverWrapper aria-label={link} to={`works/${link}`}>
                 <LogoStyled />
                 <Description>{description}</Description>
 
