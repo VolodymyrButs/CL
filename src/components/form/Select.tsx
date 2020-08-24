@@ -8,13 +8,22 @@ import Arrow from 'assets/icons/ShevronDown.svg'
 const Wrapper = styled.div`
     position: relative;
 `
-const LabelSelect = styled.label`
+
+const LabelSelect = styled.label<{
+    selectValue?: string
+}>`
     position: absolute;
-    font-size: 12px;
-    right: 0;
-    left: 6px;
-    bottom: 5px;
     color: gray;
+    bottom: 27px;
+    left: 6px;
+    right: 0;
+    ${({ selectValue }) =>
+        selectValue !== 'none' &&
+        css`
+            font-size: 12px;
+            bottom: 5px;
+        `}
+    pointer-events: none;
 `
 const ArrowS = styled(Arrow)`
     width: 15px;
@@ -42,15 +51,17 @@ const SelectElement = styled.select<{
 export const Select = React.forwardRef<HTMLSelectElement, IInputProps>(
     ({ err, children, name, id, placeholder }, ref) => {
         const [selectValue, setSelectValue] = useState('none')
+
         const handleSelectChange = (e: {
             target: { value: React.SetStateAction<string> }
         }) => {
             setSelectValue(e.target.value)
         }
-
         return (
             <Wrapper>
-                <LabelSelect htmlFor={id}>{placeholder}</LabelSelect>
+                <LabelSelect selectValue={selectValue} htmlFor={id}>
+                    {placeholder}
+                </LabelSelect>
                 <SelectElement
                     ref={ref}
                     defaultValue="none"

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { IInputProps } from 'components/form/Types'
 import { Label } from 'components/form/Label'
@@ -48,9 +48,17 @@ const InputStyle = styled.input<{ isValid?: string }>`
 
 export const Input = React.forwardRef<HTMLInputElement, IInputProps>(
     ({ placeholder, ...props }, ref) => {
+        const [withValue, setWithValue] = useState(false)
+        const inputHandler = (e: { target: { value: string } }) => {
+            if (e.target.value === '') {
+                setWithValue(false)
+                return
+            }
+            setWithValue(true)
+        }
         return (
-            <Label placeholder={placeholder}>
-                <InputStyle placeholder={placeholder} ref={ref} {...props} />
+            <Label withValue={withValue} placeholder={placeholder}>
+                <InputStyle onChange={inputHandler} ref={ref} {...props} />
             </Label>
         )
     }

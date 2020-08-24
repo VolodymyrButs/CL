@@ -101,9 +101,11 @@ export const CommercialProposalFormBlock = () => {
                                         id={'homeTypeSelect'}
                                         placeholder={t('homeTypeQuestion')}
                                     >
-                                        <option value="none" disabled hidden>
-                                            {t('homeTypeQuestion')}
-                                        </option>
+                                        <option
+                                            value="none"
+                                            disabled
+                                            hidden
+                                        ></option>
                                         <option value="flat">
                                             {t('homeType.flat')}
                                         </option>
@@ -142,13 +144,14 @@ export const CommercialProposalFormBlock = () => {
                                         validate: value => value !== 'none',
                                     })}
                                     err={errors.availabilityDrawings}
-                                    defaultValue="none"
                                     id={'availabilityDrawingsSelect'}
                                     placeholder={t('availabilityDrawings')}
                                 >
-                                    <option value="none" disabled hidden>
-                                        {t('availabilityDrawings')}
-                                    </option>
+                                    <option
+                                        value="none"
+                                        disabled
+                                        hidden
+                                    ></option>
                                     <option value="yes">{t('yes')}</option>
                                     <option value="no">{t('no')}</option>
                                 </Select>
