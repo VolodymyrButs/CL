@@ -109,7 +109,9 @@ export const ButtonWithModal = ({
                             <Form
                                 formName={'Callback Form'}
                                 buttonText={submitLabel}
-                                handleFormSubmit={() => setIsFormSend(true)}
+                                handleFormSubmit={(success: boolean) =>
+                                    success && setIsFormSend(!isFormSend)
+                                }
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <div>

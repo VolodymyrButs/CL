@@ -6,6 +6,7 @@ import { TFunction } from 'i18next'
 import { Button } from 'components/Button'
 import { displayWidth } from 'styles/width'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const ButtonStyled = styled(Button)`
     width: 264px;
@@ -21,6 +22,9 @@ const ButtonStyled = styled(Button)`
     @media (min-width: ${displayWidth.desktop}) {
         width: 264px;
     }
+    :disabled {
+        opacity: 0.6;
+    }
 `
 const ButtonWrapper = styled.div`
     display: flex;
@@ -29,12 +33,26 @@ const ButtonWrapper = styled.div`
         justify-content: flex-start;
     }
 `
+const FormStyled = styled.form`
+    position: relative;
+`
+const SendStatus = styled.p`
+    text-align: center;
+    position: absolute;
+    left: 5px;
+    bottom: 10px;
+    @media (min-width: ${displayWidth.tablet}) {
+        text-align: left;
+    }
+`
 interface IFormProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: any
     formName?: string
     buttonText?: TFunction | string
-    handleFormSubmit?: () => void
+    handleFormSubmit?: (success: boolean) => void
+    isFormSend?: boolean
+    isFormNotSend?: boolean
 }
 export interface IChildrenProps {
     register: ReturnType<typeof useForm>['register']
@@ -45,6 +63,8 @@ export const Form: React.FC<IFormProps> = ({
     handleFormSubmit = () => {},
     formName = 'Clearline Form',
     buttonText = 'Send',
+    isFormSend = false,
+    isFormNotSend = false,
 }) => {
     const { register, errors, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -60,15 +80,25 @@ export const Form: React.FC<IFormProps> = ({
                 'Content-type': 'application/json',
             },
         })
-        handleFormSubmit()
+            .then(response => {
+                return response.json()
+            })
+            .then(success => {
+                handleFormSubmit(success.success)
+            })
     }
     const childrenProps: IChildrenProps = { register, errors }
+    const { t } = useTranslation()
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <FormStyled onSubmit={handleSubmit(onSubmit)}>
             {children(childrenProps)}
             <ButtonWrapper>
-                <ButtonStyled type="submit">{buttonText}</ButtonStyled>
+                <ButtonStyled disabled={isFormSend} type="submit">
+                    {buttonText}
+                </ButtonStyled>
             </ButtonWrapper>
-        </form>
+            {isFormSend && <SendStatus>{t('isSendSuccess')}</SendStatus>}
+            {isFormNotSend && <SendStatus>{t('isSendError')}</SendStatus>}
+        </FormStyled>
     )
 }

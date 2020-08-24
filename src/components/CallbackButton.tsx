@@ -272,8 +272,8 @@ export const CallbackButton = () => {
                             <Form
                                 formName={'Callback Form'}
                                 buttonText={t('send')}
-                                handleFormSubmit={() =>
-                                    setIsFormSend(!isFormSend)
+                                handleFormSubmit={(success: boolean) =>
+                                    success && setIsFormSend(!isFormSend)
                                 }
                             >
                                 {({ register, errors }: IChildrenProps) => (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -58,14 +58,24 @@ const FormColumn = styled.div`
 `
 export const DefaultFormBlock = () => {
     const { t } = useTranslation()
-
+    const [isFormSend, setIsFormSend] = useState(false)
+    const [isFormNotSend, setIsFormNotSend] = useState(false)
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <DefaultFormHero />
                 <FormColumn>
                     <FormTitle>{t('defaultFormTitle')}</FormTitle>
-                    <Form buttonText={t('send')}>
+                    <Form
+                        buttonText={t('send')}
+                        handleFormSubmit={(success: boolean) =>
+                            success === true
+                                ? (setIsFormSend(true), setIsFormNotSend(false))
+                                : (setIsFormSend(false), setIsFormNotSend(true))
+                        }
+                        isFormSend={isFormSend}
+                        isFormNotSend={isFormNotSend}
+                    >
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
                                 <PhoneInput

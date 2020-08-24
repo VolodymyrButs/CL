@@ -66,7 +66,7 @@ app.post('/send-form', function(req, res) {
         // eslint-disable-next-line consistent-return
         function(err) {
             if (err) {
-                return res.status(500).send(err)
+                return res.json({ success: false })
             }
             return res.json({ success: true })
         }
