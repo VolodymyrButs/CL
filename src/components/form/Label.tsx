@@ -1,6 +1,6 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import { ILabelProps } from './Types'
+import styled from 'styled-components'
+import { smallLabel } from 'styles/smallLabel'
 
 const LabelContainer = styled.label`
     display: inline-block;
@@ -8,29 +8,27 @@ const LabelContainer = styled.label`
     width: 100%;
     height: 100%;
 `
-export const LabelText = styled.span<{ withValue?: boolean }>`
+export const LabelText = styled.span<{ $hasValue?: boolean }>`
     position: absolute;
     color: gray;
     bottom: 27px;
     left: 6px;
     right: 0;
     ${LabelContainer} > *:focus + & {
-        font-size: 12px;
-        bottom: 5px;
+        ${smallLabel}
     }
-    ${({ withValue }) =>
-        withValue &&
-        css`
-            font-size: 12px;
-            bottom: 5px;
-        `}
+    ${({ $hasValue }) => $hasValue && smallLabel}
 `
-
-export const Label = ({ placeholder, children, withValue }: ILabelProps) => {
+interface ILabelProps {
+    placeholder?: string
+    hasValue?: boolean
+    children?: React.ReactNode
+}
+export const Label = ({ placeholder, children, hasValue }: ILabelProps) => {
     return (
         <LabelContainer>
             {children}
-            <LabelText withValue={withValue}>{placeholder}</LabelText>
+            <LabelText $hasValue={hasValue}>{placeholder}</LabelText>
         </LabelContainer>
     )
 }

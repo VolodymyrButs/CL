@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { IInputProps } from 'components/form/Types'
 import { inputStyle } from 'styles/inputStyle'
 import Arrow from 'assets/icons/ShevronDown.svg'
+import { smallLabel } from 'styles/smallLabel'
 
 const Wrapper = styled.div`
     position: relative;
@@ -17,12 +18,7 @@ const LabelSelect = styled.label<{
     bottom: 27px;
     left: 6px;
     right: 0;
-    ${({ selectValue }) =>
-        selectValue !== 'none' &&
-        css`
-            font-size: 12px;
-            bottom: 5px;
-        `}
+    ${({ selectValue }) => selectValue !== 'none' && smallLabel}
     pointer-events: none;
 `
 const ArrowS = styled(Arrow)`

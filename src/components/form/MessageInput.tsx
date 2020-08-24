@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { IInputProps } from 'components/form/Types'
 import { useTranslation } from 'react-i18next'
 import { inputStyle } from 'styles/inputStyle'
 import { Label } from 'components/form/Label'
+import { useHasValue } from 'hooks/useHasValue'
 
 const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
     ${inputStyle}
@@ -23,17 +24,11 @@ const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
 export const MessageInput = React.forwardRef<HTMLTextAreaElement, IInputProps>(
     ({ err, placeholder, maxHeight }, ref) => {
         const { t } = useTranslation()
-        const [withValue, setWithValue] = useState(false)
-        const inputHandler = (e: { target: { value: string } }) => {
-            if (e.target.value === '') {
-                setWithValue(false)
-                return
-            }
-            setWithValue(true)
-        }
+        const { inputHandler, hasValue } = useHasValue()
+
         return (
             <Label
-                withValue={withValue}
+                hasValue={hasValue}
                 placeholder={placeholder || t('message')}
             >
                 <TextArea
