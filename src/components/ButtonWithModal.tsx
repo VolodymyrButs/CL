@@ -11,7 +11,7 @@ import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
 import { EmailInput } from './form/EmailInput'
 import { MessageInput } from './form/MessageInput'
-import { useFormHandler } from 'hooks/useFormHandler'
+import { useFormHandler, isFormSuccess } from 'hooks/useFormHandler'
 
 const SubTitle = styled.h3`
     display: block;
@@ -80,13 +80,7 @@ export const ButtonWithModal = ({
     submitLabel: string
 }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const {
-        handleSubmit,
-        isFormSend,
-        setIsFormSend,
-        isFormNotSend,
-        setIsFormNotSend,
-    } = useFormHandler()
+    const { handleSubmit, formSendStatus } = useFormHandler()
     const { t } = useTranslation()
 
     return (
@@ -96,14 +90,12 @@ export const ButtonWithModal = ({
                 closeHandler={() => setModalIsOpen(false)}
             >
                 <Wrapper>
-                    {isFormSend ? (
+                    {isFormSuccess(formSendStatus) ? (
                         <>
                             <TitleStyled>{secondModalTitle}</TitleStyled>
                             <SubTitle>{secondModalDescription}</SubTitle>
                             <ButtonStyled
                                 onClick={() => {
-                                    setIsFormSend(false)
-                                    setIsFormNotSend(false)
                                     setModalIsOpen(false)
                                 }}
                             >
@@ -117,9 +109,8 @@ export const ButtonWithModal = ({
                             <Form
                                 formName={'Callback Form'}
                                 buttonText={submitLabel}
-                                handleFormSubmit={handleSubmit}
-                                isFormSend={isFormSend}
-                                isFormNotSend={isFormNotSend}
+                                onFormSubmit={handleSubmit}
+                                formSendStatus={formSendStatus}
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <div>

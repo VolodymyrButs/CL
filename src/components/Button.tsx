@@ -20,4 +20,7 @@ export const Button = styled.button`
     :active {
         background-color: ${colors.gray};
     }
+    :disabled {
+        opacity: 0.6;
+    }
 `

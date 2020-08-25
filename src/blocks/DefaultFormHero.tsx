@@ -25,6 +25,7 @@ const HeroColumn = styled.div`
         padding: 0;
         justify-content: space-between;
         align-items: flex-start;
+        border-right: 1px solid ${colors.dark};
     }
 `
 

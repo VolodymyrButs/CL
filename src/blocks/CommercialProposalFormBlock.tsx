@@ -52,9 +52,6 @@ const FormColumn = styled.div`
     width: 100%;
     padding: 0 32px;
     box-sizing: border-box;
-    @media (min-width: ${displayWidth.tablet}) {
-        outline: 1px solid ${colors.dark};
-    }
 `
 const Unit = styled.p`
     pointer-events: none;
@@ -80,7 +77,7 @@ const Div = styled.div`
 
 export const CommercialProposalFormBlock = () => {
     const { t } = useTranslation()
-    const { handleSubmit, isFormSend, isFormNotSend } = useFormHandler()
+    const { handleSubmit, formSendStatus } = useFormHandler()
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
@@ -89,9 +86,8 @@ export const CommercialProposalFormBlock = () => {
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
                     <Form
                         buttonText={t('send')}
-                        handleFormSubmit={handleSubmit}
-                        isFormSend={isFormSend}
-                        isFormNotSend={isFormNotSend}
+                        onFormSubmit={handleSubmit}
+                        formSendStatus={formSendStatus}
                     >
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
