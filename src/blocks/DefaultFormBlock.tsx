@@ -11,6 +11,7 @@ import { colors, backgroundColors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { Container } from 'components/Container'
 import { DefaultFormHero } from './DefaultFormHero'
+import { useFormHandler } from 'hooks/useFormHandler'
 
 const FormWrapper = styled.div`
     display: flex;
@@ -52,20 +53,21 @@ const FormColumn = styled.div`
     width: 100%;
     padding: 0 32px;
     box-sizing: border-box;
-    @media (min-width: ${displayWidth.tablet}) {
-        outline: 1px solid ${colors.dark};
-    }
 `
 export const DefaultFormBlock = () => {
     const { t } = useTranslation()
-
+    const { handleSubmit, formSendStatus } = useFormHandler()
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <DefaultFormHero />
                 <FormColumn>
                     <FormTitle>{t('defaultFormTitle')}</FormTitle>
-                    <Form buttonText={t('send')}>
+                    <Form
+                        buttonText={t('send')}
+                        onFormSubmit={handleSubmit}
+                        formSendStatus={formSendStatus}
+                    >
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
                                 <PhoneInput

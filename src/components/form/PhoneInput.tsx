@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import InputMask from 'react-input-mask'
 
 import { useTranslation } from 'react-i18next'
 import { Label } from './Label'
 import { InputStyle } from './Input'
+import { useHasValue } from 'hooks/useHasValue'
 
 interface PhoneInputProps {
     err: string
@@ -12,16 +13,9 @@ interface PhoneInputProps {
 export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
     ({ err }, ref) => {
         const { t } = useTranslation()
-        const [withValue, setWithValue] = useState(false)
-        const inputHandler = (e: { target: { value: string } }) => {
-            if (e.target.value === '') {
-                setWithValue(false)
-                return
-            }
-            setWithValue(true)
-        }
+        const { inputHandler, hasValue } = useHasValue()
         return (
-            <Label withValue={withValue} placeholder={t('phone')}>
+            <Label hasValue={hasValue} placeholder={t('phone')}>
                 <InputMask
                     maskChar={null}
                     mask="+3\8(999) 99 999 99"

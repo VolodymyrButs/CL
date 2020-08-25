@@ -10,8 +10,3 @@ export interface IInputProps {
     questionPlaceholder?: string
     maxHeight?: string
 }
-export interface ILabelProps {
-    placeholder?: string
-    withValue?: boolean
-    children?: React.ReactNode
-}

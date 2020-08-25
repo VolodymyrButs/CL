@@ -13,6 +13,7 @@ import { Container } from 'components/Container'
 import { DefaultFormHero } from './DefaultFormHero'
 import { Select } from 'components/form/Select'
 import { NumberInput } from 'components/form/NumberInput'
+import { useFormHandler } from 'hooks/useFormHandler'
 
 const FormWrapper = styled.div`
     display: flex;
@@ -51,9 +52,6 @@ const FormColumn = styled.div`
     width: 100%;
     padding: 0 32px;
     box-sizing: border-box;
-    @media (min-width: ${displayWidth.tablet}) {
-        outline: 1px solid ${colors.dark};
-    }
 `
 const Unit = styled.p`
     pointer-events: none;
@@ -79,14 +77,18 @@ const Div = styled.div`
 
 export const CommercialProposalFormBlock = () => {
     const { t } = useTranslation()
-
+    const { handleSubmit, formSendStatus } = useFormHandler()
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <DefaultFormHero image />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
-                    <Form buttonText={t('send')}>
+                    <Form
+                        buttonText={t('send')}
+                        onFormSubmit={handleSubmit}
+                        formSendStatus={formSendStatus}
+                    >
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
                                 <Wrapper>
