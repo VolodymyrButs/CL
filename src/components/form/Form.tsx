@@ -7,7 +7,11 @@ import { Button } from 'components/Button'
 import { displayWidth } from 'styles/width'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import { isFormSuccess, isFormError } from 'hooks/useFormHandler'
+import {
+    isFormSuccess,
+    isFormError,
+    FormSendStatus,
+} from 'hooks/useFormHandler'
 
 const ButtonStyled = styled(Button)`
     width: 264px;
@@ -38,8 +42,8 @@ const SendStatus = styled.p`
     width: 100%;
     text-align: center;
     position: absolute;
-    left: 5px;
-    bottom: 10px;
+    left: 40px;
+    bottom: 15px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
     }
@@ -50,7 +54,7 @@ interface IFormProps {
     formName?: string
     buttonText?: TFunction | string
     onFormSubmit?: (success: boolean) => void
-    formSendStatus?: string
+    formSendStatus?: FormSendStatus
 }
 export interface IChildrenProps {
     register: ReturnType<typeof useForm>['register']
@@ -88,22 +92,24 @@ export const Form: React.FC<IFormProps> = ({
     const childrenProps: IChildrenProps = { register, errors }
     const { t } = useTranslation()
     return (
-        <FormStyled onSubmit={handleSubmit(onSubmit)}>
-            {children(childrenProps)}
-            <ButtonWrapper>
-                <ButtonStyled
-                    disabled={isFormSuccess(formSendStatus)}
-                    type="submit"
-                >
-                    {buttonText}
-                </ButtonStyled>
-            </ButtonWrapper>
+        <>
+            <FormStyled onSubmit={handleSubmit(onSubmit)}>
+                {children(childrenProps)}
+                <ButtonWrapper>
+                    <ButtonStyled
+                        disabled={isFormSuccess(formSendStatus)}
+                        type="submit"
+                    >
+                        {buttonText}
+                    </ButtonStyled>
+                </ButtonWrapper>
+            </FormStyled>
             {isFormSuccess(formSendStatus) && (
                 <SendStatus>{t('isSendSuccess')}</SendStatus>
             )}
             {isFormError(formSendStatus) && (
                 <SendStatus>{t('isSendError')}</SendStatus>
             )}
-        </FormStyled>
+        </>
     )
 }

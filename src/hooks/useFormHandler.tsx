@@ -4,7 +4,7 @@ const notSend = 'NOT_SEND'
 const sendSuccess = 'SUCCESS'
 const sendError = 'ERROR'
 
-type FormSendStatus = 'NOT_SEND' | 'SUCCESS' | 'ERROR'
+export type FormSendStatus = 'NOT_SEND' | 'SUCCESS' | 'ERROR'
 
 export const useFormHandler = () => {
     const [formSendStatus, setFormSendStatus] = useState<FormSendStatus>(

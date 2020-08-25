@@ -146,6 +146,7 @@ const DesktopImageRight = styled(sofaDesktopRight)`
     display: none;
     width: 75%;
     fill: ${backgroundColors.promotion};
+    stroke: ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
         position: absolute;
@@ -158,15 +159,15 @@ const DesktopImageRight = styled(sofaDesktopRight)`
 `
 const DesktopImageLeft = styled(Img)`
     display: none;
-    width: 82%;
+    width: 78%;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
         position: absolute;
-        left: 9%;
-        bottom: -151px;
+        left: 11%;
+        bottom: -143px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        bottom: -147px;
+        bottom: -137px;
     }
 `
 const ButtonStyled = styled(Button)`
