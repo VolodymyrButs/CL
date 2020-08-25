@@ -1,10 +1,15 @@
 import { useState } from 'react'
 
+const notSend = 'NOT_SEND'
+const sendSuccess = 'SUCCESS'
+const sendError = 'ERROR'
+
+type FormSendStatus = 'NOT_SEND' | 'SUCCESS' | 'ERROR'
+
 export const useFormHandler = () => {
-    const notSent = 'NOT_SENT'
-    const sendSuccess = 'SUCCESS'
-    const sendError = 'ERROR'
-    const [formSendStatus, setFormSendStatus] = useState(notSent)
+    const [formSendStatus, setFormSendStatus] = useState<FormSendStatus>(
+        notSend
+    )
     const handleSubmit = (success: boolean) =>
         success === true
             ? setFormSendStatus(sendSuccess)
@@ -15,9 +20,9 @@ export const useFormHandler = () => {
         formSendStatus,
     }
 }
-export const isNotSend = (formSendStatus: string) =>
-    formSendStatus === 'NOT_SEND'
-export const isFormSuccess = (formSendStatus: string) =>
-    formSendStatus === 'SUCCESS'
-export const isFormError = (formSendStatus: string) =>
-    formSendStatus === 'ERROR'
+export const isNotSend = (formSendStatus: FormSendStatus) =>
+    formSendStatus === notSend
+export const isFormSuccess = (formSendStatus: FormSendStatus) =>
+    formSendStatus === sendSuccess
+export const isFormError = (formSendStatus: FormSendStatus) =>
+    formSendStatus === sendError
