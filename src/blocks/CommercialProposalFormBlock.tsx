@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -13,6 +13,7 @@ import { Container } from 'components/Container'
 import { DefaultFormHero } from './DefaultFormHero'
 import { Select } from 'components/form/Select'
 import { NumberInput } from 'components/form/NumberInput'
+import { useFormHandler } from 'hooks/useFormHandler'
 
 const FormWrapper = styled.div`
     display: flex;
@@ -79,8 +80,7 @@ const Div = styled.div`
 
 export const CommercialProposalFormBlock = () => {
     const { t } = useTranslation()
-    const [isFormSend, setIsFormSend] = useState(false)
-    const [isFormNotSend, setIsFormNotSend] = useState(false)
+    const { handleSubmit, isFormSend, isFormNotSend } = useFormHandler()
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
@@ -89,11 +89,7 @@ export const CommercialProposalFormBlock = () => {
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
                     <Form
                         buttonText={t('send')}
-                        handleFormSubmit={(success: boolean) =>
-                            success === true
-                                ? (setIsFormSend(true), setIsFormNotSend(false))
-                                : (setIsFormSend(false), setIsFormNotSend(true))
-                        }
+                        handleFormSubmit={handleSubmit}
                         isFormSend={isFormSend}
                         isFormNotSend={isFormNotSend}
                     >

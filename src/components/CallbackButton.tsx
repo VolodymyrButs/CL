@@ -17,6 +17,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
+import { useFormHandler } from 'hooks/useFormHandler'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
@@ -210,7 +211,13 @@ const ButtonStyled = styled(Button)`
 export const CallbackButton = () => {
     const [isCallbackMenuOpen, setIsOpenCallbackMenu] = useState(false)
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const [isFormSend, setIsFormSend] = useState(false)
+    const {
+        handleSubmit,
+        isFormSend,
+        setIsFormSend,
+        isFormNotSend,
+        setIsFormNotSend,
+    } = useFormHandler()
     const { t, i18n } = useTranslation()
 
     useLayoutEffect(() => {
@@ -258,8 +265,9 @@ export const CallbackButton = () => {
                             <SubTitle>{secondSubTitle}</SubTitle>
                             <ButtonStyled
                                 onClick={() => {
-                                    setIsFormSend(!isFormSend),
-                                        setModalIsOpen(false)
+                                    setIsFormSend(false)
+                                    setIsFormNotSend(false)
+                                    setModalIsOpen(false)
                                 }}
                             >
                                 {t('goBack')}
@@ -272,9 +280,9 @@ export const CallbackButton = () => {
                             <Form
                                 formName={'Callback Form'}
                                 buttonText={t('send')}
-                                handleFormSubmit={(success: boolean) =>
-                                    success && setIsFormSend(!isFormSend)
-                                }
+                                handleFormSubmit={handleSubmit}
+                                isFormSend={isFormSend}
+                                isFormNotSend={isFormNotSend}
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <>

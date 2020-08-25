@@ -11,6 +11,7 @@ import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
 import { EmailInput } from './form/EmailInput'
 import { MessageInput } from './form/MessageInput'
+import { useFormHandler } from 'hooks/useFormHandler'
 
 const SubTitle = styled.h3`
     display: block;
@@ -79,7 +80,13 @@ export const ButtonWithModal = ({
     submitLabel: string
 }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const [isFormSend, setIsFormSend] = useState(false)
+    const {
+        handleSubmit,
+        isFormSend,
+        setIsFormSend,
+        isFormNotSend,
+        setIsFormNotSend,
+    } = useFormHandler()
     const { t } = useTranslation()
 
     return (
@@ -95,8 +102,9 @@ export const ButtonWithModal = ({
                             <SubTitle>{secondModalDescription}</SubTitle>
                             <ButtonStyled
                                 onClick={() => {
-                                    setIsFormSend(!isFormSend),
-                                        setModalIsOpen(false)
+                                    setIsFormSend(false)
+                                    setIsFormNotSend(false)
+                                    setModalIsOpen(false)
                                 }}
                             >
                                 {t('goBack')}
@@ -109,9 +117,9 @@ export const ButtonWithModal = ({
                             <Form
                                 formName={'Callback Form'}
                                 buttonText={submitLabel}
-                                handleFormSubmit={(success: boolean) =>
-                                    success && setIsFormSend(!isFormSend)
-                                }
+                                handleFormSubmit={handleSubmit}
+                                isFormSend={isFormSend}
+                                isFormNotSend={isFormNotSend}
                             >
                                 {({ register, errors }: IChildrenProps) => (
                                     <div>

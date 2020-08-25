@@ -37,6 +37,7 @@ const FormStyled = styled.form`
     position: relative;
 `
 const SendStatus = styled.p`
+    width: 100%;
     text-align: center;
     position: absolute;
     left: 5px;
@@ -86,6 +87,7 @@ export const Form: React.FC<IFormProps> = ({
             .then(success => {
                 handleFormSubmit(success.success)
             })
+            .catch(() => handleFormSubmit(false))
     }
     const childrenProps: IChildrenProps = { register, errors }
     const { t } = useTranslation()
