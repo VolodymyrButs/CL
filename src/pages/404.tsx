@@ -19,8 +19,15 @@ const Wrapper = styled.div`
     position: relative;
     background-color: ${colors.dark};
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    @media (min-width: ${displayWidth.tablet}) {
+        align-items: center;
+    }
 `
 const LogoStyled = styled(Logo)`
     position: absolute;
@@ -59,18 +66,25 @@ const DesktopImageLeft = styled(sofaDesktopRight)`
 const CenterBlock = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     color: ${colors.white};
     text-align: center;
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-    margin-top: 100px;
+    margin: 80px 20px 0;
+    @media (min-width: ${displayWidth.tablet}) {
+        justify-content: center;
+    }
 `
 const Title = styled.h2`
-    font-size: 144px;
-    line-height: 166px;
+    font-size: 100px;
+    line-height: 120px;
     letter-spacing: 1.52778px;
+    @media (min-width: ${displayWidth.tablet}) {
+        font-size: 144px;
+        line-height: 166px;
+    }
 `
 const SubTitle = styled.h3`
     font-size: 26px;
@@ -80,7 +94,10 @@ const SubTitle = styled.h3`
 `
 const ButtonStyled = styled(Button)`
     border-color: ${colors.white};
-    margin: 60px auto;
+    margin: 30px auto;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin: 60px auto;
+    }
 `
 const NotFoundPage = () => {
     const { t } = useTranslation()

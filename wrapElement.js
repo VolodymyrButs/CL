@@ -22,11 +22,8 @@ const wrapPageElement = ({ element, props }) => {
             i18n.changeLanguage(currentLanguage)
         }
     }
-    return element.key === '/404.html' ? (
-        <I18nextProvider i18n={i18n} {...props}>
-            {element}
-        </I18nextProvider>
-    ) : (
+
+    return (
         <I18nextProvider i18n={i18n} {...props}>
             <Layout>{element}</Layout>
         </I18nextProvider>
