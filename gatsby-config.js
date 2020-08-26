@@ -1,12 +1,24 @@
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
+let activeEnv =
+    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+// eslint-disable-next-line no-console
+console.log(`Using environment config: '${activeEnv}'`)
+require('dotenv').config({
+    path: `.env.${activeEnv}`,
+})
+let prefix
+if (activeEnv !== 'prod') {
+    prefix = '/cl-website'
+}
 module.exports = {
-    pathPrefix: '/cl-website',
+    pathPrefix: prefix,
     siteMetadata: {
         title: 'Clearline Website',
         description:
             'The company «Clearline» develops interior design projects for residential and non-residential premises, working drawings for construction and finishing works, design drawings for the production of furniture and kitchens on an individual order, we carry out all types of repair work, we carry out supervision of compliance with project documentation, we are engaged in final decoration premises',
         author: 'Buts Development',
+        siteUrl: process.env.SITE_ADDRESS,
     },
     developMiddleware: app => {
         app.use(
