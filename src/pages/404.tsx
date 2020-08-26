@@ -126,9 +126,11 @@ const NotFoundPage = () => {
             <CenterBlock>
                 <Title>404</Title>
                 <SubTitle>{t('pageNotFound')}</SubTitle>
-                <ButtonStyled onClick={() => window.history.back()}>
-                    {t('goBack')}
-                </ButtonStyled>
+                {window.history.length > 1 && (
+                    <ButtonStyled onClick={() => window.history.back()}>
+                        {t('goBack')}
+                    </ButtonStyled>
+                )}
                 <SocialIcons fill={colors.white} showAllIcons />
             </CenterBlock>
             <DesktopImageRight fluid={imageSofa.fluid} />

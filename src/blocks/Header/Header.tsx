@@ -11,7 +11,6 @@ import { colors } from 'styles/colors'
 import { Logo } from 'components/Logo'
 import { displayWidth } from 'styles/width'
 import { MobileHeader } from './MobileHeader'
-import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const HeaderWraper = styled.div`
     display: none;
@@ -38,9 +37,7 @@ export const Header = () => {
         <>
             <MobileHeader />
             <HeaderWraper>
-                <LocalizedLink aria-label="logo" to="/">
-                    <Logo />
-                </LocalizedLink>
+                <Logo />
                 <Container tabletColumns={'1fr 1fr'} desktopColunms={'7fr 5fr'}>
                     <MainMenu />
                     <ContactLinks>
