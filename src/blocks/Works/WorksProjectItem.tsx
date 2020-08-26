@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
-import { Logo } from 'components/Logo'
+import LogoIcon from 'assets/icons/Logo.svg'
 import { Button } from 'components/Button'
 import { LocalizedLink } from 'i18n/LocalizedLink'
 import { getImageByImageName } from 'utils/getImageByImageName'
@@ -48,7 +48,7 @@ const ItemWrapper = styled.div`
         }
     }
 `
-const LogoStyled = styled(Logo)`
+const LogoStyled = styled(LogoIcon)`
     fill: ${colors.white};
 `
 const ButtonS = styled(Button)`
