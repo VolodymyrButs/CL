@@ -71,6 +71,10 @@ const Header = styled.h3`
 const Paragraph = styled(Header)`
     font-weight: normal;
     margin: 12px 0 0;
+    a {
+        text-decoration: none;
+        color: ${colors.darkText};
+    }
 `
 const Title = styled.h2`
     font-family: 'Yeseva One', sans-serif;
@@ -138,12 +142,30 @@ const ContactsPage = () => {
                     <Title>{t('contacts')}</Title>
                     <Header>{t('companyAddress')}:</Header>
                     <Paragraph>
-                        {city} {street}
+                        <a
+                            href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
+                            target="blank"
+                        >
+                            {street}
+                            {city}
+                        </a>
                     </Paragraph>
                     <Header>{t('contacts')}:</Header>
-                    <Paragraph>{contactInformation.primaryPhone}</Paragraph>
-                    <Paragraph>{contactInformation.secondaryPhones}</Paragraph>
-                    <Paragraph>{contactInformation.email}</Paragraph>
+                    <Paragraph>
+                        <a href={`tel:${contactInformation.primaryPhone}`}>
+                            {contactInformation.primaryPhone}
+                        </a>
+                    </Paragraph>
+                    <Paragraph>
+                        <a href={`tel:${contactInformation.secondaryPhones}`}>
+                            {contactInformation.secondaryPhones}
+                        </a>
+                    </Paragraph>
+                    <Paragraph>
+                        <a href={`mailto:${contactInformation.email}`}>
+                            {contactInformation.email}
+                        </a>
+                    </Paragraph>
                 </ContactsColumn>
                 <MapWrapper>
                     <SimpleMap />

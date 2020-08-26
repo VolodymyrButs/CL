@@ -29,12 +29,12 @@ class SimpleMap extends React.Component {
                     key: 'AIzaSyBZhp4ZnniD35BMQX6miz68sMD-HUiT85U',
                 }}
                 center={{
-                    lat: 50.440771,
-                    lng: 30.507301,
+                    lat: 50.44076,
+                    lng: 30.5076,
                 }}
                 zoom={17}
             >
-                <Marker lat={50.440771} lng={30.507301} />
+                <Marker lat={50.44076} lng={30.5076} />
             </GoogleMapReact>
         )
     }

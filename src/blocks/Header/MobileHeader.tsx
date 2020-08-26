@@ -14,7 +14,6 @@ import { MainMenu } from './MainMenu'
 import { RoundText } from 'components/RoundText'
 import { contactInformation } from 'components/contactInformation'
 import { headerHeight } from 'styles/height'
-import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -65,9 +64,7 @@ export const MobileHeader = () => {
     return (
         <>
             <MobileHeaderWraper isMenuOpen={isMenuOpen}>
-                <LocalizedLink to="/" aria-label="logo">
-                    <Logo />
-                </LocalizedLink>
+                <Logo />
                 <a
                     href={`tel:${contactInformation.primaryPhone}`}
                     aria-label="phone"

@@ -85,6 +85,10 @@ const Header = styled.h3`
 `
 const Paragraph = styled(Header)`
     font-weight: normal;
+    a {
+        text-decoration: none;
+        color: ${colors.white};
+    }
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
     }
@@ -135,18 +139,32 @@ export const Footer = () => {
                     <Header>{t('address')}</Header>
                     <Paragraph>{companyName}</Paragraph>
                     <Paragraph>
-                        {street} <br />
-                        {city}
+                        <a
+                            href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
+                            target="blank"
+                        >
+                            {street} <br />
+                            {city}
+                        </a>
                     </Paragraph>
                 </FooterColumn>
                 <FooterColumn>
                     <Header>{t('contacts')}</Header>
                     <Paragraph>
-                        {contactInformation.primaryPhone}
-                        <br />
-                        {contactInformation.secondaryPhones}
+                        <a href={`tel:${contactInformation.primaryPhone}`}>
+                            {contactInformation.primaryPhone}
+                        </a>
                     </Paragraph>
-                    <Paragraph>{contactInformation.email}</Paragraph>
+                    <Paragraph>
+                        <a href={`tel:${contactInformation.secondaryPhones}`}>
+                            {contactInformation.secondaryPhones}
+                        </a>
+                    </Paragraph>
+                    <Paragraph>
+                        <a href={`mailto:${contactInformation.email}`}>
+                            {contactInformation.email}
+                        </a>
+                    </Paragraph>
                 </FooterColumn>
 
                 <FooterColumn>
