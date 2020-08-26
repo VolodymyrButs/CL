@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { displayWidth } from 'styles/width'
-import { colors } from 'styles/colors'
+import { colors, backgroundColors } from 'styles/colors'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { headerBg } from 'styles/headerBg'
 import { WorksProjectItem } from './WorksProjectItem'
+import { Container } from 'components/Container'
+import { Button } from 'components/Button'
 
-const WorksHeroWrapper = styled.div`
+const WorksGridWrapper = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     position: relative;
-    border-bottom: 1px solid ${colors.dark};
-
     :before {
         ${headerBg}
     }
@@ -28,7 +29,6 @@ const Ul = styled.ul`
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: 140vw;
-    outline: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         grid-template-columns: 1fr 1fr 1fr;
         grid-auto-rows: 450px;
@@ -58,9 +58,27 @@ const Li = styled.li`
         }
     }
 `
-
+const Div = styled.div`
+    border-right: 1px solid ${colors.dark};
+`
+const ButtonContainer = styled(Container)`
+    margin-top: 1px;
+`
+const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        justify-content: flex-start;
+    }
+`
+const ButtonStyled = styled(Button)`
+    margin: 30px;
+    background-color: ${backgroundColors.formPromo};
+    color: ${colors.dark};
+`
 export const WorksProjectGrid = () => {
-    const { i18n } = useTranslation()
+    const { i18n, t } = useTranslation()
+    const [visibleProjects, setVisibleProjects] = useState(4)
     const orientationPosition = (index: number, arrLength: number) => {
         for (let i = 0; i < arrLength; i++) {
             if (index + 1 === i * 4 + 1 || index + 1 === i * 4 + 4) {
@@ -102,10 +120,11 @@ export const WorksProjectGrid = () => {
         }
     `)
 
+    const allProjectGrid = data.allProjectsYaml.edges.slice(2)
     return (
-        <WorksHeroWrapper>
+        <WorksGridWrapper>
             <Ul>
-                {data.allProjectsYaml.edges.slice(2).map(
+                {allProjectGrid.slice(0, visibleProjects).map(
                     (
                         item: {
                             node: {
@@ -140,6 +159,20 @@ export const WorksProjectGrid = () => {
                     }
                 )}
             </Ul>
-        </WorksHeroWrapper>
+            {allProjectGrid.length > visibleProjects && (
+                <ButtonContainer columns={'1fr'} tabletColumns={'1fr 2fr'}>
+                    <Div></Div>
+                    <ButtonWrapper>
+                        <ButtonStyled
+                            onClick={() => {
+                                setVisibleProjects(allProjectGrid.length)
+                            }}
+                        >
+                            {t('showMore')}
+                        </ButtonStyled>
+                    </ButtonWrapper>
+                </ButtonContainer>
+            )}
+        </WorksGridWrapper>
     )
 }
