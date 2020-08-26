@@ -27,13 +27,29 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
 }) => {
     return (
         <SocialIconsWrapper fill={fill}>
-            <ViberIcon />
-            <TelegramIcon />
-            <WhatsappIcon />
+            <a href="viber://chat?number=%2B380982117690" target="blank">
+                <ViberIcon />
+            </a>
+            <a href="tg://resolve?domain=clearline_com_ua" target="blank">
+                <TelegramIcon />
+            </a>
+            <a href="https://wa.me/+380982117690" target="blank">
+                <WhatsappIcon />
+            </a>
             {showAllIcons && (
                 <>
-                    <InstagramIcon />
-                    <FacebookIcon />
+                    <a
+                        href="https://www.instagram.com/clear_line/"
+                        target="blank"
+                    >
+                        <InstagramIcon />
+                    </a>
+                    <a
+                        href="https://www.facebook.com/clearline.com.ua/"
+                        target="blank"
+                    >
+                        <FacebookIcon />
+                    </a>
                 </>
             )}
         </SocialIconsWrapper>

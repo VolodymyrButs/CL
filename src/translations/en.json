@@ -44,5 +44,6 @@
     "goTo": "go to",
     "cad": "graphics editor",
     "isSendSuccess": "Your message has been successfully sent",
-    "isSendError": "Failed to send message, please try again later"
+    "isSendError": "Failed to send message, please try again later",
+    "showMore": "Download more"
 }
