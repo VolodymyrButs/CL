@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import { useTranslation } from 'react-i18next'
@@ -116,6 +116,10 @@ const NotFoundPage = () => {
         }
     `)
     const imageSofa = getImageByImageName(data.allImageSharp, 'sofa.png')
+    const [noHistory, setNoHistori] = useState(true)
+    useEffect(() => {
+        window.history.length === 1 && setNoHistori(false)
+    }, [])
     return (
         <Wrapper>
             <LogoStyled />
@@ -126,7 +130,7 @@ const NotFoundPage = () => {
             <CenterBlock>
                 <Title>404</Title>
                 <SubTitle>{t('pageNotFound')}</SubTitle>
-                {window.history.length > 1 && (
+                {noHistory && (
                     <ButtonStyled onClick={() => window.history.back()}>
                         {t('goBack')}
                     </ButtonStyled>
