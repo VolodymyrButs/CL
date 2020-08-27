@@ -2,17 +2,14 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 let activeEnv =
     process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
-// eslint-disable-next-line no-console
-console.log(`Using environment config: '${activeEnv}'`)
+
 require('dotenv').config({
     path: `.env.${activeEnv}`,
 })
-let prefix
-if (activeEnv !== 'prod') {
-    prefix = '/cl-website'
-}
+// eslint-disable-next-line no-console
+console.log(`Using environment config: '${activeEnv}'`, process.env.PORT)
 module.exports = {
-    pathPrefix: prefix,
+    pathPrefix: process.env.PREFIX,
     siteMetadata: {
         title: 'Clearline Website',
         description:
@@ -24,7 +21,7 @@ module.exports = {
         app.use(
             '/send-form',
             createProxyMiddleware({
-                target: 'http://localhost:8004',
+                target: process.env.PORT,
                 changeOrigin: true,
             })
         )

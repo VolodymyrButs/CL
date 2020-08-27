@@ -21,10 +21,13 @@ pagesMaster:
   artifacts:
     paths:
       - public
+  environment:
+    name: 'stage'
+    url: https://clearline.gitlab.io/cl-website
   only:
     - master
   variables:
-    CI_ENVIRONMENT_NAME: 'stage'
+    GATSBY_ACTIVE_ENV: 'stage'
 
 pages:
   stage: pages
@@ -40,3 +43,5 @@ pages:
   when: on_success
   only:
     - merge_requests
+  variables:
+    GATSBY_ACTIVE_ENV: 'stage'

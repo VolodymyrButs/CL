@@ -108,8 +108,8 @@ const TitleStyled = styled(Title)`
         text-align: left;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        font-size: 70px;
-        line-height: 74px;
+        font-size: 64px;
+        line-height: 64px;
     }
 `
 const Price = styled.span`
@@ -125,8 +125,8 @@ const Price = styled.span`
         position: absolute;
         left: 110%;
         bottom: 0px;
-        font-size: 120px;
-        line-height: 120px;
+        font-size: 133px;
+        line-height: 115px;
         letter-spacing: 1.52778px;
     }
 `

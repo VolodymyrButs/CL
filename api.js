@@ -2,8 +2,14 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const nodemailer = require('nodemailer')
 
+let activeEnv =
+    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+require('dotenv').config({
+    path: `.env.${activeEnv}`,
+})
+
 const app = express()
-const port = 8004
+
 const contactAddress = 'wowabuz@gmail.com'
 
 const mailer = nodemailer.createTransport({
@@ -72,7 +78,7 @@ app.post('/send-form', function(req, res) {
         }
     )
 })
-app.listen(port, () =>
+app.listen(process.env.PORT, () =>
     // eslint-disable-next-line no-console
-    console.log(`App listening at http://localhost:${port}`)
+    console.log(`App listening at http://${process.env.PORT}`)
 )
