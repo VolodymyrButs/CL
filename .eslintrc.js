@@ -21,6 +21,7 @@ module.exports = {
         exports: 'false',
         window: 'false',
         Promise: 'false',
+        process: 'false',
     },
     extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
     plugins: [

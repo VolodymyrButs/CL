@@ -18,7 +18,7 @@
     "email": "Email (не обязательно)",
     "message": "Вопрос",
     "defaultFormTitle": "Напишите нам и мы Вам перезвоним!",
-    "ComercialProposalFormTitle": "Получите коммерческое предложение!",
+    "ComercialProposalFormTitle": "Заполните форму и получите",
     "homeType": {
         "flat": "Квартира",
         "house": "Дом, таунхаус, коттедж",
@@ -26,9 +26,10 @@
     },
     "homeTypeQuestion": "Тип помещения",
     "roomSize": "Метраж помещения",
-    "availabilityDrawings": "Наличие обмерочного чертежа",
-    "yes": "Да",
-    "no": "Нет",
+    "availabilityDrawings": "Обмерочный чертеж квартиры",
+    "yes": "Померил и начертил",
+    "no1": "Не мерил и не чертил",
+    "no2": "Померил но не начертил",
     "connection": {
         "text": "Узнай больше о 3D дизайн-проекте",
         "modalTitle": "Оставьте заявку",

@@ -12,7 +12,9 @@ import {
     isFormError,
     FormSendStatus,
 } from 'hooks/useFormHandler'
-
+const FormWrapper = styled.div`
+    position: relative;
+`
 const ButtonStyled = styled(Button)`
     width: 264px;
     margin: 50px auto;
@@ -39,10 +41,10 @@ const FormStyled = styled.form`
     position: relative;
 `
 const SendStatus = styled.p`
-    width: 100%;
+    max-width: 100%;
     text-align: center;
     position: absolute;
-    left: 40px;
+    left: 0;
     bottom: 15px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
@@ -92,7 +94,7 @@ export const Form: React.FC<IFormProps> = ({
     const childrenProps: IChildrenProps = { register, errors }
     const { t } = useTranslation()
     return (
-        <>
+        <FormWrapper>
             <FormStyled onSubmit={handleSubmit(onSubmit)}>
                 {children(childrenProps)}
                 <ButtonWrapper>
@@ -110,6 +112,6 @@ export const Form: React.FC<IFormProps> = ({
             {isFormError(formSendStatus) && (
                 <SendStatus>{t('isSendError')}</SendStatus>
             )}
-        </>
+        </FormWrapper>
     )
 }

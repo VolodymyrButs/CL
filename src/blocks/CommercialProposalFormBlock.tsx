@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import { Form, IChildrenProps } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { EmailInput } from 'components/form/EmailInput'
-import { MessageInput } from 'components/form/MessageInput'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { colors, backgroundColors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
@@ -44,7 +43,7 @@ const FormTitle = styled.div`
     margin: 40px 0 24px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
-        margin: 56px 0 24px;
+        margin: 60px 0 24px;
     }
 `
 
@@ -52,6 +51,9 @@ const FormColumn = styled.div`
     width: 100%;
     padding: 0 32px;
     box-sizing: border-box;
+    h3 {
+        margin: 10px 0;
+    }
 `
 const Unit = styled.p`
     pointer-events: none;
@@ -84,6 +86,9 @@ export const CommercialProposalFormBlock = () => {
                 <DefaultFormHero image />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
+                    <h3>- Образец дизайн проекта</h3>
+                    <h3>- Схему работи</h3>
+                    <h3>- Комерческое предложение</h3>
                     <Form
                         buttonText={t('send')}
                         onFormSubmit={handleSubmit}
@@ -154,8 +159,16 @@ export const CommercialProposalFormBlock = () => {
                                         disabled
                                         hidden
                                     ></option>
-                                    <option value="yes">{t('yes')}</option>
-                                    <option value="no">{t('no')}</option>
+
+                                    <option value="noDrawing1">
+                                        {t('no1')}
+                                    </option>
+                                    <option value="noDrawing2">
+                                        {t('no2')}
+                                    </option>
+                                    <option value="yesDrawing">
+                                        {t('yes')}
+                                    </option>
                                 </Select>
                                 <PhoneInput
                                     ref={register({
@@ -163,10 +176,6 @@ export const CommercialProposalFormBlock = () => {
                                         required: true,
                                     })}
                                     err={errors.phone}
-                                />
-                                <MessageInput
-                                    ref={register}
-                                    err={errors.message}
                                 />
                                 <EmailInput ref={register} err={errors.email} />
                                 <input

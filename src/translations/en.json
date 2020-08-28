@@ -28,7 +28,9 @@
     "roomSize": "Area of the room",
     "availabilityDrawings": "Dimensional drawings are available",
     "yes": "Yes",
-    "no": "No",
+    "no1": "Не мерил и не чертил",
+    "no2": "Померил но не чертил",
+    "no3": "Нет ничего",
     "connection": {
         "text": "Learn more about 3D design project",
         "modalTitle": "Leave a request",

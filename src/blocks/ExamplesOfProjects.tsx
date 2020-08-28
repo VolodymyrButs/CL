@@ -118,12 +118,11 @@ const ImgStyled = styled(Img)`
     max-height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: calc((100vw - 160px) * 0.666666);
-        padding: 0;
-        max-height: 500px;
+        max-height: calc((100vw - 160px) * 0.5);
+        height: 100%;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        width: 686px;
-        max-height: 600px;
+        max-height: 595px;
     }
 `
 

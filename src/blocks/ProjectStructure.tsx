@@ -65,8 +65,6 @@ const PriceWrapper = styled.span`
     position: relative;
 `
 const Price = styled.p`
-    position: absolute;
-    bottom: -36px;
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -76,10 +74,10 @@ const Price = styled.p`
     color: ${colors.accentText};
     margin: 0 10px;
     @media (min-width: ${displayWidth.tablet}) {
-        position: absolute;
         font-size: 80px;
-        line-height: 92px;
-        bottom: -50px;
+        position: absolute;
+        top: -10px;
+        line-height: 30px;
         letter-spacing: 1.11111px;
     }
 `
@@ -137,6 +135,11 @@ const Image = styled(Img)`
         width: 90%;
     }
 `
+const TitleStyled = styled(Title)`
+    @media (min-width: ${displayWidth.desktop}) {
+        margin-right: 115px;
+    }
+`
 interface IProjectStructureProps {
     id?: string
 }
@@ -189,12 +192,12 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <Title>
+                    <TitleStyled>
                         {title}
                         <PriceWrapper>
                             <Price>{price}</Price>
                         </PriceWrapper>
-                    </Title>
+                    </TitleStyled>
                     <ImgWrapper>
                         <ImgBlock>
                             <ImageSvg />

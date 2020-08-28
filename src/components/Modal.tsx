@@ -58,9 +58,7 @@ const CloseIconStyled = styled(CloseIcon)<{ $image: boolean }>`
     cursor: pointer;
     z-index: 4;
     ${({ $image }) =>
-        $image
-            ? `stroke: ${colors.darkText};stroke-width: 1px;ill: ${colors.white};`
-            : `    fill: ${colors.dark};`};
+        $image ? `fill: ${colors.white};` : `fill: ${colors.dark};`};
 `
 interface IModalProps {
     closeHandler?: () => void

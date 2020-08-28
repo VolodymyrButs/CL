@@ -2,17 +2,22 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const nodemailer = require('nodemailer')
 
+let activeEnv =
+    process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+require('dotenv').config({
+    path: `.env.${activeEnv}`,
+})
+
 const app = express()
-const port = 8004
 const contactAddress = 'wowabuz@gmail.com'
 
 const mailer = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: process.env.SMTP_HOST,
     port: 465,
     secure: true,
     auth: {
-        user: 'cl.dev.analytics@gmail.com',
-        pass: '28nkdsfg89{ED[ewpn4w}e9',
+        user: process.env.SMTP_AUTH_USER,
+        pass: process.env.SMTP_AUTH_PASSWORD,
     },
     tls: {
         // do not fail on invalid certs
@@ -37,8 +42,18 @@ const formLabelByKey = {
     phone: 'Телефон',
     email: 'Електронна адреса',
     message: 'Повідомлення',
+    homeType: 'Тип помещения',
+    roomSize: 'Площа',
+    availabilityDrawings: 'Наличие чертежа',
 }
-
+const formValueByKey = {
+    yesDrawing: 'Померил и начертил',
+    noDrawing1: 'Не мерил и не чертил',
+    noDrawing2: 'Померил но не начертил',
+    flat: 'Квартира',
+    house: 'Дом, таунхаус, коттедж',
+    comercialBuilding: 'Нежилое помещение',
+}
 app.use(bodyParser.json())
 
 app.post('/send-form', function(req, res) {
@@ -58,7 +73,11 @@ app.post('/send-form', function(req, res) {
                                         ? formLabelByKey[key]
                                         : key
                                 }</th>
-                                <td>${bodyToHtml[key]}</td>
+                                <td>${
+                                    bodyToHtml[key] in formValueByKey
+                                        ? formValueByKey[bodyToHtml[key]]
+                                        : bodyToHtml[key]
+                                }</td>
                             </tr>`
                 })
                 .join('')}</table>`,
@@ -72,7 +91,9 @@ app.post('/send-form', function(req, res) {
         }
     )
 })
-app.listen(port, () =>
+app.listen(process.env.API_PORT, () =>
     // eslint-disable-next-line no-console
-    console.log(`App listening at http://localhost:${port}`)
+    console.log(
+        `App listening at http://${process.env.API_URL}${process.env.API_PORT}`
+    )
 )
