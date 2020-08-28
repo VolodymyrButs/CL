@@ -12,12 +12,12 @@ const app = express()
 const contactAddress = 'wowabuz@gmail.com'
 
 const mailer = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: process.env.SMTP_HOST,
     port: 465,
     secure: true,
     auth: {
-        user: 'cl.dev.analytics@gmail.com',
-        pass: '28nkdsfg89{ED[ewpn4w}e9',
+        user: process.env.SMTP_AUTH_USER,
+        pass: process.env.SMTP_AUTH_PASSWORD,
     },
     tls: {
         // do not fail on invalid certs
