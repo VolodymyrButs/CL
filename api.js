@@ -9,7 +9,6 @@ require('dotenv').config({
 })
 
 const app = express()
-
 const contactAddress = 'wowabuz@gmail.com'
 
 const mailer = nodemailer.createTransport({
@@ -43,8 +42,18 @@ const formLabelByKey = {
     phone: 'Телефон',
     email: 'Електронна адреса',
     message: 'Повідомлення',
+    homeType: 'Тип помещения',
+    roomSize: 'Площа',
+    availabilityDrawings: 'Наличие чертежа',
 }
-
+const formValueByKey = {
+    yesDrawing: 'Померил и начертил',
+    noDrawing1: 'Не мерил и не чертил',
+    noDrawing2: 'Померил но не начертил',
+    flat: 'Квартира',
+    house: 'Дом, таунхаус, коттедж',
+    comercialBuilding: 'Нежилое помещение',
+}
 app.use(bodyParser.json())
 
 app.post('/send-form', function(req, res) {
@@ -64,7 +73,11 @@ app.post('/send-form', function(req, res) {
                                         ? formLabelByKey[key]
                                         : key
                                 }</th>
-                                <td>${bodyToHtml[key]}</td>
+                                <td>${
+                                    bodyToHtml[key] in formValueByKey
+                                        ? formValueByKey[bodyToHtml[key]]
+                                        : bodyToHtml[key]
+                                }</td>
                             </tr>`
                 })
                 .join('')}</table>`,
@@ -78,7 +91,9 @@ app.post('/send-form', function(req, res) {
         }
     )
 })
-app.listen(process.env.PORT, () =>
+app.listen(process.env.API_PORT, () =>
     // eslint-disable-next-line no-console
-    console.log(`App listening at http://${process.env.PORT}`)
+    console.log(
+        `App listening at http://${process.env.API_URL}${process.env.API_PORT}`
+    )
 )

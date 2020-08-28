@@ -43,7 +43,7 @@ const FormTitle = styled.div`
     margin: 40px 0 24px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
-        margin: 56px 0 24px;
+        margin: 60px 0 24px;
     }
 `
 
@@ -160,9 +160,15 @@ export const CommercialProposalFormBlock = () => {
                                         hidden
                                     ></option>
 
-                                    <option value="2">{t('no1')}</option>
-                                    <option value="3">{t('no2')}</option>
-                                    <option value="1">{t('yes')}</option>
+                                    <option value="noDrawing1">
+                                        {t('no1')}
+                                    </option>
+                                    <option value="noDrawing2">
+                                        {t('no2')}
+                                    </option>
+                                    <option value="yesDrawing">
+                                        {t('yes')}
+                                    </option>
                                 </Select>
                                 <PhoneInput
                                     ref={register({

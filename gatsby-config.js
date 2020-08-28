@@ -21,7 +21,7 @@ module.exports = {
         app.use(
             '/send-form',
             createProxyMiddleware({
-                target: process.env.PORT,
+                target: `http://${process.env.API_URL}${process.env.API_PORT}`,
                 changeOrigin: true,
             })
         )
