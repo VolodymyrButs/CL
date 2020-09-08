@@ -38,8 +38,8 @@ export const ModalCarousel: React.FC<IModalProps> = ({
 }) => {
     const sliderSettings = {
         infinite: true,
-        nextArrow: <SlickNext />,
-        prevArrow: <SlickPrevious />,
+        nextArrow: <SlickNext modal={true} />,
+        prevArrow: <SlickPrevious modal={true} />,
         responsive: [
             {
                 breakpoint: 1024,

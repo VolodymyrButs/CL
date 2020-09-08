@@ -203,9 +203,9 @@ export const Reviews = () => {
             return elem.node.parent.name === 'reviews'
         }
     ).node
-    const { rating, reviewsQuantity, link } = commonData
+    const { rating, reviewsQuantity, link, reviewsArr } = commonData
     const reviewsYaml = getDataByLanguage(data.allReviewsYaml, i18n.language)
-    const { title, ourRank, reviewsArr, quantity1, quantity2 } = reviewsYaml
+    const { title, ourRank, quantity1, quantity2 } = reviewsYaml
     const sliderSettings = {
         dots: true,
         infinite: true,

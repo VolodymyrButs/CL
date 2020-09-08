@@ -11,7 +11,7 @@ export const Title = styled.div`
     line-height: 39px;
     text-align: center;
     letter-spacing: 1.68px;
-    margin: 56px 32px 10px;
+    margin: 56px 16px 10px;
     text-align: center;
     color: ${colors.dark};
     @media (max-width: 355px) {
@@ -23,7 +23,7 @@ export const Title = styled.div`
         font-size: 28px;
         line-height: 32px;
         letter-spacing: 1px;
-        margin: 60px 10px 50px ${indent.heroColumnDesktop};
+        margin: 40px 10px 30px ${indent.heroColumnDesktop};
         text-align: left;
     }
     @media (min-width: ${displayWidth.desktop}) {

@@ -74,6 +74,12 @@ const Paragraph = styled(Header)`
     a {
         text-decoration: none;
         color: ${colors.darkText};
+        @media (min-width: ${displayWidth.tablet}) {
+            text-align: left;
+        }
+        :hover {
+            text-decoration: underline;
+        }
     }
 `
 const Title = styled.h2`
@@ -146,8 +152,8 @@ const ContactsPage = () => {
                             href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
                             target="blank"
                         >
-                            {street}
-                            {city}
+                            <p>{street}</p>
+                            <p> {city}</p>
                         </a>
                     </Paragraph>
                     <Header>{t('contacts')}:</Header>

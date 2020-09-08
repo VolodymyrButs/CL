@@ -49,6 +49,9 @@ const PhoneSvg = styled(Icon)<{ color?: string }>`
     }
 `
 
-export const PhoneSvgAnimated = ({ color }: { color?: string }) => {
-    return <PhoneSvg color={color} iconName={'Phone.svg'} />
+export const PhoneSvgAnimated = (
+    { ...props },
+    { color }: { color?: string }
+) => {
+    return <PhoneSvg color={color} {...props} iconName={'Phone.svg'} />
 }

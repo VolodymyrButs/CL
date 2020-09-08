@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+import styled, { css } from 'styled-components'
 
 import { LanguageSwitcher } from 'i18n/LanguageSwitcher'
-import PhoneLinesSvg from 'assets/icons/PhoneLines.svg'
 import ExitSvg from 'assets/icons/Exit.svg'
 import BurgerSvg from 'assets/icons/Burger.svg'
 import { colors } from 'styles/colors'
 import { Logo } from 'components/Logo'
 import { displayWidth } from 'styles/width'
-import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { MainMenu } from './MainMenu'
-import { RoundText } from 'components/RoundText'
 import { contactInformation } from 'components/contactInformation'
 import { headerHeight } from 'styles/height'
+import Viber from 'assets/icons/Viber.svg'
+import Telegram from 'assets/icons/Telegram.svg'
+import Whatsapp from 'assets/icons/Whatsapp.svg'
+import { RoundText } from 'components/RoundText'
+import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
+import { useTranslation } from 'react-i18next'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -57,6 +59,29 @@ const PhoneLink = styled.a`
         padding: 70px;
     }
 `
+
+const iconStyles = css`
+    width: 38px;
+    height: 38px;
+    margin: 4px 13px;
+    cursor: pointer;
+    pointer-events: auto;
+`
+const ViberIconStyled = styled(Viber)`
+    ${iconStyles};
+    fill: ${colors.viber};
+`
+const TelegramIconStyled = styled(Telegram)`
+    ${iconStyles};
+    fill: ${colors.telegram};
+`
+const WhatsappIconStyled = styled(Whatsapp)`
+    ${iconStyles};
+    fill: ${colors.whatsapp};
+`
+const IconWrapper = styled.div`
+    display: flex;
+`
 export const MobileHeader = () => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -65,12 +90,23 @@ export const MobileHeader = () => {
         <>
             <MobileHeaderWraper isMenuOpen={isMenuOpen}>
                 <Logo />
-                <a
-                    href={`tel:${contactInformation.primaryPhone}`}
-                    aria-label="phone"
-                >
-                    <PhoneLinesSvg />
-                </a>
+                <IconWrapper>
+                    <a
+                        href="viber://chat?number=%2B380982117690"
+                        target="blank"
+                    >
+                        <ViberIconStyled aria-label="ViberButton" />
+                    </a>
+                    <a href="https://wa.me/+380958363420" target="blank">
+                        <WhatsappIconStyled aria-label="Whatsapp Button" />
+                    </a>
+                    <a
+                        href="tg://resolve?domain=clearline_com_ua"
+                        target="blank"
+                    >
+                        <TelegramIconStyled aria-label="Telegram Button" />
+                    </a>
+                </IconWrapper>
                 <BurgerButton
                     onClick={() => {
                         setIsMenuOpen(!isMenuOpen)

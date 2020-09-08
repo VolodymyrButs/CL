@@ -15,10 +15,10 @@
     "send": "Oтправить",
     "name": "Имя",
     "phone": "Телефон",
-    "email": "Email (не обязательно)",
+    "email": "E-mail",
     "message": "Вопрос",
     "defaultFormTitle": "Напишите нам и мы Вам перезвоним!",
-    "ComercialProposalFormTitle": "Заполните форму и получите",
+    "ComercialProposalFormTitle": "Заполните форму и получите на e-mail",
     "homeType": {
         "flat": "Квартира",
         "house": "Дом, таунхаус, коттедж",
@@ -27,9 +27,9 @@
     "homeTypeQuestion": "Тип помещения",
     "roomSize": "Метраж помещения",
     "availabilityDrawings": "Обмерочный чертеж квартиры",
-    "yes": "Померил и начертил",
-    "no1": "Не мерил и не чертил",
-    "no2": "Померил но не начертил",
+    "hasDrawing": "Обмерил и создал чертеж",
+    "noDrawing": "Обмеров не проводил, есть план от застройщика",
+    "hasMeasurement": "Обмерил но начертил",
     "connection": {
         "text": "Узнай больше о 3D дизайн-проекте",
         "modalTitle": "Оставьте заявку",
@@ -38,7 +38,8 @@
         "secondModalDescription": "Мы с Вами свяжемся в ближайшее время!",
         "buttonLabel": "Связаться с нами",
         "placeholder": "Задайте вопрос",
-        "submitLabel": "Задать вопрос"
+        "submitLabel": "Задать вопрос",
+        "needDesignProject": "Нужен дизайн проект?"
     },
     "showProject": "Cмотреть проект",
     "lastProjects": "Последние работы",
@@ -47,5 +48,6 @@
     "isSendSuccess": "Ваше сообщение успешно отправлено",
     "isSendError": "Не удалось отправить сообщение, попробуйте еще раз позже",
     "pageNotFound": "К сожалению эта страница не доступна :(",
-    "showMore": "Загрузить еще"
+    "showMore": "Загрузить еще",
+    "for": "за"
 }

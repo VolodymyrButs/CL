@@ -14,7 +14,7 @@ const WorksPage = () => {
             <WorksHero />
             <WorksProjectGrid />
             <Reviews />
-            <Connection text={t('connection.text')}>
+            <Connection text={t('connection.needDesignProject')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
                     secondModalTitle={t('connection.secondModalTitle')}

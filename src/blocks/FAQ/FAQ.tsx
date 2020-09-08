@@ -22,6 +22,9 @@ const FaqWrapper = styled.div`
     width: 100%;
     background-color: ${backgroundColors.contact};
     position: relative;
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: 1px solid ${colors.dark};
+    }
 `
 const FaqListStyled = styled.div<{ showFaqListMobile: boolean }>`
     display: ${({ showFaqListMobile }) =>

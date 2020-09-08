@@ -31,6 +31,7 @@ const HeroColumn = styled.div`
 
 const TitleStyledMobile = styled(Title)`
     margin: 56px 0 30px;
+    font-size: 25px;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
         padding: 0 32px;
@@ -43,7 +44,7 @@ const TitleStyledDesktop = styled(Title)`
         text-align: left;
     }
 `
-const Price = styled.span`
+const Price = styled.p`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -68,13 +69,16 @@ const SubTitle = styled.h3`
     }
 `
 
-const PhoneLinkStyled = styled(PhoneLink)`
+const PhoneLinkStyled = styled(PhoneLink)<{ withPhoneMobile?: boolean }>`
     flex-direction: column;
     div {
         margin-bottom: 24px;
     }
     margin-bottom: 50px;
     align-self: center;
+    ${({ withPhoneMobile }) =>
+        withPhoneMobile ? 'display: flex;' : 'display: none;'}
+    
     @media (min-width: ${displayWidth.desktop}) {
         flex-direction: row;
         align-items: center;
@@ -101,7 +105,13 @@ const Image = styled(fikus)`
         color: transparent;
     }
 `
-export const DefaultFormHero = ({ image }: { image?: boolean }) => {
+export const DefaultFormHero = ({
+    image,
+    withPhoneMobile,
+}: {
+    withPhoneMobile?: boolean
+    image?: boolean | undefined
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -131,11 +141,13 @@ export const DefaultFormHero = ({ image }: { image?: boolean }) => {
             <TitleStyledMobile>
                 {titleMobile}
                 <Price>{price}</Price>
-                <span>?</span>
             </TitleStyledMobile>
             <TitleStyledDesktop>{titleDesktop}</TitleStyledDesktop>
             {!image && <SubTitle>{description}</SubTitle>}
-            <PhoneLinkStyled phone={contactInformation.primaryPhone} />
+            <PhoneLinkStyled
+                phone={contactInformation.primaryPhone}
+                withPhoneMobile={withPhoneMobile}
+            />
             {image && <Image />}
         </HeroColumn>
     )

@@ -22,11 +22,10 @@ const run2 = keyframes`
 `
 const RunningTextContainer = styled.div`
     width: 100%;
-    height: 100px;
+    height: 50px;
     background-color: ${colors.white};
     color: ${colors.dark};
     border-bottom: 1px solid ${colors.dark};
-    border-top: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.dark};
         color: ${colors.white};
@@ -41,8 +40,8 @@ const Wrapper = styled.div`
 const Text = styled.p`
     align-self: center;
     color: inherit;
-    font-size: 23px;
-    line-height: 27px;
+    font-size: 16px;
+    line-height: 20px;
     white-space: nowrap;
     text-transform: uppercase;
     animation: ${run} 240s linear infinite;

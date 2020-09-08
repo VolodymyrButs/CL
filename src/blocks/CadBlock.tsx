@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 
-import Frame from 'assets/icons/frame.svg'
+// import Frame from 'assets/icons/frame.svg'
 import { headerBg } from 'styles/headerBg'
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -75,28 +75,28 @@ const InstructionColumn = styled.div`
         }
     }
 `
-const Video = styled.div`
-    width: 100%;
-    position: relative;
-    padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
-    div {
-        position: absolute;
-        top: 5%;
-        left: 5.6%;
-        width: 100%;
-        height: 100%;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        margin-top: 90px;
-    }
-`
-const FrameStyled = styled(Frame)`
-    position: absolute;
-    top: -12%;
-    left: 6.5%;
-    width: 87%;
-    height: 108%;
-`
+// const Video = styled.div`
+//     width: 100%;
+//     position: relative;
+//     padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+//     div {
+//         position: absolute;
+//         top: 5%;
+//         left: 5.6%;
+//         width: 100%;
+//         height: 100%;
+//     }
+//     @media (min-width: ${displayWidth.tablet}) {
+//         margin-top: 90px;
+//     }
+// `
+// const FrameStyled = styled(Frame)`
+//     position: absolute;
+//     top: -12%;
+//     left: 6.5%;
+//     width: 87%;
+//     height: 108%;
+// `
 const InstructionText = styled.div`
     ol {
         margin: 32px;
@@ -177,7 +177,7 @@ export const Cad = () => {
         }
     `)
     const cadYaml = getDataByLanguage(data.allCadYaml, i18n.language)
-    const { title, subTitle, video, instruction, buttonText } = cadYaml
+    const { title, subTitle, /* video, */ instruction, buttonText } = cadYaml
 
     return (
         <CadWrapper>
@@ -190,7 +190,7 @@ export const Cad = () => {
                     <Image />
                 </HeroColumn>
                 <InstructionColumn>
-                    <Video>
+                    {/* <Video>
                         <FrameStyled />
                         <ReactPlayer
                             width="80%"
@@ -211,7 +211,7 @@ export const Cad = () => {
                                 },
                             }}
                         />
-                    </Video>
+                    </Video> */}
                     <InstructionText
                         dangerouslySetInnerHTML={{
                             __html: instruction,

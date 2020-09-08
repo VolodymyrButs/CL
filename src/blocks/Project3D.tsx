@@ -54,17 +54,16 @@ const HeroColumn = styled.div`
 `
 const ImgStyled = styled(Img)`
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
     padding: 0 16px;
     align-self: center;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: calc((100vw - 160px) * 0.6666);
-        max-height: 450px;
         padding: 0;
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 793px;
-        max-height: 620px;
     }
 `
 const ImgWrapper = styled.div`

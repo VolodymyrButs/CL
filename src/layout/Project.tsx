@@ -135,6 +135,7 @@ const ImageBig = styled(Img)`
     width: calc(100vw - 32px);
     height: 150vw;
     ${height}
+    max-width:100%;
 `
 const ImageSmall = styled(Img)`
     height: 35vw;
@@ -369,7 +370,7 @@ const ProjectLayout = ({
             />
 
             <LastProjects data={data.lastProject} />
-            <Connection text={t('connection.text')}>
+            <Connection text={t('connection.needDesignProject')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
                     secondModalTitle={t('connection.secondModalTitle')}
@@ -395,7 +396,7 @@ export const query = graphql`
                 node {
                     relativeDirectory
                     childImageSharp {
-                        fluid {
+                        fluid(maxWidth: 1000) {
                             ...GatsbyImageSharpFluid
                         }
                     }

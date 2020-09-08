@@ -21,11 +21,13 @@ const ArrowWrapper = styled.div`
         height: 45px;
     }
 `
-const ArrowWrapperPrevious = styled(ArrowWrapper)`
-    left: 30px;
+const ArrowWrapperPrevious = styled(ArrowWrapper)<{
+    modal: boolean | undefined
+}>`
+    left: ${props => (props.modal ? '-0' : '30px')};
 `
-const ArrowWrapperNext = styled(ArrowWrapper)`
-    right: 30px;
+const ArrowWrapperNext = styled(ArrowWrapper)<{ modal: boolean | undefined }>`
+    right: ${props => (props.modal ? '2px' : '30px')};
 `
 const ArrowNext = styled(Next)`
     width: 30px;
@@ -53,6 +55,7 @@ interface SlickButtonProps {
     currentSlide?: any
     slideCount?: any
     children?: any
+    modal?: boolean | undefined
 }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -60,9 +63,10 @@ export const SlickNext = ({
     currentSlide,
     slideCount,
     children,
+    modal,
     ...props
 }: SlickButtonProps) => (
-    <ArrowWrapperNext {...props}>
+    <ArrowWrapperNext {...props} modal={modal}>
         <ArrowNext />
     </ArrowWrapperNext>
 )
@@ -72,9 +76,10 @@ export const SlickPrevious = ({
     currentSlide,
     slideCount,
     children,
+    modal,
     ...props
 }: SlickButtonProps) => (
-    <ArrowWrapperPrevious {...props}>
+    <ArrowWrapperPrevious {...props} modal={modal}>
         <ArrowPrevious />
     </ArrowWrapperPrevious>
 )

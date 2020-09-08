@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Form, IChildrenProps } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
@@ -13,6 +13,9 @@ import { DefaultFormHero } from './DefaultFormHero'
 import { Select } from 'components/form/Select'
 import { NumberInput } from 'components/form/NumberInput'
 import { useFormHandler } from 'hooks/useFormHandler'
+import Proposal from 'assets/icons/proposal.svg'
+import Pensile from 'assets/icons/pensile.svg'
+import Handshake from 'assets/icons/handshake.svg'
 
 const FormWrapper = styled.div`
     display: flex;
@@ -35,31 +38,54 @@ const FormTitle = styled.div`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
-    line-height: 30px;
+    font-size: 32px;
+    line-height: 32px;
     letter-spacing: 1px;
-    color: ${colors.dark};
+    color: #296963;
     text-align: center;
     margin: 40px 0 24px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
         margin: 60px 0 24px;
+        width: 350px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 100%;
     }
 `
-
+const svgStyle = css`
+    width: 20px;
+    margin-right: 10px;
+`
+const HandshakeS = styled(Handshake)`
+    ${svgStyle}
+`
+const PensileS = styled(Pensile)`
+    ${svgStyle}
+`
+const ProposalS = styled(Proposal)`
+    ${svgStyle}
+`
 const FormColumn = styled.div`
     width: 100%;
     padding: 0 32px;
     box-sizing: border-box;
     h3 {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        line-height: 24px;
         margin: 10px 0;
     }
+`
+const DivS = styled.div`
+    margin-bottom: 30px;
 `
 const Unit = styled.p`
     pointer-events: none;
     right: 5px;
     position: absolute;
-    bottom: 28px;
+    bottom: 32px;
     color: gray;
 `
 const Wrapper = styled.div`
@@ -86,9 +112,17 @@ export const CommercialProposalFormBlock = () => {
                 <DefaultFormHero image />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
-                    <h3>- Образец дизайн проекта</h3>
-                    <h3>- Схему работи</h3>
-                    <h3>- Комерческое предложение</h3>
+                    <DivS>
+                        <h3>
+                            <PensileS /> Образец дизайн проекта
+                        </h3>
+                        <h3>
+                            <HandshakeS /> Как мы работаем
+                        </h3>
+                        <h3>
+                            <ProposalS /> Коммерческое предложение
+                        </h3>
+                    </DivS>
                     <Form
                         buttonText={t('send')}
                         onFormSubmit={handleSubmit}
@@ -160,14 +194,14 @@ export const CommercialProposalFormBlock = () => {
                                         hidden
                                     ></option>
 
-                                    <option value="noDrawing1">
-                                        {t('no1')}
+                                    <option value="noDrawing">
+                                        {t('noDrawing')}
                                     </option>
-                                    <option value="noDrawing2">
-                                        {t('no2')}
+                                    <option value="hasMeasurement">
+                                        {t('hasMeasurement')}
                                     </option>
-                                    <option value="yesDrawing">
-                                        {t('yes')}
+                                    <option value="hasDrawing">
+                                        {t('hasDrawing')}
                                     </option>
                                 </Select>
                                 <PhoneInput

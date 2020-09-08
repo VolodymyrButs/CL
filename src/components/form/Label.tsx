@@ -7,6 +7,7 @@ const LabelContainer = styled.label`
     position: relative;
     width: 100%;
     height: 100%;
+    line-height: 1;
 `
 export const LabelText = styled.span<{ $hasValue?: boolean }>`
     position: absolute;

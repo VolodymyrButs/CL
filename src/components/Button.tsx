@@ -13,6 +13,7 @@ export const Button = styled.button`
     font-weight: 600;
     line-height: 24px;
     text-transform: uppercase;
+    margin: 10px auto;
     cursor: pointer;
     :hover {
         opacity: 0.9;

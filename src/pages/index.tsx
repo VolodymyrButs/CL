@@ -9,7 +9,7 @@ const IndexPage = () => {
         <>
             <HomeHero />
             <OurServices />
-            <DefaultFormBlock />
+            <DefaultFormBlock withPhoneMobile />
         </>
     )
 }

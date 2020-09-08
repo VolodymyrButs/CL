@@ -32,7 +32,24 @@ const Answer = styled(Question)<{ $isAnswerVisible: boolean }>`
     display: ${({ $isAnswerVisible }) => ($isAnswerVisible ? 'block' : 'none')};
     color: ${colors.darkText};
     margin-top: 2px;
-    opacity: 0.38;
+    opacity: 0.7;
+    strong {
+        font-weight: bold;
+    }
+    a {
+        color: ${colors.dark};
+    }
+    p,
+    li {
+        margin: 1em 0;
+    }
+    ol,
+    ul {
+        margin-left: 1em;
+    }
+    ol {
+        list-style: decimal;
+    }
 `
 const IconStyled = styled(Arrow)<{ $isAnswerVisible: boolean }>`
     position: absolute;

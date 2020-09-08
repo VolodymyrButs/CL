@@ -21,7 +21,7 @@ const CarouselWrapper = styled.div`
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: calc((${displayWidth.desktop} - 160px) * 0.6666);
-        max-height: 711px;
+        max-height: 600px;
     }
     .slick-list {
         margin: 0 -16px;
@@ -41,8 +41,18 @@ const CarouselWrapper = styled.div`
     .slick-dots {
         bottom: -22px;
         left: 0;
+
         @media (min-width: ${displayWidth.tablet}) {
             bottom: 5px;
+        }
+        li {
+            width: 10px;
+            button {
+                width: 10px;
+                ::before {
+                    width: 10px;
+                }
+            }
         }
     }
 `

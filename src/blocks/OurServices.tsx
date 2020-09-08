@@ -62,8 +62,8 @@ const PromoBlock = styled(Block)`
 const CadBlock = styled(Block)`
     background-color: ${colors.white};
 `
-const DesignBlock = styled(Block)`
-    background-color: ${backgroundColors.project};
+const FaqBlock = styled(Block)`
+    background-color: ${backgroundColors.contact};
 `
 const Title = styled.h2`
     font-family: 'Yeseva One', sans-serif;
@@ -97,6 +97,25 @@ const SubTitle = styled.h3`
     text-align: center;
     letter-spacing: 0.4px;
     color: ${colors.dark};
+    margin-top: 10px;
+    strong {
+        font-weight: bold;
+    }
+    a {
+        color: ${colors.dark};
+    }
+    p,
+    li {
+        text-align: left;
+        margin: 5px 0;
+    }
+    ol,
+    ul {
+        margin-left: 1em;
+    }
+    ol {
+        list-style: decimal;
+    }
 `
 const ButtonStyled = styled(Button)`
     width: 264px;
@@ -126,9 +145,9 @@ export const OurServices = () => {
                         titleCad
                         subTitleCad
                         buttonTextCad
-                        titleDesign
-                        subTitleDesign
-                        buttonTextDesign
+                        titleFaq
+                        subTitleFaq
+                        buttonTextFaq
                         parent {
                             ... on File {
                                 name
@@ -162,22 +181,26 @@ export const OurServices = () => {
                     </PromoBlock>
                     <CadBlock>
                         <Title>{allOurServicesData.titleCad}</Title>
-                        <SubTitle>{allOurServicesData.subTitleCad}</SubTitle>
+                        <SubTitle
+                            dangerouslySetInnerHTML={{
+                                __html: allOurServicesData.subTitleCad,
+                            }}
+                        />
                         <LocalizedLink to={'/editor'}>
                             <ButtonStyled aria-label={(t('goTo'), t('cad'))}>
                                 {allOurServicesData.buttonTextCad}
                             </ButtonStyled>
                         </LocalizedLink>
                     </CadBlock>
-                    <DesignBlock>
-                        <Title>{allOurServicesData.titleDesign}</Title>
-                        <SubTitle>{allOurServicesData.subTitleDesign}</SubTitle>
-                        <LocalizedLinkAnchor to={'promo/#visualization3d'}>
+                    <FaqBlock>
+                        <Title>{allOurServicesData.titleFaq}</Title>
+                        <SubTitle>{allOurServicesData.subTitleFaq}</SubTitle>
+                        <LocalizedLinkAnchor to={'promo/#faq'}>
                             <ButtonStyled aria-label={(t('goTo'), t('promo'))}>
-                                {allOurServicesData.buttonTextDesign}
+                                {allOurServicesData.buttonTextFaq}
                             </ButtonStyled>
                         </LocalizedLinkAnchor>
-                    </DesignBlock>
+                    </FaqBlock>
                 </Container>
             </OurServicesWrapper>
         </>

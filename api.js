@@ -47,9 +47,9 @@ const formLabelByKey = {
     availabilityDrawings: 'Наличие чертежа',
 }
 const formValueByKey = {
-    yesDrawing: 'Померил и начертил',
-    noDrawing1: 'Не мерил и не чертил',
-    noDrawing2: 'Померил но не начертил',
+    hasDrawing: 'Померил и начертил',
+    noDrawing: 'Не мерил и не чертил',
+    hasMeasurement: 'Померил но не начертил',
     flat: 'Квартира',
     house: 'Дом, таунхаус, коттедж',
     comercialBuilding: 'Нежилое помещение',
