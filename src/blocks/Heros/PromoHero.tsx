@@ -18,6 +18,7 @@ import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
 import { Title } from 'components/TitleComponent'
+import { useTranslation } from 'react-i18next'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -26,6 +27,7 @@ const PromoHeroWraper = styled.div`
     background-color: ${backgroundColors.promotion};
     height: calc(100vh - ${headerHeight.mobile});
     min-height: 503px;
+    border-bottom: 1px solid ${colors.dark};
     :before {
         ${headerBg}
     }
@@ -34,6 +36,7 @@ const PromoHeroWraper = styled.div`
     }
     @media (min-width: ${displayWidth.tablet}) {
         height: 500px;
+        border-bottom: nonne;
     }
     @media (min-width: ${displayWidth.desktop}) {
         height: 600px;
@@ -93,14 +96,30 @@ const LampIconStyled = styled(LampIcon)`
         bottom: 10px;
     }
 `
-const TitleStyled = styled(Title)`
+const TitleWrapper = styled.div`
     position: relative;
-    font-size: 48px;
-    line-height: 52px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 375px;
+    }
+`
+const TitleStyled = styled(Title)`
+    font-size: 50px;
+    line-height: 55px;
     letter-spacing: 0.666667px;
     overflow: visible;
-    max-width: 100%;
+    text-align: center;
+    color: #296963;
+    @media (max-width: 355px) {
+        font-size: 40px;
+        line-height: 45px;
+    }
     @media (min-width: ${displayWidth.tablet}) {
+        top: 0;
+        left: 0;
         box-sizing: border-box;
         font-size: 56px;
         line-height: 56px;
@@ -117,17 +136,21 @@ const Price = styled.span`
     font-style: normal;
     font-weight: normal;
     font-size: 64px;
-    line-height: 74px;
+    line-height: 64px;
     letter-spacing: 0.888889px;
     color: ${colors.accentText};
-    margin: 0 10px;
+    width: 100%;
+    text-align: center;
     @media (min-width: ${displayWidth.tablet}) {
         position: absolute;
-        left: 110%;
-        bottom: 0px;
+        left: 350px;
+        bottom: 30px;
         font-size: 133px;
         line-height: 115px;
         letter-spacing: 1.52778px;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        bottom: 46px;
     }
 `
 const MobileImage = styled(Img)`
@@ -164,10 +187,10 @@ const DesktopImageLeft = styled(Img)`
         display: block;
         position: absolute;
         left: 11%;
-        bottom: -143px;
+        bottom: -148px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        bottom: -137px;
+        bottom: -144px;
     }
 `
 const ButtonStyled = styled(Button)`
@@ -178,7 +201,25 @@ const ButtonStyled = styled(Button)`
 const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
     text-decoration: none;
 `
+const For = styled.span`
+    font-family: 'Yeseva One', sans-serif;
+    font-style: normal;
+    font-size: 50px;
+    line-height: 55px;
+    letter-spacing: 0.666667px;
+    text-align: center;
+    color: #296963;
+    @media (max-width: 355px) {
+        font-size: 40px;
+        line-height: 45px;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+        position: relative;
+    }
+`
 export const PromoHero = () => {
+    const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
             allImageSharp {
@@ -222,10 +263,13 @@ export const PromoHero = () => {
         <PromoHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
                 <PromoHeroColumn>
-                    <TitleStyled>
-                        {promoHeroData.title}
-                        <Price>{promoHeroData.price}</Price>
-                    </TitleStyled>
+                    <TitleWrapper>
+                        <TitleStyled>{promoHeroData.title}</TitleStyled>
+                        <Price>
+                            <For>{t('for')} </For>
+                            {promoHeroData.price}
+                        </Price>
+                    </TitleWrapper>
                     <LocalizedLinkStyled to={'/promo/#projectStructure'}>
                         <ButtonStyled>
                             <p>{promoHeroData.buttonText}</p>

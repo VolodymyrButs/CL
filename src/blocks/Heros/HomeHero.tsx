@@ -13,6 +13,7 @@ import { headerBg } from 'styles/headerBg'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
+import { Logo } from 'components/Logo'
 
 const HomeHeroWraper = styled.div`
     display: flex;
@@ -70,33 +71,26 @@ const HomeHeroColumn = styled.div`
     }
     @media (min-width: ${displayWidth.tablet}) {
         justify-content: center;
+        align-items: flex-start;
     }
 `
 const Title = styled.h1`
-    font-family: 'Yeseva One', sans-serif;
-    font-size: 48px;
-    line-height: 52px;
-    letter-spacing: 0.666667px;
-    margin: 0px auto 24px;
+    font-size: 16px;
+    line-height: 22px;
+    word-spacing: 8px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    letter-spacing: 6.888889px;
     text-align: center;
     color: ${colors.dark};
-    @media (max-width: 355px) {
-        font-size: 30px;
-        line-height: 35px;
-        letter-spacing: 1px;
-    }
     @media (min-width: ${displayWidth.tablet}) {
-        letter-spacing: 0.888889px;
-        overflow: visible;
-        word-spacing: 500px;
-        text-align: left;
-        z-index: 3;
-        padding-left: 18px;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        padding-left: 48px;
-        font-size: 64px;
-        line-height: 74px;
+        font-size: 18px;
+        line-height: 24px;
+        word-spacing: 10px;
+        margin-top: 15px;
+        margin-bottom: 0;
+        letter-spacing: 10.888889px;
+        padding-left: calc((66% - 260px) / 2);
     }
 `
 const SubTitle = styled.p`
@@ -111,13 +105,15 @@ const SubTitle = styled.p`
         max-width: 66%;
         text-align: left;
         box-sizing: border-box;
+        max-width: calc((100vw - 160px) * 0.25);
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 0 48px;
+        padding: 20px 48px;
+        max-width: 350px;
     }
 `
 const MobileImage = styled(Img)`
-    width: 100%;
+    width: 70%;
     height: 105%;
     bottom: -5%;
     z-index: 2;
@@ -144,9 +140,11 @@ const DesktopImage = styled(Img)`
     display: none;
     @media (min-width: ${displayWidth.desktop}) {
         display: block;
-        width: 100%;
+        width: 110%;
         height: 90%;
+        max-height: 90%;
         bottom: -4%;
+        left: -59px;
         z-index: 2;
     }
 `
@@ -157,6 +155,19 @@ const JumpingArrowWrapper = styled.div`
         align-self: flex-start;
         justify-content: center;
         width: 66.6%;
+    }
+`
+const LogoS = styled(Logo)`
+    width: 100px;
+    height: 100px;
+    fill: #5f7db5;
+    @media (min-width: ${displayWidth.tablet}) {
+        width: 250px;
+        height: 250px;
+        margin-left: calc(((100vw - 160px) * 0.33 - 260px) / 2);
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        margin-left: 75px;
     }
 `
 export const HomeHero = () => {
@@ -204,6 +215,7 @@ export const HomeHero = () => {
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr'}>
                 <HomeHeroColumn>
                     <Title>{homeHeroData.title}</Title>
+                    <LogoS />
                     <SubTitle>{homeHeroData.subTitle}</SubTitle>
                     <JumpingArrowWrapper>
                         <JumpingArrow />

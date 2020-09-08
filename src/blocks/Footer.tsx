@@ -88,6 +88,9 @@ const Paragraph = styled(Header)`
     a {
         text-decoration: none;
         color: ${colors.white};
+        :hover {
+            text-decoration: underline;
+        }
     }
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;

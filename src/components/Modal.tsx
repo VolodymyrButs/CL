@@ -19,18 +19,19 @@ const ModalWrapper = styled.div<{ open: boolean }>`
 `
 const ModalWindow = styled.div<{ image: boolean }>`
     position: relative;
-    width: 100%;
+    max-width: 100%;
     max-height: 100%;
 
     z-index: 40;
     ${({ image }) =>
         image
-            ? 'padding: 0;background-color: transparent;border: none'
+            ? 'padding: 0;background-color: transparent;border: none;width:95%;max-width: 95%;'
             : `padding: 15px 32px;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
 
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
-        width: 70%;
+        max-width: 70%;
+        ${({ image }) => image && ` max-width: 95%;`};
         overflow-y: auto;
         max-height: 95%;
     }
@@ -38,9 +39,8 @@ const ModalWindow = styled.div<{ image: boolean }>`
         width: 80%;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        ${({ image }) => (image ? `width:100%` : `width:600px`)};
         height: auto;
-        max-width: 70%;
+
         max-height: 95%;
     }
     @media (orientation: landscape) and (max-height: 700px) {
@@ -58,7 +58,9 @@ const CloseIconStyled = styled(CloseIcon)<{ $image: boolean }>`
     cursor: pointer;
     z-index: 4;
     ${({ $image }) =>
-        $image ? `fill: ${colors.white};` : `fill: ${colors.dark};`};
+        $image
+            ? `fill: ${colors.white};stroke:${colors.dark};`
+            : `fill: ${colors.dark};stroke:${colors.white};`};
 `
 interface IModalProps {
     closeHandler?: () => void

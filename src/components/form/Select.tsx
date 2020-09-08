@@ -20,6 +20,7 @@ const LabelSelect = styled.label<{
     right: 0;
     ${({ selectValue }) => selectValue !== 'none' && smallLabel}
     pointer-events: none;
+    line-height: 1;
 `
 const ArrowS = styled(Arrow)`
     width: 15px;

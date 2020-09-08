@@ -32,7 +32,7 @@ const SubTitle = styled.h3`
     text-align: center;
     letter-spacing: 0.4px;
     color: ${colors.dark};
-    margin: 0 auto;
+    margin: 20px auto;
     @media (min-width: ${displayWidth.tablet}) {
         margin: 0 ${indent.heroColumnDesktop} 48px;
         text-align: left;
@@ -43,7 +43,7 @@ const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 32px;
+    padding: 0 32px 32px;
     align-items: center;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
@@ -56,12 +56,11 @@ const ImgStyled = styled(Img)`
     height: 70vw;
     max-height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
-        max-width: calc((100vw - 160px) * 0.6666);
-        max-height: 450px;
+        width: calc((100vw - 160px) * 0.6666);
+        height: 100%;
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 793px;
-        max-height: 620px;
     }
 `
 const ImgWrapper = styled.div`

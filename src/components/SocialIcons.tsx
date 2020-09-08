@@ -13,6 +13,9 @@ const SocialIconsWrapper = styled.div<{ fill: string }>`
     width: 100%;
     svg {
         fill: ${props => props.fill};
+        :hover {
+            fill: gray;
+        }
     }
 `
 
@@ -28,13 +31,13 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
     return (
         <SocialIconsWrapper fill={fill}>
             <a href="viber://chat?number=%2B380982117690" target="blank">
-                <ViberIcon />
+                <ViberIcon aria-label="ViberButton" />
             </a>
             <a href="tg://resolve?domain=clearline_com_ua" target="blank">
-                <TelegramIcon />
+                <TelegramIcon aria-label="Telegram Button" />
             </a>
-            <a href="https://wa.me/+380982117690" target="blank">
-                <WhatsappIcon />
+            <a href="https://wa.me/+380958363420" target="blank">
+                <WhatsappIcon aria-label="Whatsapp Button" />
             </a>
             {showAllIcons && (
                 <>
@@ -42,13 +45,13 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                         href="https://www.instagram.com/clear_line/"
                         target="blank"
                     >
-                        <InstagramIcon />
+                        <InstagramIcon aria-label="Instagram Button" />
                     </a>
                     <a
                         href="https://www.facebook.com/clearline.com.ua/"
                         target="blank"
                     >
-                        <FacebookIcon />
+                        <FacebookIcon aria-label="Facebook Button" />
                     </a>
                 </>
             )}

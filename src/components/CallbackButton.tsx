@@ -1,14 +1,9 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
 import { colors } from 'styles/colors'
 import CallbackIcon from 'assets/icons/callback.svg'
-import CloseIcon from 'assets/icons/Exit.svg'
-import Viber from 'assets/icons/Viber.svg'
-import Telegram from 'assets/icons/Telegram.svg'
-import Whatsapp from 'assets/icons/Whatsapp.svg'
-import PhoneIcon from 'assets/icons/Phone.svg'
 import { displayWidth } from 'styles/width'
 import { Modal } from './Modal'
 import { Form, IChildrenProps } from 'components/form/Form'
@@ -18,6 +13,8 @@ import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
 import { useFormHandler, isFormSuccess } from 'hooks/useFormHandler'
+import { PhoneSvgAnimated } from './PhoneSvgAnimated'
+import { contactInformation } from './contactInformation'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
@@ -34,6 +31,7 @@ const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     z-index: 11;
     :after,
     :before {
+        pointer-events: none;
         content: '';
         display: block;
         position: absolute;
@@ -71,6 +69,9 @@ const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     @media (min-width: ${displayWidth.desktop}) {
         left: calc((50vw - ${displayWidth.desktop} / 2) + 8px);
     }
+    :hover {
+        cursor: pointer;
+    }
 `
 const CallbackButtonWrapperDesktop = styled(CallbackButtonWrapperMobile)`
     display: none;
@@ -82,25 +83,7 @@ const CallbackButtonWrapperDesktop = styled(CallbackButtonWrapperMobile)`
         left: calc((50vw - ${displayWidth.desktop} / 2) + 8px);
     }
 `
-const iconStyles = css`
-    width: 58px;
-    height: 58px;
-    margin: 4px 3px;
-    cursor: pointer;
-    pointer-events: auto;
-`
-const ViberIconStyled = styled(Viber)`
-    ${iconStyles};
-    fill: ${colors.viber};
-`
-const TelegramIconStyled = styled(Telegram)`
-    ${iconStyles};
-    fill: ${colors.telegram};
-`
-const WhatsappIconStyled = styled(Whatsapp)`
-    ${iconStyles};
-    fill: ${colors.whatsapp};
-`
+
 const callbackButtonIcon = css`
     fill: ${colors.white};
     width: 32px;
@@ -110,61 +93,14 @@ const callbackButtonIcon = css`
 `
 const CallbackIconStyled = styled(CallbackIcon)`
     ${callbackButtonIcon};
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
 `
-const CloseIconStyled = styled(CloseIcon)`
-    ${callbackButtonIcon};
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
-`
-const PhoneIconStyled = styled(PhoneIcon)`
-    display: none;
-    ${callbackButtonIcon};
-    @media (min-width: ${displayWidth.tablet}) {
-        display: inline;
-    }
-`
-
-const CallBackTextButton = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${iconStyles};
-    border-radius: 50%;
-    background-color: ${colors.dark};
-    font-style: normal;
-    font-weight: normal;
-    text-align: center;
-    font-size: 9px;
-    line-height: 12px;
-    color: ${colors.white};
-`
-const IconBarWrapper = styled.div`
-    position: fixed;
-    bottom: 76px;
-    left: 18px;
-    z-index: 11;
-    height: 270px;
-    overflow: hidden;
-    pointer-events: none;
-`
-const IconBar = styled.div<{ open: boolean }>`
-    display: ${props => (props.open ? 'flex' : 'none')};
-    flex-direction: column;
-    width: 74px;
-    height: 270px;
-    animation: ${props => (props.open ? 'show 0.5s linear' : '')};
-    @keyframes show {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
+const PhoneSvgAnimatedStyled = styled(PhoneSvgAnimated)`
+    pointer-events: auto;
+    fill: ${colors.white};
+    width: 40%;
+    height: 40%;
+    left: 30%;
+    top: 30%;
 `
 const SubTitle = styled.h3`
     display: block;
@@ -209,19 +145,10 @@ const ButtonStyled = styled(Button)`
     margin: 50px 0;
 `
 export const CallbackButton = () => {
-    const [isCallbackMenuOpen, setIsOpenCallbackMenu] = useState(false)
     const [isModalOpen, setModalIsOpen] = useState(false)
     const { handleSubmit, formSendStatus } = useFormHandler()
     const { t, i18n } = useTranslation()
 
-    useLayoutEffect(() => {
-        window.addEventListener(
-            'resize',
-            () =>
-                window.matchMedia(`(min-width: ${displayWidth.tablet})`)
-                    .matches && setIsOpenCallbackMenu(false)
-        )
-    })
     const data = useStaticQuery(graphql`
         query {
             allCallbackButtonYaml {
@@ -291,42 +218,19 @@ export const CallbackButton = () => {
                     )}
                 </Wrapper>
             </Modal>
-            <IconBarWrapper>
-                <IconBar open={isCallbackMenuOpen}>
-                    <ViberIconStyled aria-label="ViberButton" />
-                    <WhatsappIconStyled aria-label="Whatsapp Button" />
-                    <TelegramIconStyled aria-label="Telegram Button" />
-                    <CallBackTextButton
-                        aria-label="Callback modal Button"
-                        onClick={() => {
-                            setModalIsOpen(true), setIsOpenCallbackMenu(false)
-                        }}
-                    >
-                        {t('callback')}
-                    </CallBackTextButton>
-                </IconBar>
-            </IconBarWrapper>
-
-            <CallbackButtonWrapperMobile
-                aria-label="Callback Button"
-                open={isCallbackMenuOpen}
-                onClick={() => {
-                    setIsOpenCallbackMenu(!isCallbackMenuOpen)
-                }}
-            >
-                {isCallbackMenuOpen ? (
-                    <CloseIconStyled />
-                ) : (
-                    <CallbackIconStyled />
-                )}
+            <CallbackButtonWrapperMobile aria-label="Callback Button">
+                <a href={`tel:${contactInformation.primaryPhone}`}>
+                    <PhoneSvgAnimatedStyled />
+                </a>
             </CallbackButtonWrapperMobile>
+
             <CallbackButtonWrapperDesktop
                 aria-label="Callback Button"
                 onClick={() => {
                     setModalIsOpen(true)
                 }}
             >
-                <PhoneIconStyled />
+                <CallbackIconStyled />
             </CallbackButtonWrapperDesktop>
         </>
     )

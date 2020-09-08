@@ -17,7 +17,7 @@ const LayoutWraper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
 `
@@ -84,13 +84,11 @@ export const Layout = (props: { children: React.ReactNode }) => {
         }
     ).node
 
-    const { rating, bestRating, worstRating } = commonData
+    const { rating, bestRating, worstRating, reviewsArr } = commonData
     const addressData = getDataByLanguage(data.allAddressYaml, i18n.language)
 
     const { companyName, street, city } = addressData
-    const reviewsYaml = getDataByLanguage(data.allReviewsYaml, i18n.language)
 
-    const { reviewsArr } = reviewsYaml
     const reviewData = reviewsArr.map(
         (item: { name: string; text: string }) => {
             return {

@@ -11,7 +11,6 @@ export const Container = styled.div<IContainerProps>`
     display: grid;
     grid-template-columns: ${props => props.columns};
     width: 100%;
-    height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         width: calc(100% - 160px);
         padding: 0;

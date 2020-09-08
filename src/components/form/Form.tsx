@@ -14,6 +14,9 @@ import {
 } from 'hooks/useFormHandler'
 const FormWrapper = styled.div`
     position: relative;
+    @media (min-width: ${displayWidth.tablet}) {
+        min-width: 350px;
+    }
 `
 const ButtonStyled = styled(Button)`
     width: 264px;

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -10,11 +10,12 @@ import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { getImageByImageName } from 'utils/getImageByImageName'
 import { SliderComponent } from 'components/SliderComponent'
 import { indent } from 'styles/indent'
-
-const Advantages3DWrapper = styled.div`
+import FullScreen from 'assets/icons/fullScreen.svg'
+import { ModalCarousel } from 'components/ModalCarousel'
+import { ProjectData } from 'layout/Project'
+const ExampleOfProjectWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
@@ -23,14 +24,8 @@ const Advantages3DWrapper = styled.div`
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
 `
-const PriceWrapper = styled.span`
-    display: inline-block;
-    width: 89px;
-    position: relative;
-`
-const Price = styled.p`
-    position: absolute;
-    bottom: -36px;
+
+const Price = styled.span`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -38,35 +33,12 @@ const Price = styled.p`
     line-height: 74px;
     letter-spacing: 0.888889px;
     color: ${colors.accentText};
-    margin: 0 10px;
+    margin-left: 6px;
     @media (min-width: ${displayWidth.tablet}) {
-        position: absolute;
         font-size: 36px;
         line-height: 42px;
-        bottom: -8px;
         letter-spacing: 1.77882px;
     }
-`
-const Text = styled.div`
-    margin-top: 15px;
-    p {
-        text-align: center;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 26px;
-        letter-spacing: 0.4px;
-        @media (min-width: ${displayWidth.tablet}) {
-            text-align: left;
-        }
-        strong {
-            font-weight: 700;
-        }
-    }
-`
-const Line = styled.div`
-    border-bottom: 1px solid ${colors.dark};
-    margin: 32px 0;
 `
 const SubTitle = styled.h3`
     font-weight: normal;
@@ -83,6 +55,7 @@ const SubTitle = styled.h3`
 const TitleStyled = styled(Title)`
     @media (min-width: ${displayWidth.tablet}) {
         margin-left: 0;
+        margin-right: 0;
     }
 `
 const HeroColumn = styled.div`
@@ -101,7 +74,7 @@ const LeftSidebar = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
         flex-grow: 1;
-        min-width: 80px;
+        min-width: 79px;
         background-color: ${backgroundColors.promotion};
         box-sizing: border-box;
         margin-left: 1px;
@@ -114,15 +87,9 @@ const RightSidebar = styled(LeftSidebar)`
     }
 `
 const ImgStyled = styled(Img)`
-    height: 60vw;
-    max-height: 100%;
+    width: 100%;
     @media (min-width: ${displayWidth.tablet}) {
-        max-width: calc((100vw - 160px) * 0.666666);
-        max-height: calc((100vw - 160px) * 0.5);
         height: 100%;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        max-height: 595px;
     }
 `
 
@@ -130,18 +97,69 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     background-color: ${colors.white};
+    position: relative;
+`
+const WrapperMobile = styled(Wrapper)`
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
+const WrapperDesktop = styled(Wrapper)`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: flex;
+    }
+`
+const FullScreenButton = styled(FullScreen)`
+    fill: ${colors.white};
+    stroke: ${colors.dark};
+    stroke-width: 1px;
+    position: absolute;
+    top: 10px;
+    right: 26px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 3;
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        right: 10px;
+    }
 `
 export const ExamplesOfProjects = () => {
     const { i18n } = useTranslation()
-
+    const [isModalOpen, setModalIsOpen] = useState(false)
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
+            desktop: allFile(
+                filter: { relativeDirectory: { eq: "projectExampleDesktop" } }
+                sort: { fields: absolutePath }
+            ) {
                 edges {
                     node {
-                        fluid {
-                            originalName
-                            ...GatsbyImageSharpFluid
+                        id
+                        childImageSharp {
+                            fluid(maxWidth: 2000) {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
+                }
+            }
+            mobile: allFile(
+                filter: { relativeDirectory: { eq: "projectExamplesMobile" } }
+                sort: { fields: absolutePath }
+            ) {
+                edges {
+                    node {
+                        id
+                        childImageSharp {
+                            fluid {
+                                ...GatsbyImageSharpFluid
+                            }
                         }
                     }
                 }
@@ -151,12 +169,7 @@ export const ExamplesOfProjects = () => {
                     node {
                         title
                         price
-                        project
-                        location
                         description
-                        images {
-                            image
-                        }
                         parent {
                             ... on File {
                                 name
@@ -167,30 +180,14 @@ export const ExamplesOfProjects = () => {
             }
         }
     `)
-
     const examplesOfProjectsYaml = getDataByLanguage(
         data.allExamplesOfProjectsYaml,
         i18n.language
     )
 
-    const commonImages = data.allExamplesOfProjectsYaml.edges.find(
-        (elem: { node: { parent: { name: string } } }) => {
-            return elem.node.parent.name === 'examplesOfProjects'
-        }
-    ).node
-
-    const {
-        price,
-        description,
-        location,
-        project,
-        title,
-    } = examplesOfProjectsYaml
+    const { price, description, title } = examplesOfProjectsYaml
     const sliderSettings = {
         infinite: true,
-        speed: 1000,
-        autoplay: true,
-        autoplaySpeed: 5000,
         responsive: [
             {
                 breakpoint: 1024,
@@ -201,44 +198,38 @@ export const ExamplesOfProjects = () => {
             },
         ],
     }
+
     return (
-        <Advantages3DWrapper>
+        <ExampleOfProjectWrapper>
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <TitleStyled>
                         {title}
-                        <PriceWrapper>
-                            <Price>{price}</Price>
-                        </PriceWrapper>
+                        <Price>{price}</Price>
                     </TitleStyled>
-                    <Text
-                        dangerouslySetInnerHTML={{
-                            __html: project,
-                        }}
-                    />
-
-                    <Text
-                        dangerouslySetInnerHTML={{
-                            __html: location,
-                        }}
-                    />
-                    <Line />
                     <SubTitle> {description}</SubTitle>
                 </HeroColumn>
-                <Wrapper>
+                <WrapperDesktop>
+                    <FullScreenButton
+                        onClick={() => {
+                            setModalIsOpen(true)
+                        }}
+                    />
                     <SliderComponent {...sliderSettings}>
-                        {commonImages.images.map(
-                            (item: { image: string }, index: number) => {
-                                const ImageNode = getImageByImageName(
-                                    data.allImageSharp,
-                                    item.image
-                                )
-
+                        {data.desktop.edges.map(
+                            (
+                                item: {
+                                    node: {
+                                        childImageSharp: { fluid: FluidObject }
+                                    }
+                                },
+                                index: number
+                            ) => {
                                 return (
                                     <ImgStyled
                                         key={index}
-                                        fluid={ImageNode.fluid}
+                                        fluid={item.node.childImageSharp.fluid}
                                         imgStyle={{
                                             objectFit: 'containe',
                                         }}
@@ -247,9 +238,46 @@ export const ExamplesOfProjects = () => {
                             }
                         )}
                     </SliderComponent>
-                </Wrapper>
+                </WrapperDesktop>
+                <WrapperMobile>
+                    <FullScreenButton
+                        onClick={() => {
+                            setModalIsOpen(true)
+                        }}
+                    />
+                    <SliderComponent {...sliderSettings}>
+                        {data.mobile.edges.map(
+                            (
+                                item: {
+                                    node: {
+                                        childImageSharp: { fluid: FluidObject }
+                                    }
+                                },
+                                index: number
+                            ) => {
+                                return (
+                                    <ImgStyled
+                                        key={index}
+                                        fluid={item.node.childImageSharp.fluid}
+                                        imgStyle={{
+                                            objectFit: 'containe',
+                                        }}
+                                    />
+                                )
+                            }
+                        )}
+                    </SliderComponent>
+                </WrapperMobile>
             </Container>
             <RightSidebar />
-        </Advantages3DWrapper>
+            <ModalCarousel
+                data={data.desktop.edges.map(
+                    ({ node }: { node: ProjectData }) => node
+                )}
+                isModalOpen={isModalOpen}
+                closeHandler={() => setModalIsOpen(false)}
+                initialSlideIndex={1}
+            />
+        </ExampleOfProjectWrapper>
     )
 }

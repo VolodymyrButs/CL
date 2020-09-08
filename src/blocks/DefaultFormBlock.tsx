@@ -54,13 +54,17 @@ const FormColumn = styled.div`
     padding: 0 32px;
     box-sizing: border-box;
 `
-export const DefaultFormBlock = () => {
+export const DefaultFormBlock = ({
+    withPhoneMobile,
+}: {
+    withPhoneMobile?: boolean
+}) => {
     const { t } = useTranslation()
     const { handleSubmit, formSendStatus } = useFormHandler()
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
-                <DefaultFormHero />
+                <DefaultFormHero withPhoneMobile={withPhoneMobile} />
                 <FormColumn>
                     <FormTitle>{t('defaultFormTitle')}</FormTitle>
                     <Form

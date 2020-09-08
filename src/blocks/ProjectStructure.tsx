@@ -46,7 +46,7 @@ const LeftSidebar = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
         flex-grow: 1;
-        min-width: 80px;
+        min-width: 79px;
         background-color: ${backgroundColors.promotion};
         box-sizing: border-box;
         margin-left: 1px;

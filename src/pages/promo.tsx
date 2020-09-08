@@ -29,6 +29,7 @@ const Promo = () => {
             <ExamplesOfProjects />
             <Reviews />
             <CommercialProposalFormBlock />
+            <RunningLine>{t('designProject99')}</RunningLine>
             <Project3D />
             <div id="project3dAdvantages" />
             <Advantages3D />
@@ -48,13 +49,14 @@ const Promo = () => {
             <SelectionOfPaints />
             <div id="selectionOfPaintsAdvantages" />
             <AdvantagesServices />
-            <DefaultFormBlock />
             <RunningLine>{t('designProject99')}</RunningLine>
             <div id="visualization3d" />
             <Visualization3d />
             <div id="visualization3dAdvantages" />
             <VisualizationAdvantages />
+            <div id="faq" />
             <Faq />
+            <DefaultFormBlock withPhoneMobile />
         </>
     )
 }

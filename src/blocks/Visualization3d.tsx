@@ -59,15 +59,14 @@ const HeroColumn = styled.div`
 `
 
 const ImgStyled = styled(Img)`
-    height: auto;
-    max-height: 100%;
+    width: calc(100vw - 64px);
     @media (min-width: ${displayWidth.tablet}) {
-        max-width: calc((100vw - 160px) * 0.6666);
-        max-height: 450px;
+        width: calc((100vw - 160px) * 0.6666);
+        height: calc(((100vw - 160px) * 0.6666) / 1.22);
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 793px;
-        max-height: 600px;
+        height: auto;
     }
 `
 const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
@@ -94,7 +93,6 @@ const DesctopWrapper = styled.div`
         display: flex;
         align-items: center;
         background-color: ${colors.white};
-        position: relative;
     }
 `
 const MobileWrapper = styled.div`
@@ -105,30 +103,6 @@ const MobileWrapper = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }
-`
-const VisualizationBlock = styled.div`
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: 0;
-    right: 50%;
-    bottom: 0;
-    height: 48px;
-    background-color: ${colors.dark};
-    color: ${colors.white};
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 26px;
-    letter-spacing: 0.4px;
-    border-right: 1px solid ${colors.white};
-`
-const RealizationBlock = styled(VisualizationBlock)`
-    left: 50%;
-    right: 0;
-    border-right: none;
 `
 
 export const Visualization3d = () => {
@@ -178,19 +152,9 @@ export const Visualization3d = () => {
             return elem.node.parent.name === 'visualization3d'
         }
     ).node
-    const {
-        title,
-        subTitle,
-        buttonText,
-        visualization,
-        realization,
-    } = visualization3DYaml
+    const { title, subTitle, buttonText } = visualization3DYaml
     const sliderSettings = {
         infinite: true,
-        speed: 1000,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        fade: true,
         responsive: [
             {
                 breakpoint: 1024,
@@ -228,15 +192,13 @@ export const Visualization3d = () => {
                                         key={index}
                                         fluid={ImageNode.fluid}
                                         imgStyle={{
-                                            objectFit: 'containe',
+                                            objectFit: 'cover',
                                         }}
                                     />
                                 )
                             }
                         )}
                     </SliderComponent>
-                    <VisualizationBlock>{visualization}</VisualizationBlock>
-                    <RealizationBlock>{realization}</RealizationBlock>
                 </DesctopWrapper>
                 <MobileWrapper>
                     <SliderComponent {...sliderSettings}>
@@ -252,7 +214,7 @@ export const Visualization3d = () => {
                                         key={index}
                                         fluid={ImageNode.fluid}
                                         imgStyle={{
-                                            objectFit: 'containe',
+                                            objectFit: 'cover',
                                         }}
                                     />
                                 )

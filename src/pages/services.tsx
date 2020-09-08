@@ -14,7 +14,7 @@ const ServicesPage = () => {
             <Services />
             <RunningLine>{t('designProject99')}</RunningLine>
             <Reviews />
-            <DefaultFormBlock />
+            <DefaultFormBlock withPhoneMobile />
         </div>
     )
 }
