@@ -108,7 +108,7 @@ const NotFoundPage = () => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

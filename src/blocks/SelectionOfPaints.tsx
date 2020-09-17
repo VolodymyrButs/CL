@@ -99,7 +99,7 @@ export const SelectionOfPaints = () => {
                 edges {
                     node {
                         fluid {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

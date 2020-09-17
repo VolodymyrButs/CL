@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
 
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
@@ -11,7 +10,7 @@ import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
 import { EmailInput } from './form/EmailInput'
 import { MessageInput } from './form/MessageInput'
-import { useFormHandler, isFormSuccess } from 'hooks/useFormHandler'
+import { useFormHandler } from 'hooks/useFormHandler'
 
 const SubTitle = styled.h3`
     display: block;
@@ -64,25 +63,19 @@ const ButtonStyled = styled(Button)`
 `
 export const ButtonWithModal = ({
     modalTitle,
-    secondModalTitle,
     modalDescription,
-    secondModalDescription,
     buttonLabel,
     placeholder,
     submitLabel,
 }: {
     modalTitle: string
-    secondModalTitle: string
     modalDescription: string
-    secondModalDescription: string
     buttonLabel: string
     placeholder: string
     submitLabel: string
 }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const { handleSubmit, formSendStatus } = useFormHandler()
-    const { t } = useTranslation()
-
+    const { handleSubmitStatus, formSendStatus } = useFormHandler()
     return (
         <>
             <Modal
@@ -90,56 +83,43 @@ export const ButtonWithModal = ({
                 closeHandler={() => setModalIsOpen(false)}
             >
                 <Wrapper>
-                    {isFormSuccess(formSendStatus) ? (
-                        <>
-                            <TitleStyled>{secondModalTitle}</TitleStyled>
-                            <SubTitle>{secondModalDescription}</SubTitle>
-                            <ButtonStyled
-                                onClick={() => {
-                                    setModalIsOpen(false)
-                                }}
-                            >
-                                {t('goBack')}
-                            </ButtonStyled>
-                        </>
-                    ) : (
-                        <>
-                            <TitleStyled>{modalTitle}</TitleStyled>
-                            <SubTitle>{modalDescription}</SubTitle>
-                            <Form
-                                formName={'Callback Form'}
-                                buttonText={submitLabel}
-                                onFormSubmit={handleSubmit}
-                                formSendStatus={formSendStatus}
-                            >
-                                {({ register, errors }: IChildrenProps) => (
-                                    <div>
-                                        <MessageInput
-                                            ref={register({
-                                                required: true,
-                                            })}
-                                            err={errors.message}
-                                            placeholder={placeholder}
-                                            maxHeight={'90px'}
-                                        />
+                    <>
+                        <TitleStyled>{modalTitle}</TitleStyled>
+                        <SubTitle>{modalDescription}</SubTitle>
+                        <Form
+                            formName={'Callback Form'}
+                            buttonText={submitLabel}
+                            onFormSubmit={handleSubmitStatus}
+                            formSendStatus={formSendStatus}
+                            closeHandler={setModalIsOpen}
+                        >
+                            {({ register, errors }: IChildrenProps) => (
+                                <div>
+                                    <PhoneInput
+                                        ref={register({
+                                            minLength: 18,
+                                            required: true,
+                                        })}
+                                        err={errors.phone}
+                                    />
 
-                                        <PhoneInput
-                                            ref={register({
-                                                minLength: 18,
-                                                required: true,
-                                            })}
-                                            err={errors.phone}
-                                        />
+                                    <MessageInput
+                                        ref={register({
+                                            required: true,
+                                        })}
+                                        err={errors.message}
+                                        placeholder={placeholder}
+                                        maxHeight={'90px'}
+                                    />
 
-                                        <EmailInput
-                                            ref={register}
-                                            err={errors.email}
-                                        />
-                                    </div>
-                                )}
-                            </Form>
-                        </>
-                    )}
+                                    <EmailInput
+                                        ref={register}
+                                        err={errors.email}
+                                    />
+                                </div>
+                            )}
+                        </Form>
+                    </>
                 </Wrapper>
             </Modal>
 

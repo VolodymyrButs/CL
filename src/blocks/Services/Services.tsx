@@ -22,9 +22,13 @@ const ServicesWrapper = styled.div`
     width: 100%;
     background-color: ${backgroundColors.contact};
     position: relative;
+    border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder};
     :before {
         ${headerBg}
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        border-bottom: none;
     }
 `
 const TitleStyled = styled(Title)`
@@ -97,7 +101,7 @@ export const Services = () => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

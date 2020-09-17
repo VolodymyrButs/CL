@@ -36,11 +36,7 @@ const Promo = () => {
             <Connection text={t('connection.text')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
-                    secondModalTitle={t('connection.secondModalTitle')}
                     modalDescription={t('connection.modalDescription')}
-                    secondModalDescription={t(
-                        'connection.secondModalDescription'
-                    )}
                     buttonLabel={t('connection.buttonLabel')}
                     placeholder={t('connection.placeholder')}
                     submitLabel={t('connection.submitLabel')}

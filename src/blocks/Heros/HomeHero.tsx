@@ -20,7 +20,7 @@ const HomeHeroWraper = styled.div`
     justify-content: center;
     width: 100%;
     max-width: 100vw;
-    height: calc(100vh - ${headerHeight.mobile});
+    height: calc(100vh - ${headerHeight.mobile} - 50px);
     min-height: 503px;
     background-color: ${backgroundColors.index};
     align-items: stretch;
@@ -79,7 +79,7 @@ const Title = styled.h1`
     line-height: 22px;
     word-spacing: 8px;
     margin-top: 15px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     letter-spacing: 6.888889px;
     text-align: center;
     color: ${colors.dark};
@@ -93,34 +93,36 @@ const Title = styled.h1`
         padding-left: calc((66% - 260px) / 2);
     }
 `
-const SubTitle = styled.p`
-    font-size: 16px;
-    line-height: 26px;
-    text-align: center;
-    letter-spacing: 0.4px;
-    margin: 0 16px 24px;
-    @media (min-width: ${displayWidth.tablet}) {
-        align-self: flex-start;
-        z-index: 3;
-        max-width: 66%;
-        text-align: left;
-        box-sizing: border-box;
-        max-width: calc((100vw - 160px) * 0.25);
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        padding: 20px 48px;
-        max-width: 350px;
-    }
-`
+// const SubTitle = styled.p`
+//     font-size: 16px;
+//     line-height: 26px;
+//     text-align: center;
+//     letter-spacing: 0.4px;
+//     margin: 0 16px 24px;
+//     @media (min-width: ${displayWidth.tablet}) {
+//         align-self: flex-start;
+//         z-index: 3;
+//         max-width: 66%;
+//         text-align: left;
+//         box-sizing: border-box;
+//         max-width: calc((100vw - 160px) * 0.25);
+//     }
+//     @media (min-width: ${displayWidth.desktop}) {
+//         padding: 20px 48px;
+//         max-width: 350px;
+//     }
+// `
 const MobileImage = styled(Img)`
-    width: 70%;
+    width: 90%;
     height: 105%;
     bottom: -5%;
     z-index: 2;
+    max-height: 400px;
     @media (min-width: 630px) {
         width: 80%;
         height: 85%;
         bottom: -4%;
+        max-height: 600px;
     }
     @media (min-width: 840px) {
         width: 60%;
@@ -144,7 +146,7 @@ const DesktopImage = styled(Img)`
         height: 90%;
         max-height: 90%;
         bottom: -4%;
-        left: -59px;
+        left: -70px;
         z-index: 2;
     }
 `
@@ -158,8 +160,8 @@ const JumpingArrowWrapper = styled.div`
     }
 `
 const LogoS = styled(Logo)`
-    width: 100px;
-    height: 100px;
+    width: auto;
+    height: 20vh;
     fill: #5f7db5;
     @media (min-width: ${displayWidth.tablet}) {
         width: 250px;
@@ -178,7 +180,7 @@ export const HomeHero = () => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
@@ -216,7 +218,7 @@ export const HomeHero = () => {
                 <HomeHeroColumn>
                     <Title>{homeHeroData.title}</Title>
                     <LogoS />
-                    <SubTitle>{homeHeroData.subTitle}</SubTitle>
+                    {/* <SubTitle>{homeHeroData.subTitle}</SubTitle> */}
                     <JumpingArrowWrapper>
                         <JumpingArrow />
                     </JumpingArrowWrapper>

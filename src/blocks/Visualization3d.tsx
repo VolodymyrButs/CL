@@ -114,7 +114,7 @@ export const Visualization3d = () => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

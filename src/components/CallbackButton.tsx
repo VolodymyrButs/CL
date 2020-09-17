@@ -11,8 +11,7 @@ import { PhoneInput } from 'components/form/PhoneInput'
 import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Title } from 'components/TitleComponent'
-import { Button } from './Button'
-import { useFormHandler, isFormSuccess } from 'hooks/useFormHandler'
+import { useFormHandler } from 'hooks/useFormHandler'
 import { PhoneSvgAnimated } from './PhoneSvgAnimated'
 import { contactInformation } from './contactInformation'
 
@@ -141,12 +140,9 @@ const TitleStyled = styled(Title)`
         margin: 16px 0;
     }
 `
-const ButtonStyled = styled(Button)`
-    margin: 50px 0;
-`
 export const CallbackButton = () => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const { handleSubmit, formSendStatus } = useFormHandler()
+    const { handleSubmitStatus, formSendStatus } = useFormHandler()
     const { t, i18n } = useTranslation()
 
     const data = useStaticQuery(graphql`
@@ -154,8 +150,6 @@ export const CallbackButton = () => {
             allCallbackButtonYaml {
                 edges {
                     node {
-                        secondSubTitle
-                        secondTitle
                         subTitle
                         title
                         parent {
@@ -172,7 +166,7 @@ export const CallbackButton = () => {
         data.allCallbackButtonYaml,
         i18n.language
     )
-    const { secondSubTitle, secondTitle, subTitle, title } = addressData
+    const { subTitle, title } = addressData
     return (
         <>
             <Modal
@@ -180,42 +174,27 @@ export const CallbackButton = () => {
                 closeHandler={() => setModalIsOpen(false)}
             >
                 <Wrapper>
-                    {isFormSuccess(formSendStatus) ? (
-                        <>
-                            <TitleStyled>{secondTitle}</TitleStyled>
-                            <SubTitle>{secondSubTitle}</SubTitle>
-                            <ButtonStyled
-                                onClick={() => {
-                                    setModalIsOpen(false)
-                                }}
-                            >
-                                {t('goBack')}
-                            </ButtonStyled>
-                        </>
-                    ) : (
-                        <>
-                            <TitleStyled>{title}</TitleStyled>
-                            <SubTitle>{subTitle}</SubTitle>
-                            <Form
-                                formName={'Callback Form'}
-                                buttonText={t('send')}
-                                onFormSubmit={handleSubmit}
-                                formSendStatus={formSendStatus}
-                            >
-                                {({ register, errors }: IChildrenProps) => (
-                                    <>
-                                        <PhoneInput
-                                            ref={register({
-                                                minLength: 18,
-                                                required: true,
-                                            })}
-                                            err={errors.phone}
-                                        />
-                                    </>
-                                )}
-                            </Form>
-                        </>
-                    )}
+                    <TitleStyled>{title}</TitleStyled>
+                    <SubTitle>{subTitle}</SubTitle>
+                    <Form
+                        formName={'Question Form'}
+                        buttonText={t('send')}
+                        onFormSubmit={handleSubmitStatus}
+                        formSendStatus={formSendStatus}
+                        closeHandler={setModalIsOpen}
+                    >
+                        {({ register, errors }: IChildrenProps) => (
+                            <>
+                                <PhoneInput
+                                    ref={register({
+                                        minLength: 18,
+                                        required: true,
+                                    })}
+                                    err={errors.phone}
+                                />
+                            </>
+                        )}
+                    </Form>
                 </Wrapper>
             </Modal>
             <CallbackButtonWrapperMobile aria-label="Callback Button">

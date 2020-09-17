@@ -3,6 +3,7 @@
     "works": "Pаботы",
     "promo": "Aкция 99$",
     "services": "Услуги",
+    "wiki": "Wiki",
     "callUs": "Позвоните Нам \u2005 Позвоните Нам ",
     "address": "Aдрес",
     "companyAddress": "Адрес компании",
@@ -17,8 +18,8 @@
     "phone": "Телефон",
     "email": "E-mail",
     "message": "Вопрос",
-    "defaultFormTitle": "Напишите нам и мы Вам перезвоним!",
-    "ComercialProposalFormTitle": "Заполните форму и получите на e-mail",
+    "defaultFormTitle": "Напишите нам!",
+    "ComercialProposalFormTitle": "Заполните форму и получите на e\u2011mail",
     "homeType": {
         "flat": "Квартира",
         "house": "Дом, таунхаус, коттедж",
@@ -27,14 +28,14 @@
     "homeTypeQuestion": "Тип помещения",
     "roomSize": "Метраж помещения",
     "availabilityDrawings": "Обмерочный чертеж квартиры",
-    "hasDrawing": "Обмерил и создал чертеж",
-    "noDrawing": "Обмеров не проводил, есть план от застройщика",
-    "hasMeasurement": "Обмерил но начертил",
+    "hasDrawing": "Oбмерил помещение и перенес в компьютерную программу",
+    "noDrawing": "Обмеров помещения не проводил, есть план от застройщика",
+    "hasMeasurement": "Oбмерил помещение но не перенес в компьютерную программу",
     "connection": {
         "text": "Узнай больше о 3D дизайн-проекте",
         "modalTitle": "Оставьте заявку",
         "secondModalTitle": "Спасибо!",
-        "modalDescription": "Напишите нам и мы Вам перезвоним!",
+        "modalDescription": "Напишите нам!",
         "secondModalDescription": "Мы с Вами свяжемся в ближайшее время!",
         "buttonLabel": "Связаться с нами",
         "placeholder": "Задайте вопрос",
@@ -45,9 +46,15 @@
     "lastProjects": "Последние работы",
     "goTo": "ссылка к странице",
     "cad": "графический редактор",
-    "isSendSuccess": "Ваше сообщение успешно отправлено",
+    "isSendSuccess": "Cообщение успешно отправлено",
+    "isSendSuccessComercial": "В течении дня вышлем информацию на e\u2011mail. Не забудьте проверить папку спам",
     "isSendError": "Не удалось отправить сообщение, попробуйте еще раз позже",
     "pageNotFound": "К сожалению эта страница не доступна :(",
     "showMore": "Загрузить еще",
-    "for": "за"
+    "for": "за",
+    "comercialForm": {
+        "example": "Образец дизайн проекта",
+        "conditions": "Условия работы",
+        "proposal": "Коммерческое предложение на ваш обьект"
+    }
 }

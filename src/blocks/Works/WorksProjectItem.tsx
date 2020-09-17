@@ -91,7 +91,7 @@ export const WorksProjectItem = ({
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

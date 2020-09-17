@@ -9,4 +9,5 @@ export interface IInputProps {
     children?: React.ReactNode | React.ReactChild
     questionPlaceholder?: string
     maxHeight?: string
+    options?: { value: string; label: string }[]
 }

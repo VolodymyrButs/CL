@@ -100,7 +100,7 @@ export const Project3D = () => {
                 edges {
                     node {
                         fluid {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
