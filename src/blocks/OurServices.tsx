@@ -106,8 +106,7 @@ const SubTitle = styled.h3`
     }
     p,
     li {
-        text-align: left;
-        margin: 5px 0;
+        text-align: center;
     }
     ol,
     ul {

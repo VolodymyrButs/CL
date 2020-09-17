@@ -10,6 +10,7 @@ const Marker = ({ lat, lng }: { lat: number; lng: number }) => {
         <Icon
             style={{
                 transform: 'translate(-30%, -100%)',
+                fill: 'red',
             }}
         />
     )

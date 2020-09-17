@@ -19,14 +19,14 @@ const ModalWrapper = styled.div<{ open: boolean }>`
 `
 const ModalWindow = styled.div<{ image: boolean }>`
     position: relative;
-    max-width: 100%;
-    max-height: 100%;
-
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
     z-index: 40;
     ${({ image }) =>
         image
             ? 'padding: 0;background-color: transparent;border: none;width:95%;max-width: 95%;'
-            : `padding: 15px 32px;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
+            : `padding: 15px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
 
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
@@ -80,6 +80,7 @@ export const Modal: React.FC<IModalProps> = ({
     ) => {
         event.stopPropagation()
     }
+
     return (
         <ModalWrapper open={isOpen} onClick={closeHandler}>
             <ModalWindow image={image} onClick={stopPropagation}>

@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-
-import collage from 'assets/images/collage.svg'
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
@@ -11,6 +10,7 @@ import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const VisualizationAdvantagesWrapper = styled.div`
     display: flex;
@@ -30,7 +30,7 @@ const IconListStyled = styled(IconList)`
     }
 `
 
-const Image = styled(collage)`
+const Image = styled(Img)`
     width: 90%;
     height: auto;
     color: transparent;
@@ -69,6 +69,16 @@ export const AdvantagesServices = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
+            allImageSharp {
+                edges {
+                    node {
+                        fluid {
+                            originalName
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
+            }
             allAdvantagesServiceYaml {
                 edges {
                     node {
@@ -92,7 +102,7 @@ export const AdvantagesServices = () => {
         i18n.language
     )
     const { title, items } = advantagesServiceData
-
+    const imageFluid = getImageByImageName(data.allImageSharp, 'collage.png')
     return (
         <VisualizationAdvantagesWrapper>
             <LeftSidebar />
@@ -100,7 +110,7 @@ export const AdvantagesServices = () => {
                 <HeroColumn>
                     <Title>{title}</Title>
 
-                    <Image />
+                    <Image fluid={imageFluid.fluid} />
                 </HeroColumn>
                 <IconListStyled
                     items={items}

@@ -30,19 +30,25 @@ const ContactLinks = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-left: 5px;
 `
-
+const SocialIconsWrapper = styled.div`
+    margin: 0 45px;
+    width: 100%;
+`
 export const Header = () => {
     return (
         <>
             <MobileHeader />
             <HeaderWraper>
                 <Logo />
-                <Container tabletColumns={'1fr 1fr'} desktopColunms={'7fr 5fr'}>
+                <Container tabletColumns={'7fr 5fr'} desktopColunms={'7fr 5fr'}>
                     <MainMenu />
                     <ContactLinks>
                         <PhoneLink phone={contactInformation.primaryPhone} />
-                        <SocialIcons fill={colors.dark} />
+                        <SocialIconsWrapper>
+                            <SocialIcons fill={colors.dark} />
+                        </SocialIconsWrapper>
                     </ContactLinks>
                 </Container>
                 <LanguageSwitcher />

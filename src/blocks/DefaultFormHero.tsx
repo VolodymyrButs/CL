@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import fikus from 'assets/images/fikus.svg'
+import Img from 'gatsby-image'
 import { displayWidth } from 'styles/width'
 import { PhoneLink } from 'components/PhoneLink'
 import { colors } from 'styles/colors'
@@ -11,6 +11,7 @@ import { Title } from 'components/TitleComponent'
 import { contactInformation } from 'components/contactInformation'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { indent } from 'styles/indent'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const HeroColumn = styled.div`
     display: flex;
@@ -82,8 +83,8 @@ const PhoneLinkStyled = styled(PhoneLink)<{ withPhoneMobile?: boolean }>`
     @media (min-width: ${displayWidth.desktop}) {
         flex-direction: row;
         align-items: center;
-        margin-bottom: 40px;
-        padding: 0 ${indent.heroColumnDesktop};
+        margin:0 20px 40px 0;
+        padding: 0 38px;
         div {
             width: 100px;
             height: 100px;
@@ -95,7 +96,7 @@ const PhoneLinkStyled = styled(PhoneLink)<{ withPhoneMobile?: boolean }>`
     }
 `
 
-const Image = styled(fikus)`
+const Image = styled(Img)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
@@ -115,6 +116,16 @@ export const DefaultFormHero = ({
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
+            allImageSharp {
+                edges {
+                    node {
+                        fluid {
+                            originalName
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
+            }
             allFormYaml {
                 edges {
                     node {
@@ -133,7 +144,7 @@ export const DefaultFormHero = ({
             }
         }
     `)
-
+    const imageFluid = getImageByImageName(data.allImageSharp, 'fikus.png')
     const formYaml = getDataByLanguage(data.allFormYaml, i18n.language)
     const { titleMobile, titleDesktop, description, price } = formYaml
     return (
@@ -148,7 +159,7 @@ export const DefaultFormHero = ({
                 phone={contactInformation.primaryPhone}
                 withPhoneMobile={withPhoneMobile}
             />
-            {image && <Image />}
+            {image && <Image fluid={imageFluid.fluid} />}
         </HeroColumn>
     )
 }

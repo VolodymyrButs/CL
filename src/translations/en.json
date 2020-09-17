@@ -2,6 +2,7 @@
     "home": "Home",
     "promo": "Promo 99$",
     "services": "Services",
+    "wiki": "Wiki",
     "works": "Works",
     "callUs": "Call Us Call Us \u2000 Call Us Call Us \u2000 ",
     "address": "Address",
@@ -46,8 +47,14 @@
     "goTo": "go to",
     "cad": "graphics editor",
     "isSendSuccess": "Your message has been successfully sent",
+    "isSendSuccessComercial": "Сообщение успешно отправлено. В течении дня вышлем информацию на . Не забудьте проверить папку спам",
     "isSendError": "Failed to send message, please try again later",
     "pageNotFound": "Unfortunately this page is not available :(",
     "showMore": "Download more",
-    "for": "for"
+    "for": "for",
+    "comercialForm": {
+        "example": "Образец дизайн проекта",
+        "conditions": "Условия работы",
+        "proposal": "Коммерческое предложение на ваш обьект"
+    }
 }

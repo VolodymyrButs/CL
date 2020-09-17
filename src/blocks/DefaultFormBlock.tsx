@@ -60,7 +60,7 @@ export const DefaultFormBlock = ({
     withPhoneMobile?: boolean
 }) => {
     const { t } = useTranslation()
-    const { handleSubmit, formSendStatus } = useFormHandler()
+    const { handleSubmitStatus, formSendStatus } = useFormHandler()
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
@@ -69,7 +69,7 @@ export const DefaultFormBlock = ({
                     <FormTitle>{t('defaultFormTitle')}</FormTitle>
                     <Form
                         buttonText={t('send')}
-                        onFormSubmit={handleSubmit}
+                        onFormSubmit={handleSubmitStatus}
                         formSendStatus={formSendStatus}
                     >
                         {({ register, errors }: IChildrenProps) => (

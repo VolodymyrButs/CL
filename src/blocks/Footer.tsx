@@ -21,9 +21,9 @@ const FooterWrapper = styled.div`
     flex-direction: column;
     background-color: ${backgroundColors.footer};
     color: white;
-    padding: 0 10px;
     z-index: 1;
     overflow: hidden;
+    width: 100%;
     :after {
         position: absolute;
         top: 0;
@@ -41,6 +41,7 @@ const FooterWrapper = styled.div`
 
     @media (min-width: ${displayWidth.tablet}) {
         flex-direction: row;
+        align-items: flex-start;
         padding: 0;
     }
 `
@@ -50,6 +51,7 @@ const FooterContainer = styled(Container)`
     > :last-child {
         justify-content: space-between;
     }
+    box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
         border-right: 1px solid ${colors.white};
@@ -63,10 +65,10 @@ const FooterColumn = styled.div`
     flex-direction: column;
     align-items: center;
     :last-child {
-        margin-bottom: 0;
+        margin: 5px 0;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        padding: 60px 48px;
+        padding: 30px 48px;
         align-items: flex-start;
         border-right: 1px solid ${colors.white};
         :last-child {
@@ -81,13 +83,16 @@ const Header = styled.h3`
     line-height: 22px;
     text-align: center;
     letter-spacing: 0.4px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 `
 const Paragraph = styled(Header)`
     font-weight: normal;
     a {
         text-decoration: none;
         color: ${colors.white};
+        p {
+            padding-bottom: 10px;
+        }
         :hover {
             text-decoration: underline;
         }
@@ -100,6 +105,7 @@ const FooterLogo = styled(Logo)`
     display: none;
     fill: ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {
+        margin-top: 13px;
         display: block;
     }
 `
@@ -110,6 +116,11 @@ const FooterLogo2 = styled(Logo)`
     @media (min-width: ${displayWidth.tablet}) {
         fill: transparent;
     }
+`
+const SocialIconsWrapper = styled.div`
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
 `
 export const Footer = () => {
     const { t } = useTranslation()
@@ -132,7 +143,7 @@ export const Footer = () => {
         }
     `)
     const addressData = getDataByLanguage(data.allAddressYaml, i18n.language)
-    const { companyName, street, city } = addressData
+    const { street, city } = addressData
 
     return (
         <FooterWrapper>
@@ -140,14 +151,14 @@ export const Footer = () => {
             <FooterContainer columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
                 <FooterColumn>
                     <Header>{t('address')}</Header>
-                    <Paragraph>{companyName}</Paragraph>
+                    {/* <Paragraph>{companyName}</Paragraph> */}
                     <Paragraph>
                         <a
                             href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
                             target="blank"
                         >
-                            {street} <br />
-                            {city}
+                            <p> {street}</p>
+                            <p> {city}</p>
                         </a>
                     </Paragraph>
                 </FooterColumn>
@@ -172,7 +183,9 @@ export const Footer = () => {
 
                 <FooterColumn>
                     <Header>{t('contactUs')}</Header>
-                    <SocialIcons fill={colors.white} showAllIcons />
+                    <SocialIconsWrapper>
+                        <SocialIcons fill={colors.white} showAllIcons />
+                    </SocialIconsWrapper>
                 </FooterColumn>
             </FooterContainer>
             <FooterLogo2 />

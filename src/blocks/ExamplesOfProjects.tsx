@@ -143,7 +143,7 @@ export const ExamplesOfProjects = () => {
                         id
                         childImageSharp {
                             fluid(maxWidth: 2000) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp
                             }
                         }
                     }
@@ -158,7 +158,7 @@ export const ExamplesOfProjects = () => {
                         id
                         childImageSharp {
                             fluid {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp
                             }
                         }
                     }

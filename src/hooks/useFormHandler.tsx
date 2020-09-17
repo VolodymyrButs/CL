@@ -10,13 +10,13 @@ export const useFormHandler = () => {
     const [formSendStatus, setFormSendStatus] = useState<FormSendStatus>(
         notSend
     )
-    const handleSubmit = (success: boolean) =>
+    const handleSubmitStatus = (success: boolean) =>
         success === true
             ? setFormSendStatus(sendSuccess)
             : setFormSendStatus(sendError)
 
     return {
-        handleSubmit,
+        handleSubmitStatus,
         formSendStatus,
     }
 }

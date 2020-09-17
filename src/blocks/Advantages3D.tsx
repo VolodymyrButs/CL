@@ -9,7 +9,6 @@ import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
 import frame from 'assets/images/frame.svg'
-import fikus from 'assets/images/fikus2.svg'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
@@ -44,7 +43,7 @@ const DesktopImageTop = styled(frame)`
         display: block;
     }
 `
-const ImageMobile = styled(fikus)`
+const ImageMobile = styled(Img)`
     width: 50%;
     height: auto;
     align-self: flex-end;
@@ -119,7 +118,7 @@ export const Advantages3D = () => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
@@ -135,13 +134,14 @@ export const Advantages3D = () => {
         data.allImageSharp,
         'comercialProposalImage.png'
     )
+    const imageFluid = getImageByImageName(data.allImageSharp, 'fikus.png')
     return (
         <Advantages3DWrapper>
             <LeftSidebar />
             <ContainerS columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <Title>{title}</Title>
-                    <ImageMobile />
+                    <ImageMobile fluid={imageFluid.fluid} />
                     <DesktopImageTop />
                     <DesktopImage
                         fluid={proposalImage.fluid}

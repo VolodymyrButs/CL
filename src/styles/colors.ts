@@ -1,7 +1,7 @@
 export const backgroundColors = {
-    index: '#FFEDBF',
+    index: '#FFEDBF', // #e5f390
     promotion: '#F7DFD7',
-    contact: '#FFEDBF',
+    contact: '#FFEDBF', // #FFEDBF
     project: '#D3E4EF',
     projectDark: '#C3D6D4',
     footer: '#231F20',

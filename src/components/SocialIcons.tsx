@@ -6,16 +6,22 @@ import TelegramIcon from 'assets/icons/Telegram.svg'
 import WhatsappIcon from 'assets/icons/Whatsapp.svg'
 import InstagramIcon from 'assets/icons/Instagram.svg'
 import FacebookIcon from 'assets/icons/Facebook.svg'
+import { displayWidth } from 'styles/width'
 
 const SocialIconsWrapper = styled.div<{ fill: string }>`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 100%;
+    box-sizing: border-box;
     svg {
         fill: ${props => props.fill};
+        margin: 0 5px;
         :hover {
             fill: gray;
         }
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        justify-content: space-between;
     }
 `
 

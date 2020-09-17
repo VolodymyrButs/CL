@@ -136,8 +136,8 @@ const Image = styled(Img)`
     }
 `
 const TitleStyled = styled(Title)`
-    @media (min-width: ${displayWidth.desktop}) {
-        margin-right: 115px;
+    @media (min-width: ${displayWidth.tablet}) {
+        max-width: 250px;
     }
 `
 interface IProjectStructureProps {
@@ -152,7 +152,7 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

@@ -25,11 +25,18 @@ interface ILabelProps {
     hasValue?: boolean
     children?: React.ReactNode
 }
-export const Label = ({ placeholder, children, hasValue }: ILabelProps) => {
+export const Label = ({
+    placeholder,
+    children,
+    hasValue,
+    ...props
+}: ILabelProps) => {
     return (
         <LabelContainer>
             {children}
-            <LabelText $hasValue={hasValue}>{placeholder}</LabelText>
+            <LabelText {...props} $hasValue={hasValue}>
+                {placeholder}
+            </LabelText>
         </LabelContainer>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 // import ReactPlayer from 'react-player'
 
 // import Frame from 'assets/icons/frame.svg'
@@ -13,7 +14,7 @@ import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Button } from 'components/Button'
-import kaktus from 'assets/images/tableKaktus.svg'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const CadWrapper = styled.div`
     display: flex;
@@ -142,7 +143,7 @@ const InstructionText = styled.div`
         font-weight: bold;
     }
 `
-const Image = styled(kaktus)`
+const Image = styled(Img)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
@@ -158,6 +159,16 @@ export const Cad = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
+            allImageSharp {
+                edges {
+                    node {
+                        fluid {
+                            originalName
+                            ...GatsbyImageSharpFluid_withWebp
+                        }
+                    }
+                }
+            }
             allCadYaml {
                 edges {
                     node {
@@ -178,7 +189,7 @@ export const Cad = () => {
     `)
     const cadYaml = getDataByLanguage(data.allCadYaml, i18n.language)
     const { title, subTitle, /* video, */ instruction, buttonText } = cadYaml
-
+    const imageFluid = getImageByImageName(data.allImageSharp, 'cactus.png')
     return (
         <CadWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
@@ -187,7 +198,7 @@ export const Cad = () => {
                         <TitleStyled> {title}</TitleStyled>
                         <SubTitle>{subTitle}</SubTitle>
                     </div>
-                    <Image />
+                    <Image fluid={imageFluid.fluid} />
                 </HeroColumn>
                 <InstructionColumn>
                     {/* <Video>

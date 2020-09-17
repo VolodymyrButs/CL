@@ -55,7 +55,7 @@ interface SlickButtonProps {
     currentSlide?: any
     slideCount?: any
     children?: any
-    modal?: boolean | undefined
+    modal?: boolean
 }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */

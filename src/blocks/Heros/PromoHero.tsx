@@ -25,7 +25,7 @@ const PromoHeroWraper = styled.div`
     justify-content: center;
     width: 100%;
     background-color: ${backgroundColors.promotion};
-    height: calc(100vh - ${headerHeight.mobile});
+    height: calc(100vh - ${headerHeight.mobile} - 50px);
     min-height: 503px;
     border-bottom: 1px solid ${colors.dark};
     :before {
@@ -39,7 +39,7 @@ const PromoHeroWraper = styled.div`
         border-bottom: nonne;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        height: 600px;
+        height: 630px;
     }
 `
 
@@ -93,7 +93,7 @@ const LampIconStyled = styled(LampIcon)`
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 265px;
-        bottom: 10px;
+        bottom: 30px;
     }
 `
 const TitleWrapper = styled.div`
@@ -154,10 +154,9 @@ const Price = styled.span`
     }
 `
 const MobileImage = styled(Img)`
-    width: 70%;
+    width: 90%;
     height: auto;
     align-self: flex-end;
-    margin-top: 30px;
     @media (orientation: landscape) {
         max-width: 50vw;
     }
@@ -177,7 +176,7 @@ const DesktopImageRight = styled(sofaDesktopRight)`
         bottom: 30px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        bottom: 40px;
+        bottom: 55px;
     }
 `
 const DesktopImageLeft = styled(Img)`
@@ -227,7 +226,7 @@ export const PromoHero = () => {
                     node {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
@@ -239,6 +238,7 @@ export const PromoHero = () => {
                         price
                         buttonText
                         image
+                        imageMobile
                         parent {
                             ... on File {
                                 name
@@ -258,7 +258,10 @@ export const PromoHero = () => {
         data.allImageSharp,
         promoHeroData.image
     )
-
+    const imageSofaMobile = getImageByImageName(
+        data.allImageSharp,
+        promoHeroData.imageMobile
+    )
     return (
         <PromoHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
@@ -279,7 +282,7 @@ export const PromoHero = () => {
                         <JumpingArrow />
                     </JumpingArrowWrapper>
 
-                    <MobileImage fluid={imageSofa.fluid} />
+                    <MobileImage fluid={imageSofaMobile.fluid} />
                 </PromoHeroColumn>
                 <PromoHeroColumn>
                     <DesktopImageLeft fluid={imageSofa.fluid} />

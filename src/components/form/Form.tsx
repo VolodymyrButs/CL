@@ -1,5 +1,4 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react'
 import fetch from 'node-fetch'
 import { TFunction } from 'i18next'
 
@@ -12,6 +11,9 @@ import {
     isFormError,
     FormSendStatus,
 } from 'hooks/useFormHandler'
+import { useForm } from 'react-hook-form'
+import { Modal } from 'components/Modal'
+
 const FormWrapper = styled.div`
     position: relative;
     @media (min-width: ${displayWidth.tablet}) {
@@ -43,14 +45,41 @@ const ButtonWrapper = styled.div`
 const FormStyled = styled.form`
     position: relative;
 `
-const SendStatus = styled.p`
+export const SendStatus = styled.div`
+    display: flex;
+    flex-direction: column;
     max-width: 100%;
+    width: 600px;
+    height: 100%;
     text-align: center;
-    position: absolute;
-    left: 0;
-    bottom: 15px;
+    align-items: center;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
+    }
+    p {
+        margin: 10px 0;
+        font-size: 20px;
+        line-height: 30px;
+        white-space: normal;
+        text-align: center;
+        @media (min-width: ${displayWidth.tablet}) {
+            font-size: 30px;
+            line-height: 40px;
+            margin: 30px 0;
+        }
+    }
+    h2 {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 25px;
+        line-height: 40px;
+        font-weight: 600;
+        white-space: normal;
+        @media (min-width: ${displayWidth.tablet}) {
+            font-size: 30px;
+            line-height: 40px;
+            margin: 30px 0;
+        }
     }
 `
 interface IFormProps {
@@ -60,6 +89,7 @@ interface IFormProps {
     buttonText?: TFunction | string
     onFormSubmit?: (success: boolean) => void
     formSendStatus?: FormSendStatus
+    closeHandler?: (arg: boolean) => void
 }
 export interface IChildrenProps {
     register: ReturnType<typeof useForm>['register']
@@ -68,9 +98,10 @@ export interface IChildrenProps {
 export const Form: React.FC<IFormProps> = ({
     children,
     onFormSubmit = () => {},
-    formName = 'Clearline Form',
+    formName = 'Regular Form',
     buttonText = 'Send',
     formSendStatus = 'NOT_SEND',
+    closeHandler,
 }) => {
     const { register, errors, handleSubmit } = useForm({
         mode: 'onBlur',
@@ -96,6 +127,8 @@ export const Form: React.FC<IFormProps> = ({
     }
     const childrenProps: IChildrenProps = { register, errors }
     const { t } = useTranslation()
+    const [isOpenFormModal, setIsOpenFormModal] = useState(false)
+
     return (
         <FormWrapper>
             <FormStyled onSubmit={handleSubmit(onSubmit)}>
@@ -103,6 +136,7 @@ export const Form: React.FC<IFormProps> = ({
                 <ButtonWrapper>
                     <ButtonStyled
                         disabled={isFormSuccess(formSendStatus)}
+                        onClick={() => setIsOpenFormModal(true)}
                         type="submit"
                     >
                         {buttonText}
@@ -110,10 +144,46 @@ export const Form: React.FC<IFormProps> = ({
                 </ButtonWrapper>
             </FormStyled>
             {isFormSuccess(formSendStatus) && (
-                <SendStatus>{t('isSendSuccess')}</SendStatus>
+                <Modal
+                    isOpen={isOpenFormModal}
+                    closeHandler={() => {
+                        setIsOpenFormModal(false)
+                        closeHandler && closeHandler(false)
+                    }}
+                >
+                    <SendStatus>
+                        <h2>{t('isSendSuccess')}</h2>
+                        <ButtonStyled
+                            onClick={() => {
+                                setIsOpenFormModal(false)
+                                closeHandler && closeHandler(false)
+                            }}
+                        >
+                            {t('goBack')}
+                        </ButtonStyled>
+                    </SendStatus>
+                </Modal>
             )}
             {isFormError(formSendStatus) && (
-                <SendStatus>{t('isSendError')}</SendStatus>
+                <Modal
+                    isOpen={isOpenFormModal}
+                    closeHandler={() => {
+                        setIsOpenFormModal(false)
+                        closeHandler && closeHandler(false)
+                    }}
+                >
+                    <SendStatus>
+                        <p>{t('isSendError')}</p>
+                        <ButtonStyled
+                            onClick={() => {
+                                setIsOpenFormModal(false)
+                                closeHandler && closeHandler(false)
+                            }}
+                        >
+                            {t('goBack')}
+                        </ButtonStyled>
+                    </SendStatus>
+                </Modal>
             )}
         </FormWrapper>
     )
