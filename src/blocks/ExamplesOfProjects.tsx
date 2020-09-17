@@ -88,9 +88,7 @@ const RightSidebar = styled(LeftSidebar)`
 `
 const ImgStyled = styled(Img)`
     width: 100%;
-    @media (min-width: ${displayWidth.tablet}) {
-        height: 100%;
-    }
+    height: 100%;
 `
 
 const Wrapper = styled.div`

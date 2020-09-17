@@ -11,7 +11,7 @@ const CarouselWrapper = styled.div`
     width: 100vw;
     box-sizing: border-box;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0;
     height: auto;
     padding: 16px 32px 26px;
     @media (min-width: ${displayWidth.tablet}) {

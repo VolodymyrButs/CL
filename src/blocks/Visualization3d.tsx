@@ -60,6 +60,7 @@ const HeroColumn = styled.div`
 
 const ImgStyled = styled(Img)`
     width: calc(100vw - 64px);
+    height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         width: calc((100vw - 160px) * 0.6666);
         height: calc(((100vw - 160px) * 0.6666) / 1.22);
@@ -99,7 +100,6 @@ const MobileWrapper = styled.div`
     display: flex;
     align-items: center;
     background-color: ${colors.white};
-    position: relative;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }
