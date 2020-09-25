@@ -6,14 +6,13 @@ import { Icon } from 'components/Icon'
 import { displayWidth } from 'styles/width'
 
 const IconListWrapper = styled.div<{ background: string }>`
-    background-color: ${props => props.background};
+    background-color: ${(props) => props.background};
     display: flex;
     flex-wrap: wrap;
     padding: 40px 16px;
     box-sizing: border-box;
     z-index: 1;
     @media (min-width: ${displayWidth.tablet}) {
-        outline: 1px solid ${colors.dark};
         padding: 46px 10px 46px 30px;
     }
     @media (min-width: ${displayWidth.desktop}) {
@@ -56,7 +55,7 @@ interface IIconStyledProps {
 }
 const IconStyled = styled(Icon)<IIconStyledProps>`
     .iconCircle {
-        fill: ${props => props.fill};
+        fill: ${(props) => props.fill};
     }
 `
 interface IItem {

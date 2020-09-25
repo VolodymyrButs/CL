@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Icon } from 'components/Icon'
 import { Container } from 'components/Container'
@@ -35,6 +35,9 @@ const TitleStyled = styled(Title)`
     margin: 40px 0 32px;
     font-size: 48px;
     line-height: 55px;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin-left: ${indent.heroColumnTablet};
+    }
     @media (min-width: ${displayWidth.desktop}) {
         margin: 80px 10px 48px 49px;
     }
@@ -70,7 +73,7 @@ const ServicesListStyled = styled.div`
         margin: 56px 40px;
     }
 `
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         width: 65%;

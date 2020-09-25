@@ -160,10 +160,13 @@ const HeroColumn = styled.div`
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
-        padding: 0 10px 56px ${indent.heroColumnDesktop};
+        padding: 0 10px 56px ${indent.heroColumnTablet};
         align-items: flex-start;
         border-bottom: none;
         border-right: 1px solid ${colors.dark};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: 0 10px 56px ${indent.heroColumnDesktop};
     }
 `
 
@@ -240,7 +243,7 @@ export const Reviews = () => {
                     {...sliderSettings}
                     background={backgroundColors.contact}
                 >
-                    {RandomList.map(i => {
+                    {RandomList.map((i) => {
                         return (
                             <SlideWrapper key={i}>
                                 <Review>

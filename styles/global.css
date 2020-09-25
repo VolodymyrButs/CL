@@ -106,9 +106,9 @@ nav,
 section {
     display: block;
 }
-body {
+/* body {
     line-height: 0;
-}
+} */
 ol,
 ul {
     list-style: none;

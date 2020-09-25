@@ -6,7 +6,7 @@ import CloseIcon from 'assets/icons/Exit.svg'
 import { displayWidth } from 'styles/width'
 
 const ModalWrapper = styled.div<{ open: boolean }>`
-    display: ${props => (props.open ? 'flex' : 'none')};
+    display: ${(props) => (props.open ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     position: fixed;

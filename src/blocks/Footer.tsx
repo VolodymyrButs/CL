@@ -53,6 +53,7 @@ const FooterContainer = styled(Container)`
     }
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
+        padding: 0;
         border-bottom: none;
         border-right: 1px solid ${colors.white};
         border-left: 1px solid ${colors.white};
@@ -68,12 +69,15 @@ const FooterColumn = styled.div`
         margin: 5px 0;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        padding: 30px 48px;
+        padding: ${indent.heroColumnTablet};
         align-items: flex-start;
         border-right: 1px solid ${colors.white};
         :last-child {
             border-right: none;
         }
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: ${indent.heroColumnDesktop};
     }
 `
 const Header = styled.h3`

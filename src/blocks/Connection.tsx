@@ -11,7 +11,7 @@ const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${props =>
+    background-color: ${(props) =>
         props.backgroundColors
             ? props.backgroundColors
             : backgroundColors.formPromo};

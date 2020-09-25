@@ -22,7 +22,7 @@ const LanguageList = styled.div<{ open: boolean }>`
     height: ${headerHeight.mobile};
 
     @media (min-width: ${displayWidth.tablet}) {
-        ${props =>
+        ${(props) =>
             props.open
                 ? css`
                       color: ${colors.white};
@@ -150,8 +150,8 @@ export const LanguageSwitcher = () => {
             <Wrapper>
                 {isOpen &&
                     languagesList
-                        .filter(lang => lang !== i18n.language)
-                        .map(lang => {
+                        .filter((lang) => lang !== i18n.language)
+                        .map((lang) => {
                             const langLabel = languages[lang].label
                             const path = getPagePath(lang)
 

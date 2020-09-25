@@ -117,10 +117,10 @@ export const Form: React.FC<IFormProps> = ({
                 'Content-type': 'application/json',
             },
         })
-            .then(response => {
+            .then((response) => {
                 return response.json()
             })
-            .then(success => {
+            .then((success) => {
                 onFormSubmit(success.success)
             })
             .catch(() => onFormSubmit(false))

@@ -40,7 +40,7 @@ const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
         top: -10px;
         right: -10px;
         left: -10px;
-        animation: ${props =>
+        animation: ${(props) =>
             props.open ? 'none' : 'pulse 2s linear infinite;'};
         opacity: 0;
         background-color: rgba(255, 255, 255, 0.07);

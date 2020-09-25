@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 // import ReactPlayer from 'react-player'
 
 // import Frame from 'assets/icons/frame.svg'
@@ -15,6 +15,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Button } from 'components/Button'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const CadWrapper = styled.div`
     display: flex;
@@ -143,7 +144,7 @@ const InstructionText = styled.div`
         font-weight: bold;
     }
 `
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
@@ -228,9 +229,9 @@ export const Cad = () => {
                             __html: instruction,
                         }}
                     />
-                    <a href="https://clearline.com.ua/cad/" target="blank">
+                    <LocalizedLink to={'/cad'}>
                         <Button>{buttonText}</Button>
-                    </a>
+                    </LocalizedLink>
                 </InstructionColumn>
             </Container>
         </CadWrapper>

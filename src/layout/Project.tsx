@@ -131,13 +131,13 @@ const CarouselWrapperMini = styled(CarouselWrapper)`
     }
 `
 
-const ImageBig = styled(Img)`
+const ImageBig = styled(Img)<{ fluid: FluidObject }>`
     width: calc(100vw - 32px);
     height: 150vw;
     ${height}
     max-width:100%;
 `
-const ImageSmall = styled(Img)`
+const ImageSmall = styled(Img)<{ fluid: FluidObject }>`
     height: 35vw;
     overflow: hidden;
     @media (min-width: ${displayWidth.tablet}) {
@@ -319,9 +319,11 @@ const ProjectLayout = ({
                                 {...sliderSettings}
                                 asNavFor={nav2}
                                 ref={slider1}
-                                afterChange={current => setImageIndex(current)}
+                                afterChange={(current) =>
+                                    setImageIndex(current)
+                                }
                             >
-                                {projectImages.map(photo => {
+                                {projectImages.map((photo) => {
                                     return (
                                         <PhotoWrapper
                                             key={
@@ -347,7 +349,7 @@ const ProjectLayout = ({
                                 asNavFor={nav1}
                                 ref={slider2}
                             >
-                                {projectImages.map(photo => (
+                                {projectImages.map((photo) => (
                                     <div key={photo.childImageSharp.fluid.src}>
                                         <ImageSmall
                                             fluid={photo.childImageSharp.fluid}
@@ -373,11 +375,7 @@ const ProjectLayout = ({
             <Connection text={t('connection.needDesignProject')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
-                    secondModalTitle={t('connection.secondModalTitle')}
                     modalDescription={t('connection.modalDescription')}
-                    secondModalDescription={t(
-                        'connection.secondModalDescription'
-                    )}
                     buttonLabel={t('connection.buttonLabel')}
                     placeholder={t('connection.placeholder')}
                     submitLabel={t('connection.submitLabel')}

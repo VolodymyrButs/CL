@@ -13,6 +13,10 @@ module.exports = {
             tsx: true,
         },
     },
+    env: {
+        browser: true,
+        node: true,
+    },
     globals: {
         require: 'false',
         console: 'false',
@@ -22,6 +26,7 @@ module.exports = {
         window: 'false',
         Promise: 'false',
         process: 'false',
+        JSX: 'false',
     },
     extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
     plugins: [

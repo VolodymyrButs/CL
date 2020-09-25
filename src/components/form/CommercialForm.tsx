@@ -11,7 +11,7 @@ import {
 } from 'hooks/useFormHandler'
 import InputMask from 'react-input-mask'
 import { useForm, Controller } from 'react-hook-form'
-import Input from '@material-ui/core/Input'
+import Input, { InputProps } from '@material-ui/core/Input'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -94,7 +94,7 @@ export const ComercialForm = () => {
     const formName = 'Commercial Proposall Form'
     const { errors, control, handleSubmit } = useForm({
         mode: 'onBlur',
-        submitFocusError: false,
+        shouldFocusError: false,
     })
 
     const { handleSubmitStatus, formSendStatus } = useFormHandler()
@@ -109,10 +109,10 @@ export const ComercialForm = () => {
                 'Content-type': 'application/json',
             },
         })
-            .then(response => {
+            .then((response) => {
                 return response.json()
             })
-            .then(success => {
+            .then((success) => {
                 handleSubmitStatus(success.success)
             })
             .catch(() => handleSubmitStatus(false))
@@ -227,7 +227,7 @@ export const ComercialForm = () => {
                                 >
                                     {(
                                         inputMaskProps: JSX.IntrinsicAttributes &
-                                            import('@material-ui/core').InputProps
+                                            InputProps
                                     ) => <Input {...inputMaskProps} />}
                                 </InputMask>
                             }

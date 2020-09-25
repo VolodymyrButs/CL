@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { headerBg } from 'styles/headerBg'
 import { colors, backgroundColors } from 'styles/colors'
@@ -118,9 +118,8 @@ const TitleStyled = styled(Title)`
         line-height: 45px;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        top: 0;
-        left: 0;
         box-sizing: border-box;
+        padding-left: 60px;
         font-size: 56px;
         line-height: 56px;
         letter-spacing: 0.8px;
@@ -129,6 +128,7 @@ const TitleStyled = styled(Title)`
     @media (min-width: ${displayWidth.desktop}) {
         font-size: 64px;
         line-height: 64px;
+        padding-left: 0px;
     }
 `
 const Price = styled.span`
@@ -146,14 +146,15 @@ const Price = styled.span`
         left: 350px;
         bottom: 30px;
         font-size: 133px;
-        line-height: 115px;
+        line-height: 90px;
         letter-spacing: 1.52778px;
     }
-    @media (min-width: ${displayWidth.tablet}) {
+    @media (min-width: ${displayWidth.desktop}) {
         bottom: 46px;
+        line-height: 115px;
     }
 `
-const MobileImage = styled(Img)`
+const MobileImage = styled(Img)<{ fluid: FluidObject }>`
     width: 90%;
     height: auto;
     align-self: flex-end;
@@ -179,7 +180,7 @@ const DesktopImageRight = styled(sofaDesktopRight)`
         bottom: 55px;
     }
 `
-const DesktopImageLeft = styled(Img)`
+const DesktopImageLeft = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     width: 78%;
     @media (min-width: ${displayWidth.tablet}) {

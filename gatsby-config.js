@@ -17,7 +17,7 @@ module.exports = {
         author: 'Buts Development',
         siteUrl: process.env.SITE_ADDRESS,
     },
-    developMiddleware: app => {
+    developMiddleware: (app) => {
         app.use(
             '/send-form',
             createProxyMiddleware({
