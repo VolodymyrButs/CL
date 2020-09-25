@@ -32,7 +32,6 @@ const LeftSidebar = styled.div`
     }
 `
 const RightSidebar = styled(LeftSidebar)`
-    display: none;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${backgroundColors.project};
     }

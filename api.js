@@ -25,7 +25,7 @@ const mailer = nodemailer.createTransport({
     },
 })
 
-mailer.verify(function(error) {
+mailer.verify(function (error) {
     if (error) {
         // eslint-disable-next-line no-console
         console.error('Error while trying to access SMTP')
@@ -56,7 +56,7 @@ const formValueByKey = {
 }
 app.use(bodyParser.json())
 
-app.post('/send-form', function(req, res) {
+app.post('/send-form', function (req, res) {
     const { formName, ...bodyToHtml } = req.body
     mailer.sendMail(
         {
@@ -65,7 +65,7 @@ app.post('/send-form', function(req, res) {
             html: `<table cellspacing="2" border="1" cellpadding="5"> ${Object.keys(
                 bodyToHtml
             )
-                .map(key => {
+                .map((key) => {
                     return `
                             <tr>
                                 <th align="left">${
@@ -83,7 +83,7 @@ app.post('/send-form', function(req, res) {
                 .join('')}</table>`,
         },
         // eslint-disable-next-line consistent-return
-        function(err) {
+        function (err) {
             if (err) {
                 return res.json({ success: false })
             }

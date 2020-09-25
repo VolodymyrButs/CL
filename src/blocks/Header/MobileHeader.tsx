@@ -25,7 +25,7 @@ const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     max-height: 65px;
     border-bottom: 1px solid
         ${({ isMenuOpen }) => (isMenuOpen ? colors.white : colors.dark)};
-    z-index: 1;
+    z-index: 2;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }

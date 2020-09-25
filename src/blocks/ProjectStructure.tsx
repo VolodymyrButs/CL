@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -13,6 +13,7 @@ import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { indent } from 'styles/indent'
 
 const ProjectStructureWrapper = styled.div`
     display: flex;
@@ -39,6 +40,7 @@ const HeroColumn = styled.div`
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
+        border-right: 1px solid #231f20;
     }
 `
 const LeftSidebar = styled.div`
@@ -53,7 +55,6 @@ const LeftSidebar = styled.div`
     }
 `
 const RightSidebar = styled(LeftSidebar)`
-    display: none;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
     }
@@ -123,7 +124,7 @@ const ImageSvg = styled(tableFlower)`
         bottom: -40px;
     }
 `
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     width: 70%;
     height: auto;
     align-self: flex-end;
@@ -137,7 +138,11 @@ const Image = styled(Img)`
 `
 const TitleStyled = styled(Title)`
     @media (min-width: ${displayWidth.tablet}) {
+        margin-left: ${indent.heroColumnTablet};
         max-width: 250px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        margin-left: ${indent.heroColumnDesktop};
     }
 `
 interface IProjectStructureProps {

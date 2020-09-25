@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import { useTranslation } from 'react-i18next'
 
 import { colors } from 'styles/colors'
@@ -11,7 +11,7 @@ import { LocalizedLink } from 'i18n/LocalizedLink'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { graphql, useStaticQuery } from 'gatsby'
 
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     width: 100%;
     height: 100%;
 `

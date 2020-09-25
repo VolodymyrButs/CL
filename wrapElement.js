@@ -23,11 +23,19 @@ const wrapPageElement = ({ element, props }) => {
         }
     }
 
-    return (
-        <I18nextProvider i18n={i18n} {...props}>
-            <Layout>{element}</Layout>
-        </I18nextProvider>
-    )
+    if (element.props.path.includes('cad')) {
+        return (
+            <I18nextProvider i18n={i18n} {...props}>
+                {element}
+            </I18nextProvider>
+        )
+    } else {
+        return (
+            <I18nextProvider i18n={i18n} {...props}>
+                <Layout>{element}</Layout>
+            </I18nextProvider>
+        )
+    }
 }
 
 export default wrapPageElement

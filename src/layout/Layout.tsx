@@ -111,7 +111,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
             <Helmet>
                 <html lang={i18n.language} />
                 <title>ClearLine</title>
-                {languagesList.map(lang => {
+                {languagesList.map((lang) => {
                     return (
                         <link
                             key={lang}

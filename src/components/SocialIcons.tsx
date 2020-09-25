@@ -14,7 +14,7 @@ const SocialIconsWrapper = styled.div<{ fill: string }>`
     width: 100%;
     box-sizing: border-box;
     svg {
-        fill: ${props => props.fill};
+        fill: ${(props) => props.fill};
         margin: 0 5px;
         :hover {
             fill: gray;

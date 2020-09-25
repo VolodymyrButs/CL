@@ -23,10 +23,9 @@ const ContactsWrapper = styled.div`
         ${headerBg}
     }
     ${mobileAfterBorder}
-     @media (min-width: ${displayWidth.tablet}) {
-         height: calc(100vh - ${headerHeight.desktop});
+    @media (min-width: ${displayWidth.tablet}) {
+        height: calc(100vh - ${headerHeight.desktop});
     }
-   
 `
 
 const LeftSidebar = styled.div`
@@ -40,7 +39,6 @@ const LeftSidebar = styled.div`
     }
 `
 const RightSidebar = styled(LeftSidebar)`
-    display: none;
     margin-left: 1px;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};

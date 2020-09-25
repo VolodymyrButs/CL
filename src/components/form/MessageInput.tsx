@@ -9,7 +9,7 @@ import { useHasValue } from 'hooks/useHasValue'
 
 const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
     ${inputStyle}
-    ${props =>
+    ${(props) =>
         props.isValid &&
         css`
             border-bottom-color: red;
@@ -17,7 +17,7 @@ const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
     width: 100%;
     resize: vertical;
     min-height: 33px;
-    max-height: ${props => (props.maxheight ? props.maxheight : '150px')};
+    max-height: ${(props) => (props.maxheight ? props.maxheight : '150px')};
     overflow-y: auto;
 `
 

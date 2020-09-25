@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -34,8 +34,11 @@ const SubTitle = styled.h3`
     color: ${colors.dark};
     margin: 20px ${indent.heroColumnDesktop};
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 0 ${indent.heroColumnDesktop} 48px;
+        margin: 0 ${indent.heroColumnTablet} 48px;
         text-align: left;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        margin: 0 0 48px ${indent.heroColumnDesktop};
     }
 `
 
@@ -52,7 +55,7 @@ const HeroColumn = styled.div`
         border-right: 1px solid ${colors.dark};
     }
 `
-const ImgStyled = styled(Img)`
+const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     width: 100%;
     height: 100%;
     box-sizing: border-box;

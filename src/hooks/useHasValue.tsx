@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 export const useHasValue = () => {
     const [hasValue, hasValueHandleChange] = useState(false)
-    const inputHandler = (e: { target: { value: string } }) => {
-        if (e.target.value === '') {
+    const inputHandler = (event: { target: { value: string } }) => {
+        if (event.target.value === '') {
             hasValueHandleChange(false)
             return hasValue
         }

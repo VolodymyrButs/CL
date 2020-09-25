@@ -61,12 +61,15 @@ const TitleStyled = styled(Title)`
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 ${indent.heroColumnDesktop} 24px;
+    padding: 0 ${indent.heroColumnTablet} 24px;
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
         border-right: 1px solid ${colors.dark};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: 0 ${indent.heroColumnDesktop} 24px;
     }
 `
 const LeftSidebar = styled.div`
@@ -81,12 +84,11 @@ const LeftSidebar = styled.div`
     }
 `
 const RightSidebar = styled(LeftSidebar)`
-    display: none;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
     }
 `
-const ImgStyled = styled(Img)`
+const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     width: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         height: 100%;
