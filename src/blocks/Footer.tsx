@@ -154,7 +154,11 @@ export const Footer = () => {
                     {/* <Paragraph>{companyName}</Paragraph> */}
                     <Paragraph>
                         <a
-                            href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
+                            href={
+                                `https://www.google.com.ua/maps/place/ClearLine/@50.4405714,30.5056453,17z/data=!4m8!1m2!2m1!1z0JTQuNC30LDQudC90LXRgCDQuNC90YLQtdGA0YzQtdGA0LA!3m4!1s0x40d4cefa03940353:0xf974319028460098!8m2!3d50.440568!4d30.507834?hl=${ 
+                                i18n.language 
+                                }&authuser=0`
+                            }
                             target="blank"
                         >
                             <p> {street}</p>
