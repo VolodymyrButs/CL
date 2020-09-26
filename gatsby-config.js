@@ -27,6 +27,15 @@ module.exports = {
         )
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingIds: ['UA-154862848-3', 'AW-602637259'],
+                pluginConfig: {
+                    head: true,
+                },
+            },
+        },
         `gatsby-alias-imports`,
         {
             resolve: 'gatsby-plugin-react-svg',

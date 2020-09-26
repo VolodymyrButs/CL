@@ -14,6 +14,7 @@ import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
+import { sendEvent } from 'tracking'
 
 const Visualization3dWrapper = styled.div`
     display: flex;
@@ -137,7 +138,16 @@ export const Project3D = () => {
                 <HeroColumn>
                     <Title>{title}</Title>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled to={'/promo/#project3dAdvantages'}>
+                    <LocalizedLinkStyled
+                        to={'/promo/#project3dAdvantages'}
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButton',
+                                placement: 'Project3D',
+                                target: 'Advantages3D',
+                            })
+                        }}
+                    >
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>
                     <JumpingArrow />

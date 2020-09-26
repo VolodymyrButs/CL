@@ -19,6 +19,7 @@ import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
 import { Title } from 'components/TitleComponent'
 import { useTranslation } from 'react-i18next'
+import { sendEvent } from 'tracking'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -274,7 +275,16 @@ export const PromoHero = () => {
                             {promoHeroData.price}
                         </Price>
                     </TitleWrapper>
-                    <LocalizedLinkStyled to={'/promo/#projectStructure'}>
+                    <LocalizedLinkStyled
+                        to={'/promo/#projectStructure'}
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButton',
+                                placement: 'PromoHero',
+                                target: 'ProjectStructure',
+                            })
+                        }}
+                    >
                         <ButtonStyled>
                             <p>{promoHeroData.buttonText}</p>
                         </ButtonStyled>

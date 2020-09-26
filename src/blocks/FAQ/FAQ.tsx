@@ -15,6 +15,7 @@ import Chair from 'assets/images/chair.svg'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { sendEvent } from 'tracking'
 
 const FaqWrapper = styled.div`
     display: flex;
@@ -187,7 +188,12 @@ export const Faq = () => {
                     <Title>{title}</Title>
                     <SubTitle>{subTitle}</SubTitle>
                     <ButtonFaq
-                        onClick={() => setShowFaqListMobile(!showFaqListMobile)}
+                        onClick={() => {
+                            setShowFaqListMobile(!showFaqListMobile)
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButtonFAQ',
+                            })
+                        }}
                     >
                         {!showFaqListMobile ? buttonTextOpen : buttonTextClose}
                     </ButtonFaq>

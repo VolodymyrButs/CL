@@ -56,7 +56,7 @@ ${element.points[6][1] + 250}
 0
 TEXT
 1
-${`WB:${  element.points[9][0]}`}
+${`WB:${element.points[9][0]}`}
 8
 ${element.id}
 10
@@ -68,7 +68,7 @@ ${element.points[8][1] - 35}
 0
 TEXT
 1
-${`T:${  element.points[9][1]}`}
+${`T:${element.points[9][1]}`}
 8
 ${element.id}
 10
@@ -80,7 +80,7 @@ ${element.points[7][1] - 35}
 0
 TEXT
 1
-${`DB:${  element.points[16][0]}`}
+${`DB:${element.points[16][0]}`}
 8
 ${element.id}
 10
@@ -164,7 +164,7 @@ ${element.points[6][1] + 250}
 0
 TEXT
 1
-${`WB:${  element.points[9][0]}`}
+${`WB:${element.points[9][0]}`}
 8
 ${element.id}
 10
@@ -176,7 +176,7 @@ ${element.points[8][1] - 35}
 0
 TEXT
 1
-${`T:${  element.points[9][1]}`}
+${`T:${element.points[9][1]}`}
 8
 ${element.id}
 10
@@ -188,7 +188,7 @@ ${element.points[7][1] - 35}
 0
 TEXT
 1
-${`DB:${  element.points[16][0]}`}
+${`DB:${element.points[16][0]}`}
 8
 ${element.id}
 10

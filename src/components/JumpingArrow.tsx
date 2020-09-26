@@ -64,9 +64,10 @@ const Line = styled.div`
     border-left: 1px solid ${colors.dark};
 `
 
-export const JumpingArrow = () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const JumpingArrow = (props: any) => {
     return (
-        <ArrowWrapper>
+        <ArrowWrapper {...props}>
             <Line />
             <Arrow />
         </ArrowWrapper>

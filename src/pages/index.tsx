@@ -9,7 +9,13 @@ const IndexPage = () => {
         <>
             <HomeHero />
             <OurServices />
-            <DefaultFormBlock withPhoneMobile />
+            <DefaultFormBlock
+                withPhoneMobile
+                tracking={{
+                    conversionType: 'FormIndexPageBottom',
+                    eventCategory: 'FormIndexPageBottom',
+                }}
+            />
         </>
     )
 }

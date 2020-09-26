@@ -21,6 +21,10 @@ const WorksPage = () => {
                     buttonLabel={t('connection.buttonLabel')}
                     placeholder={t('connection.placeholder')}
                     submitLabel={t('connection.submitLabel')}
+                    tracking={{
+                        conversionType: 'CallbackFromWorks',
+                        eventCategory: 'CallbackFromWorks',
+                    }}
                 />
             </Connection>
         </>

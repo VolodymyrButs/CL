@@ -5,6 +5,7 @@ import Arrow from 'assets/icons/close.svg'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { Icon } from 'components/Icon'
+import { sendEvent } from 'tracking'
 
 const QuestionWrapper = styled.div<{ $isAnswerVisible: boolean }>`
     position: relative;
@@ -143,6 +144,10 @@ export const ServicesItem = ({ question, answer, icon }: ServicesItemProp) => {
                 $isAnswerVisible={isAnswerVisible}
                 onClick={() => {
                     setIsAnswerVisible(!isAnswerVisible)
+                    sendEvent('Click', {
+                        eventCategory: 'ServicesItem',
+                        type: question,
+                    })
                 }}
             >
                 <IconStyled

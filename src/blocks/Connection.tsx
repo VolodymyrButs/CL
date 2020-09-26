@@ -33,9 +33,7 @@ const ContainerStyle = styled(Container)`
     }
 `
 const TitleStyled = styled(Title)`
-    @media (min-width: ${displayWidth.tablet}) {
-        margin: 20px 50px;
-    }
+    margin: 20px 50px;
 `
 interface IConnectionProps {
     backgroundColor?: string
