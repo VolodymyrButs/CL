@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import fetch from 'node-fetch'
 import { Button } from 'components/Button'
 import { displayWidth } from 'styles/width'
 import styled from 'styled-components'
@@ -8,16 +7,19 @@ import {
     isFormSuccess,
     isFormError,
     useFormHandler,
+    isSending,
 } from 'hooks/useFormHandler'
 import InputMask from 'react-input-mask'
 import { useForm, Controller } from 'react-hook-form'
-import Input from '@material-ui/core/Input'
+import Input, { InputProps } from '@material-ui/core/Input'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import { Modal } from 'components/Modal'
 import { SendStatus } from './Form'
+import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from './api'
 
 const Div = styled.div`
     display: none;
@@ -94,32 +96,42 @@ export const ComercialForm = () => {
     const formName = 'Commercial Proposall Form'
     const { errors, control, handleSubmit } = useForm({
         mode: 'onBlur',
-        submitFocusError: false,
+        shouldFocusError: false,
     })
 
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
+
     const onSubmit = (data: object) => {
-        fetch('/send-form', {
-            method: 'POST',
-            body: JSON.stringify({
-                ...data,
-                formName,
-            }),
-            headers: {
-                'Content-type': 'application/json',
-            },
+        sendEvent('FormSubminAttempt', {
+            eventCategory: 'FormCommercialProposal',
         })
-            .then(response => {
-                return response.json()
-            })
-            .then(success => {
+
+        handleFormSendStart()
+        sendForm(formName, data)
+            .then((success) => {
                 handleSubmitStatus(success.success)
+
+                sendConversion('FormCommercialProposal')
+                sendEvent('FormSubminSuccess', {
+                    eventCategory: 'FormCommercialProposal',
+                })
             })
-            .catch(() => handleSubmitStatus(false))
+            .catch(() => {
+                handleSubmitStatus(false)
+                sendEvent('FormSubminFail', {
+                    eventCategory: 'FormCommercialProposal',
+                })
+            })
     }
     const [isOpenFormModal, setIsOpenFormModal] = useState(false)
+
     return (
         <FormWrapper>
+            {/* Fixme: why we are not using Form component here */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputBlock>
                     <Wrapper>
@@ -227,7 +239,7 @@ export const ComercialForm = () => {
                                 >
                                     {(
                                         inputMaskProps: JSX.IntrinsicAttributes &
-                                            import('@material-ui/core').InputProps
+                                            InputProps
                                     ) => <Input {...inputMaskProps} />}
                                 </InputMask>
                             }
@@ -259,7 +271,10 @@ export const ComercialForm = () => {
                 </InputBlock>
                 <ButtonWrapper>
                     <ButtonStyled
-                        disabled={isFormSuccess(formSendStatus)}
+                        disabled={
+                            isFormSuccess(formSendStatus) ||
+                            isSending(formSendStatus)
+                        }
                         onClick={() => setIsOpenFormModal(true)}
                         type="submit"
                     >

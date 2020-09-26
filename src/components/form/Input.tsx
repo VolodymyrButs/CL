@@ -7,7 +7,7 @@ import { useHasValue } from 'hooks/useHasValue'
 
 export const InputStyle = styled.input<{ isValid?: string }>`
     ${inputStyle}
-    ${props =>
+    ${(props) =>
         props.isValid &&
         css`
             border-bottom-color: red;

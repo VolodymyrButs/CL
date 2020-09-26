@@ -6,7 +6,7 @@ import { colors } from 'styles/colors'
 import CallbackIcon from 'assets/icons/callback.svg'
 import { displayWidth } from 'styles/width'
 import { Modal } from './Modal'
-import { Form, IChildrenProps } from 'components/form/Form'
+import { Form, FormTracking, IChildrenProps } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
@@ -14,6 +14,7 @@ import { Title } from 'components/TitleComponent'
 import { useFormHandler } from 'hooks/useFormHandler'
 import { PhoneSvgAnimated } from './PhoneSvgAnimated'
 import { contactInformation } from './contactInformation'
+import { sendConversion, sendEvent } from 'tracking'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
@@ -40,7 +41,7 @@ const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
         top: -10px;
         right: -10px;
         left: -10px;
-        animation: ${props =>
+        animation: ${(props) =>
             props.open ? 'none' : 'pulse 2s linear infinite;'};
         opacity: 0;
         background-color: rgba(255, 255, 255, 0.07);
@@ -140,9 +141,15 @@ const TitleStyled = styled(Title)`
         margin: 16px 0;
     }
 `
-export const CallbackButton = () => {
+export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+
+    // TODO: move to Form
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
     const { t, i18n } = useTranslation()
 
     const data = useStaticQuery(graphql`
@@ -180,8 +187,10 @@ export const CallbackButton = () => {
                         formName={'Question Form'}
                         buttonText={t('send')}
                         onFormSubmit={handleSubmitStatus}
+                        onFormSendStart={handleFormSendStart}
                         formSendStatus={formSendStatus}
                         closeHandler={setModalIsOpen}
+                        {...tracking}
                     >
                         {({ register, errors }: IChildrenProps) => (
                             <>
@@ -198,7 +207,16 @@ export const CallbackButton = () => {
                 </Wrapper>
             </Modal>
             <CallbackButtonWrapperMobile aria-label="Callback Button">
-                <a href={`tel:${contactInformation.primaryPhone}`}>
+                <a
+                    href={`tel:${contactInformation.primaryPhone}`}
+                    onClick={() => {
+                        sendConversion('PhoneClick')
+                        sendEvent('Phone', {
+                            eventCategory: 'PhoneClick',
+                            type: 'CallBack button',
+                        })
+                    }}
+                >
                     <PhoneSvgAnimatedStyled />
                 </a>
             </CallbackButtonWrapperMobile>

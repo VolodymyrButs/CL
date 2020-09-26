@@ -10,6 +10,7 @@ import { headerBg } from 'styles/headerBg'
 import { WorksProjectItem } from './WorksProjectItem'
 import { Container } from 'components/Container'
 import { Button } from 'components/Button'
+import { sendEvent } from 'tracking'
 
 const WorksGridWrapper = styled.div`
     display: flex;
@@ -165,7 +166,12 @@ export const WorksProjectGrid = () => {
                     <ButtonWrapper>
                         <ButtonStyled
                             onClick={() => {
-                                setVisibleProjects(allProjectGrid.length)
+                                setVisibleProjects(allProjectGrid.length),
+                                    sendEvent('Click', {
+                                        eventCategory: 'ShowMoreButton',
+                                        placement: 'Works',
+                                        target: 'ShowMore',
+                                    })
                             }}
                         >
                             {t('showMore')}

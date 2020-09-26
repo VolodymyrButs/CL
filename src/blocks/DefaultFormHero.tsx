@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import { displayWidth } from 'styles/width'
 import { PhoneLink } from 'components/PhoneLink'
 import { colors } from 'styles/colors'
@@ -42,7 +42,11 @@ const TitleStyledDesktop = styled(Title)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
+        margin-left: ${indent.heroColumnTablet};
         text-align: left;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        margin-left: ${indent.heroColumnDesktop};
     }
 `
 const Price = styled.p`
@@ -66,6 +70,9 @@ const SubTitle = styled.h3`
         letter-spacing: 0.4px;
         color: ${colors.dark};
         margin-bottom: 32px;
+        padding: 0 ${indent.heroColumnTablet};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
         padding: 0 ${indent.heroColumnDesktop};
     }
 `
@@ -79,11 +86,11 @@ const PhoneLinkStyled = styled(PhoneLink)<{ withPhoneMobile?: boolean }>`
     align-self: center;
     ${({ withPhoneMobile }) =>
         withPhoneMobile ? 'display: flex;' : 'display: none;'}
-    
+
     @media (min-width: ${displayWidth.desktop}) {
         flex-direction: row;
         align-items: center;
-        margin:0 20px 40px 0;
+        margin: 0 20px 40px 0;
         padding: 0 38px;
         div {
             width: 100px;
@@ -96,7 +103,7 @@ const PhoneLinkStyled = styled(PhoneLink)<{ withPhoneMobile?: boolean }>`
     }
 `
 
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
@@ -158,6 +165,7 @@ export const DefaultFormHero = ({
             <PhoneLinkStyled
                 phone={contactInformation.primaryPhone}
                 withPhoneMobile={withPhoneMobile}
+                placement={'Form'}
             />
             {image && <Image fluid={imageFluid.fluid} />}
         </HeroColumn>

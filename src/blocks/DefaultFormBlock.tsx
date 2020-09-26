@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { Form, IChildrenProps } from 'components/form/Form'
+import { Form, IChildrenProps, FormTracking } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { EmailInput } from 'components/form/EmailInput'
 import { MessageInput } from 'components/form/MessageInput'
@@ -56,11 +56,20 @@ const FormColumn = styled.div`
 `
 export const DefaultFormBlock = ({
     withPhoneMobile,
+    tracking,
 }: {
     withPhoneMobile?: boolean
+    tracking: FormTracking
 }) => {
     const { t } = useTranslation()
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+
+    // TODO: move to Form
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
+
     return (
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
@@ -71,6 +80,8 @@ export const DefaultFormBlock = ({
                         buttonText={t('send')}
                         onFormSubmit={handleSubmitStatus}
                         formSendStatus={formSendStatus}
+                        onFormSendStart={handleFormSendStart}
+                        {...tracking}
                     >
                         {({ register, errors }: IChildrenProps) => (
                             <InputBlock>
@@ -86,13 +97,6 @@ export const DefaultFormBlock = ({
                                     err={errors.message}
                                 />
                                 <EmailInput ref={register} err={errors.email} />
-
-                                <input
-                                    type="hidden"
-                                    name="hidden"
-                                    value="lalala"
-                                    ref={register}
-                                />
                             </InputBlock>
                         )}
                     </Form>

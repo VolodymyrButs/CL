@@ -17,7 +17,7 @@ module.exports = {
         author: 'Buts Development',
         siteUrl: process.env.SITE_ADDRESS,
     },
-    developMiddleware: app => {
+    developMiddleware: (app) => {
         app.use(
             '/send-form',
             createProxyMiddleware({
@@ -27,6 +27,15 @@ module.exports = {
         )
     },
     plugins: [
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingIds: [process.env.GA_ID, process.env.GADS_ID],
+                pluginConfig: {
+                    head: true,
+                },
+            },
+        },
         `gatsby-alias-imports`,
         {
             resolve: 'gatsby-plugin-react-svg',

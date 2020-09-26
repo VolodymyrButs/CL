@@ -24,10 +24,10 @@ const ArrowWrapper = styled.div`
 const ArrowWrapperPrevious = styled(ArrowWrapper)<{
     modal: boolean | undefined
 }>`
-    left: ${props => (props.modal ? '-0' : '30px')};
+    left: ${(props) => (props.modal ? '-0' : '30px')};
 `
 const ArrowWrapperNext = styled(ArrowWrapper)<{ modal: boolean | undefined }>`
-    right: ${props => (props.modal ? '2px' : '30px')};
+    right: ${(props) => (props.modal ? '2px' : '30px')};
 `
 const ArrowNext = styled(Next)`
     width: 30px;

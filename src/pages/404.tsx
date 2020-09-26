@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
 
@@ -47,7 +47,7 @@ const PhoneLinkStyled = styled.a`
     text-transform: uppercase;
     color: ${colors.white};
 `
-const DesktopImageRight = styled(Img)`
+const DesktopImageRight = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     width: 300px;
     @media (min-width: ${displayWidth.tablet}) {

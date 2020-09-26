@@ -9,6 +9,7 @@ import { usePagePath } from 'hooks/usePagePath'
 import { headerHeight } from 'styles/height'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
+import { sendEvent } from 'tracking'
 
 const languagesList = Object.keys(languages)
 
@@ -22,7 +23,7 @@ const LanguageList = styled.div<{ open: boolean }>`
     height: ${headerHeight.mobile};
 
     @media (min-width: ${displayWidth.tablet}) {
-        ${props =>
+        ${(props) =>
             props.open
                 ? css`
                       color: ${colors.white};
@@ -150,8 +151,8 @@ export const LanguageSwitcher = () => {
             <Wrapper>
                 {isOpen &&
                     languagesList
-                        .filter(lang => lang !== i18n.language)
-                        .map(lang => {
+                        .filter((lang) => lang !== i18n.language)
+                        .map((lang) => {
                             const langLabel = languages[lang].label
                             const path = getPagePath(lang)
 
@@ -164,7 +165,13 @@ export const LanguageSwitcher = () => {
                                     <LinkStyled
                                         open={!isOpen}
                                         to={`${path}`}
-                                        onClick={() => setIsOpen(!isOpen)}
+                                        onClick={() => {
+                                            setIsOpen(!isOpen)
+                                            sendEvent('Click', {
+                                                eventCategory: 'LanguageChange',
+                                                to: `${lang}`,
+                                            })
+                                        }}
                                     >
                                         {langLabel}
                                     </LinkStyled>

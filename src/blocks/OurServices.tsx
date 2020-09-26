@@ -10,6 +10,7 @@ import { LocalizedLink, LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { displayWidth } from 'styles/width'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { indent } from 'styles/indent'
+import { sendEvent } from 'tracking'
 
 const OurServicesWrapper = styled.div`
     width: 100%;
@@ -172,7 +173,16 @@ export const OurServices = () => {
                             <Price>{allOurServicesData.pricePromo}</Price>
                         </Title>
                         <SubTitle>{allOurServicesData.subTitlePromo}</SubTitle>
-                        <LocalizedLink to={'/promo'}>
+                        <LocalizedLink
+                            to={'/promo'}
+                            onClick={() => {
+                                sendEvent('Click', {
+                                    eventCategory: 'ShowMoreButton',
+                                    placement: 'Our Services',
+                                    target: 'Promo',
+                                })
+                            }}
+                        >
                             <ButtonStyled aria-label={(t('goTo'), t('promo'))}>
                                 {allOurServicesData.buttonTextPromo}
                             </ButtonStyled>
@@ -185,7 +195,16 @@ export const OurServices = () => {
                                 __html: allOurServicesData.subTitleCad,
                             }}
                         />
-                        <LocalizedLink to={'/editor'}>
+                        <LocalizedLink
+                            to={'/editor'}
+                            onClick={() => {
+                                sendEvent('Click', {
+                                    eventCategory: 'ShowMoreButton',
+                                    placement: 'Our Services',
+                                    target: 'CAD',
+                                })
+                            }}
+                        >
                             <ButtonStyled aria-label={(t('goTo'), t('cad'))}>
                                 {allOurServicesData.buttonTextCad}
                             </ButtonStyled>
@@ -194,7 +213,16 @@ export const OurServices = () => {
                     <FaqBlock>
                         <Title>{allOurServicesData.titleFaq}</Title>
                         <SubTitle>{allOurServicesData.subTitleFaq}</SubTitle>
-                        <LocalizedLinkAnchor to={'promo/#faq'}>
+                        <LocalizedLinkAnchor
+                            to={'promo/#faq'}
+                            onClick={() => {
+                                sendEvent('Click', {
+                                    eventCategory: 'ShowMoreButton',
+                                    placement: 'Our Services',
+                                    target: 'FAQ',
+                                })
+                            }}
+                        >
                             <ButtonStyled aria-label={(t('goTo'), t('promo'))}>
                                 {allOurServicesData.buttonTextFaq}
                             </ButtonStyled>

@@ -45,9 +45,15 @@ export const Header = () => {
                 <Container tabletColumns={'7fr 5fr'} desktopColunms={'7fr 5fr'}>
                     <MainMenu />
                     <ContactLinks>
-                        <PhoneLink phone={contactInformation.primaryPhone} />
+                        <PhoneLink
+                            phone={contactInformation.primaryPhone}
+                            placement={'Header'}
+                        />
                         <SocialIconsWrapper>
-                            <SocialIcons fill={colors.dark} />
+                            <SocialIcons
+                                fill={colors.dark}
+                                placement={'Header'}
+                            />
                         </SocialIconsWrapper>
                     </ContactLinks>
                 </Container>

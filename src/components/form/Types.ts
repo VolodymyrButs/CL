@@ -1,3 +1,5 @@
+import React from 'react'
+
 export interface IInputProps {
     err?: string
     isValid?: string

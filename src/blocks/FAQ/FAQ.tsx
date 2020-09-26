@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
@@ -15,6 +15,7 @@ import Chair from 'assets/images/chair.svg'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { sendEvent } from 'tracking'
 
 const FaqWrapper = styled.div`
     display: flex;
@@ -71,7 +72,7 @@ const ButtonFaq = styled(Button)`
     }
 `
 
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     width: 100%;
     height: auto;
@@ -83,14 +84,14 @@ const Image = styled(Img)`
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
-        position:relative;
-          align-items:flex-start;
+        position: relative;
+        align-items: flex-start;
     }
 `
 const CnairImg = styled(Chair)`
@@ -187,7 +188,12 @@ export const Faq = () => {
                     <Title>{title}</Title>
                     <SubTitle>{subTitle}</SubTitle>
                     <ButtonFaq
-                        onClick={() => setShowFaqListMobile(!showFaqListMobile)}
+                        onClick={() => {
+                            setShowFaqListMobile(!showFaqListMobile)
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButtonFAQ',
+                            })
+                        }}
                     >
                         {!showFaqListMobile ? buttonTextOpen : buttonTextClose}
                     </ButtonFaq>

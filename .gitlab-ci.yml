@@ -3,6 +3,8 @@ image: node:12.16.1
 stages:
   - test
   - pages
+  - build
+  - deploy
 
 lint:
   stage: test
@@ -12,6 +14,9 @@ lint:
     - yarn run lint
   only:
     - merge_requests
+  cache:
+    paths:
+      - node_modules/
 
 pagesMaster:
   stage: pages
@@ -45,3 +50,41 @@ pages:
     - merge_requests
   variables:
     GATSBY_ACTIVE_ENV: 'stage'
+
+build_prod:
+  stage: build
+  allow_failure: false
+  before_script:
+    - yarn install
+  script:
+    - node_modules/.bin/gatsby build --prefix-paths
+  artifacts:
+    when: on_success
+    paths:
+      - public
+    name: 'cl-website-$CI_COMMIT_SHORT_SHA'
+    expire_in: 1 week
+  variables:
+    GA_ID: 'UA-48694500-1'
+    GADS_ID: 'AW-983170276'
+  only:
+    refs:
+      - master
+  cache:
+    paths:
+      - node_modules/
+
+deploy_prod:
+  stage: deploy
+  allow_failure: false
+  dependencies:
+    - build_prod
+  image: debian:latest
+  before_script:
+    - apt-get update && apt-get install lftp -y
+  script:
+    - lftp -e "set ssl:verify-certificate no; set sftp:auto-confirm yes; mirror -eRnv public new; cd new; ls -l; exit;" -u $SFTP_USERNAME,$SFTP_PASSWORD $SFTP_HOST
+  environment:
+    name: 'prod'
+    url: https://clearline.com.ua/new
+  when: on_success

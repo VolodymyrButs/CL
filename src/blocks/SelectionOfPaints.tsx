@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -14,6 +14,7 @@ import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
+import { sendEvent } from 'tracking'
 
 const SelectionOfPaintWrapper = styled.div`
     display: flex;
@@ -34,8 +35,11 @@ const SubTitle = styled.h3`
     color: ${colors.dark};
     margin: 20px auto;
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 0 ${indent.heroColumnDesktop} 48px;
+        margin: 0 ${indent.heroColumnTablet} 48px;
         text-align: left;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        margin: 0 ${indent.heroColumnDesktop} 48px;
     }
 `
 
@@ -52,7 +56,7 @@ const HeroColumn = styled.div`
         border-right: 1px solid ${colors.dark};
     }
 `
-const ImgStyled = styled(Img)`
+const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     height: 70vw;
     max-height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
@@ -136,6 +140,13 @@ export const SelectionOfPaints = () => {
                     <SubTitle>{subTitle}</SubTitle>
                     <LocalizedLinkStyled
                         to={'/promo/#selectionOfPaintsAdvantages'}
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButton',
+                                placement: 'ColorSelection',
+                                target: 'AdvantagesServices',
+                            })
+                        }}
                     >
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>

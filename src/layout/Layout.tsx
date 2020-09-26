@@ -111,7 +111,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
             <Helmet>
                 <html lang={i18n.language} />
                 <title>ClearLine</title>
-                {languagesList.map(lang => {
+                {languagesList.map((lang) => {
                     return (
                         <link
                             key={lang}
@@ -161,7 +161,12 @@ export const Layout = (props: { children: React.ReactNode }) => {
                 {props.children}
                 <Footer />
             </BlocksWrapper>
-            <CallbackButton />
+            <CallbackButton
+                tracking={{
+                    conversionType: 'CallBackButtonForm',
+                    eventCategory: 'CallBackButtonForm',
+                }}
+            />
         </LayoutWraper>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import Slider from 'react-slick'
 
 import { Modal } from './Modal'
@@ -8,12 +8,12 @@ import { ProjectImages } from 'layout/Project'
 import { displayWidth } from 'styles/width'
 import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 
-const ImageModal = styled(Img)`
+const ImageModal = styled(Img)<{ fluid: FluidObject }>`
     height: 95vh;
 `
 const SliderStyled = styled(Slider)`
     .slick-list {
-        margin: 10px;
+        margin: 0 -10px;
         @media (min-width: ${displayWidth.tablet}) {
             margin: 0 -10px;
         }
@@ -50,7 +50,7 @@ export const ModalCarousel: React.FC<IModalProps> = ({
         ],
     }
 
-    const slides = data.map(photo => (
+    const slides = data.map((photo) => (
         <div key={photo.childImageSharp.fluid.src}>
             <ImageModal
                 fluid={photo.childImageSharp.fluid}

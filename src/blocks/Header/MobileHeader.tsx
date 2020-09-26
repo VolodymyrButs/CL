@@ -16,6 +16,8 @@ import Whatsapp from 'assets/icons/Whatsapp.svg'
 import { RoundText } from 'components/RoundText'
 import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { useTranslation } from 'react-i18next'
+import { sendConversion, sendEvent } from 'tracking'
+import { PhoneLink } from 'components/PhoneLink'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -25,7 +27,7 @@ const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     max-height: 65px;
     border-bottom: 1px solid
         ${({ isMenuOpen }) => (isMenuOpen ? colors.white : colors.dark)};
-    z-index: 1;
+    z-index: 2;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }
@@ -52,14 +54,16 @@ const BurgerButton = styled.span`
     padding: 10px;
     cursor: pointer;
 `
-const PhoneLink = styled.a`
-    padding: 30px;
-    margin: 0 auto;
-    @media (min-height: 450px) {
-        padding: 70px;
+const PhoneLinkStyled = styled(PhoneLink)`
+    display: flex;
+    flex-direction: column;
+    color: ${colors.white};
+    margin-bottom: 30px;
+    font-weight: normal;
+    svg {
+        fill: ${colors.white};
     }
 `
-
 const iconStyles = css`
     width: 38px;
     height: 38px;
@@ -94,17 +98,43 @@ export const MobileHeader = () => {
                     <a
                         href="viber://chat?number=%2B380982117690"
                         target="blank"
+                        onClick={() => {
+                            sendConversion('SocialIconViber')
+                            sendEvent('SocialIcon', {
+                                eventCategory: 'SocialIconViber',
+                                placement: 'MobileHeader',
+                            })
+                        }}
                     >
                         <ViberIconStyled aria-label="ViberButton" />
                     </a>
-                    <a href="https://wa.me/+380958363420" target="blank">
+                    <a
+                        href="https://wa.me/+380958363420"
+                        target="blank"
+                        onClick={() => {
+                            sendConversion('SocialIconWhatsApp')
+                            sendEvent('SocialIcon', {
+                                eventCategory: 'SocialIconWhatsApp',
+                                placement: 'MobileHeader',
+                            })
+                        }}
+                    >
                         <WhatsappIconStyled aria-label="Whatsapp Button" />
                     </a>
                     <a
                         href="tg://resolve?domain=clearline_com_ua"
                         target="blank"
                     >
-                        <TelegramIconStyled aria-label="Telegram Button" />
+                        <TelegramIconStyled
+                            aria-label="Telegram Button"
+                            onClick={() => {
+                                sendConversion('SocialIconTelegram')
+                                sendEvent('SocialIcon', {
+                                    eventCategory: 'SocialIconTelegram',
+                                    placement: 'MobileHeader',
+                                })
+                            }}
+                        />
                     </a>
                 </IconWrapper>
                 <BurgerButton
@@ -128,11 +158,14 @@ export const MobileHeader = () => {
                 </MobileHeaderWraper>
 
                 <MainMenu onMenuItemClick={() => setIsMenuOpen(false)} />
-                <PhoneLink href={`tel:${contactInformation.primaryPhone}`}>
+                <PhoneLinkStyled
+                    phone={contactInformation.primaryPhone}
+                    placement={'MobileHeader'}
+                >
                     <RoundText color={colors.white} text={t('callUs')}>
                         <PhoneSvgAnimated color={colors.white} />
                     </RoundText>
-                </PhoneLink>
+                </PhoneLinkStyled>
             </MobileMenu>
         </>
     )

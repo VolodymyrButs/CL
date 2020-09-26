@@ -12,6 +12,7 @@ import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { indent } from 'styles/indent'
+import { sendConversion, sendEvent } from 'tracking'
 
 const FooterWrapper = styled.div`
     position: relative;
@@ -53,6 +54,7 @@ const FooterContainer = styled(Container)`
     }
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
+        padding: 0;
         border-bottom: none;
         border-right: 1px solid ${colors.white};
         border-left: 1px solid ${colors.white};
@@ -68,12 +70,15 @@ const FooterColumn = styled.div`
         margin: 5px 0;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        padding: 30px 48px;
+        padding: ${indent.heroColumnTablet};
         align-items: flex-start;
         border-right: 1px solid ${colors.white};
         :last-child {
             border-right: none;
         }
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: ${indent.heroColumnDesktop};
     }
 `
 const Header = styled.h3`
@@ -160,6 +165,12 @@ export const Footer = () => {
                                 }&authuser=0`
                             }
                             target="blank"
+                            onClick={() => {
+                                sendEvent('Click', {
+                                    eventCategory: 'Address',
+                                    placement: 'Footer',
+                                })
+                            }}
                         >
                             <p> {street}</p>
                             <p> {city}</p>
@@ -169,17 +180,47 @@ export const Footer = () => {
                 <FooterColumn>
                     <Header>{t('contacts')}</Header>
                     <Paragraph>
-                        <a href={`tel:${contactInformation.primaryPhone}`}>
+                        <a
+                            href={`tel:${contactInformation.primaryPhone}`}
+                            onClick={() => {
+                                sendConversion('PhoneClick')
+                                sendEvent('Phone', {
+                                    eventCategory: 'PhoneClick',
+                                    placement: 'Footer',
+                                    phone: contactInformation.primaryPhone,
+                                })
+                            }}
+                        >
                             {contactInformation.primaryPhone}
                         </a>
                     </Paragraph>
                     <Paragraph>
-                        <a href={`tel:${contactInformation.secondaryPhones}`}>
+                        <a
+                            href={`tel:${contactInformation.secondaryPhones}`}
+                            onClick={() => {
+                                sendConversion('PhoneClick')
+                                sendEvent('Phone', {
+                                    eventCategory: 'PhoneClick',
+                                    placement: 'Footer',
+                                    phone: contactInformation.secondaryPhones,
+                                })
+                            }}
+                        >
                             {contactInformation.secondaryPhones}
                         </a>
                     </Paragraph>
                     <Paragraph>
-                        <a href={`mailto:${contactInformation.email}`}>
+                        <a
+                            href={`mailto:${contactInformation.email}`}
+                            onClick={() => {
+                                sendConversion('EmailClick')
+                                sendEvent('Email', {
+                                    eventCategory: 'EmailClick',
+                                    placement: 'Footer',
+                                    email: contactInformation.email,
+                                })
+                            }}
+                        >
                             {contactInformation.email}
                         </a>
                     </Paragraph>
@@ -188,7 +229,11 @@ export const Footer = () => {
                 <FooterColumn>
                     <Header>{t('contactUs')}</Header>
                     <SocialIconsWrapper>
-                        <SocialIcons fill={colors.white} showAllIcons />
+                        <SocialIcons
+                            fill={colors.white}
+                            showAllIcons
+                            placement={'Footer'}
+                        />
                     </SocialIconsWrapper>
                 </FooterColumn>
             </FooterContainer>

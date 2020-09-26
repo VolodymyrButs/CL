@@ -9,7 +9,7 @@ require('ts-node').register({
 const { languages } = require('./src/i18n/languages')
 const translationsCache = {}
 
-exports.createPages = async function({ actions, graphql }) {
+exports.createPages = async function ({ actions, graphql }) {
     const result = await graphql(`
         {
             allProjectsYaml(sort: { fields: date, order: DESC }) {
@@ -37,7 +37,7 @@ exports.createPages = async function({ actions, graphql }) {
                 parent: { name, id },
             },
         }) => {
-            Object.keys(languages).map(lang => {
+            Object.keys(languages).map((lang) => {
                 // Use the values defined in "locales" to construct the path
                 const { pathPrefix, isDefault } = languages[lang]
                 const localizedPath = isDefault
@@ -70,7 +70,7 @@ exports.onCreatePage = ({ page, actions }) => {
     // So everything old page in src/pages/ will be deleted
     deletePage(page)
 
-    Object.keys(languages).map(lang => {
+    Object.keys(languages).map((lang) => {
         // Use the values defined in "locales" to construct the path
         const { pathPrefix, isDefault } = languages[lang]
         const localizedPath = isDefault

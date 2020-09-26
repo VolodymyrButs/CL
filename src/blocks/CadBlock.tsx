@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 // import ReactPlayer from 'react-player'
 
 // import Frame from 'assets/icons/frame.svg'
@@ -126,7 +126,7 @@ const InstructionText = styled.div`
         font-weight: bold;
     }
 `
-const Image = styled(Img)`
+const Image = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;

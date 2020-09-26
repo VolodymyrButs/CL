@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import fetch from 'node-fetch'
 import { TFunction } from 'i18next'
 
 import { Button } from 'components/Button'
@@ -10,9 +9,17 @@ import {
     isFormSuccess,
     isFormError,
     FormSendStatus,
+    isSending,
 } from 'hooks/useFormHandler'
 import { useForm } from 'react-hook-form'
 import { Modal } from 'components/Modal'
+import {
+    ConversionType,
+    sendConversion,
+    sendEvent,
+    TrackingEventCategory,
+} from 'tracking'
+import { sendForm } from './api'
 
 const FormWrapper = styled.div`
     position: relative;
@@ -82,48 +89,64 @@ export const SendStatus = styled.div`
         }
     }
 `
-interface IFormProps {
+
+export interface FormTracking {
+    conversionType: ConversionType
+    eventCategory: TrackingEventCategory
+}
+
+type FormProps = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children: any
+    children: any // todo: use unknown
     formName?: string
     buttonText?: TFunction | string
     onFormSubmit?: (success: boolean) => void
+    onFormSendStart: () => void
     formSendStatus?: FormSendStatus
     closeHandler?: (arg: boolean) => void
-}
+} & FormTracking
+
 export interface IChildrenProps {
     register: ReturnType<typeof useForm>['register']
     errors: ReturnType<typeof useForm>['errors']
 }
-export const Form: React.FC<IFormProps> = ({
+export const Form: React.FC<FormProps> = ({
     children,
     onFormSubmit = () => {},
+    onFormSendStart,
     formName = 'Regular Form',
     buttonText = 'Send',
     formSendStatus = 'NOT_SEND',
     closeHandler,
+    conversionType,
+    eventCategory,
 }) => {
     const { register, errors, handleSubmit } = useForm({
         mode: 'onBlur',
     })
+
     const onSubmit = (data: object) => {
-        fetch('/send-form', {
-            method: 'POST',
-            body: JSON.stringify({
-                ...data,
-                formName,
-            }),
-            headers: {
-                'Content-type': 'application/json',
-            },
+        sendEvent('FormSubminAttempt', {
+            eventCategory,
         })
-            .then(response => {
-                return response.json()
-            })
-            .then(success => {
+
+        onFormSendStart()
+
+        sendForm(formName, data)
+            .then((success) => {
                 onFormSubmit(success.success)
+
+                sendConversion(conversionType)
+                sendEvent('FormSubminSuccess', {
+                    eventCategory,
+                })
             })
-            .catch(() => onFormSubmit(false))
+            .catch(() => {
+                onFormSubmit(false)
+                sendEvent('FormSubminFail', {
+                    eventCategory,
+                })
+            })
     }
     const childrenProps: IChildrenProps = { register, errors }
     const { t } = useTranslation()
@@ -133,9 +156,13 @@ export const Form: React.FC<IFormProps> = ({
         <FormWrapper>
             <FormStyled onSubmit={handleSubmit(onSubmit)}>
                 {children(childrenProps)}
+
                 <ButtonWrapper>
                     <ButtonStyled
-                        disabled={isFormSuccess(formSendStatus)}
+                        disabled={
+                            isFormSuccess(formSendStatus) ||
+                            isSending(formSendStatus)
+                        }
                         onClick={() => setIsOpenFormModal(true)}
                         type="submit"
                     >

@@ -36,9 +36,9 @@ const SelectElement = styled.select<{
     isValid?: string
     selectedValue?: string
 }>`
-    color: ${props => (props.selectedValue === 'none' ? 'gray' : 'black')};
+    color: ${(props) => (props.selectedValue === 'none' ? 'gray' : 'black')};
     ${inputStyle};
-    ${props =>
+    ${(props) =>
         props.isValid &&
         css`
             border-bottom-color: red;
@@ -49,10 +49,10 @@ export const Select = React.forwardRef<HTMLSelectElement, IInputProps>(
     ({ err, children, name, id, placeholder }, ref) => {
         const [selectValue, setSelectValue] = useState('none')
 
-        const handleSelectChange = (e: {
+        const handleSelectChange = (event: {
             target: { value: React.SetStateAction<string> }
         }) => {
-            setSelectValue(e.target.value)
+            setSelectValue(event.target.value)
         }
         return (
             <Wrapper>

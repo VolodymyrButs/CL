@@ -19,7 +19,7 @@ export const StarRating: React.FC<IStarRatingProps> = ({
     const arr = Array.from(Array(quantity), (_, i) => i + 1)
     return (
         <Wrapper>
-            {arr.map(i => {
+            {arr.map((i) => {
                 if (i <= rating) {
                     return (
                         <svg

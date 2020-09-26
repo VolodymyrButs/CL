@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -16,6 +16,7 @@ import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
+import { sendEvent } from 'tracking'
 
 const Visualization3dWrapper = styled.div`
     display: flex;
@@ -37,6 +38,9 @@ const SubTitle = styled.h3`
     margin: 20px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
+        margin: 0 ${indent.heroColumnTablet};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
         margin: 0 ${indent.heroColumnDesktop};
     }
 `
@@ -58,7 +62,7 @@ const HeroColumn = styled.div`
     }
 `
 
-const ImgStyled = styled(Img)`
+const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     width: calc(100vw - 64px);
     height: 100%;
     @media (min-width: ${displayWidth.tablet}) {
@@ -171,6 +175,13 @@ export const Visualization3d = () => {
                     <SubTitle>{subTitle}</SubTitle>
                     <LocalizedLinkStyled
                         to={'/promo/#visualization3dAdvantages'}
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButton',
+                                placement: 'Vizualization3d',
+                                target: 'AdvantagesVizualization',
+                            })
+                        }}
                     >
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>

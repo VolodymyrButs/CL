@@ -15,6 +15,7 @@ import { indent } from 'styles/indent'
 import FullScreen from 'assets/icons/fullScreen.svg'
 import { ModalCarousel } from 'components/ModalCarousel'
 import { ProjectData } from 'layout/Project'
+import { sendEvent } from 'tracking'
 const ExampleOfProjectWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -61,12 +62,15 @@ const TitleStyled = styled(Title)`
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 ${indent.heroColumnDesktop} 24px;
+    padding: 0 ${indent.heroColumnTablet} 24px;
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
         border-right: 1px solid ${colors.dark};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: 0 ${indent.heroColumnDesktop} 24px;
     }
 `
 const LeftSidebar = styled.div`
@@ -81,12 +85,11 @@ const LeftSidebar = styled.div`
     }
 `
 const RightSidebar = styled(LeftSidebar)`
-    display: none;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
     }
 `
-const ImgStyled = styled(Img)`
+const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     width: 100%;
     height: 100%;
 `
@@ -212,9 +215,22 @@ export const ExamplesOfProjects = () => {
                     <FullScreenButton
                         onClick={() => {
                             setModalIsOpen(true)
+                            sendEvent('FullScreen', {
+                                eventCategory: 'Slider',
+                                placement: 'ExampleOfProject',
+                            })
                         }}
                     />
-                    <SliderComponent {...sliderSettings}>
+                    <SliderComponent
+                        {...sliderSettings}
+                        afterChange={(current: number) => {
+                            sendEvent('ShowSlide', {
+                                eventCategory: 'Slider',
+                                currentSlide: `${current}`,
+                                placement: 'ExampleOfProject',
+                            })
+                        }}
+                    >
                         {data.desktop.edges.map(
                             (
                                 item: {
@@ -238,12 +254,16 @@ export const ExamplesOfProjects = () => {
                     </SliderComponent>
                 </WrapperDesktop>
                 <WrapperMobile>
-                    <FullScreenButton
-                        onClick={() => {
-                            setModalIsOpen(true)
+                    <SliderComponent
+                        {...sliderSettings}
+                        afterChange={(current: number) => {
+                            sendEvent('ShowSlide', {
+                                eventCategory: 'Slider',
+                                currentSlide: `${current + 1}`,
+                                placement: 'ExampleOfProject',
+                            })
                         }}
-                    />
-                    <SliderComponent {...sliderSettings}>
+                    >
                         {data.mobile.edges.map(
                             (
                                 item: {

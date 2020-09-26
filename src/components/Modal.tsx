@@ -6,7 +6,7 @@ import CloseIcon from 'assets/icons/Exit.svg'
 import { displayWidth } from 'styles/width'
 
 const ModalWrapper = styled.div<{ open: boolean }>`
-    display: ${props => (props.open ? 'flex' : 'none')};
+    display: ${(props) => (props.open ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -26,7 +26,7 @@ const ModalWindow = styled.div<{ image: boolean }>`
     ${({ image }) =>
         image
             ? 'padding: 0;background-color: transparent;border: none;width:95%;max-width: 95%;'
-            : `padding: 15px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
+            : `padding: 40px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
 
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
@@ -44,7 +44,7 @@ const ModalWindow = styled.div<{ image: boolean }>`
         max-height: 95%;
     }
     @media (orientation: landscape) and (max-height: 700px) {
-        padding: 10px;
+        padding: 20px;
         overflow-y: auto;
         justify-content: flex-start;
     }

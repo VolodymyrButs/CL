@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -43,7 +43,7 @@ const DesktopImageTop = styled(frame)`
         display: block;
     }
 `
-const ImageMobile = styled(Img)`
+const ImageMobile = styled(Img)<{ fluid: FluidObject }>`
     width: 50%;
     height: auto;
     align-self: flex-end;
@@ -60,7 +60,11 @@ const HeroColumn = styled.div`
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
+        border-right: 1px solid #231f20;
         overflow: hidden;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        min-width: 395.66px;
     }
 `
 const LeftSidebar = styled.div`
@@ -75,7 +79,6 @@ const LeftSidebar = styled.div`
     }
 `
 const RightSidebar = styled(LeftSidebar)`
-    display: none;
     @media (min-width: ${displayWidth.tablet}) {
         background-color: ${colors.white};
     }
@@ -84,7 +87,7 @@ const ContainerS = styled(Container)`
     padding-right: 1px;
     box-sizing: border-box;
 `
-const DesktopImage = styled(Img)`
+const DesktopImage = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;

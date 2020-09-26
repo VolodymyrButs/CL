@@ -11,7 +11,7 @@ const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${props =>
+    background-color: ${(props) =>
         props.backgroundColors
             ? props.backgroundColors
             : backgroundColors.formPromo};
@@ -33,9 +33,7 @@ const ContainerStyle = styled(Container)`
     }
 `
 const TitleStyled = styled(Title)`
-    @media (min-width: ${displayWidth.tablet}) {
-        margin: 20px 50px;
-    }
+    margin: 20px 50px;
 `
 interface IConnectionProps {
     backgroundColor?: string

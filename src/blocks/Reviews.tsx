@@ -14,6 +14,7 @@ import { SliderComponent } from 'components/SliderComponent'
 import Google from 'assets/icons/google.svg'
 import { createRand } from 'utils/getRandomArray'
 import { indent } from 'styles/indent'
+import { sendEvent } from 'tracking'
 
 const ReviewsWrapper = styled.div`
     display: flex;
@@ -160,10 +161,13 @@ const HeroColumn = styled.div`
     justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
-        padding: 0 10px 56px ${indent.heroColumnDesktop};
+        padding: 0 10px 56px ${indent.heroColumnTablet};
         align-items: flex-start;
         border-bottom: none;
         border-right: 1px solid ${colors.dark};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: 0 10px 56px ${indent.heroColumnDesktop};
     }
 `
 
@@ -230,7 +234,15 @@ export const Reviews = () => {
                         <GoogleIcon />
                         <StarRating rating={rating} quantity={5} />
                     </RankStarWrapper>
-                    <SubTitle href={link} target="blank">
+                    <SubTitle
+                        href={link}
+                        target="blank"
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'GoogleRewiews',
+                            })
+                        }}
+                    >
                         {quantity1}&nbsp;
                         {reviewsQuantity}&nbsp;
                         {quantity2}
@@ -240,9 +252,17 @@ export const Reviews = () => {
                     {...sliderSettings}
                     background={backgroundColors.contact}
                 >
-                    {RandomList.map(i => {
+                    {RandomList.map((i) => {
                         return (
-                            <SlideWrapper key={i}>
+                            <SlideWrapper
+                                key={i}
+                                onClick={() => {
+                                    sendEvent('Click', {
+                                        eventCategory: 'ReviewItem',
+                                        author: reviewsArr[i].name,
+                                    })
+                                }}
+                            >
                                 <Review>
                                     <p />
                                     <TextWrapper>

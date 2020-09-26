@@ -5,6 +5,7 @@ import Arrow from 'assets/icons/close.svg'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { Icon } from 'components/Icon'
+import { sendEvent } from 'tracking'
 
 const QuestionWrapper = styled.div<{ $isAnswerVisible: boolean }>`
     position: relative;
@@ -21,35 +22,35 @@ const QuestionWrapper = styled.div<{ $isAnswerVisible: boolean }>`
         right: 16px;
         z-index: 3;
         border-top: 1px solid ${colors.dark};
-        border-bottom:none;
-        bottom:100%;
+        border-bottom: none;
+        bottom: 100%;
     }
-     ${({ $isAnswerVisible }) =>
-         $isAnswerVisible &&
-         css`
-             background-color: ${colors.dark};
-             :after {
-                 pointer-events: none;
-                 position: absolute;
-                 top: 0;
-                 bottom: 0px;
-                 left: 15px;
-                 right: 15px;
-                 border-left: 1px solid ${colors.white};
-                 border-right: 1px solid ${colors.white};
-                 z-index: 3;
-                 content: '';
-                 @media (min-width: ${displayWidth.tablet}) {
-                     display: none;
-                 }
-             }
-             :before {
-                 border-top: none;
-             }
-         `}
+    ${({ $isAnswerVisible }) =>
+        $isAnswerVisible &&
+        css`
+            background-color: ${colors.dark};
+            :after {
+                pointer-events: none;
+                position: absolute;
+                top: 0;
+                bottom: 0px;
+                left: 15px;
+                right: 15px;
+                border-left: 1px solid ${colors.white};
+                border-right: 1px solid ${colors.white};
+                z-index: 3;
+                content: '';
+                @media (min-width: ${displayWidth.tablet}) {
+                    display: none;
+                }
+            }
+            :before {
+                border-top: none;
+            }
+        `}
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 0 32px ;
-        padding: 10px 0 ;
+        margin: 0 32px;
+        padding: 10px 0;
         flex-direction: row;
         justify-content: flex-start;
         :before {
@@ -60,8 +61,8 @@ const QuestionWrapper = styled.div<{ $isAnswerVisible: boolean }>`
             right: 0;
             z-index: 3;
             border-bottom: 1px solid ${colors.dark};
-            border-top:none;
-            top:100%;
+            border-top: none;
+            top: 100%;
         }
     }
 `
@@ -143,6 +144,10 @@ export const ServicesItem = ({ question, answer, icon }: ServicesItemProp) => {
                 $isAnswerVisible={isAnswerVisible}
                 onClick={() => {
                     setIsAnswerVisible(!isAnswerVisible)
+                    sendEvent('Click', {
+                        eventCategory: 'ServicesItem',
+                        type: question,
+                    })
                 }}
             >
                 <IconStyled

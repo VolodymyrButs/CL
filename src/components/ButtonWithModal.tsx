@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { Modal } from './Modal'
-import { Form, IChildrenProps } from 'components/form/Form'
+import { Form, IChildrenProps, FormTracking } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { Title } from 'components/TitleComponent'
 import { Button } from './Button'
@@ -67,15 +67,23 @@ export const ButtonWithModal = ({
     buttonLabel,
     placeholder,
     submitLabel,
+    tracking,
 }: {
     modalTitle: string
     modalDescription: string
     buttonLabel: string
     placeholder: string
     submitLabel: string
+    tracking: FormTracking
 }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+
+    // TODO: move to Form
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
     return (
         <>
             <Modal
@@ -90,8 +98,10 @@ export const ButtonWithModal = ({
                             formName={'Callback Form'}
                             buttonText={submitLabel}
                             onFormSubmit={handleSubmitStatus}
+                            onFormSendStart={handleFormSendStart}
                             formSendStatus={formSendStatus}
                             closeHandler={setModalIsOpen}
+                            {...tracking}
                         >
                             {({ register, errors }: IChildrenProps) => (
                                 <div>

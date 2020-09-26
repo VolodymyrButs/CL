@@ -23,7 +23,7 @@ export const Title = styled.div`
         font-size: 28px;
         line-height: 32px;
         letter-spacing: 1px;
-        margin: 40px 10px 30px ${indent.heroColumnDesktop};
+        margin: 40px 10px 20px ${indent.heroColumnTablet};
         text-align: left;
     }
     @media (min-width: ${displayWidth.desktop}) {
