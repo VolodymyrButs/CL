@@ -125,8 +125,6 @@ export const Visualization3d = () => {
                         title
                         subTitle
                         buttonText
-                        visualization
-                        realization
                         images {
                             image
                         }

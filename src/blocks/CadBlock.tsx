@@ -15,6 +15,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { Button } from 'components/Button'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const CadWrapper = styled.div`
     display: flex;
@@ -210,9 +211,9 @@ export const Cad = () => {
                             __html: instruction,
                         }}
                     />
-                    <a href="https://clearline.com.ua/cad/" target="blank">
+                    <LocalizedLink to={'/cad'}>
                         <Button>{buttonText}</Button>
-                    </a>
+                    </LocalizedLink>
                 </InstructionColumn>
             </Container>
         </CadWrapper>

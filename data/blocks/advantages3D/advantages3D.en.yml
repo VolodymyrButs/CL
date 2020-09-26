@@ -1,21 +1,21 @@
-title: 'Преимущества 3D дизайн-проекта en'
+title: 'Benefits of a 3D project'
 image: table.png
 items:
   - content: !markdown |
-      ** 3D модель интерактивна** и позволяет наглядно заниматься перепланировкой и расстановкой мебели EN
+      3D model **allows you to visually** engage in redevelopment and furniture placement
     svg: model.svg
   - content: !markdown |
-      Определяются типы **осветительных приборов** и их расположение в помещении EN
-    svg: lighting.svg
-  - content: !markdown |
-      Приближая и отдаляя части помещения, можно оценить каждый элемент с **различных ракурсов**  EN
+      Approaching and moving away the interior, each element is worked out from **different angles**
     svg: magnifier.svg
   - content: !markdown |
-      Высокая точность разработки 3D модели позволяет **исключить переплаты** за ошибки и ненужные работы EN
-    svg: accuracy.svg
-  - content: !markdown |
-      Прорабатываются **конструктивные дизайн-проекты **кухни и другой корпусной мебели EN
+      **constructs are being developed in design projects** for kitchens and cabinet furniture
     svg: projects.svg
   - content: !markdown |
-      Проект содержит **подробные чертежи** всех узлов и конструкций, развертки стен и чертежи в изометрии. EN
+      Provides **detailed drawings** for repairs, wall sweeps and isometric
     svg: blueprints.svg
+  - content: !markdown |
+      The types of **lighting fixtures** and their location in the room are determined
+    svg: lighting.svg
+  - content: !markdown |
+      3D model allows to make **exact estimate**
+    svg: accuracy.svg
