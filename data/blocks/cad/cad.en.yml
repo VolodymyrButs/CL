@@ -1,9 +1,10 @@
-title: Онлайн редактор ClearLine CAD
-subTitle: Бесплатный онлайн редактор без регистрации для создания обмерочных чертежей.
+title: Online editor ClearLine CAD
+subTitle: Free online editor without registration for creating dimensional drawings.
 video: https://youtube-nocookie.com/embed/BkMlIY5Gq8o
 instruction: !markdown |
-  1. Перед началом черчения **снимите размеры каждой комнаты.** Рассчитайте длину стен по периметру, чтобы в конечной точке замкнуть помещение в единый контур.
-  2. Начните чертить задав размеры входного проема, далее продолжайте от двери вправо выбирая стрелками направления стен и задавая их размеры. **Убедитесь что вы замкнули помещение в единый контур.**
-  3. Далее используя панель слева **выберете нужные объекты** (окно, дверь, радиатор, вытяжку, трубу), кликните на стену где они должны находится, **добавьте предметы** в чертеж и введите размеры привязки.
-  4. Готово, сохраните чертеж нажав на кнопку **«Экспрорт»**, отправьте нам на почту **obmer@clearline.com.ua**, можно приступать к дизайну интерьера.
-buttonText: start draw
+  - Draw the room by room, starting with the hallway
+  - The perimeter of the room must be closed, then add doors to other rooms, windows, hoods, risers
+  - Add an interior door to draw the next room
+  - For detailed instructions, click "?" in editor
+
+buttonText: Start drawing

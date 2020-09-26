@@ -1,20 +1,20 @@
-title: Преимущества данной услуги en
+title: Advantages of color matching consultation
 items:
   - content: !markdown |
-      определение **стиля** и **концепции** интерьера EN
+      Definition of **style** and **concept** of the interior
     svg: concept.svg
   - content: !markdown |
-      подбор цветов для основных поверхностей интерьера из **палитр NCS и RAL** EN
-    svg: materials.svg
+      **Selection of color scheme** on the main surfaces
+    svg: colors.svg
   - content: !markdown |
-      определение **текстур поверхностей**  EN
+      Definition of **surface textures**
     svg: textur.svg
   - content: !markdown |
-      добавление **контрастирующих** элементов EN
+      Adding **contrasting** elements
     svg: contrast.svg
   - content: !markdown |
-      **экспресс метод** и **альтернатива** визуализации EN
+      **Express method** and **alternative to** visualization
     svg: express.svg
   - content: !markdown |
-      ** подбор цветовой схемы** на основные поверхности EN
-    svg: colors.svg
+      Using **NCS and RAL** palettes, etc.
+    svg: materials.svg

@@ -100,19 +100,16 @@ const InstructionColumn = styled.div`
 //     height: 108%;
 // `
 const InstructionText = styled.div`
-    ol {
+    ul {
         margin: 32px;
-        list-style: decimal;
         list-style: none;
-        counter-reset: my-awesome-counter;
         @media (min-width: ${displayWidth.tablet}) {
-            margin: 48px 60px;
             text-align: left;
+            margin: 60px;
         }
     }
     li {
-        margin: 49px 0 0 0;
-        counter-increment: my-awesome-counter;
+        margin-bottom: 20px;
         position: relative;
         font-style: normal;
         font-weight: normal;
@@ -120,24 +117,9 @@ const InstructionText = styled.div`
         line-height: 26px;
         text-align: center;
         letter-spacing: 0.4px;
-        :before {
-            content: counter(my-awesome-counter) '. ';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 12px;
-            line-height: 16px;
-            letter-spacing: 0.3px;
-            @media (min-width: ${displayWidth.tablet}) {
-                top: 7px;
-                left: -20px;
-            }
-        }
         @media (min-width: ${displayWidth.tablet}) {
             text-align: left;
-            margin: 49px 90px 0 0;
+            margin: 0px 0 30зч 0;
         }
     }
     strong {

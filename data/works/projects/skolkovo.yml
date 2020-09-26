@@ -3,11 +3,11 @@ previewImage:
   landscape: 'skolkovoLandscape.png'
   portrait: 'skolkovoPortrait.jpg'
 uk:
-  name: Сколково uk
-  description: Эта история про то, как тщательно продуманная задумка полностью соответстует превосходному окончательному результату!
+  name: Сколково
+  description: Ця історія про те, як ретельно продумана задумка повністю відповідає чудовому остаточному результату!
 ru:
   name: Сколково
   description: Эта история про то, как тщательно продуманная задумка полностью соответстует превосходному окончательному результату!
 en:
-  name: Сколково en
-  description: Эта история про то, как тщательно продуманная задумка полностью соответстует превосходному окончательному результату!
+  name: Skolkovo
+  description: This story is about how a carefully thought-out idea perfectly matches the perfect final result!

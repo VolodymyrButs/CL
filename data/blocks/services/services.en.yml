@@ -1,34 +1,41 @@
 title: Services
 image: palma.png
 questions:
-  - question: Дизайн интерьера квартиры по акции
-    answer: 'yes'
-    icon: promoServices.svg
-  - question: Обмер помещения
+  - question: Interior design of apartments on offer
     answer: !markdown |
-      Проектирование выполняется в программе AutoCAD и для начала работы нам необходим обмерочный чертеж в формате dwg или dxf.  
-        
-      Выберите один из трех вариантов его получения
+      apartment 50 sq. meters - $ 99
 
-        1. **Бесплатный вариант**. Снять замеры самостоятельно, скачать AutoCAD, BricsCAD или ARCHICAD, создать чертеж и прислать нам на почту **obmer@clearline.com.ua**. 
-        
-        А также можно использовать наш бесплатный онлайн - редактор для перенесения ваших размеров в электронный вид <a href="https://clearline.com.ua/cad" target="_blank">clearline.com.ua/cad</a>
+      apartment to 100 sq. meters - 120 $
 
-        2. **Снять замеры и переслать нам в любом виде **(чертеж от руки, фото чертежа застройщика, чертеж в формате pdf) Мы перенесем эти размеры в нужный формат dwg, cтоимость переноса в электронный вид -  4,5 гривен за 1 кв.метр с минимальной стоимостью работы 450 гривен.
-        3. **Вызвать выезд инженера для замера** помещения и оформления чертежа. Стоимость работы - 9 гривен за 1 кв.метр с минимальной суммой выезда 900 гривен
-    icon: rulerServices.svg
-  - question: Дизайн проект одной комнаты или зоны (кухня, гостинная и тд)
-    answer: look out
-    icon: cupboard.svg
-  - question: Дизайн проект дома (коттеджа, таунхауса) по акции
-    answer: look out
+      apartment to 150 sq. meters - $ 150
+
+      apartment to 200 sq. meters - $ 200
+
+      apartment from 200 sq. meters - $ 1 per 1 sq. meter
+
+      \* you need a measurement drawing to get started
+    icon: promoServices.svg
+  - question: Design project of a house (cottage, townhouse) for a promotion
+    answer: !markdown |
+      1 $ for 1 sq. meter (minimum cost of work $ 150)
     icon: house.svg
-  - question: Дизайн проект в 3d объеме
-    answer: look out
+  - question: Measurement of the premises
+    answer: !markdown |
+      9 UAH for 1 square meter (minimum cost of departure 900 UAH in Kiev and Kiev region)
+    icon: rulerServices.svg
+  - question: Transferring measurements to electronic view
+    answer: !markdown |
+      4.5 UAH per 1 square meter (minimum transfer cost 450 UAH)
+    icon: cupboard.svg
+  - question: Design project 3D
+    answer: !markdown |
+      4 $ for 1 sq. meter (minimum cost of work $ 100)
     icon: cube.svg
-  - question: 3d визуализация проекта
-    answer: look out
-    icon: screen.svg
-  - question: Консультация дизайнера по цветам и текстурам
-    answer: look out
+  - question: Designer consultation on colors and textures
+    answer: !markdown |
+      450 UAH (consultation duration 1 hour)
     icon: palitra.svg
+  - question: 3D visualization of the project
+    answer: !markdown |
+      from $5 for 1 sq. meter (minimum cost of work $ 100)
+    icon: screen.svg

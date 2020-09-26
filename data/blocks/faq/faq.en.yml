@@ -1,26 +1,51 @@
-title: FAQ en
-subTitle: Здесь вы найдете ответы на часто задающиеся вопросы en
+title: FAQ
 image: lampFAQ.png
-buttonTextOpen: Раскрыть все вопросы en
-buttonTextClose: 3акрыть все вопросы en
+subTitle: Here you will find answers to frequently asked questions
+buttonTextOpen: Expand all questions
+buttonTextClose: Close all questions
 questions:
-  - question: Сколько видов планировок вы предлагаете?
-    answer: Мы предлагаем 2 вида планировок в рамках одного проекта.
-  - question: Работаете ли вы за пределами Киева / Киевской области?
-    answer: 'yes'
-  - question: Что такое сопровождение дизайнера?
-    answer: look out
-  - question: Что такое техническое задание?
-    answer: look out
-  - question: Учитываете ли вы наш бюджет при выборе материалов, мебели и т. д.?
-    answer: look out
-  - question: Каким образом осуществляется оплата дизайн-проекта?
-    answer: look out
-  - question: Какое время, в среднем, занимает разработка дизайн-проекта?
-    answer: look out
-  - question: Как часто необходимо приезжать к вам в офис?
-    answer: look out
-  - question: Есть ли ограничение по количеству корректировок визуализации?
-    answer: look out
-  - question: Есть ли у вас услуги по ремонту и отделке квартир/домов?
-    answer: look out
+  - question: Is a plan of an apartment from a developer or BTI enough to get started?
+    answer: !markdown |
+      No. The developer does not measure what he has built and does not provide drawings in electronic form for use in computer programs.
+
+      Usually, a floor plan is issued on paper or a pdf file with partial dimensions.
+  - question: How does the work begin?
+    answer: !markdown |
+      To get started, you need a dimensional drawing of the room in dwg or dxf format. Design is carried out in AutoCAD.
+        
+      Choose from three options for creating a drawing:
+
+        1. **Free option** - use our editor <a href="https://clearline.com.ua/cad" target="_blank"> СlearlineСAD </a>,
+
+          You can also use AutoCAD, ArchiCAD and other CAD programs, create a drawing and send us an email **obmer@clearline.com.ua**.
+        2. **Take measurements and send them to us in any form** (freehand drawing, photo, pdf, etc.) We will transfer these dimensions into a computer program, the cost of transferring to an electronic form is 4.5 UAH. for 1 sq. meter with a minimum cost of work 450 UAH.
+        3. **Order room measurement**. The cost of the work is 9 UAH. for 1 sq. meter with a minimum check-out amount of 900 UAH.
+  - question: Project completion time?
+    answer: !markdown |
+      Average project completion time is 2 weeks. But the timing also depends on the speed of coordination of all design stages, everything is individual.
+  - question: How do you pay?
+    answer: !markdown |
+      Payment is made in stages. First, you pay for the measurement or transfer of your measurements to electronic form. Then at the first meeting - an advance payment for the project - 50%, before the development of electrics - the rest.
+  - question: Do you work with a designer in the office or remotely?
+    answer: !markdown |
+      We work in the office or online. We do a lot of projects remotely for customers from different cities.
+  - question: What do you need to create a 3D visualization?
+    answer: !markdown |
+      You will need room drawings in dwg format with an approved furniture arrangement plan and possible redevelopment.
+
+      You also need to define combinations of colors and textures for the main surfaces, using the international palette ncs, ral. etc. You can draw up a technical task for visualization on your own or take advantage of the designer's consultation on the selection of colors and textures.
+  - question: We need a quick electrician, can we start with her?
+    answer: !markdown |
+      No, the electrician is the second part of the project. First, the redevelopment and arrangement of furniture is approved, and only then sockets, switches, lights, etc. are designed.
+  - question: We have ideas, will they be considered in the design?
+    answer: !markdown |
+      Yes, before starting the design we send you a questionnaire, in which you express your wishes.
+
+      Before the first meeting, we study them and offer our own version of redevelopment and furniture placement.
+
+      Further, at a meeting with the designer, any other options are worked out. We work until the desired result is obtained.
+  - question: Will you advise us in the choice of colors and materials?
+    answer: !markdown |
+      Yes, we provide a service of concept selection by colors and materials for the main surfaces.
+
+      The consultation takes place in the office with an experienced designer - decorator. The result is fixed by a selection of images and color numbers from international palettes.
