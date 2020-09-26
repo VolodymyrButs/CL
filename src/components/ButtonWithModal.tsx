@@ -77,7 +77,13 @@ export const ButtonWithModal = ({
     tracking: FormTracking
 }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+
+    // TODO: move to Form
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
     return (
         <>
             <Modal
@@ -92,6 +98,7 @@ export const ButtonWithModal = ({
                             formName={'Callback Form'}
                             buttonText={submitLabel}
                             onFormSubmit={handleSubmitStatus}
+                            onFormSendStart={handleFormSendStart}
                             formSendStatus={formSendStatus}
                             closeHandler={setModalIsOpen}
                             {...tracking}

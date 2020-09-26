@@ -62,7 +62,13 @@ export const DefaultFormBlock = ({
     tracking: FormTracking
 }) => {
     const { t } = useTranslation()
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+
+    // TODO: move to Form
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
 
     return (
         <FormWrapper>
@@ -74,6 +80,7 @@ export const DefaultFormBlock = ({
                         buttonText={t('send')}
                         onFormSubmit={handleSubmitStatus}
                         formSendStatus={formSendStatus}
+                        onFormSendStart={handleFormSendStart}
                         {...tracking}
                     >
                         {({ register, errors }: IChildrenProps) => (
@@ -90,13 +97,6 @@ export const DefaultFormBlock = ({
                                     err={errors.message}
                                 />
                                 <EmailInput ref={register} err={errors.email} />
-
-                                <input
-                                    type="hidden"
-                                    name="hidden"
-                                    value="lalala"
-                                    ref={register}
-                                />
                             </InputBlock>
                         )}
                     </Form>

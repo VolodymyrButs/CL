@@ -11,3 +11,12 @@ declare module 'use-gestures' {
     import useGestures from 'useGestures'
     export default useGestures
 }
+
+declare var ga: GAfn
+interface GAfn {
+    getAll: () => Tracker[]
+}
+
+interface Tracker {
+    get: (param: string) => string
+}
