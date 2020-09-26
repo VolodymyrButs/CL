@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { RoundText, Svg } from 'components/RoundText'
 import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { colors } from 'styles/colors'
+import { sendConversion, sendEvent } from 'tracking'
 
 export const PhoneLinkWrapper = styled.a`
     display: flex;
@@ -39,12 +40,28 @@ export const PhoneLinkWrapper = styled.a`
 
 interface IPhoneLinkProps {
     phone: string
+    placement: string
 }
 
-export const PhoneLink: React.FC<IPhoneLinkProps> = ({ phone, ...props }) => {
+export const PhoneLink: React.FC<IPhoneLinkProps> = ({
+    phone,
+    placement,
+    ...props
+}) => {
     const { t } = useTranslation()
     return (
-        <PhoneLinkWrapper {...props} href={`tel:${phone}`}>
+        <PhoneLinkWrapper
+            {...props}
+            href={`tel:${phone}`}
+            onClick={() => {
+                sendConversion('PhoneClick')
+                sendEvent('Phone', {
+                    eventCategory: 'PhoneClick',
+                    placement,
+                    phone,
+                })
+            }}
+        >
             <RoundText text={t('callUs')}>
                 <PhoneSvgAnimated />
             </RoundText>

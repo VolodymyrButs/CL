@@ -6,7 +6,7 @@ import { colors } from 'styles/colors'
 import CallbackIcon from 'assets/icons/callback.svg'
 import { displayWidth } from 'styles/width'
 import { Modal } from './Modal'
-import { Form, IChildrenProps } from 'components/form/Form'
+import { Form, FormTracking, IChildrenProps } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
@@ -14,6 +14,7 @@ import { Title } from 'components/TitleComponent'
 import { useFormHandler } from 'hooks/useFormHandler'
 import { PhoneSvgAnimated } from './PhoneSvgAnimated'
 import { contactInformation } from './contactInformation'
+import { sendConversion, sendEvent } from 'tracking'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
@@ -140,7 +141,7 @@ const TitleStyled = styled(Title)`
         margin: 16px 0;
     }
 `
-export const CallbackButton = () => {
+export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
     const { handleSubmitStatus, formSendStatus } = useFormHandler()
     const { t, i18n } = useTranslation()
@@ -182,6 +183,7 @@ export const CallbackButton = () => {
                         onFormSubmit={handleSubmitStatus}
                         formSendStatus={formSendStatus}
                         closeHandler={setModalIsOpen}
+                        {...tracking}
                     >
                         {({ register, errors }: IChildrenProps) => (
                             <>
@@ -198,7 +200,16 @@ export const CallbackButton = () => {
                 </Wrapper>
             </Modal>
             <CallbackButtonWrapperMobile aria-label="Callback Button">
-                <a href={`tel:${contactInformation.primaryPhone}`}>
+                <a
+                    href={`tel:${contactInformation.primaryPhone}`}
+                    onClick={() => {
+                        sendConversion('PhoneClick')
+                        sendEvent('Phone', {
+                            eventCategory: 'PhoneClick',
+                            type: 'CallBack button',
+                        })
+                    }}
+                >
                     <PhoneSvgAnimatedStyled />
                 </a>
             </CallbackButtonWrapperMobile>

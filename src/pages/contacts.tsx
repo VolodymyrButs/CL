@@ -12,6 +12,7 @@ import { Container } from 'components/Container'
 import { headerBg } from 'styles/headerBg'
 import SimpleMap from 'components/Map/Map'
 import { headerHeight } from 'styles/height'
+import { sendConversion, sendEvent } from 'tracking'
 
 const ContactsWrapper = styled.div`
     display: flex;
@@ -149,6 +150,12 @@ const ContactsPage = () => {
                         <a
                             href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
                             target="blank"
+                            onClick={() => {
+                                sendEvent('Click', {
+                                    eventCategory: 'Address',
+                                    placement: 'Contacts',
+                                })
+                            }}
                         >
                             <p>{street}</p>
                             <p> {city}</p>
@@ -156,17 +163,47 @@ const ContactsPage = () => {
                     </Paragraph>
                     <Header>{t('contacts')}:</Header>
                     <Paragraph>
-                        <a href={`tel:${contactInformation.primaryPhone}`}>
+                        <a
+                            href={`tel:${contactInformation.primaryPhone}`}
+                            onClick={() => {
+                                sendConversion('PhoneClick')
+                                sendEvent('Phone', {
+                                    eventCategory: 'PhoneClick',
+                                    placement: 'Contacts',
+                                    phone: contactInformation.primaryPhone,
+                                })
+                            }}
+                        >
                             {contactInformation.primaryPhone}
                         </a>
                     </Paragraph>
                     <Paragraph>
-                        <a href={`tel:${contactInformation.secondaryPhones}`}>
+                        <a
+                            href={`tel:${contactInformation.secondaryPhones}`}
+                            onClick={() => {
+                                sendConversion('PhoneClick')
+                                sendEvent('Phone', {
+                                    eventCategory: 'PhoneClick',
+                                    placement: 'Contacts',
+                                    phone: contactInformation.secondaryPhones,
+                                })
+                            }}
+                        >
                             {contactInformation.secondaryPhones}
                         </a>
                     </Paragraph>
                     <Paragraph>
-                        <a href={`mailto:${contactInformation.email}`}>
+                        <a
+                            href={`mailto:${contactInformation.email}`}
+                            onClick={() => {
+                                sendConversion('EmailClick')
+                                sendEvent('Email', {
+                                    eventCategory: 'EmailClick',
+                                    placement: 'Contacts',
+                                    email: contactInformation.email,
+                                })
+                            }}
+                        >
                             {contactInformation.email}
                         </a>
                     </Paragraph>

@@ -18,6 +18,7 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import { Modal } from 'components/Modal'
 import { SendStatus } from './Form'
+import { sendConversion, sendEvent } from 'tracking'
 
 const Div = styled.div`
     display: none;
@@ -99,6 +100,9 @@ export const ComercialForm = () => {
 
     const { handleSubmitStatus, formSendStatus } = useFormHandler()
     const onSubmit = (data: object) => {
+        sendEvent('FormSubminAttempt', {
+            eventCategory: 'FormCommercialProposal',
+        })
         fetch('/send-form', {
             method: 'POST',
             body: JSON.stringify({
@@ -114,12 +118,24 @@ export const ComercialForm = () => {
             })
             .then((success) => {
                 handleSubmitStatus(success.success)
+
+                sendConversion('FormCommercialProposal')
+                sendEvent('FormSubminSuccess', {
+                    eventCategory: 'FormCommercialProposal',
+                })
             })
-            .catch(() => handleSubmitStatus(false))
+            .catch(() => {
+                handleSubmitStatus(false)
+                sendEvent('FormSubminFail', {
+                    eventCategory: 'FormCommercialProposal',
+                })
+            })
     }
     const [isOpenFormModal, setIsOpenFormModal] = useState(false)
+
     return (
         <FormWrapper>
+            {/* Fixme: why we are not using Form component here */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputBlock>
                     <Wrapper>

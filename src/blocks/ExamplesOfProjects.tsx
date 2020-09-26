@@ -15,6 +15,7 @@ import { indent } from 'styles/indent'
 import FullScreen from 'assets/icons/fullScreen.svg'
 import { ModalCarousel } from 'components/ModalCarousel'
 import { ProjectData } from 'layout/Project'
+import { sendEvent } from 'tracking'
 const ExampleOfProjectWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -216,9 +217,22 @@ export const ExamplesOfProjects = () => {
                     <FullScreenButton
                         onClick={() => {
                             setModalIsOpen(true)
+                            sendEvent('FullScreen', {
+                                eventCategory: 'Slider',
+                                placement: 'ExampleOfProject',
+                            })
                         }}
                     />
-                    <SliderComponent {...sliderSettings}>
+                    <SliderComponent
+                        {...sliderSettings}
+                        afterChange={(current: number) => {
+                            sendEvent('ShowSlide', {
+                                eventCategory: 'Slider',
+                                currentSlide: `${current}`,
+                                placement: 'ExampleOfProject',
+                            })
+                        }}
+                    >
                         {data.desktop.edges.map(
                             (
                                 item: {
@@ -242,12 +256,16 @@ export const ExamplesOfProjects = () => {
                     </SliderComponent>
                 </WrapperDesktop>
                 <WrapperMobile>
-                    <FullScreenButton
-                        onClick={() => {
-                            setModalIsOpen(true)
+                    <SliderComponent
+                        {...sliderSettings}
+                        afterChange={(current: number) => {
+                            sendEvent('ShowSlide', {
+                                eventCategory: 'Slider',
+                                currentSlide: `${current + 1}`,
+                                placement: 'ExampleOfProject',
+                            })
                         }}
-                    />
-                    <SliderComponent {...sliderSettings}>
+                    >
                         {data.mobile.edges.map(
                             (
                                 item: {

@@ -9,6 +9,7 @@ import { usePagePath } from 'hooks/usePagePath'
 import { headerHeight } from 'styles/height'
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
+import { sendEvent } from 'tracking'
 
 const languagesList = Object.keys(languages)
 
@@ -164,7 +165,13 @@ export const LanguageSwitcher = () => {
                                     <LinkStyled
                                         open={!isOpen}
                                         to={`${path}`}
-                                        onClick={() => setIsOpen(!isOpen)}
+                                        onClick={() => {
+                                            setIsOpen(!isOpen)
+                                            sendEvent('Click', {
+                                                eventCategory: 'LanguageChange',
+                                                to: `${lang}`,
+                                            })
+                                        }}
                                     >
                                         {langLabel}
                                     </LinkStyled>

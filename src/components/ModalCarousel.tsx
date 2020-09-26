@@ -13,7 +13,7 @@ const ImageModal = styled(Img)<{ fluid: FluidObject }>`
 `
 const SliderStyled = styled(Slider)`
     .slick-list {
-        margin: 10px;
+        margin: 0 -10px;
         @media (min-width: ${displayWidth.tablet}) {
             margin: 0 -10px;
         }

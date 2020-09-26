@@ -14,6 +14,7 @@ import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
+import { sendEvent } from 'tracking'
 
 const SelectionOfPaintWrapper = styled.div`
     display: flex;
@@ -139,6 +140,13 @@ export const SelectionOfPaints = () => {
                     <SubTitle>{subTitle}</SubTitle>
                     <LocalizedLinkStyled
                         to={'/promo/#selectionOfPaintsAdvantages'}
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'ShowMoreButton',
+                                placement: 'ColorSelection',
+                                target: 'AdvantagesServices',
+                            })
+                        }}
                     >
                         <ButtonStyled>{buttonText}</ButtonStyled>
                     </LocalizedLinkStyled>

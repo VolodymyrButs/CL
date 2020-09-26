@@ -16,6 +16,7 @@ import { LastProjects } from '../components/LastProjects'
 import FullScreen from 'assets/icons/fullScreen.svg'
 import { ModalCarousel } from 'components/ModalCarousel'
 import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
+import { sendEvent } from 'tracking'
 
 const ProjectWrapper = styled.div`
     display: flex;
@@ -308,6 +309,10 @@ const ProjectLayout = ({
                             <FullScreenButton
                                 onClick={() => {
                                     setModalIsOpen(true)
+                                    sendEvent('FullScreen', {
+                                        eventCategory: 'Slider',
+                                        type: name,
+                                    })
                                 }}
                             />
                             <Counter>
@@ -319,9 +324,14 @@ const ProjectLayout = ({
                                 {...sliderSettings}
                                 asNavFor={nav2}
                                 ref={slider1}
-                                afterChange={(current) =>
+                                afterChange={(current) => {
                                     setImageIndex(current)
-                                }
+                                    sendEvent('ShowSlide', {
+                                        eventCategory: 'Slider',
+                                        currentSlide: `${current + 1}`,
+                                        component: name,
+                                    })
+                                }}
                             >
                                 {projectImages.map((photo) => {
                                     return (
@@ -348,6 +358,13 @@ const ProjectLayout = ({
                                 {...sliderSettingsBottom}
                                 asNavFor={nav1}
                                 ref={slider2}
+                                afterChange={(current) => {
+                                    sendEvent('ShowSlide', {
+                                        eventCategory: 'Slider',
+                                        currentSlide: `${current + 1}`,
+                                        component: `${name}Mini`,
+                                    })
+                                }}
                             >
                                 {projectImages.map((photo) => (
                                     <div key={photo.childImageSharp.fluid.src}>
@@ -379,6 +396,10 @@ const ProjectLayout = ({
                     buttonLabel={t('connection.buttonLabel')}
                     placeholder={t('connection.placeholder')}
                     submitLabel={t('connection.submitLabel')}
+                    tracking={{
+                        conversionType: 'CallbackFromProject',
+                        eventCategory: 'CallbackFromProject',
+                    }}
                 />
             </Connection>
         </>

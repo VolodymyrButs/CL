@@ -165,6 +165,7 @@ export const DefaultFormHero = ({
             <PhoneLinkStyled
                 phone={contactInformation.primaryPhone}
                 withPhoneMobile={withPhoneMobile}
+                placement={'Form'}
             />
             {image && <Image fluid={imageFluid.fluid} />}
         </HeroColumn>

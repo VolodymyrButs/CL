@@ -40,6 +40,10 @@ const Promo = () => {
                     buttonLabel={t('connection.buttonLabel')}
                     placeholder={t('connection.placeholder')}
                     submitLabel={t('connection.submitLabel')}
+                    tracking={{
+                        conversionType: 'CallbackFromPromo',
+                        eventCategory: 'CallbackFromPromo',
+                    }}
                 />
             </Connection>
             <SelectionOfPaints />
@@ -52,7 +56,13 @@ const Promo = () => {
             <VisualizationAdvantages />
             <div id="faq" />
             <Faq />
-            <DefaultFormBlock withPhoneMobile />
+            <DefaultFormBlock
+                withPhoneMobile
+                tracking={{
+                    conversionType: 'FormPromoPageBottom',
+                    eventCategory: 'FormPromoPageBottom',
+                }}
+            />
         </>
     )
 }
