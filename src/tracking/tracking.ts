@@ -54,3 +54,11 @@ export const sendConversion = (
         send_to: `${awId}/${getConversionId(conversionType)}`,
         event_callback: callback,
     })
+
+export const getCID = (): string => {
+    // const ga = typeof window !== 'undefined' && window?.ga
+    if (typeof window === 'undefined' || !window.ga) return ''
+
+    const tracker = window.ga.getAll()[0]
+    return tracker.get('clientId')
+}

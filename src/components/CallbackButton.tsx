@@ -143,7 +143,13 @@ const TitleStyled = styled(Title)`
 `
 export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+
+    // TODO: move to Form
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
     const { t, i18n } = useTranslation()
 
     const data = useStaticQuery(graphql`
@@ -181,6 +187,7 @@ export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
                         formName={'Question Form'}
                         buttonText={t('send')}
                         onFormSubmit={handleSubmitStatus}
+                        onFormSendStart={handleFormSendStart}
                         formSendStatus={formSendStatus}
                         closeHandler={setModalIsOpen}
                         {...tracking}

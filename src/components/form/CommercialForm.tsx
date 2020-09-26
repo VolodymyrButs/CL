@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import fetch from 'node-fetch'
 import { Button } from 'components/Button'
 import { displayWidth } from 'styles/width'
 import styled from 'styled-components'
@@ -8,6 +7,7 @@ import {
     isFormSuccess,
     isFormError,
     useFormHandler,
+    isSending,
 } from 'hooks/useFormHandler'
 import InputMask from 'react-input-mask'
 import { useForm, Controller } from 'react-hook-form'
@@ -19,6 +19,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import { Modal } from 'components/Modal'
 import { SendStatus } from './Form'
 import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from './api'
 
 const Div = styled.div`
     display: none;
@@ -98,24 +99,19 @@ export const ComercialForm = () => {
         shouldFocusError: false,
     })
 
-    const { handleSubmitStatus, formSendStatus } = useFormHandler()
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
+
     const onSubmit = (data: object) => {
         sendEvent('FormSubminAttempt', {
             eventCategory: 'FormCommercialProposal',
         })
-        fetch('/send-form', {
-            method: 'POST',
-            body: JSON.stringify({
-                ...data,
-                formName,
-            }),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        })
-            .then((response) => {
-                return response.json()
-            })
+
+        handleFormSendStart()
+        sendForm(formName, data)
             .then((success) => {
                 handleSubmitStatus(success.success)
 
@@ -275,7 +271,10 @@ export const ComercialForm = () => {
                 </InputBlock>
                 <ButtonWrapper>
                     <ButtonStyled
-                        disabled={isFormSuccess(formSendStatus)}
+                        disabled={
+                            isFormSuccess(formSendStatus) ||
+                            isSending(formSendStatus)
+                        }
                         onClick={() => setIsOpenFormModal(true)}
                         type="submit"
                     >
