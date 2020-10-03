@@ -93,20 +93,28 @@ export const WorksProjectItem = ({
                             originalName
                             ...GatsbyImageSharpFluid_withWebp
                         }
+                        parent {
+                            ... on File {
+                                name
+                            }
+                        }
                     }
                 }
             }
         }
     `)
     const { t } = useTranslation()
+    const photo = getImageByImageName(data.allImageSharp, image)
 
     return (
         <ItemWrapper>
             <Image
-                fluid={getImageByImageName(data.allImageSharp, image).fluid}
+                fluid={photo.fluid}
                 imgStyle={{
                     objectFit: 'containe',
                 }}
+                alt={photo.parent.name}
+                title={photo.parent.name}
             />
             <HoverWrapper aria-label={link} to={`works/${link}`}>
                 <LogoStyled />

@@ -3,33 +3,33 @@ image: palma.png
 questions:
   - question: Interior design of apartments on offer
     answer: !markdown |
-      apartment 50 sq. meters - $ 99
+      apartment 50 м<sup>2</sup> - $99
 
-      apartment to 100 sq. meters - 120 $
+      apartment to 100 м<sup>2</sup> - $120
 
-      apartment to 150 sq. meters - $ 150
+      apartment to 150 м<sup>2</sup> - $150
 
-      apartment to 200 sq. meters - $ 200
+      apartment to 200 м<sup>2</sup> - $200
 
-      apartment from 200 sq. meters - $ 1 per 1 sq. meter
+      apartment from 200 м<sup>2</sup> - $1 per м<sup>2</sup>
 
       \* you need a measurement drawing to get started
     icon: promoServices.svg
   - question: Design project of a house (cottage, townhouse) for a promotion
     answer: !markdown |
-      1 $ for 1 sq. meter (minimum cost of work $ 150)
+      $1 for м<sup>2</sup> (minimum cost of work $150)
     icon: house.svg
   - question: Measurement of the premises
     answer: !markdown |
-      9 UAH for 1 square meter (minimum cost of departure 900 UAH in Kiev and Kiev region)
+      9 UAH for м<sup>2</sup> (minimum cost of departure 900 UAH in Kiev and Kiev region)
     icon: rulerServices.svg
   - question: Transferring measurements to electronic view
     answer: !markdown |
-      4.5 UAH per 1 square meter (minimum transfer cost 450 UAH)
+      4.5 UAH per м<sup>2</sup> (minimum transfer cost 450 UAH)
     icon: cupboard.svg
   - question: Design project 3D
     answer: !markdown |
-      4 $ for 1 sq. meter (minimum cost of work $ 100)
+      $4 for м<sup>2</sup> (minimum cost of work $100)
     icon: cube.svg
   - question: Designer consultation on colors and textures
     answer: !markdown |
@@ -37,5 +37,5 @@ questions:
     icon: palitra.svg
   - question: 3D visualization of the project
     answer: !markdown |
-      from $5 for 1 sq. meter (minimum cost of work $ 100)
+      from $5 for м<sup>2</sup> (minimum cost of work $100)
     icon: screen.svg

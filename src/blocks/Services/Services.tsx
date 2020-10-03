@@ -9,7 +9,7 @@ import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { Title } from 'components/TitleComponent'
+import { TitleH1 } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { ServicesItem, ServicesItemProp } from 'blocks/Services/ServicesItem'
 import { headerBg } from 'styles/headerBg'
@@ -31,7 +31,7 @@ const ServicesWrapper = styled.div`
         border-bottom: none;
     }
 `
-const TitleStyled = styled(Title)`
+const TitleStyled = styled(TitleH1)`
     margin: 40px 0 32px;
     font-size: 48px;
     line-height: 55px;

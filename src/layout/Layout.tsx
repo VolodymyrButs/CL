@@ -110,7 +110,6 @@ export const Layout = (props: { children: React.ReactNode }) => {
         <LayoutWraper>
             <Helmet>
                 <html lang={i18n.language} />
-                <title>ClearLine</title>
                 {languagesList.map((lang) => {
                     return (
                         <link
@@ -121,7 +120,6 @@ export const Layout = (props: { children: React.ReactNode }) => {
                         />
                     )
                 })}
-                <meta name="description" content="Clearline" />
                 <script type="application/ld+json">
                     {`{
                         "@context": "https://schema.org/",

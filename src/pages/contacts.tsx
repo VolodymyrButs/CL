@@ -13,6 +13,14 @@ import { headerBg } from 'styles/headerBg'
 import SimpleMap from 'components/Map/Map'
 import { headerHeight } from 'styles/height'
 import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from 'components/form/api'
+import { HelmetFunc } from 'components/PageMetaData'
+
+const pageMetadata = {
+    uk: { title: 'lalaU', description: 'desc' },
+    ru: { title: 'lalaR', description: 'desc' },
+    en: { title: 'lalaE', description: 'desc' },
+}
 
 const ContactsWrapper = styled.div`
     display: flex;
@@ -81,7 +89,7 @@ const Paragraph = styled(Header)`
         }
     }
 `
-const Title = styled.h2`
+const Title = styled.h1`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -141,6 +149,7 @@ const ContactsPage = () => {
 
     return (
         <ContactsWrapper>
+            <HelmetFunc data={pageMetadata} />
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <ContactsColumn>
@@ -166,6 +175,7 @@ const ContactsPage = () => {
                         <a
                             href={`tel:${contactInformation.primaryPhone}`}
                             onClick={() => {
+                                sendForm(`ContactsPhoneClick`, {})
                                 sendConversion('PhoneClick')
                                 sendEvent('Phone', {
                                     eventCategory: 'PhoneClick',
@@ -181,6 +191,7 @@ const ContactsPage = () => {
                         <a
                             href={`tel:${contactInformation.secondaryPhones}`}
                             onClick={() => {
+                                sendForm(`ContactsStationarPhoneClick`, {})
                                 sendConversion('PhoneClick')
                                 sendEvent('Phone', {
                                     eventCategory: 'PhoneClick',

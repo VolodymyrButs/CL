@@ -30,7 +30,6 @@ const ContactLinks = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-left: 5px;
 `
 const SocialIconsWrapper = styled.div`
     margin: 0 45px;

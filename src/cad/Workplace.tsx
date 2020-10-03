@@ -131,6 +131,10 @@ const ButtonWraper = styled.label`
     @media (max-width: 767px) {
         flex-direction: column;
         margin-bottom: 0;
+        height: 60px;
+    }
+    @media (max-width: 330px) {
+        width: 55px;
     }
 `
 const ButtonStyled = styled(Button)`
@@ -150,7 +154,18 @@ const Hint = styled.span`
         display: block;
     }
 `
-
+const ButtonMobileHidden = styled(Button)`
+    @media (max-width: 767px) {
+        display: none;
+    }
+`
+const ButtonGroupStyled = styled(ButtonGroup)`
+    @media (max-width: 767px) {
+        flex-direction: row;
+        max-width: 180px;
+        flex-wrap: wrap;
+    }
+`
 const ButtonStart = styled(Button)``
 const MILIMETERS_PER_PIXEL = 0.1
 const ZOOM_FACTOR = 1.1
@@ -532,7 +547,7 @@ const Workplace = ({
                 />
 
                 <LeftTopTools>
-                    <ButtonGroup $direction="column">
+                    <ButtonGroupStyled $direction="column">
                         <ButtonWraper>
                             <ButtonStyled
                                 disabled={isConturLocked || !isDoorAdded}
@@ -575,28 +590,6 @@ const Workplace = ({
                             </ButtonStyled>
 
                             <span>{t('Window')}</span>
-                        </ButtonWraper>
-
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.apertureDoor
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.apertureDoor)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <Door />
-
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
-
-                            <span>{t('Door')}</span>
                         </ButtonWraper>
 
                         <ButtonWraper>
@@ -661,6 +654,29 @@ const Workplace = ({
 
                             <span>{t('Tube')}</span>
                         </ButtonWraper>
+
+                        <ButtonWraper>
+                            <ButtonStyled
+                                disabled={!isConturLocked || !isDoorAdded}
+                                theme={
+                                    currentTool === tools.apertureDoor
+                                        ? accentDark
+                                        : undefined
+                                }
+                                $buttonForm="square"
+                                onClick={() => {
+                                    setCurrentTool(tools.apertureDoor)
+                                    setSelected(undefined)
+                                }}
+                            >
+                                <Door />
+
+                                <Hint>{t('CloseContur')}</Hint>
+                            </ButtonStyled>
+
+                            <span>{t('Door')}</span>
+                        </ButtonWraper>
+
                         <ButtonWraper>
                             <ButtonStyled
                                 disabled={!isConturLocked || !isDoorAdded}
@@ -681,7 +697,7 @@ const Workplace = ({
 
                             <span>{t('Balcony')}</span>
                         </ButtonWraper>
-                    </ButtonGroup>
+                    </ButtonGroupStyled>
                 </LeftTopTools>
 
                 <RightTopTools>
@@ -694,7 +710,7 @@ const Workplace = ({
                             <Question />
                         </Button>
 
-                        <Button
+                        <ButtonMobileHidden
                             onClick={() =>
                                 setCanvasScale(canvasScale * ZOOM_FACTOR)
                             }
@@ -702,9 +718,9 @@ const Workplace = ({
                             title={t('Plus')}
                         >
                             <Plus />
-                        </Button>
+                        </ButtonMobileHidden>
 
-                        <Button
+                        <ButtonMobileHidden
                             onClick={() =>
                                 setCanvasScale(canvasScale / ZOOM_FACTOR)
                             }
@@ -712,7 +728,7 @@ const Workplace = ({
                             title={t('Minus')}
                         >
                             <Minus />
-                        </Button>
+                        </ButtonMobileHidden>
 
                         <Button
                             onClick={() => {

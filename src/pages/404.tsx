@@ -12,6 +12,13 @@ import { displayWidth } from 'styles/width'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { Button } from 'components/Button'
 import { SocialIcons } from 'components/SocialIcons'
+import { HelmetFunc } from 'components/PageMetaData'
+
+const pageMetadata = {
+    uk: { title: 'lalaU', description: 'desc' },
+    ru: { title: 'lalaR', description: 'desc' },
+    en: { title: 'lalaE', description: 'desc' },
+}
 
 const Wrapper = styled.div`
     width: 100%;
@@ -122,6 +129,7 @@ const NotFoundPage = () => {
     }, [])
     return (
         <Wrapper>
+            <HelmetFunc data={pageMetadata} />
             <LogoStyled />
             <PhoneLinkStyled href={`tel:${contactInformation.primaryPhone}`}>
                 {contactInformation.primaryPhone}
@@ -135,7 +143,7 @@ const NotFoundPage = () => {
                         {t('goBack')}
                     </ButtonStyled>
                 )}
-                <SocialIcons fill={colors.white} showAllIcons />
+                <SocialIcons fill={colors.white} showAllIcons placement="404" />
             </CenterBlock>
             <DesktopImageRight fluid={imageSofa.fluid} />
         </Wrapper>

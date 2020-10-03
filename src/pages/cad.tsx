@@ -5,6 +5,13 @@ import { store } from 'cad/storage/reduser'
 import { light } from 'cad/themes/light'
 import Workplace from 'cad/Workplace'
 import { AppHeader } from 'cad/AppHeader'
+import { HelmetFunc } from 'components/PageMetaData'
+
+const pageMetadata = {
+    uk: { title: 'lalaU', description: 'desc' },
+    ru: { title: 'lalaR', description: 'desc' },
+    en: { title: 'lalaE', description: 'desc' },
+}
 
 const AppStyled = styled.div`
     display: flex;
@@ -31,6 +38,7 @@ const CadPage = () => {
 
     return (
         <Provider store={store}>
+            <HelmetFunc data={pageMetadata} />
             <AppStyled>
                 <ThemeProvider theme={light}>
                     <AppHeader

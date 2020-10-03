@@ -1,5 +1,9 @@
 import { keysToSnakeCase } from 'utils/toSnakeCase'
-import { ConversionType, getConversionId } from './conversions'
+import {
+    ConversionType,
+    getConversionId,
+    isConversionType,
+} from './conversions'
 import { TrackingEventCategory, TrackingEventName } from './events'
 
 // TODO: move to env
@@ -25,6 +29,25 @@ const devGTag = (
 const sendEventToGTag =
     (typeof window !== 'undefined' && window?.gtag) || devGTag
 
+/* eslint-disable-next-line no-console */
+const devFBQ = (...params: unknown[]) => console.log('FBQ: ', ...params)
+
+const sendEventToFB = (typeof window !== 'undefined' && window?.fbq) || devFBQ
+
+const getFBEventName = (
+    eventName: TrackingEventName,
+    eventCategory: TrackingEventCategory
+): 'GASubmit' | 'GAEvent' => {
+    if (
+        eventName.toLowerCase().includes('attempt') ||
+        eventName.toLowerCase().includes('fail')
+    ) {
+        return 'GAEvent'
+    }
+
+    return isConversionType(eventCategory) ? 'GASubmit' : 'GAEvent'
+}
+
 interface EventParams {
     eventCategory: TrackingEventCategory
     [key: string]: string
@@ -43,6 +66,13 @@ export const sendEvent = (
         ...keysToSnakeCase(eventParams),
         event_location: location,
         event_callback: callback,
+    })
+
+    const { eventCategory } = eventParams
+
+    sendEventToFB('trackCustom', getFBEventName(eventName, eventCategory), {
+        goalCategory: eventCategory,
+        goalAction: eventName,
     })
 }
 

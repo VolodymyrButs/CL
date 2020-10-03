@@ -144,7 +144,7 @@ const DesktopImage = styled(Img)<{ fluid: FluidObject }>`
     @media (min-width: ${displayWidth.desktop}) {
         display: block;
         width: 110%;
-        height: 90%;
+        height: 95.6%;
         max-height: 90%;
         bottom: -4%;
         left: -70px;

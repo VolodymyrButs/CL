@@ -17,7 +17,7 @@ import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
-import { Title } from 'components/TitleComponent'
+import { TitleH1 } from 'components/TitleComponent'
 import { useTranslation } from 'react-i18next'
 import { sendEvent } from 'tracking'
 
@@ -107,7 +107,7 @@ const TitleWrapper = styled.div`
         width: 375px;
     }
 `
-const TitleStyled = styled(Title)`
+const TitleStyled = styled(TitleH1)`
     font-size: 50px;
     line-height: 55px;
     letter-spacing: 0.666667px;

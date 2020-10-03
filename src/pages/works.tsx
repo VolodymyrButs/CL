@@ -6,11 +6,19 @@ import { Reviews } from 'blocks/Reviews'
 import { Connection } from 'blocks/Connection'
 import { ButtonWithModal } from 'components/ButtonWithModal'
 import { WorksProjectGrid } from 'blocks/Works/WorksProjectGrid'
+import { HelmetFunc } from 'components/PageMetaData'
+
+const pageMetadata = {
+    uk: { title: 'lalaU', description: 'desc' },
+    ru: { title: 'lalaR', description: 'desc' },
+    en: { title: 'lalaE', description: 'desc' },
+}
 
 const WorksPage = () => {
     const { t } = useTranslation()
     return (
         <>
+            <HelmetFunc data={pageMetadata} />
             <WorksHero />
             <WorksProjectGrid />
             <Reviews />

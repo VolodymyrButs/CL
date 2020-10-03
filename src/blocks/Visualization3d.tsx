@@ -120,6 +120,11 @@ export const Visualization3d = () => {
                             originalName
                             ...GatsbyImageSharpFluid_withWebp
                         }
+                        parent {
+                            ... on File {
+                                name
+                            }
+                        }
                     }
                 }
             }
@@ -203,6 +208,8 @@ export const Visualization3d = () => {
                                         imgStyle={{
                                             objectFit: 'cover',
                                         }}
+                                        alt={ImageNode.parent.name}
+                                        title={ImageNode.parent.name}
                                     />
                                 )
                             }

@@ -8,6 +8,7 @@ import InstagramIcon from 'assets/icons/Instagram.svg'
 import FacebookIcon from 'assets/icons/Facebook.svg'
 import { displayWidth } from 'styles/width'
 import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from './form/api'
 
 const SocialIconsWrapper = styled.div<{ fill: string }>`
     display: flex;
@@ -43,6 +44,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                 href="viber://chat?number=%2B380982117690"
                 target="blank"
                 onClick={() => {
+                    sendForm(`${placement}ViberIcon`, {})
                     sendConversion('SocialIconViber')
                     sendEvent('SocialIcon', {
                         eventCategory: 'SocialIconViber',
@@ -56,6 +58,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                 href="tg://resolve?domain=clearline_com_ua"
                 target="blank"
                 onClick={() => {
+                    sendForm(`${placement}TelegramIcon`, {})
                     sendConversion('SocialIconTelegram')
                     sendEvent('SocialIcon', {
                         eventCategory: 'SocialIconTelegram',
@@ -69,6 +72,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                 href="https://wa.me/+380958363420"
                 target="blank"
                 onClick={() => {
+                    sendForm(`${placement}WhatsappIcon`, {})
                     sendConversion('SocialIconWhatsApp')
                     sendEvent('SocialIcon', {
                         eventCategory: 'SocialIconWhatsApp',
@@ -84,6 +88,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                         href="https://www.instagram.com/clear_line/"
                         target="blank"
                         onClick={() => {
+                            sendForm(`${placement}InstagramIcon`, {})
                             sendConversion('SocialIconInstagram')
                             sendEvent('SocialIcon', {
                                 eventCategory: 'SocialIconInstagram',
@@ -97,6 +102,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                         href="https://www.facebook.com/clearline.com.ua/"
                         target="blank"
                         onClick={() => {
+                            sendForm(`${placement}FacebookIcon`, {})
                             sendConversion('SocialIconFacebook')
                             sendEvent('SocialIcon', {
                                 eventCategory: 'SocialIconFacebook',

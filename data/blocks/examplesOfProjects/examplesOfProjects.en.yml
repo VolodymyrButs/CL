@@ -1,5 +1,5 @@
 title: Example project for
-price: 99 $
+price: $99
 project: !markdown |
   Apartment project: **42m**
 location: !markdown |

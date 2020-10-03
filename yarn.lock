@@ -8168,6 +8168,11 @@ gatsby-page-utils@^0.2.25:
     lodash "^4.17.20"
     micromatch "^3.1.10"
 
+gatsby-plugin-facebook-pixel@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-facebook-pixel/-/gatsby-plugin-facebook-pixel-1.0.5.tgz#521e52db23a75fa27a55d03d23917cb3edb3391d"
+  integrity sha512-EFozZ47iskV1zIfNz7XGYGYhh0Mhfi9S1rswbRPefnc0s/NhQqVa45Ky82eM2M8yxiICS3BAmI1rS5dFDDNT7Q==
+
 gatsby-plugin-google-gtag@^2.1.10:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-2.1.11.tgz#0298d557e35d8f17965b902866b600eb7694a42f"

@@ -13,6 +13,7 @@ import { displayWidth } from 'styles/width'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { indent } from 'styles/indent'
 import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from 'components/form/api'
 
 const FooterWrapper = styled.div`
     position: relative;
@@ -110,7 +111,7 @@ const FooterLogo = styled(Logo)`
     display: none;
     fill: ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {
-        margin-top: 13px;
+        margin-top: 35px;
         display: block;
     }
 `
@@ -159,11 +160,7 @@ export const Footer = () => {
                     {/* <Paragraph>{companyName}</Paragraph> */}
                     <Paragraph>
                         <a
-                            href={
-                                `https://www.google.com.ua/maps/place/ClearLine/@50.4405714,30.5056453,17z/data=!4m8!1m2!2m1!1z0JTQuNC30LDQudC90LXRgCDQuNC90YLQtdGA0YzQtdGA0LA!3m4!1s0x40d4cefa03940353:0xf974319028460098!8m2!3d50.440568!4d30.507834?hl=${ 
-                                i18n.language 
-                                }&authuser=0`
-                            }
+                            href={`https://www.google.com.ua/maps/place/ClearLine/@50.4405714,30.5056453,17z/data=!4m8!1m2!2m1!1z0JTQuNC30LDQudC90LXRgCDQuNC90YLQtdGA0YzQtdGA0LA!3m4!1s0x40d4cefa03940353:0xf974319028460098!8m2!3d50.440568!4d30.507834?hl=${i18n.language}&authuser=0`}
                             target="blank"
                             onClick={() => {
                                 sendEvent('Click', {
@@ -183,6 +180,7 @@ export const Footer = () => {
                         <a
                             href={`tel:${contactInformation.primaryPhone}`}
                             onClick={() => {
+                                sendForm(`FooterPhoneClick`, {})
                                 sendConversion('PhoneClick')
                                 sendEvent('Phone', {
                                     eventCategory: 'PhoneClick',
@@ -198,6 +196,7 @@ export const Footer = () => {
                         <a
                             href={`tel:${contactInformation.secondaryPhones}`}
                             onClick={() => {
+                                sendForm(`FooterStationarPhoneClick`, {})
                                 sendConversion('PhoneClick')
                                 sendEvent('Phone', {
                                     eventCategory: 'PhoneClick',
