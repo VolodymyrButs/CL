@@ -29,7 +29,7 @@ pages:
   environment:
     name: 'stage'
     url: https://clearline.gitlab.io/cl-website
-  when: on_success
+  when: manual
   only:
     - merge_requests
   variables:
