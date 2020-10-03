@@ -20,3 +20,7 @@ interface GAfn {
 interface Tracker {
     get: (param: string) => string
 }
+
+declare var fbq: fbqFn
+
+type fbqFn = (type: string, eventName: string, eventData: object) => void

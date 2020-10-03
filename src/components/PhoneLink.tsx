@@ -6,6 +6,7 @@ import { RoundText, Svg } from 'components/RoundText'
 import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { colors } from 'styles/colors'
 import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from './form/api'
 
 export const PhoneLinkWrapper = styled.a`
     display: flex;
@@ -54,6 +55,7 @@ export const PhoneLink: React.FC<IPhoneLinkProps> = ({
             {...props}
             href={`tel:${phone}`}
             onClick={() => {
+                sendForm(`${placement}PhoneClick`, { phone })
                 sendConversion('PhoneClick')
                 sendEvent('Phone', {
                     eventCategory: 'PhoneClick',

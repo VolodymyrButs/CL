@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { indent } from 'styles/indent'
 
-export const Title = styled.div`
+const TitleGeneralStyle = css`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-size: 34px;
@@ -32,4 +32,11 @@ export const Title = styled.div`
         letter-spacing: 1.77882px;
         margin: 60px 25px 50px 48px;
     }
+`
+
+export const Title = styled.h2`
+    ${TitleGeneralStyle}
+`
+export const TitleH1 = styled.h1`
+    ${TitleGeneralStyle}
 `

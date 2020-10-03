@@ -25,15 +25,15 @@ const ModalWindow = styled.div<{ image: boolean }>`
     z-index: 40;
     ${({ image }) =>
         image
-            ? 'padding: 0;background-color: transparent;border: none;width:95%;max-width: 95%;'
+            ? 'padding: 0;background-color: transparent;border: none;width:90%;max-width: 90%;'
             : `padding: 40px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
 
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: 70%;
-        ${({ image }) => image && ` max-width: 95%;`};
+        ${({ image }) => image && ` max-width: 90%;`};
         overflow-y: auto;
-        max-height: 95%;
+        max-height: 90%;
     }
     @media (orientation: portrait) and (min-width: ${displayWidth.tablet}) {
         width: 80%;
@@ -41,7 +41,7 @@ const ModalWindow = styled.div<{ image: boolean }>`
     @media (min-width: ${displayWidth.desktop}) {
         height: auto;
 
-        max-height: 95%;
+        max-height: 90%;
     }
     @media (orientation: landscape) and (max-height: 700px) {
         padding: 20px;

@@ -67,7 +67,7 @@ const HeroColumn = styled.div`
     }
 `
 
-const Title = styled.h2`
+const Title = styled.h1`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -100,10 +100,10 @@ export const WorksHero = () => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allProjectsYaml(sort: { fields: date, order: DESC }) {
+            allProjectsYaml(sort: { fields: name, order: ASC }) {
                 edges {
                     node {
-                        date
+                        name
                         en {
                             description
                             name

@@ -5,6 +5,11 @@
 * {
     -webkit-tap-highlight-color: transparent;
     outline: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+*::-webkit-scrollbar {
+    display: none;
 }
 html,
 body,

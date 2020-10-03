@@ -86,12 +86,10 @@ const Banner = styled(LocalizedLink)`
 type Props = {
     setShouldShowAskModal: (arg: boolean) => void
     setShouldShowSaveModal: (arg: boolean) => void
-    showPromoOnIntroduction?: boolean
 }
 export const AppHeader = ({
     setShouldShowAskModal,
     setShouldShowSaveModal,
-    showPromoOnIntroduction,
 }: Props) => {
     const stateElements = useSelector(getElements)
     const windowRef = useRef<HTMLDivElement>(null)
@@ -101,8 +99,7 @@ export const AppHeader = ({
     }, [])
 
     useLayoutEffect(() => {
-        // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
-        setWindowWidth(windowRef.current.clientWidth)
+        setWindowWidth(windowRef.current!.clientWidth)
         window.addEventListener('resize', handleResize)
 
         return () => {
@@ -117,9 +114,8 @@ export const AppHeader = ({
             <Logo to={'/'}>
                 <LogoSvg />
             </Logo>
-            {showPromoOnIntroduction && (
-                <Banner to={'/promo'}>{t('Promo')}</Banner>
-            )}
+
+            <Banner to={'/promo'}>{t('Promo')}</Banner>
 
             <ButtonArea>
                 <LanguageSwitcherCad />

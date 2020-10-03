@@ -12,7 +12,7 @@ const translationsCache = {}
 exports.createPages = async function ({ actions, graphql }) {
     const result = await graphql(`
         {
-            allProjectsYaml(sort: { fields: date, order: DESC }) {
+            allProjectsYaml {
                 edges {
                     node {
                         parent {

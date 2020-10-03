@@ -36,6 +36,12 @@ module.exports = {
                 },
             },
         },
+        {
+            resolve: `gatsby-plugin-facebook-pixel`,
+            options: {
+                pixelId: process.env.FB_PIXEL_ID,
+            },
+        },
         `gatsby-alias-imports`,
         {
             resolve: 'gatsby-plugin-react-svg',

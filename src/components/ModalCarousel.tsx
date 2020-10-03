@@ -55,6 +55,8 @@ export const ModalCarousel: React.FC<IModalProps> = ({
             <ImageModal
                 fluid={photo.childImageSharp.fluid}
                 imgStyle={{ objectFit: 'contain' }}
+                alt={photo.childImageSharp.parent.name}
+                title={photo.childImageSharp.parent.name}
             />
         </div>
     ))

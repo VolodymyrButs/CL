@@ -146,6 +146,11 @@ export const ExamplesOfProjects = () => {
                             fluid(maxWidth: 2000) {
                                 ...GatsbyImageSharpFluid_withWebp
                             }
+                            parent {
+                                ... on File {
+                                    name
+                                }
+                            }
                         }
                     }
                 }
@@ -160,6 +165,11 @@ export const ExamplesOfProjects = () => {
                         childImageSharp {
                             fluid {
                                 ...GatsbyImageSharpFluid_withWebp
+                            }
+                            parent {
+                                ... on File {
+                                    name
+                                }
                             }
                         }
                     }
@@ -235,7 +245,10 @@ export const ExamplesOfProjects = () => {
                             (
                                 item: {
                                     node: {
-                                        childImageSharp: { fluid: FluidObject }
+                                        childImageSharp: {
+                                            fluid: FluidObject
+                                            parent: { name: string }
+                                        }
                                     }
                                 },
                                 index: number
@@ -247,6 +260,14 @@ export const ExamplesOfProjects = () => {
                                         imgStyle={{
                                             objectFit: 'containe',
                                         }}
+                                        alt={
+                                            item.node.childImageSharp.parent
+                                                .name
+                                        }
+                                        title={
+                                            item.node.childImageSharp.parent
+                                                .name
+                                        }
                                     />
                                 )
                             }
@@ -268,7 +289,10 @@ export const ExamplesOfProjects = () => {
                             (
                                 item: {
                                     node: {
-                                        childImageSharp: { fluid: FluidObject }
+                                        childImageSharp: {
+                                            fluid: FluidObject
+                                            parent: { name: string }
+                                        }
                                     }
                                 },
                                 index: number
@@ -280,6 +304,14 @@ export const ExamplesOfProjects = () => {
                                         imgStyle={{
                                             objectFit: 'containe',
                                         }}
+                                        alt={
+                                            item.node.childImageSharp.parent
+                                                .name
+                                        }
+                                        title={
+                                            item.node.childImageSharp.parent
+                                                .name
+                                        }
                                     />
                                 )
                             }

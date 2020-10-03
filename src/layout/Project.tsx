@@ -17,6 +17,7 @@ import FullScreen from 'assets/icons/fullScreen.svg'
 import { ModalCarousel } from 'components/ModalCarousel'
 import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 import { sendEvent } from 'tracking'
+import { Helmet } from 'react-helmet'
 
 const ProjectWrapper = styled.div`
     display: flex;
@@ -239,7 +240,11 @@ const sliderSettingsBottom = {
 
 export interface ProjectImages {
     relativeDirectory: string
-    childImageSharp: { fluid: FluidObject; id: string }
+    childImageSharp: {
+        fluid: FluidObject
+        parent: { name: string }
+        id: string
+    }
 }
 export interface ProjectData {
     [x: string]: {
@@ -291,6 +296,10 @@ const ProjectLayout = ({
     const [imageIndex, setImageIndex] = useState(0)
     return (
         <>
+            <Helmet>
+                <title>Clearline-{name}</title>
+                <meta name="description" content={description} />
+            </Helmet>
             <Breadcrumbs>
                 <span>{t('works')}</span> / {name}
             </Breadcrumbs>
@@ -347,6 +356,14 @@ const ProjectLayout = ({
                                                 imgStyle={{
                                                     objectFit: 'cover',
                                                 }}
+                                                alt={
+                                                    photo.childImageSharp.parent
+                                                        .name
+                                                }
+                                                title={
+                                                    photo.childImageSharp.parent
+                                                        .name
+                                                }
                                             />
                                         </PhotoWrapper>
                                     )
@@ -373,6 +390,14 @@ const ProjectLayout = ({
                                             imgStyle={{
                                                 objectFit: 'cover',
                                             }}
+                                            alt={
+                                                photo.childImageSharp.parent
+                                                    .name
+                                            }
+                                            title={
+                                                photo.childImageSharp.parent
+                                                    .name
+                                            }
                                         />
                                     </div>
                                 ))}
@@ -387,7 +412,6 @@ const ProjectLayout = ({
                 closeHandler={() => setModalIsOpen(false)}
                 initialSlideIndex={imageIndex}
             />
-
             <LastProjects data={data.lastProject} />
             <Connection text={t('connection.needDesignProject')}>
                 <ButtonWithModal
@@ -410,25 +434,35 @@ export default ProjectLayout
 
 export const query = graphql`
     query($imageFolder: String!, $id: String!) {
-        allFile(filter: { relativeDirectory: { eq: $imageFolder } }) {
+        allFile(
+            filter: { relativeDirectory: { eq: $imageFolder } }
+            sort: { fields: name, order: ASC }
+        ) {
             edges {
                 node {
                     relativeDirectory
+                    name
                     childImageSharp {
                         fluid(maxWidth: 1000) {
+                            originalName
                             ...GatsbyImageSharpFluid_withWebp
+                        }
+                        parent {
+                            ... on File {
+                                name
+                            }
                         }
                     }
                 }
             }
         }
         allProjectsYaml(
-            sort: { fields: date, order: DESC }
+            sort: { fields: name, order: ASC }
             filter: { parent: { id: { eq: $id } } }
         ) {
             edges {
                 node {
-                    date
+                    name
                     en {
                         description
                         name
@@ -453,12 +487,12 @@ export const query = graphql`
             }
         }
         lastProject: allProjectsYaml(
-            sort: { fields: date, order: DESC }
+            sort: { fields: name, order: ASC }
             filter: { parent: { id: { ne: $id } } }
         ) {
             edges {
                 node {
-                    date
+                    name
                     en {
                         description
                         name

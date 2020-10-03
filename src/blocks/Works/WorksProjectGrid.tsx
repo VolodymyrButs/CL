@@ -90,10 +90,10 @@ export const WorksProjectGrid = () => {
     }
     const data = useStaticQuery(graphql`
         query {
-            allProjectsYaml(sort: { fields: date, order: DESC }) {
+            allProjectsYaml(sort: { fields: name, order: ASC }) {
                 edges {
                     node {
-                        date
+                        name
                         en {
                             description
                             name

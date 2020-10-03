@@ -1,20 +1,24 @@
-export type ConversionType =
-    | 'JumpingArrow'
-    | 'FormCommercialProposal'
-    | 'FormPromoPageBottom'
-    | 'FormIndexPageBottom'
-    | 'FormServicesPageBottom'
-    | 'CallBackButtonForm'
-    | 'CallbackFromPromo'
-    | 'CallbackFromProject'
-    | 'CallbackFromWorks'
-    | 'SocialIconViber'
-    | 'SocialIconTelegram'
-    | 'SocialIconWhatsApp'
-    | 'SocialIconFacebook'
-    | 'SocialIconInstagram'
-    | 'PhoneClick'
-    | 'EmailClick'
+const conversionTypes = [
+    'JumpingArrow',
+    'FormCommercialProposal',
+    'FormPromoPageBottom',
+    'FormIndexPageBottom',
+    'FormServicesPageBottom',
+    'CallBackButtonForm',
+    'CallbackFromPromo',
+    'CallbackFromProject',
+    'CallbackFromWorks',
+    'SocialIconViber',
+    'SocialIconTelegram',
+    'SocialIconWhatsApp',
+    'SocialIconFacebook',
+    'SocialIconInstagram',
+    'PhoneClick',
+    'EmailClick',
+]
+export type ConversionType = typeof conversionTypes[number]
+export const isConversionType = (value: string): value is ConversionType =>
+    conversionTypes.includes(value)
 
 type Conversions = Record<ConversionType, string>
 

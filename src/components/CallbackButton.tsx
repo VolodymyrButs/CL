@@ -15,6 +15,7 @@ import { useFormHandler } from 'hooks/useFormHandler'
 import { PhoneSvgAnimated } from './PhoneSvgAnimated'
 import { contactInformation } from './contactInformation'
 import { sendConversion, sendEvent } from 'tracking'
+import { sendForm } from './form/api'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
@@ -210,6 +211,7 @@ export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
                 <a
                     href={`tel:${contactInformation.primaryPhone}`}
                     onClick={() => {
+                        sendForm(`CallBack button PhoneClick`, {})
                         sendConversion('PhoneClick')
                         sendEvent('Phone', {
                             eventCategory: 'PhoneClick',

@@ -17,11 +17,19 @@ import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
 import { Connection } from 'blocks/Connection'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { ButtonWithModal } from 'components/ButtonWithModal'
+import { HelmetFunc } from 'components/PageMetaData'
+
+const pageMetadata = {
+    uk: { title: 'lalaU', description: 'desc' },
+    ru: { title: 'lalaR', description: 'desc' },
+    en: { title: 'lalaE', description: 'desc' },
+}
 
 const Promo = () => {
     const { t } = useTranslation()
     return (
         <>
+            <HelmetFunc data={pageMetadata} />
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
             <div id="projectStructure" />
