@@ -12,6 +12,7 @@ import { CallbackButton } from 'components/CallbackButton'
 import { contactInformation } from 'components/contactInformation'
 import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { sendEvent } from 'tracking'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -105,7 +106,59 @@ export const Layout = (props: { children: React.ReactNode }) => {
             }
         }
     )
+    let scrolled25Send = false
+    let scrolled50Send = false
+    let scrolled75Send = false
+    let scrolled100Send = false
 
+    const onScroll = () => {
+        setTimeout(() => {
+            const trackScroll = () => {
+                const block = document.getElementById('blockWrapper')
+                const scrollPosition = block!.scrollTop
+                const windowHeight = block!.clientHeight
+                const bodyHeight = block!.scrollHeight
+                const scrolledRation = Math.ceil(
+                    ((scrollPosition + windowHeight) / bodyHeight) * 100
+                )
+                if (block && !scrolled100Send && scrolledRation >= 100) {
+                    sendEvent('ScrollDepth', {
+                        eventCategory: 'ScrollDepth',
+                        action: '100',
+                    })
+                    scrolled100Send = true
+                    return
+                }
+
+                if (block && !scrolled75Send && scrolledRation >= 75) {
+                    sendEvent('ScrollDepth', {
+                        eventCategory: 'ScrollDepth',
+                        action: '75',
+                    })
+                    scrolled75Send = true
+                    return
+                }
+
+                if (block && !scrolled50Send && scrolledRation >= 50) {
+                    sendEvent('ScrollDepth', {
+                        eventCategory: 'ScrollDepth',
+                        action: '50',
+                    })
+                    scrolled50Send = true
+                    return
+                }
+
+                if (block && !scrolled25Send && scrolledRation >= 25) {
+                    sendEvent('ScrollDepth', {
+                        eventCategory: 'ScrollDepth',
+                        action: '25',
+                    })
+                    scrolled25Send = true
+                }
+            }
+            trackScroll()
+        }, 700)
+    }
     return (
         <LayoutWraper>
             <Helmet>
@@ -155,7 +208,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
                 </script>
             </Helmet>
             <Header />
-            <BlocksWrapper id="blockWrapper">
+            <BlocksWrapper id="blockWrapper" onScroll={onScroll}>
                 {props.children}
                 <Footer />
             </BlocksWrapper>
