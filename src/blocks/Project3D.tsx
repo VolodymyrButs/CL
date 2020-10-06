@@ -103,7 +103,7 @@ export const Project3D = () => {
             ) {
                 edges {
                     node {
-                        fluid {
+                        fluid(srcSetBreakpoints: [400, 1600]) {
                             ...GatsbyImageSharpFluid_withWebp
                         }
                     }

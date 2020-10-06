@@ -113,7 +113,7 @@ const NotFoundPage = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(srcSetBreakpoints: [400, 1600]) {
                             originalName
                             ...GatsbyImageSharpFluid_withWebp
                         }

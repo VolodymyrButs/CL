@@ -102,7 +102,7 @@ export const SelectionOfPaints = () => {
             ) {
                 edges {
                     node {
-                        fluid {
+                        fluid(srcSetBreakpoints: [400, 1600]) {
                             ...GatsbyImageSharpFluid_withWebp
                         }
                     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
@@ -12,6 +12,7 @@ import { CallbackButton } from 'components/CallbackButton'
 import { contactInformation } from 'components/contactInformation'
 import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { sendEvent } from 'tracking'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -105,7 +106,73 @@ export const Layout = (props: { children: React.ReactNode }) => {
             }
         }
     )
+    const scrolled25Send = useRef(false)
+    const scrolled50Send = useRef(false)
+    const scrolled75Send = useRef(false)
+    const scrolled100Send = useRef(false)
 
+    const pagePath = getPagePath(i18n.language)
+
+    // Reset scroll event when page changes
+    useEffect(() => {
+        scrolled25Send.current = false
+        scrolled50Send.current = false
+        scrolled75Send.current = false
+        scrolled100Send.current = false
+        window.gtag('config', `${process.env.GA_ID}`, {
+            // eslint-disable-next-line camelcase
+            page_location: document.location,
+        })
+    }, [pagePath])
+
+    const onScroll = () => {
+        setTimeout(() => {
+            const trackScroll = () => {
+                const block = document.getElementById('blockWrapper')
+                const scrollPosition = block!.scrollTop
+                const windowHeight = block!.clientHeight
+                const bodyHeight = block!.scrollHeight
+                const scrolledRation = Math.ceil(
+                    ((scrollPosition + windowHeight) / bodyHeight) * 100
+                )
+                if (
+                    block &&
+                    !scrolled100Send!.current &&
+                    scrolledRation >= 100
+                ) {
+                    sendEvent('100', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled100Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled75Send!.current && scrolledRation >= 75) {
+                    sendEvent('75', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled75Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled50Send!.current && scrolledRation >= 50) {
+                    sendEvent('50', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled50Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled25Send!.current && scrolledRation >= 25) {
+                    sendEvent('25', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled25Send!.current = true
+                }
+            }
+            trackScroll()
+        }, 700)
+    }
     return (
         <LayoutWraper>
             <Helmet>
@@ -155,7 +222,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
                 </script>
             </Helmet>
             <Header />
-            <BlocksWrapper id="blockWrapper">
+            <BlocksWrapper id="blockWrapper" onScroll={onScroll}>
                 {props.children}
                 <Footer />
             </BlocksWrapper>

@@ -10,6 +10,10 @@ export type TrackingEventName =
     | 'Email'
     | 'FullScreen'
     | 'ShowSlide'
+    | '25'
+    | '50'
+    | '75'
+    | '100'
 
 export type TrackingEventCategory =
     | ConversionType
@@ -24,3 +28,4 @@ export type TrackingEventCategory =
     | 'WikiItem'
     | 'ReviewItem'
     | 'Slider'
+    | 'ScrollDepth'

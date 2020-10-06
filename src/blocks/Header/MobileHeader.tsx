@@ -18,6 +18,7 @@ import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { useTranslation } from 'react-i18next'
 import { sendConversion, sendEvent } from 'tracking'
 import { PhoneLink } from 'components/PhoneLink'
+import { sendForm } from 'components/form/api'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -99,6 +100,7 @@ export const MobileHeader = () => {
                         href="viber://chat?number=%2B380982117690"
                         target="blank"
                         onClick={() => {
+                            sendForm(`HeaderMobileViberIcon`, {})
                             sendConversion('SocialIconViber')
                             sendEvent('SocialIcon', {
                                 eventCategory: 'SocialIconViber',
@@ -112,6 +114,7 @@ export const MobileHeader = () => {
                         href="https://wa.me/+380958363420"
                         target="blank"
                         onClick={() => {
+                            sendForm(`HeaderMobileWhatsAppIcon`, {})
                             sendConversion('SocialIconWhatsApp')
                             sendEvent('SocialIcon', {
                                 eventCategory: 'SocialIconWhatsApp',
@@ -128,6 +131,7 @@ export const MobileHeader = () => {
                         <TelegramIconStyled
                             aria-label="Telegram Button"
                             onClick={() => {
+                                sendForm(`HeaderMobileTelegramIcon`, {})
                                 sendConversion('SocialIconTelegram')
                                 sendEvent('SocialIcon', {
                                     eventCategory: 'SocialIconTelegram',

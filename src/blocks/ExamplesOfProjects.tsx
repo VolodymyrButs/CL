@@ -143,7 +143,7 @@ export const ExamplesOfProjects = () => {
                     node {
                         id
                         childImageSharp {
-                            fluid(maxWidth: 2000) {
+                            fluid(srcSetBreakpoints: [400, 1600]) {
                                 ...GatsbyImageSharpFluid_withWebp
                             }
                             parent {
@@ -163,7 +163,7 @@ export const ExamplesOfProjects = () => {
                     node {
                         id
                         childImageSharp {
-                            fluid {
+                            fluid(srcSetBreakpoints: [400, 1600]) {
                                 ...GatsbyImageSharpFluid_withWebp
                             }
                             parent {
