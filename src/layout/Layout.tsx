@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
@@ -106,11 +106,22 @@ export const Layout = (props: { children: React.ReactNode }) => {
             }
         }
     )
-    let scrolled25Send = false
-    let scrolled50Send = false
-    let scrolled75Send = false
-    let scrolled100Send = false
+    const scrolled25Send = useRef(false)
+    const scrolled50Send = useRef(false)
+    const scrolled75Send = useRef(false)
+    const scrolled100Send = useRef(false)
 
+    const pagePath = getPagePath(i18n.language)
+
+    // Reset scroll event when page changes
+    useEffect(() => {
+        scrolled25Send.current = false
+        scrolled50Send.current = false
+        scrolled75Send.current = false
+        scrolled100Send.current = false
+    }, [pagePath])
+
+    scrolled25Send.current = true
     const onScroll = () => {
         setTimeout(() => {
             const trackScroll = () => {
@@ -121,39 +132,39 @@ export const Layout = (props: { children: React.ReactNode }) => {
                 const scrolledRation = Math.ceil(
                     ((scrollPosition + windowHeight) / bodyHeight) * 100
                 )
-                if (block && !scrolled100Send && scrolledRation >= 100) {
-                    sendEvent('ScrollDepth', {
+                if (
+                    block &&
+                    !scrolled100Send!.current &&
+                    scrolledRation >= 100
+                ) {
+                    sendEvent('100', {
                         eventCategory: 'ScrollDepth',
-                        action: '100',
                     })
-                    scrolled100Send = true
+                    scrolled100Send!.current = true
                     return
                 }
 
-                if (block && !scrolled75Send && scrolledRation >= 75) {
-                    sendEvent('ScrollDepth', {
+                if (block && !scrolled75Send!.current && scrolledRation >= 75) {
+                    sendEvent('75', {
                         eventCategory: 'ScrollDepth',
-                        action: '75',
                     })
-                    scrolled75Send = true
+                    scrolled75Send!.current = true
                     return
                 }
 
-                if (block && !scrolled50Send && scrolledRation >= 50) {
-                    sendEvent('ScrollDepth', {
+                if (block && !scrolled50Send!.current && scrolledRation >= 50) {
+                    sendEvent('50', {
                         eventCategory: 'ScrollDepth',
-                        action: '50',
                     })
-                    scrolled50Send = true
+                    scrolled50Send!.current = true
                     return
                 }
 
-                if (block && !scrolled25Send && scrolledRation >= 25) {
-                    sendEvent('ScrollDepth', {
+                if (block && !scrolled25Send!.current && scrolledRation >= 25) {
+                    sendEvent('25', {
                         eventCategory: 'ScrollDepth',
-                        action: '25',
                     })
-                    scrolled25Send = true
+                    scrolled25Send!.current = true
                 }
             }
             trackScroll()
