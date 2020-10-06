@@ -122,7 +122,6 @@ export const Layout = (props: { children: React.ReactNode }) => {
         window.gtag('config', `${process.env.GA_ID}`, { page_path: pagePath })
     }, [pagePath])
 
-    scrolled25Send.current = true
     const onScroll = () => {
         setTimeout(() => {
             const trackScroll = () => {
