@@ -119,7 +119,9 @@ export const Layout = (props: { children: React.ReactNode }) => {
         scrolled50Send.current = false
         scrolled75Send.current = false
         scrolled100Send.current = false
-        window.gtag('config', `${process.env.GA_ID}`, { page_path: pagePath })
+        window.gtag('config', `${process.env.GA_ID}`, {
+            page_location: document.location,
+        })
     }, [pagePath])
 
     const onScroll = () => {
