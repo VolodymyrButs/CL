@@ -120,6 +120,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
         scrolled75Send.current = false
         scrolled100Send.current = false
         window.gtag('config', `${process.env.GA_ID}`, {
+            // eslint-disable-next-line camelcase
             page_location: document.location,
         })
     }, [pagePath])
