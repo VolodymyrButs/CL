@@ -12,7 +12,6 @@ import { headerHeight } from 'styles/height'
 import { headerBg } from 'styles/headerBg'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
-import { sendEvent, sendConversion } from 'tracking'
 import { indent } from 'styles/indent'
 import { Logo } from 'components/Logo'
 
@@ -179,9 +178,9 @@ export const HomeHero = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid(srcSetBreakpoints: [400, 1600]) {
+                        fluid {
                             originalName
-                            ...GatsbyImageSharpFluid_withWebp
+                            ...GatsbyImageSharpFluid
                         }
                     }
                 }
@@ -221,25 +220,7 @@ export const HomeHero = () => {
                     <LogoS />
                     {/* <SubTitle>{homeHeroData.subTitle}</SubTitle> */}
                     <JumpingArrowWrapper>
-                        <JumpingArrow
-                            onClick={() => {
-                                // TODO: remove
-                                console.log('onClick') // eslint-disable-line no-console
-
-                                // Tracking
-                                sendConversion(
-                                    'JumpingArrow',
-                                    () => console.log('conversion is send') // eslint-disable-line no-console
-                                )
-                                sendEvent(
-                                    'Click',
-                                    {
-                                        eventCategory: 'JumpingArrow',
-                                    },
-                                    () => console.log('event is send') // eslint-disable-line no-console
-                                )
-                            }}
-                        />
+                        <JumpingArrow />
                     </JumpingArrowWrapper>
                 </HomeHeroColumn>
                 <HomeHeroColumn>

@@ -116,9 +116,9 @@ export const Visualization3d = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid(srcSetBreakpoints: [400, 1600]) {
+                        fluid {
                             originalName
-                            ...GatsbyImageSharpFluid_withWebp
+                            ...GatsbyImageSharpFluid
                         }
                         parent {
                             ... on File {

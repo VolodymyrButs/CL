@@ -155,9 +155,9 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
             allImageSharp {
                 edges {
                     node {
-                        fluid(srcSetBreakpoints: [400, 1600]) {
+                        fluid {
                             originalName
-                            ...GatsbyImageSharpFluid_withWebp
+                            ...GatsbyImageSharpFluid
                         }
                     }
                 }
