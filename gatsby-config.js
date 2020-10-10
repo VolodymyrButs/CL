@@ -39,7 +39,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-facebook-pixel`,
             options: {
-                pixelId: process.env.FB_PIXEL_ID,
+                pixelId: process.env.GATSBY_FB_PIXEL_ID,
             },
         },
         `gatsby-alias-imports`,
