@@ -104,13 +104,13 @@ const getCookie = (cookieName: string) => {
     }
 }
 
+const fbPixelId = process.env.GATSBY_FB_PIXEL_ID
+
 export const getFBValidLink = () => {
     const { height, width } = window?.screen
     const fbp = getCookie('_fbp')
 
-    return `https://www.facebook.com/tr/?id=${
-        process.env.FB_PIXEL_ID
-    }&ev=GAValid&dl=${
+    return `https://www.facebook.com/tr/?id=${fbPixelId}&ev=GAValid&dl=${
         location?.href
     }&rl=&if=false&ts=${Date.now()}&sw=${width}&sh=${height}&v=2.9.27&r=stable&o=30&fbp=${fbp}&it=${pageLoadTime}&coo=false&rqm=GET`
 }

@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import { getCID, getFBValidLink } from 'tracking'
 
 export const sendForm = (formName: string, formData: object) =>
-    fetch(process.env.SEND_FORM_URL as string, {
+    fetch(process.env.GATSBY_SEND_FORM_URL as string, {
         method: 'POST',
         body: JSON.stringify({
             ...formData,
