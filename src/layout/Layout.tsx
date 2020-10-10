@@ -12,7 +12,7 @@ import { CallbackButton } from 'components/CallbackButton'
 import { contactInformation } from 'components/contactInformation'
 import { useStaticQuery, graphql } from 'gatsby'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { sendEvent } from 'tracking'
+import { sendEvent, gtag } from 'tracking'
 
 const LayoutWraper = styled.div`
     display: flex;
@@ -119,7 +119,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
         scrolled50Send.current = false
         scrolled75Send.current = false
         scrolled100Send.current = false
-        window.gtag('config', `${process.env.GA_ID}`, {
+        gtag('config', `${process.env.GA_ID}`, {
             // eslint-disable-next-line camelcase
             page_location: document.location,
         })

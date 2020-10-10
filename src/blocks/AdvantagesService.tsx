@@ -72,9 +72,9 @@ export const AdvantagesServices = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid(srcSetBreakpoints: [400, 1600]) {
+                        fluid {
                             originalName
-                            ...GatsbyImageSharpFluid_withWebp
+                            ...GatsbyImageSharpFluid
                         }
                     }
                 }

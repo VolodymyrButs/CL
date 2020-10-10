@@ -443,9 +443,9 @@ export const query = graphql`
                     relativeDirectory
                     name
                     childImageSharp {
-                        fluid(srcSetBreakpoints: [400, 1600]) {
+                        fluid {
                             originalName
-                            ...GatsbyImageSharpFluid_withWebp
+                            ...GatsbyImageSharpFluid
                         }
                         parent {
                             ... on File {

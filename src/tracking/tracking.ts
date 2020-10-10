@@ -26,8 +26,7 @@ const devGTag = (
     eventParams?.event_callback && eventParams?.event_callback()
 }
 
-const sendEventToGTag =
-    (typeof window !== 'undefined' && window?.gtag) || devGTag
+export const gtag = (typeof window !== 'undefined' && window?.gtag) || devGTag
 
 /* eslint-disable-next-line no-console */
 const devFBQ = (...params: unknown[]) => console.log('FBQ: ', ...params)
@@ -62,7 +61,7 @@ export const sendEvent = (
         (typeof window !== 'undefined' && window?.location.pathname) ||
         'unknown-location'
 
-    sendEventToGTag('event', eventName, {
+    gtag('event', eventName, {
         ...keysToSnakeCase(eventParams),
         event_location: location,
         event_callback: callback,
@@ -80,7 +79,7 @@ export const sendConversion = (
     conversionType: ConversionType,
     callback?: () => void
 ): void =>
-    sendEventToGTag('event', 'conversion', {
+    gtag('event', 'conversion', {
         send_to: `${awId}/${getConversionId(conversionType)}`,
         event_callback: callback,
     })
@@ -91,4 +90,27 @@ export const getCID = (): string => {
 
     const tracker = window.ga.getAll()[0]
     return tracker.get('clientId')
+}
+
+const pageLoadTime = Date.now()
+
+const getCookie = (cookieName: string) => {
+    var results = document.cookie.match(`(^|;) ?${cookieName}=([^;]*)(;|$)`)
+
+    if (results) {
+        return unescape(results[2])
+    } else {
+        return null
+    }
+}
+
+export const getFBValidLink = () => {
+    const { height, width } = window?.screen
+    const fbp = getCookie('_fbp')
+
+    return `https://www.facebook.com/tr/?id=${
+        process.env.FB_PIXEL_ID
+    }&ev=GAValid&dl=${
+        location?.href
+    }&rl=&if=false&ts=${Date.now()}&sw=${width}&sh=${height}&v=2.9.27&r=stable&o=30&fbp=${fbp}&it=${pageLoadTime}&coo=false&rqm=GET`
 }
