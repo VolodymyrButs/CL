@@ -19,7 +19,7 @@ import { sendForm } from './form/api'
 
 const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
     position: fixed;
-    bottom: 10px;
+    bottom: 30px;
     left: 18px;
     width: 64px;
     height: 64px;

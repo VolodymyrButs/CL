@@ -43,7 +43,7 @@ const Ul = styled.ul`
 const Li = styled.li`
     outline: 1px solid ${colors.dark};
     list-style: none;
-    background: white;
+    background-color: white;
     color: white;
     display: flex;
     flex-flow: column;
@@ -57,6 +57,9 @@ const Li = styled.li`
         :nth-child(4n + 4) {
             grid-column: span 2;
         }
+    }
+    :hover {
+        background-color: ${backgroundColors.project};
     }
 `
 const Div = styled.div`

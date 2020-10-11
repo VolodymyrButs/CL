@@ -62,6 +62,7 @@ export const SendStatus = styled.div`
     align-items: center;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
+        align-items: flex-start;
     }
     p {
         margin: 10px 0;
@@ -73,6 +74,7 @@ export const SendStatus = styled.div`
             font-size: 30px;
             line-height: 40px;
             margin: 30px 0;
+            text-align: left;
         }
     }
     h2 {
@@ -86,6 +88,7 @@ export const SendStatus = styled.div`
             font-size: 30px;
             line-height: 40px;
             margin: 30px 0;
+            text-align: left;
         }
     }
 `

@@ -111,11 +111,15 @@ const CnairImg = styled(Chair)`
 export interface IFAQItem {
     question: string
     answer: string
+    isAnswerVisible: number
+    setIsAnswerVisible: (arg: number) => void
+    name: number
 }
 
 export const Faq = () => {
     const { i18n } = useTranslation()
     const [showFaqListMobile, setShowFaqListMobile] = useState(false)
+    const [isAnswerVisible, setIsAnswerVisible] = useState(-1)
     const data = useStaticQuery(graphql`
         query {
             allImageSharp {
@@ -208,6 +212,9 @@ export const Faq = () => {
                                 key={index}
                                 question={item.question}
                                 answer={item.answer}
+                                isAnswerVisible={isAnswerVisible}
+                                setIsAnswerVisible={setIsAnswerVisible}
+                                name={index}
                             />
                         )
                     })}

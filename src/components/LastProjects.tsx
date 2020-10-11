@@ -38,10 +38,13 @@ const RightSidebar = styled(LeftSidebar)`
 `
 const ProjectColumn = styled.div`
     height: 500px;
-    background-color: ${backgroundColors.project};
+    background-color: ${colors.white};
     :last-child {
         background-color: ${colors.white};
         outline: 1px solid ${colors.dark};
+    }
+    :hover {
+        background-color: ${backgroundColors.project};
     }
 `
 const ColorBlock = styled.div`

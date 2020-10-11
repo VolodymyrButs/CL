@@ -29,7 +29,7 @@ const MenuItem = styled(LocalizedLink).attrs({
 })`
     position: relative;
     color: ${colors.white};
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.8px;
     line-height: 19px;
     text-transform: uppercase;
@@ -123,7 +123,6 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
                 >
                     {t('works')}
                 </MenuItem>
-
                 <MenuItem
                     onClick={onMenuItemClick}
                     aria-label={(t('goTo'), t('contacts'))}

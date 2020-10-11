@@ -24,6 +24,9 @@ const Visualization3dWrapper = styled.div`
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: none;
+    }
 `
 
 const SubTitle = styled.h3`

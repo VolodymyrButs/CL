@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -135,6 +135,7 @@ export const Services = () => {
         i18n.language
     )
     const palmImage = getImageByImageName(data.allImageSharp, image)
+    const [isAnswerVisible, setIsAnswerVisible] = useState(-1)
     return (
         <ServicesWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
@@ -152,7 +153,10 @@ export const Services = () => {
                     {questions.map((item: ServicesItemProp, index: number) => {
                         return (
                             <ServicesItem
+                                setIsAnswerVisible={setIsAnswerVisible}
+                                isAnswerVisible={isAnswerVisible}
                                 key={index}
+                                name={index}
                                 question={item.question}
                                 answer={item.answer}
                                 icon={item.icon}

@@ -17,34 +17,34 @@ const PhoneSvg = styled(Icon)<{ color?: string }>`
     animation-timing-function: linear;
     @keyframes jump {
         0% {
-            transform: rotate(30deg);
-        }
-        5% {
             transform: rotate(0deg);
         }
+        5% {
+            transform: rotate(-30deg);
+        }
         10% {
-            transform: rotate(30deg);
+            transform: rotate(0deg);
         }
         15% {
-            transform: rotate(60deg);
+            transform: rotate(30deg);
         }
         20% {
-            transform: rotate(30deg);
+            transform: rotate(0deg);
         }
         25% {
-            transform: rotate(45deg);
-        }
-        30% {
-            transform: rotate(30deg);
-        }
-        35% {
             transform: rotate(15deg);
         }
+        30% {
+            transform: rotate(0deg);
+        }
+        35% {
+            transform: rotate(-15deg);
+        }
         40% {
-            transform: rotate(30deg);
+            transform: rotate(0deg);
         }
         100% {
-            transform: rotate(30deg);
+            transform: rotate(0deg);
         }
     }
 `

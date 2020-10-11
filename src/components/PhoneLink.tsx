@@ -21,19 +21,18 @@ export const PhoneLinkWrapper = styled.a`
     p {
         white-space: nowrap;
     }
-    &:hover {
-        ${Svg} {
-            animation-name: rotate;
-            animation-duration: 5s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            @keyframes rotate {
-                from {
-                    transform: rotate(360deg);
-                }
-                to {
-                    transform: rotate(0);
-                }
+
+    ${Svg} {
+        animation-name: rotate;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        @keyframes rotate {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0);
             }
         }
     }

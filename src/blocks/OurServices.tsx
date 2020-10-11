@@ -34,9 +34,9 @@ const Block = styled.div`
     z-index: 1;
     @media (min-width: ${displayWidth.tablet}) {
         justify-content: space-between;
-        outline: 1px solid ${colors.dark};
         border-bottom: none;
         padding: 16px;
+        outline: 1px solid ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
         padding: 16px 32px;
