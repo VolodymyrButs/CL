@@ -42,10 +42,9 @@ const ContainerStyled = styled(Container)`
             background-color: inherit;
             top: 0;
             bottom: 0;
-            left: 33.3%;
-            right: 33.3%;
-            border-left: 1px solid ${colors.dark};
-            border-right: 1px solid ${colors.dark};
+            left: 33.3333%;
+            right: 33.3333%;
+            outline: 1px solid ${colors.dark};
             content: '';
         }
     }

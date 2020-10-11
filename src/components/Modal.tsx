@@ -21,7 +21,6 @@ const ModalWindow = styled.div<{ image: boolean }>`
     position: relative;
     max-width: 90%;
     max-height: 90%;
-    border-radius: 10px;
     z-index: 40;
     ${({ image }) =>
         image
@@ -44,7 +43,7 @@ const ModalWindow = styled.div<{ image: boolean }>`
         max-height: 90%;
     }
     @media (orientation: landscape) and (max-height: 700px) {
-        padding: 20px;
+        padding: 50px 70px;
         overflow-y: auto;
         justify-content: flex-start;
     }

@@ -6,41 +6,41 @@ import { colors } from 'styles/colors'
 
 const jump = keyframes`
         0% {
-            transform: translate(0,0);
-        }
-        5% {
-            transform: translate(0,10px);
-        }
-        10% {
-            transform: translate(0,0);
-        }
-        15% {
-            transform: translate(0,-10px);
-        }
-        20% {
-            transform: translate(0,0);
-        }
-        25%{
-            transform: translate(0,5px);
-        }
-        30%{
-            transform: translate(0,0);
-        }
-        35%{
             transform: translate(0,-5px);
         }
+        5% {
+            transform: translate(0,5px);
+        }
+        10% {
+            transform: translate(0,-5px);
+        }
+        15% {
+            transform: translate(0,-15px);
+        }
+        20% {
+            transform: translate(0,-5px);
+        }
+        25%{
+            transform: translate(0,0px);
+        }
+        30%{
+            transform: translate(0,-5px);
+        }
+        35%{
+            transform: translate(0,-10px);
+        }
         40%{
-            transform: translate(0,0);
+            transform: translate(0,-10px);
         }
         100%{
-            transform: translate(0,0);
+            transform: translate(0,-10px);
 
         }
     `
 const ArrowWrapper = styled.div`
     position: relative;
     width: 27px;
-    height: 57px;
+    height: 77px;
     animation-name: ${jump};
     animation-duration: 3s;
     animation-iteration-count: infinite;
@@ -53,14 +53,14 @@ const Arrow = styled(BigShevronDown)`
     width: 100%;
     right: 0;
     left: 0;
-    bottom: 0;
+    bottom: 20px;
     cursor: pointer;
 `
 const Line = styled.div`
     position: absolute;
     left: 13px;
-    bottom: 2px;
-    top: 0;
+    bottom: 20px;
+    top: 0px;
     border-left: 1px solid ${colors.dark};
 `
 

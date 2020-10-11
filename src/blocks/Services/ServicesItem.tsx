@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 import Arrow from 'assets/icons/close.svg'
@@ -91,7 +91,7 @@ const Answer = styled.div<{ $isAnswerVisible: boolean }>`
     letter-spacing: 0.4px;
     @media (min-width: ${displayWidth.tablet}) {
         border: 1px solid ${colors.dark};
-        padding: 32px 65px;
+        padding: 31px 70px;
         margin: 0 32px;
     }
     strong {
@@ -102,7 +102,7 @@ const Answer = styled.div<{ $isAnswerVisible: boolean }>`
     }
     p,
     li {
-        margin: 1em 0;
+        margin: 8px 0;
     }
     ol,
     ul {
@@ -135,15 +135,26 @@ export interface ServicesItemProp {
     question: string
     answer: string
     icon: string
+    name: number
+    isAnswerVisible: number
+    setIsAnswerVisible: (arg: number) => void
 }
-export const ServicesItem = ({ question, answer, icon }: ServicesItemProp) => {
-    const [isAnswerVisible, setIsAnswerVisible] = useState(false)
+export const ServicesItem = ({
+    question,
+    answer,
+    icon,
+    name,
+    isAnswerVisible,
+    setIsAnswerVisible,
+}: ServicesItemProp) => {
     return (
         <>
             <QuestionWrapper
-                $isAnswerVisible={isAnswerVisible}
+                $isAnswerVisible={isAnswerVisible === name}
                 onClick={() => {
-                    setIsAnswerVisible(!isAnswerVisible)
+                    isAnswerVisible === name
+                        ? setIsAnswerVisible(-1)
+                        : setIsAnswerVisible(name)
                     sendEvent('Click', {
                         eventCategory: 'ServicesItem',
                         type: question,
@@ -151,19 +162,19 @@ export const ServicesItem = ({ question, answer, icon }: ServicesItemProp) => {
                 }}
             >
                 <IconStyled
-                    $isAnswerVisible={isAnswerVisible}
+                    $isAnswerVisible={isAnswerVisible === name}
                     iconName={icon}
                 />
                 <Question
-                    $isAnswerVisible={isAnswerVisible}
+                    $isAnswerVisible={isAnswerVisible === name}
                     dangerouslySetInnerHTML={{
                         __html: question,
                     }}
                 />
-                <ArrowStyled $isAnswerVisible={isAnswerVisible} />
+                <ArrowStyled $isAnswerVisible={isAnswerVisible === name} />
             </QuestionWrapper>
             <Answer
-                $isAnswerVisible={isAnswerVisible}
+                $isAnswerVisible={isAnswerVisible === name}
                 dangerouslySetInnerHTML={{
                     __html: answer,
                 }}

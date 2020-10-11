@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Arrow from 'assets/icons/close.svg'
@@ -61,13 +61,20 @@ const IconStyled = styled(Arrow)<{ $isAnswerVisible: boolean }>`
     cursor: pointer;
 `
 
-export const FAQItem = ({ question, answer }: IFAQItem) => {
-    const [isAnswerVisible, setIsAnswerVisible] = useState(false)
+export const FAQItem = ({
+    question,
+    answer,
+    isAnswerVisible,
+    setIsAnswerVisible,
+    name,
+}: IFAQItem) => {
     return (
         <FaqListItemWrapper>
             <QuestionWrapper
                 onClick={() => {
-                    setIsAnswerVisible(!isAnswerVisible)
+                    isAnswerVisible === name
+                        ? setIsAnswerVisible(-1)
+                        : setIsAnswerVisible(name)
                     sendEvent('Click', {
                         eventCategory: 'FAQItem',
                         question,
@@ -80,10 +87,10 @@ export const FAQItem = ({ question, answer }: IFAQItem) => {
                     }}
                 />
 
-                <IconStyled $isAnswerVisible={isAnswerVisible} />
+                <IconStyled $isAnswerVisible={isAnswerVisible === name} />
             </QuestionWrapper>
             <Answer
-                $isAnswerVisible={isAnswerVisible}
+                $isAnswerVisible={isAnswerVisible === name}
                 dangerouslySetInnerHTML={{
                     __html: answer,
                 }}

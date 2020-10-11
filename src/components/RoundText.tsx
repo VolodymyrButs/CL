@@ -17,7 +17,7 @@ const Circle = styled.div<{ color: string | undefined }>`
     overflow: hidden;
     text {
         font-family: 'Helvetica Neue', Arial;
-        font-size: 23px;
+        font-size: 19px;
     }
     svg {
         position: absolute;
@@ -60,7 +60,9 @@ export const RoundText: React.FC<IRoundTextProps> = ({
                     <circle cx="150" cy="100" r="100" fill="none"></circle>
                     <use fill="none" xlinkHref="#circlePath"></use>
                     <text>
-                        <textPath xlinkHref="#circlePath">{text}</textPath>
+                        <textPath xlinkHref="#circlePath">
+                            {text.toUpperCase()}
+                        </textPath>
                     </text>
                 </Svg>
             </Circle>

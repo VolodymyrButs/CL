@@ -20,8 +20,9 @@ const LanguageList = styled.div<{ open: boolean }>`
     align-items: center;
     justify-content: center;
     width: ${headerHeight.mobile};
-    height: ${headerHeight.mobile};
-
+    height: 64px;
+    box-sizing: border-box;
+    border-right: 1px solid ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         ${(props) =>
             props.open
@@ -35,28 +36,9 @@ const LanguageList = styled.div<{ open: boolean }>`
                   `}
         width:${headerHeight.desktop};
         height: ${headerHeight.desktop};
-    }
-`
-const LangItem = styled.button<{ open: boolean; withBackground?: boolean }>`
-    display: flex;
-    list-style: none;
-    width: 100%;
-    box-sizing: border-box;
-    height: ${headerHeight.mobile};
-    border: none;
-    border-right: 1px solid ${colors.white};
-    border-bottom: 1px solid ${colors.white};
-    background-color: transparent;
-    @media (min-width: ${displayWidth.tablet}) {
-        height: ${headerHeight.desktop};
-        background-color: ${({ withBackground }) =>
-            withBackground ? colors.white : 'transparent'};
         border-right: none;
-        border-bottom: ${({ open }) =>
-            open ? `1px solid ${colors.dark}` : 'none'};
     }
 `
-
 const IconStyled = styled(ShevronIcon)<{ open: boolean }>`
     width: 10px;
     fill: ${colors.white};
@@ -64,7 +46,38 @@ const IconStyled = styled(ShevronIcon)<{ open: boolean }>`
     transform: ${({ open }) => open && 'rotate(180deg)'};
     cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
-        fill: ${({ open }) => (open ? colors.white : colors.dark)};
+        fill: ${colors.dark};
+    }
+`
+const FakeLink = styled.span<{ open: boolean }>`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${colors.white};
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 19px;
+    cursor: pointer;
+    @media (min-width: ${displayWidth.tablet}) {
+        color: ${colors.dark};
+        width: ${headerHeight.desktop};
+        height: ${headerHeight.desktop};
+        background-color: ${({ open }) =>
+            open ? colors.white : 'transparent'};
+        border: ${({ open }) => (open ? `1px solid ${colors.dark}` : 'none')};
+        border-bottom: ${({ open }) => open && 'none'};
+        box-sizing: border-box;
+        :hover {
+            background-color: ${({ open }) => open && colors.dark};
+            color: ${({ open }) => open && colors.white};
+            ${IconStyled} {
+                fill: ${({ open }) => (open ? colors.white : colors.dark)};
+            }
+        }
     }
 `
 const activeClassName = 'active'
@@ -84,31 +97,37 @@ const LinkStyled = styled(Link).attrs({
     line-height: 19px;
     @media (min-width: ${displayWidth.tablet}) {
         color: ${({ open }) => (open ? colors.white : colors.dark)};
-        :hover {
-            text-decoration: underline;
-        }
     }
 `
-const FakeLink = styled.span<{ open: boolean }>`
-    width: 100%;
-    height: 100%;
+
+const LangItem = styled.button<{ open: boolean }>`
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: ${colors.white};
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0;
-    line-height: 19px;
-    cursor: pointer;
+    list-style: none;
+    width: 100%;
+    box-sizing: border-box;
+    height: ${headerHeight.mobile};
+    background-color: transparent;
+    border: none;
+    border-right: ${({ open }) =>
+        open ? `1px solid ${colors.white}` : 'none'};
+    border-bottom: ${({ open }) =>
+        open ? `1px solid ${colors.white}` : 'none'};
     @media (min-width: ${displayWidth.tablet}) {
-        color: ${({ open }) => (open ? colors.white : colors.dark)};
-        :hover {
-            text-decoration: underline;
+        height: ${headerHeight.desktop};
+        background-color: ${({ open }) =>
+            open ? colors.white : 'transparent'};
+        border: ${({ open }) => (open ? `1px solid ${colors.dark}` : 'none')};
+        border-bottom: ${({ open }) => open && 'none'};
+    }
+    :hover {
+        cursor: pointer;
+        background-color: ${({ open }) => open && colors.dark};
+        ${LinkStyled} {
+            color: ${colors.white};
         }
     }
 `
+
 const Wrapper = styled.div`
     position: absolute;
     left: 0;
@@ -122,31 +141,23 @@ const Wrapper = styled.div`
         width: ${headerHeight.desktop};
         top: ${headerHeight.desktop};
     }
+
+    :last-child {
+        border-bottom: 1px solid ${colors.dark};
+    }
 `
+
 export const LanguageSwitcher = () => {
     const [isOpen, setIsOpen] = useState(false)
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
-
     return (
         <LanguageList open={isOpen}>
             <LanguageList open={isOpen}>
-                <LangItem onClick={() => setIsOpen(!isOpen)} open={isOpen}>
-                    {isOpen ? (
-                        <LinkStyled
-                            to={getPagePath(i18n.language)}
-                            open={isOpen}
-                        >
-                            {languages[i18n.language].label}
-                            <IconStyled open={isOpen} />
-                        </LinkStyled>
-                    ) : (
-                        <FakeLink open={isOpen}>
-                            {languages[i18n.language].label}
-                            <IconStyled open={isOpen} />
-                        </FakeLink>
-                    )}
-                </LangItem>
+                <FakeLink open={isOpen} onClick={() => setIsOpen(!isOpen)}>
+                    {languages[i18n.language].label}
+                    <IconStyled open={isOpen} />
+                </FakeLink>
             </LanguageList>
             <Wrapper>
                 {isOpen &&
@@ -157,11 +168,7 @@ export const LanguageSwitcher = () => {
                             const path = getPagePath(lang)
 
                             return (
-                                <LangItem
-                                    open={isOpen}
-                                    key={lang}
-                                    withBackground
-                                >
+                                <LangItem open={isOpen} key={lang}>
                                     <LinkStyled
                                         open={!isOpen}
                                         to={`${path}`}

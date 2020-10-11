@@ -28,15 +28,17 @@ const devGTag = (
 
 export const gtag = (typeof window !== 'undefined' && window?.gtag) || devGTag
 
-/* eslint-disable-next-line no-console */
-const devFBQ = (...params: unknown[]) => console.log('FBQ: ', ...params)
+const devFBQ = (...params: unknown[]) => {
+    /* eslint-disable-next-line no-console */
+    console.log('FBQ: ', ...params, window?.fbq)
+}
 
 const sendEventToFB = (typeof window !== 'undefined' && window?.fbq) || devFBQ
 
 const getFBEventName = (
     eventName: TrackingEventName,
     eventCategory: TrackingEventCategory
-): 'GASubmit' | 'GAEvent' => {
+): 'GASubmit' | 'GAEvent' | 'GATest' => {
     if (
         eventName.toLowerCase().includes('attempt') ||
         eventName.toLowerCase().includes('fail')
@@ -44,7 +46,7 @@ const getFBEventName = (
         return 'GAEvent'
     }
 
-    return isConversionType(eventCategory) ? 'GASubmit' : 'GAEvent'
+    return isConversionType(eventCategory) ? 'GASubmit' && 'GATest' : 'GAEvent'
 }
 
 interface EventParams {

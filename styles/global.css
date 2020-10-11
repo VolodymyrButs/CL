@@ -145,6 +145,17 @@ body,
     font-family: 'Open Sans', sans-serif;
     overscroll-behavior: none;
 }
+.MuiPaper-elevation8 {
+    box-shadow: none !important;
+}
+.MuiPaper-rounded {
+    border-radius: 0px !important;
+}
+.MuiListItem-button:hover {
+    color: white !important;
+    background-color: #231f20 !important;
+}
+
 @font-face {
     font-family: 'Yeseva One';
     src: url('./YesevaOne-Regular.eot?#iefix') format('embedded-opentype'),

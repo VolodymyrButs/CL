@@ -111,6 +111,7 @@ const TitleStyled = styled(TitleH1)`
     letter-spacing: 0.666667px;
     overflow: visible;
     text-align: center;
+    color: #296963;
     @media (max-width: 355px) {
         font-size: 40px;
         line-height: 45px;
@@ -216,16 +217,16 @@ const For = styled.span`
         position: relative;
     }
 `
-export const PromoHero = () => {
+export const PromoHeroNew = () => {
     const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(srcSetBreakpoints: [400, 1600]) {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }

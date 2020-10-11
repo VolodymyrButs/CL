@@ -78,7 +78,7 @@ const TextWrapper = styled.div`
 `
 const Text = styled.div`
     width: 100%;
-    margin-top: 15px;
+    margin-top: 5px;
     overflow-y: auto;
     p {
         text-align: center;
@@ -145,10 +145,11 @@ const Review = styled.div`
         height: 330px;
         padding: 30px;
         align-items: flex-start;
-        margin: 30px;
+        margin: 40px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 50px;
+        padding: 10px 50px;
+        height: 280px;
     }
     :focus {
         outline: none;
@@ -167,7 +168,7 @@ const HeroColumn = styled.div`
         border-right: 1px solid ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 0 10px 56px ${indent.heroColumnDesktop};
+        padding: 0 10px 26px ${indent.heroColumnDesktop};
     }
 `
 

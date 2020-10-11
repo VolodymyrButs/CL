@@ -95,6 +95,9 @@ const ProjectColumn = styled.div`
     background-color: ${colors.white};
     z-index: 1;
     outline: 1px solid ${colors.dark};
+    :hover {
+        background-color: ${backgroundColors.project};
+    }
 `
 export const WorksHero = () => {
     const { i18n } = useTranslation()

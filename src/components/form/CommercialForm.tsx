@@ -20,6 +20,7 @@ import { Modal } from 'components/Modal'
 import { SendStatus } from './Form'
 import { sendConversion, sendEvent } from 'tracking'
 import { sendForm } from './api'
+import { colors } from 'styles/colors'
 
 const Div = styled.div`
     display: none;
@@ -30,7 +31,7 @@ const Div = styled.div`
 
 const Unit = styled.p`
     pointer-events: none;
-    color: gray;
+    color: ${colors.dark};
 `
 const Wrapper = styled.div`
     display: flex;
@@ -88,6 +89,20 @@ const InputBlock = styled.div`
         input:-webkit-autofill:focus {
             background-color: transparent;
             transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+    .MuiFormLabel-root {
+        color: ${colors.dark};
+    }
+    .MuiFormLabel-root.Mui-error {
+        color: ${colors.accentText} !important;
+    }
+    .MuiFormLabel-root.Mui-focused {
+        color: ${colors.dark};
+    }
+    .MuiInput-underline.Mui-focused {
+        :after {
+            border-color: ${colors.dark};
         }
     }
 `

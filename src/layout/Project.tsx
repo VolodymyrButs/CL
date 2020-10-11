@@ -18,6 +18,7 @@ import { ModalCarousel } from 'components/ModalCarousel'
 import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 import { sendEvent } from 'tracking'
 import { Helmet } from 'react-helmet'
+import { LocalizedLink } from 'i18n/LocalizedLink'
 
 const ProjectWrapper = styled.div`
     display: flex;
@@ -154,8 +155,11 @@ const Breadcrumbs = styled.p`
     font-size: 10px;
     line-height: 14px;
     letter-spacing: 2px;
-    span {
+    a {
         opacity: 0.7;
+        text-decoration: none;
+        color: ${colors.darkText};
+        cursor: pointer;
     }
     margin: 0 auto;
     @media (min-width: ${displayWidth.tablet}) {
@@ -301,7 +305,8 @@ const ProjectLayout = ({
                 <meta name="description" content={description} />
             </Helmet>
             <Breadcrumbs>
-                <span>{t('works')}</span> / {name}
+                <LocalizedLink to={'/works'}>{t('works')}</LocalizedLink> /
+                {name}
             </Breadcrumbs>
             <ProjectWrapper>
                 <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>

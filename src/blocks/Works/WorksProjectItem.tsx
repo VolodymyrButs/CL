@@ -52,9 +52,9 @@ const LogoStyled = styled(LogoIcon)`
     fill: ${colors.white};
 `
 const ButtonS = styled(Button)`
-    width: 210px;
+    width: 262px;
     background-color: transparent;
-    padding: 20px 0;
+    padding: 20px 20px;
     border: 1px solid ${colors.white};
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
@@ -62,6 +62,7 @@ const ButtonS = styled(Button)`
     font-size: 16px;
     line-height: 24px;
     text-transform: uppercase;
+    text-align: center;
 `
 const Description = styled.p`
     color: ${colors.white};
