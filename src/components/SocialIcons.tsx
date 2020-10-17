@@ -11,32 +11,48 @@ import { sendConversion, sendEvent } from 'tracking'
 import { sendForm } from './form/api'
 import { colors } from 'styles/colors'
 
-const SocialIconsWrapper = styled.div<{ fill: string }>`
+const SocialIconsWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
     box-sizing: border-box;
-    svg: {
-        fill: ${(props) => props.fill};
-        margin: 0 5px;
-    }
     @media (min-width: ${displayWidth.desktop}) {
         justify-content: space-between;
     }
 `
-const ViberIconS = styled(ViberIcon)`
+const ViberIconS = styled(ViberIcon)<{ fill: string }>`
+    fill: ${(props) => props.fill};
+    margin: 0 5px;
     :hover {
         fill: ${colors.viber};
     }
 `
-const TelegramIconS = styled(TelegramIcon)`
+const TelegramIconS = styled(TelegramIcon)<{ fill: string }>`
+    fill: ${(props) => props.fill};
+    margin: 0 5px;
     :hover {
         fill: ${colors.telegram};
     }
 `
-const WhatsappIconS = styled(WhatsappIcon)`
+const WhatsappIconS = styled(WhatsappIcon)<{ fill: string }>`
+    fill: ${(props) => props.fill};
+    margin: 0 5px;
     :hover {
         fill: ${colors.whatsapp};
+    }
+`
+const InstagramIconS = styled(InstagramIcon)<{ fill: string }>`
+    fill: ${(props) => props.fill};
+    margin: 0 5px;
+    :hover {
+        fill: ${colors.insta};
+    }
+`
+const FacebookIconS = styled(FacebookIcon)<{ fill: string }>`
+    fill: ${(props) => props.fill};
+    margin: 0 5px;
+    :hover {
+        fill: ${colors.facebook};
     }
 `
 interface ISocialIconsProps {
@@ -51,7 +67,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
     placement,
 }) => {
     return (
-        <SocialIconsWrapper fill={fill}>
+        <SocialIconsWrapper>
             <a
                 href="viber://chat?number=%2B380982117690"
                 target="blank"
@@ -64,7 +80,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                     })
                 }}
             >
-                <ViberIconS aria-label="ViberButton" />
+                <ViberIconS aria-label="ViberButton" fill={fill} />
             </a>
             <a
                 href="tg://resolve?domain=clearline_com_ua"
@@ -78,7 +94,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                     })
                 }}
             >
-                <TelegramIconS aria-label="Telegram Button" />
+                <TelegramIconS aria-label="Telegram Button" fill={fill} />
             </a>
             <a
                 href="https://wa.me/+380958363420"
@@ -92,7 +108,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                     })
                 }}
             >
-                <WhatsappIconS aria-label="Whatsapp Button" />
+                <WhatsappIconS aria-label="Whatsapp Button" fill={fill} />
             </a>
             {showAllIcons && (
                 <>
@@ -108,7 +124,10 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                             })
                         }}
                     >
-                        <InstagramIcon aria-label="Instagram Button" />
+                        <InstagramIconS
+                            aria-label="Instagram Button"
+                            fill={fill}
+                        />
                     </a>
                     <a
                         href="https://www.facebook.com/clearline.com.ua/"
@@ -122,7 +141,10 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                             })
                         }}
                     >
-                        <FacebookIcon aria-label="Facebook Button" />
+                        <FacebookIconS
+                            aria-label="Facebook Button"
+                            fill={fill}
+                        />
                     </a>
                 </>
             )}

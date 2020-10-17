@@ -25,7 +25,7 @@ const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-height: 65px;
+    height: 65px;
     border-bottom: 1px solid
         ${({ isMenuOpen }) => (isMenuOpen ? colors.white : colors.dark)};
     z-index: 2;
@@ -59,7 +59,7 @@ const PhoneLinkStyled = styled(PhoneLink)`
     display: flex;
     flex-direction: column;
     color: ${colors.white};
-    margin-bottom: 30px;
+    margin-bottom: 80px;
     font-weight: normal;
     svg {
         fill: ${colors.white};

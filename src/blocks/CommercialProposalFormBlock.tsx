@@ -22,14 +22,18 @@ const FormWrapper = styled.div`
     border-bottom: 1px solid ${colors.dark};
 `
 
-const FormTitle = styled.div`
+const FormTitle = styled.div<{ text?: boolean }>`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 32px;
+
     line-height: 32px;
     letter-spacing: 1px;
-    color: #437b13;
+    ${({ text }) =>
+        text === true
+            ? `color:${colors.dark};font-size: 24px;`
+            : `color: #437b13;font-size: 32px;`}
+
     text-align: center;
     margin: 40px 0 24px;
     white-space: pre-wrap;
@@ -72,7 +76,7 @@ const DivS = styled.div`
     margin-bottom: 30px;
 `
 
-export const CommercialProposalFormBlock = () => {
+export const CommercialProposalFormBlock = ({ text }: { text?: boolean }) => {
     const { t } = useTranslation()
 
     return (
@@ -80,19 +84,25 @@ export const CommercialProposalFormBlock = () => {
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <DefaultFormHero image />
                 <FormColumn>
-                    <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
-                    <DivS>
-                        <h3>
-                            <PensileS />
-                            {t('comercialForm.example')}
-                        </h3>
-                        <h3>
-                            <HandshakeS /> {t('comercialForm.conditions')}
-                        </h3>
-                        <h3>
-                            <ProposalS /> {t('comercialForm.proposal')}
-                        </h3>
-                    </DivS>
+                    <FormTitle text={text}>
+                        {text
+                            ? t('ComercialProposalTitle')
+                            : t('ComercialProposalFormTitle')}
+                    </FormTitle>
+                    {!text && (
+                        <DivS>
+                            <h3>
+                                <PensileS />
+                                {t('comercialForm.example')}
+                            </h3>
+                            <h3>
+                                <HandshakeS /> {t('comercialForm.conditions')}
+                            </h3>
+                            <h3>
+                                <ProposalS /> {t('comercialForm.proposal')}
+                            </h3>
+                        </DivS>
+                    )}
                     <ComercialForm />
                 </FormColumn>
             </Container>
