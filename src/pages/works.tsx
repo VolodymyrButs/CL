@@ -9,9 +9,18 @@ import { WorksProjectGrid } from 'blocks/Works/WorksProjectGrid'
 import { HelmetFunc } from 'components/PageMetaData'
 
 const pageMetadata = {
-    uk: { title: 'lalaU', description: 'desc' },
-    ru: { title: 'lalaR', description: 'desc' },
-    en: { title: 'lalaE', description: 'desc' },
+    uk: {
+        title: 'Роботи студії дизайну інтер`єру ClearLine',
+        description: 'Роботи за дизайном інтер`єрів студій ClearLine',
+    },
+    ru: {
+        title: 'Работы студии дизайна интерьера ClearLine',
+        description: 'Работы по дизайну интерьеров студии  ClearLine',
+    },
+    en: {
+        title: 'ClearLine interior design studio works',
+        description: 'Works on interior design of the ClearLine studio',
+    },
 }
 
 const WorksPage = () => {

@@ -37,21 +37,26 @@ const SubTitle = styled.p`
     letter-spacing: 0.4px;
     color: ${colors.dark};
     text-align: center;
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+    }
 `
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 32px 56px;
+    padding: 0 32px;
     justify-content: space-between;
     position: relative;
     @media (min-width: ${displayWidth.tablet}) {
+        padding: 0 32px 56px;
         align-items: flex-start;
         border-right: 1px solid ${colors.dark};
     }
 `
 const TitleStyled = styled(Title)`
-    margin: 40px 0;
+    margin: 40px 0 10px;
     font-size: 48px;
     line-height: 55px;
     text-align: center;
@@ -100,6 +105,14 @@ const InstructionColumn = styled.div`
 //     height: 108%;
 // `
 const InstructionText = styled.div`
+    ol {
+        margin: 10px 58px 58px;
+        list-style: decimal;
+        @media (min-width: ${displayWidth.tablet}) {
+            text-align: left;
+            margin: 60px;
+        }
+    }
     ul {
         margin: 32px;
         list-style: none;
