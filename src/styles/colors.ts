@@ -18,4 +18,6 @@ export const colors = {
     viber: '#59267c',
     telegram: '#0088cc',
     whatsapp: '#25d366',
+    insta: '#E1306C',
+    facebook: '#1778F2',
 }

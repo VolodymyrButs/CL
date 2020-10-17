@@ -16,6 +16,7 @@ import FullScreen from 'assets/icons/fullScreen.svg'
 import { ModalCarousel } from 'components/ModalCarousel'
 import { ProjectData } from 'layout/Project'
 import { sendEvent } from 'tracking'
+
 const ExampleOfProjectWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -63,7 +64,6 @@ const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 ${indent.heroColumnTablet} 24px;
-    justify-content: space-between;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
