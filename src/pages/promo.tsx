@@ -21,19 +21,19 @@ import { HelmetFunc } from 'components/PageMetaData'
 
 const pageMetadata = {
     uk: {
-        title: 'Дизайн проект квартири за $99 - clearline.com.ua',
+        title: 'Дизайн проект інтер`єру квартири за $99',
         description:
-            "Виконаємо дизайн проект інтер'єру усієї квартири за 99 доларів США",
+            'Індивідуальний дизайн проект квартири за $99 включає перепланування, розміщення меблів, електрику, сантехніку, освітлення, підлоги, стелі і інше',
     },
     ru: {
-        title: 'Дизайн проект квартиры за $99 - clearline.com.ua',
+        title: 'Дизайн проект интерьера квартиры за $99',
         description:
-            'Выполним дизайн проект интерьера всей квартиры за 99 долларов США',
+            'Индивидуальный дизайн проект квартиры за $99 включает перепланировку, расстановку мебели, электрику, сантехнику, освещение, полы, потолки и другое',
     },
     en: {
-        title: 'Apartment design for $99 - clearline.com.ua',
+        title: 'Apartment interior design project for $99',
         description:
-            'We will design the interior project of the entire apartment for 99 US dollars',
+            'Individual design project of an apartment for $99 includes redevelopment, furniture placement, electrics, plumbing, lighting, floors, ceilings and more.',
     },
 }
 

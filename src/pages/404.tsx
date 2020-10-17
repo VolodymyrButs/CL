@@ -15,9 +15,9 @@ import { SocialIcons } from 'components/SocialIcons'
 import { HelmetFunc } from 'components/PageMetaData'
 
 const pageMetadata = {
-    uk: { title: 'lalaU', description: 'desc' },
-    ru: { title: 'lalaR', description: 'desc' },
-    en: { title: 'lalaE', description: 'desc' },
+    uk: { title: 'ClearLine', description: 'Студія дизайну інтер`єра' },
+    ru: { title: 'ClearLine', description: 'Студия дизайна интерьера' },
+    en: { title: 'ClearLine', description: 'Interior design studio' },
 }
 
 const Wrapper = styled.div`

@@ -8,9 +8,21 @@ import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { HelmetFunc } from 'components/PageMetaData'
 
 const pageMetadata = {
-    uk: { title: 'lalaU', description: 'desc' },
-    ru: { title: 'lalaR', description: 'desc' },
-    en: { title: 'lalaE', description: 'desc' },
+    uk: {
+        title: 'Послуги та ціни на дизайн інтер`єру',
+        description:
+            'Дизайн проект інтер`єру, 3д візуалізація, обмiр приміщень',
+    },
+    ru: {
+        title: 'Услуги и цены на дизайн интерьера',
+        description:
+            'Дизайн проект интерьера, 3д визуализация, обмер помещений',
+    },
+    en: {
+        title: 'Services and prices for interior design',
+        description:
+            'Interior design project, 3d visualization, measurement of premises',
+    },
 }
 
 const ServicesPage = () => {

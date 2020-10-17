@@ -21,17 +21,17 @@ import { displayWidth } from 'styles/width'
 
 const pageMetadata = {
     uk: {
-        title: 'Дизайн проект квартири за $99 - clearline.com.ua',
+        title: 'Дизайн проект квартири за $99',
         description:
             "Виконаємо дизайн проект інтер'єру усієї квартири за 99 доларів США",
     },
     ru: {
-        title: 'Дизайн проект квартиры за $99 - clearline.com.ua',
+        title: 'Дизайн проект квартиры за $99',
         description:
             'Выполним дизайн проект интерьера всей квартиры за 99 долларов США',
     },
     en: {
-        title: 'Apartment design for $99 - clearline.com.ua',
+        title: 'Apartment design for $99',
         description:
             'We will design the interior project of the entire apartment for 99 US dollars',
     },

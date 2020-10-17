@@ -17,9 +17,18 @@ import { sendForm } from 'components/form/api'
 import { HelmetFunc } from 'components/PageMetaData'
 
 const pageMetadata = {
-    uk: { title: 'lalaU', description: 'desc' },
-    ru: { title: 'lalaR', description: 'desc' },
-    en: { title: 'lalaE', description: 'desc' },
+    uk: {
+        title: 'Контакти дизайн студії ClearLine',
+        description: 'Контактна інформація студії дизайну інтер`єру ClearLine',
+    },
+    ru: {
+        title: 'Контакты дизайн студии ClearLine',
+        description: 'Контактная информация студии дизайна интерьера ClearLine',
+    },
+    en: {
+        title: 'Contacts design studio ClearLine',
+        description: 'Contact information of ClearLine interior design studio',
+    },
 }
 
 const ContactsWrapper = styled.div`
