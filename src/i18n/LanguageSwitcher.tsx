@@ -147,9 +147,9 @@ const Wrapper = styled.div<{ open: boolean }>`
 `
 
 export const LanguageSwitcher = ({
-    closeMenu,
+    closeMenu = () => {},
 }: {
-    closeMenu: (arg: boolean) => void
+    closeMenu?: (arg: boolean) => void
 }) => {
     const [isOpen, setIsOpen] = useState(false)
     const { i18n } = useTranslation()

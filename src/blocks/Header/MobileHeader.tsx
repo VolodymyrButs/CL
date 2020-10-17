@@ -87,7 +87,14 @@ const WhatsappIconStyled = styled(Whatsapp)`
 const IconWrapper = styled.div`
     display: flex;
 `
-export const MobileHeader = () => {
+
+interface MobileHeaderProps {
+    showSocialIcons: boolean
+}
+
+export const MobileHeader: React.FC<MobileHeaderProps> = ({
+    showSocialIcons,
+}) => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -95,52 +102,54 @@ export const MobileHeader = () => {
         <>
             <MobileHeaderWraper isMenuOpen={isMenuOpen}>
                 <Logo />
-                <IconWrapper>
-                    <a
-                        href="viber://chat?number=%2B380982117690"
-                        target="blank"
-                        onClick={() => {
-                            sendForm(`HeaderMobileViberIcon`, {})
-                            sendConversion('SocialIconViber')
-                            sendEvent('SocialIcon', {
-                                eventCategory: 'SocialIconViber',
-                                placement: 'MobileHeader',
-                            })
-                        }}
-                    >
-                        <ViberIconStyled aria-label="ViberButton" />
-                    </a>
-                    <a
-                        href="https://wa.me/+380958363420"
-                        target="blank"
-                        onClick={() => {
-                            sendForm(`HeaderMobileWhatsAppIcon`, {})
-                            sendConversion('SocialIconWhatsApp')
-                            sendEvent('SocialIcon', {
-                                eventCategory: 'SocialIconWhatsApp',
-                                placement: 'MobileHeader',
-                            })
-                        }}
-                    >
-                        <WhatsappIconStyled aria-label="Whatsapp Button" />
-                    </a>
-                    <a
-                        href="tg://resolve?domain=clearline_com_ua"
-                        target="blank"
-                    >
-                        <TelegramIconStyled
-                            aria-label="Telegram Button"
+                {showSocialIcons && (
+                    <IconWrapper>
+                        <a
+                            href="viber://chat?number=%2B380982117690"
+                            target="blank"
                             onClick={() => {
-                                sendForm(`HeaderMobileTelegramIcon`, {})
-                                sendConversion('SocialIconTelegram')
+                                sendForm(`HeaderMobileViberIcon`, {})
+                                sendConversion('SocialIconViber')
                                 sendEvent('SocialIcon', {
-                                    eventCategory: 'SocialIconTelegram',
+                                    eventCategory: 'SocialIconViber',
                                     placement: 'MobileHeader',
                                 })
                             }}
-                        />
-                    </a>
-                </IconWrapper>
+                        >
+                            <ViberIconStyled aria-label="ViberButton" />
+                        </a>
+                        <a
+                            href="https://wa.me/+380958363420"
+                            target="blank"
+                            onClick={() => {
+                                sendForm(`HeaderMobileWhatsAppIcon`, {})
+                                sendConversion('SocialIconWhatsApp')
+                                sendEvent('SocialIcon', {
+                                    eventCategory: 'SocialIconWhatsApp',
+                                    placement: 'MobileHeader',
+                                })
+                            }}
+                        >
+                            <WhatsappIconStyled aria-label="Whatsapp Button" />
+                        </a>
+                        <a
+                            href="tg://resolve?domain=clearline_com_ua"
+                            target="blank"
+                        >
+                            <TelegramIconStyled
+                                aria-label="Telegram Button"
+                                onClick={() => {
+                                    sendForm(`HeaderMobileTelegramIcon`, {})
+                                    sendConversion('SocialIconTelegram')
+                                    sendEvent('SocialIcon', {
+                                        eventCategory: 'SocialIconTelegram',
+                                        placement: 'MobileHeader',
+                                    })
+                                }}
+                            />
+                        </a>
+                    </IconWrapper>
+                )}
                 <BurgerButton
                     onClick={() => {
                         setIsMenuOpen(!isMenuOpen)

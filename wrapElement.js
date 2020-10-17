@@ -32,7 +32,13 @@ const wrapPageElement = ({ element, props }) => {
     } else {
         return (
             <I18nextProvider i18n={i18n} {...props}>
-                <Layout>{element}</Layout>
+                <Layout
+                    showSocialIconsInHeader={
+                        !element.props.path.includes('-fns')
+                    }
+                >
+                    {element}
+                </Layout>
             </I18nextProvider>
         )
     }
