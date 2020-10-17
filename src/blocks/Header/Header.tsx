@@ -35,10 +35,15 @@ const SocialIconsWrapper = styled.div`
     margin: 0 45px;
     width: 100%;
 `
-export const Header = () => {
+
+interface HeaderProps {
+    showSocialIcons?: boolean
+}
+
+export const Header: React.FC<HeaderProps> = ({ showSocialIcons = true }) => {
     return (
         <>
-            <MobileHeader />
+            <MobileHeader showSocialIcons={showSocialIcons} />
             <HeaderWraper>
                 <Logo />
                 <Container tabletColumns={'7fr 5fr'} desktopColunms={'7fr 5fr'}>
@@ -48,12 +53,14 @@ export const Header = () => {
                             phone={contactInformation.primaryPhone}
                             placement={'Header'}
                         />
-                        <SocialIconsWrapper>
-                            <SocialIcons
-                                fill={colors.dark}
-                                placement={'Header'}
-                            />
-                        </SocialIconsWrapper>
+                        {showSocialIcons && (
+                            <SocialIconsWrapper>
+                                <SocialIcons
+                                    fill={colors.dark}
+                                    placement={'Header'}
+                                />
+                            </SocialIconsWrapper>
+                        )}
                     </ContactLinks>
                 </Container>
                 <LanguageSwitcher />

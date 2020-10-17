@@ -109,10 +109,8 @@ const LangItem = styled.button<{ open: boolean }>`
     height: ${headerHeight.mobile};
     background-color: transparent;
     border: none;
-    border-right: ${({ open }) =>
-        open ? `1px solid ${colors.white}` : 'none'};
-    border-bottom: ${({ open }) =>
-        open ? `1px solid ${colors.white}` : 'none'};
+    border-right: 1px solid ${colors.white};
+    border-bottom: 1px solid ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         height: ${headerHeight.desktop};
         background-color: ${({ open }) =>
@@ -129,7 +127,7 @@ const LangItem = styled.button<{ open: boolean }>`
     }
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ open: boolean }>`
     position: absolute;
     left: 0;
     top: 66px;
@@ -141,6 +139,7 @@ const Wrapper = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         width: ${headerHeight.desktop};
         top: ${headerHeight.desktop};
+        display: ${({ open }) => (open ? `flex` : 'none')};
     }
 
     :last-child {
@@ -148,7 +147,11 @@ const Wrapper = styled.div`
     }
 `
 
-export const LanguageSwitcher = () => {
+export const LanguageSwitcher = ({
+    closeMenu = () => {},
+}: {
+    closeMenu?: (arg: boolean) => void
+}) => {
     const [isOpen, setIsOpen] = useState(false)
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
@@ -159,32 +162,32 @@ export const LanguageSwitcher = () => {
                 <IconStyled open={isOpen} />
             </FakeLink>
 
-            <Wrapper>
-                {isOpen &&
-                    languagesList
-                        .filter((lang) => lang !== i18n.language)
-                        .map((lang) => {
-                            const langLabel = languages[lang].label
-                            const path = getPagePath(lang)
+            <Wrapper open={isOpen}>
+                {languagesList
+                    .filter((lang) => lang !== i18n.language)
+                    .map((lang) => {
+                        const langLabel = languages[lang].label
+                        const path = getPagePath(lang)
 
-                            return (
-                                <LangItem open={isOpen} key={lang}>
-                                    <LinkStyled
-                                        open={!isOpen}
-                                        to={`${path}`}
-                                        onClick={() => {
-                                            setIsOpen(!isOpen)
-                                            sendEvent('Click', {
-                                                eventCategory: 'LanguageChange',
-                                                to: `${lang}`,
-                                            })
-                                        }}
-                                    >
-                                        {langLabel}
-                                    </LinkStyled>
-                                </LangItem>
-                            )
-                        })}
+                        return (
+                            <LangItem open={isOpen} key={lang}>
+                                <LinkStyled
+                                    open={!isOpen}
+                                    to={`${path}`}
+                                    onClick={() => {
+                                        closeMenu(false)
+                                        setIsOpen(!isOpen)
+                                        sendEvent('Click', {
+                                            eventCategory: 'LanguageChange',
+                                            to: `${lang}`,
+                                        })
+                                    }}
+                                >
+                                    {langLabel}
+                                </LinkStyled>
+                            </LangItem>
+                        )
+                    })}
             </Wrapper>
         </LanguageList>
     )

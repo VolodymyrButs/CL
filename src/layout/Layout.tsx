@@ -39,7 +39,10 @@ const BlocksWrapper = styled.div`
     }
 `
 const languagesList = Object.keys(languages)
-export const Layout = (props: { children: React.ReactNode }) => {
+export const Layout = (props: {
+    showSocialIconsInHeader: boolean
+    children: React.ReactNode
+}) => {
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
     const data = useStaticQuery(graphql`
@@ -221,7 +224,7 @@ export const Layout = (props: { children: React.ReactNode }) => {
                         }`}
                 </script>
             </Helmet>
-            <Header />
+            <Header showSocialIcons={props.showSocialIconsInHeader} />
             <BlocksWrapper id="blockWrapper" onScroll={onScroll}>
                 {props.children}
                 <Footer />
