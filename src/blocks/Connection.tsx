@@ -22,7 +22,9 @@ const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
 `
 
 const ContainerStyle = styled(Container)`
+    margin: 30px 0;
     @media (min-width: ${displayWidth.tablet}) {
+        margin: 0;
         outline: none;
         display: flex;
         justify-content: space-around;

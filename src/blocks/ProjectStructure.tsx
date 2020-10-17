@@ -62,7 +62,7 @@ const RightSidebar = styled(LeftSidebar)`
 
 const PriceWrapper = styled.span`
     display: inline-block;
-    width: 120px;
+    width: 220px;
     position: relative;
 `
 const Price = styled.p`
@@ -92,7 +92,7 @@ const ImgBlock = styled.div`
     position: relative;
     align-self: flex-end;
     width: 140px;
-    height: 200px;
+    height: 10px;
     @media (min-width: 450px) {
         width: 185px;
         height: 300px;
@@ -108,12 +108,13 @@ const ImgBlock = styled.div`
 `
 const ImageSvg = styled(tableFlower)`
     width: 100%;
-    height: 100%;
+    height: 2000%;
     position: absolute;
     bottom: -30px;
     fill: ${backgroundColors.promotion};
     @media (min-width: 450px) {
         bottom: -50px;
+        height: 100%;
     }
     @media (min-width: ${displayWidth.tablet}) {
         right: 60%;
@@ -125,7 +126,7 @@ const ImageSvg = styled(tableFlower)`
     }
 `
 const Image = styled(Img)<{ fluid: FluidObject }>`
-    width: 70%;
+    width: 50%;
     height: auto;
     align-self: flex-end;
     margin-right: 3px;
@@ -137,6 +138,7 @@ const Image = styled(Img)<{ fluid: FluidObject }>`
     }
 `
 const TitleStyled = styled(Title)`
+    margin: 30px auto 100px auto;
     @media (min-width: ${displayWidth.tablet}) {
         margin-left: ${indent.heroColumnTablet};
         max-width: 250px;

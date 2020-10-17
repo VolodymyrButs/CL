@@ -26,7 +26,7 @@ const PromoHeroWraper = styled.div`
     justify-content: center;
     width: 100%;
     background-color: ${backgroundColors.promotion};
-    height: calc(100vh - ${headerHeight.mobile} - 50px);
+    height: calc(100vh - ${headerHeight.mobile} - 100px);
     min-height: 503px;
     border-bottom: 1px solid ${colors.dark};
     :before {
@@ -153,7 +153,7 @@ const Price = styled.span`
     }
 `
 const MobileImage = styled(Img)<{ fluid: FluidObject }>`
-    width: 90%;
+    width: 100%;
     height: auto;
     align-self: flex-end;
     @media (orientation: landscape) {
@@ -206,7 +206,7 @@ const For = styled.span`
     line-height: 55px;
     letter-spacing: 0.666667px;
     text-align: center;
-    color: #296963;
+    color: ${colors.dark};
     @media (max-width: 355px) {
         font-size: 40px;
         line-height: 45px;

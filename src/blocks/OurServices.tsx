@@ -39,7 +39,8 @@ const Block = styled.div`
         outline: 1px solid ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 16px 32px;
+        padding: 56px 32px;
+        align-items: flex-start;
     }
     :after {
         position: absolute;
@@ -64,7 +65,7 @@ const CadBlock = styled(Block)`
     background-color: ${colors.white};
 `
 const FaqBlock = styled(Block)`
-    background-color: ${backgroundColors.contact};
+    background-color: ${backgroundColors.project};
 `
 const Title = styled.h2`
     font-family: 'Yeseva One', sans-serif;
@@ -79,15 +80,17 @@ const Title = styled.h2`
         font-size: 34px;
         line-height: 39px;
         letter-spacing: 1.68px;
+        text-align: left;
     }
 `
-const Price = styled.p`
+const Price = styled.span`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 64px;
-    line-height: 74px;
+    font-size: 32px;
+    line-height: 37px;
     letter-spacing: 0.888889px;
+    padding-left: 20px;
     color: ${colors.accentText};
     margin: 0;
 `
@@ -115,6 +118,15 @@ const SubTitle = styled.h3`
     }
     ol {
         list-style: decimal;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        text-align: left;
+        ul,
+        p,
+        li {
+            text-align: left;
+            margin-left: 0;
+        }
     }
 `
 const ButtonStyled = styled(Button)`

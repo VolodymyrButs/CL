@@ -48,7 +48,7 @@ const Promo = () => {
             <ProjectStructure />
             <ExamplesOfProjects />
             <Reviews />
-            <CommercialProposalFormBlock />
+            <CommercialProposalFormBlock text />
             <RunningLine>{t('designProject99')}</RunningLine>
             <Project3D />
             <div id="project3dAdvantages" />

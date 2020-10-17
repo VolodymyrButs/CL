@@ -20,9 +20,9 @@ const LanguageList = styled.div<{ open: boolean }>`
     align-items: center;
     justify-content: center;
     width: ${headerHeight.mobile};
-    height: 64px;
-    box-sizing: border-box;
+    height: ${headerHeight.mobile};
     border-right: 1px solid ${colors.white};
+    box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         ${(props) =>
             props.open
@@ -37,6 +37,7 @@ const LanguageList = styled.div<{ open: boolean }>`
         width:${headerHeight.desktop};
         height: ${headerHeight.desktop};
         border-right: none;
+        margin-bottom: 0px;
     }
 `
 const IconStyled = styled(ShevronIcon)<{ open: boolean }>`
@@ -50,8 +51,8 @@ const IconStyled = styled(ShevronIcon)<{ open: boolean }>`
     }
 `
 const FakeLink = styled.span<{ open: boolean }>`
-    width: 100%;
-    height: 100%;
+    width: ${headerHeight.mobile};
+    height: ${headerHeight.mobile};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,6 +63,7 @@ const FakeLink = styled.span<{ open: boolean }>`
     letter-spacing: 0;
     line-height: 19px;
     cursor: pointer;
+    box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         color: ${colors.dark};
         width: ${headerHeight.desktop};
@@ -70,7 +72,6 @@ const FakeLink = styled.span<{ open: boolean }>`
             open ? colors.white : 'transparent'};
         border: ${({ open }) => (open ? `1px solid ${colors.dark}` : 'none')};
         border-bottom: ${({ open }) => open && 'none'};
-        box-sizing: border-box;
         :hover {
             background-color: ${({ open }) => open && colors.dark};
             color: ${({ open }) => open && colors.white};
@@ -129,7 +130,7 @@ const LangItem = styled.button<{ open: boolean }>`
 const Wrapper = styled.div<{ open: boolean }>`
     position: absolute;
     left: 0;
-    top: ${headerHeight.mobile};
+    top: 66px;
     width: ${headerHeight.mobile};
     display: flex;
     flex-direction: column;
@@ -156,12 +157,11 @@ export const LanguageSwitcher = ({
     const { getPagePath } = usePagePath()
     return (
         <LanguageList open={isOpen}>
-            <LanguageList open={isOpen}>
-                <FakeLink open={isOpen} onClick={() => setIsOpen(!isOpen)}>
-                    {languages[i18n.language].label}
-                    <IconStyled open={isOpen} />
-                </FakeLink>
-            </LanguageList>
+            <FakeLink open={isOpen} onClick={() => setIsOpen(!isOpen)}>
+                {languages[i18n.language].label}
+                <IconStyled open={isOpen} />
+            </FakeLink>
+
             <Wrapper open={isOpen}>
                 {languagesList
                     .filter((lang) => lang !== i18n.language)
