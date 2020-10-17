@@ -151,7 +151,7 @@ export const MobileHeader = () => {
             </MobileHeaderWraper>
             <MobileMenu isMenuOpen={isMenuOpen}>
                 <MobileHeaderWraper isMenuOpen={isMenuOpen}>
-                    <LanguageSwitcher />
+                    <LanguageSwitcher closeMenu={setIsMenuOpen} />
                     <BurgerButton
                         onClick={() => {
                             setIsMenuOpen(!isMenuOpen)
