@@ -83,6 +83,7 @@
     "NicheDepth": "Глибина ніші",
     "Height": "Висота",
     "Depth": "Глибина",
+    "DepthApertupe": "Глибина отвору",
     "Width": "Ширина",
     "Indent": "Відступ збоку",
     "LeftIndent": "Відступ зліва",
@@ -94,7 +95,7 @@
     "Undo": "Назад",
     "Move": "Рухати",
     "MainDoor": "Вхiднi дверi",
-    "Door": "Mіжкімнатні двері",
+    "Door": "Mіжк.двері",
     "Wall": "Стіна",
     "Window": "Вікно",
     "Heater": "Батарея",
@@ -117,11 +118,13 @@
     "LeaveFeedback": "Залиште відгук",
     "HelpUsImproveTheApp": "Допоможіть нам покращити Редактор, залишивши відгук",
     "ThanksForYourFeedback": "Дякуємо за Ваш відгук",
-    "Balcony": "Балконні двері",
+    "Balcony": "Балк.двері",
     "SelectBalconyType": "Тип балкону?",
     "DoorWidth": "Ширина дверей",
     "HeigthBottomDoor": "Низ дверей",
     "HeigthBottomWindow": "Низ вікна",
     "OutsideWidth": "Ширина отвору ззовні",
-    "OutsideDepth": "Глибина отвору ззовні"
+    "OutsideDepth": "Глибина отвору ззовні",
+    "unit": "мм",
+    "Tools": "інструменти"
 }

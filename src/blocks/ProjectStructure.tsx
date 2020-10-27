@@ -62,7 +62,7 @@ const RightSidebar = styled(LeftSidebar)`
 
 const PriceWrapper = styled.span`
     display: inline-block;
-    width: 220px;
+    width: 200px;
     position: relative;
 `
 const Price = styled.p`
@@ -151,13 +151,13 @@ interface IProjectStructureProps {
     id?: string
 }
 export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
-    const { i18n } = useTranslation()
+    const { i18n, t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
@@ -201,6 +201,8 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
                 <HeroColumn>
                     <TitleStyled>
                         {title}
+                        <br />
+                        {t('for')}
                         <PriceWrapper>
                             <Price>{price}</Price>
                         </PriceWrapper>

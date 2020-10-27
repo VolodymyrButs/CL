@@ -77,6 +77,7 @@ const ButtonWrapper = styled.div`
 `
 const ButtonStyled = styled(Button)`
     margin: 30px;
+    font-weight: 600;
     background-color: ${backgroundColors.formPromo};
     color: ${colors.dark};
 `

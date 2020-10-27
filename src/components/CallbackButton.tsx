@@ -17,7 +17,10 @@ import { contactInformation } from './contactInformation'
 import { sendConversion, sendEvent } from 'tracking'
 import { sendForm } from './form/api'
 
-const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
+const CallbackButtonWrapperMobile = styled.button<{
+    open?: boolean
+    hideCallback: number
+}>`
     position: fixed;
     bottom: 80px;
     left: 18px;
@@ -27,6 +30,8 @@ const CallbackButtonWrapperMobile = styled.button<{ open?: boolean }>`
         open === true
             ? `background-color: rgba(213, 213, 213, 0.85596)`
             : `background-color: ${colors.dark}`};
+    ${({ hideCallback }) =>
+        (hideCallback < 550 || hideCallback === 0) && `display:none`};
     border: 1px solid ${colors.dark};
     border-radius: 50%;
     z-index: 11;
@@ -79,9 +84,13 @@ const CallbackButtonWrapperDesktop = styled(CallbackButtonWrapperMobile)`
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
         left: 8px;
+        ${({ hideCallback }) =>
+            (hideCallback < 170 || hideCallback === 0) && `display:none`};
     }
     @media (min-width: ${displayWidth.desktop}) {
         left: calc((50vw - ${displayWidth.desktop} / 2) + 8px);
+        ${({ hideCallback }) =>
+            (hideCallback < 200 || hideCallback === 0) && `display:none`};
     }
 `
 
@@ -132,7 +141,7 @@ const Wrapper = styled.div`
         align-items: flex-start;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 30px 50px 0;
+        padding: 30px 70px 0 30px;
         justify-content: space-around;
     }
 `
@@ -142,7 +151,13 @@ const TitleStyled = styled(Title)`
         margin: 16px 0;
     }
 `
-export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
+export const CallbackButton = ({
+    tracking,
+    hideCallback,
+}: {
+    tracking: FormTracking
+    hideCallback: number
+}) => {
     const [isModalOpen, setModalIsOpen] = useState(false)
 
     // TODO: move to Form
@@ -207,7 +222,10 @@ export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
                     </Form>
                 </Wrapper>
             </Modal>
-            <CallbackButtonWrapperMobile aria-label="Callback Button">
+            <CallbackButtonWrapperMobile
+                hideCallback={hideCallback}
+                aria-label="Callback Button"
+            >
                 <a
                     href={`tel:${contactInformation.primaryPhone}`}
                     onClick={() => {
@@ -224,6 +242,7 @@ export const CallbackButton = ({ tracking }: { tracking: FormTracking }) => {
             </CallbackButtonWrapperMobile>
 
             <CallbackButtonWrapperDesktop
+                hideCallback={hideCallback}
                 aria-label="Callback Button"
                 onClick={() => {
                     setModalIsOpen(true)

@@ -89,7 +89,7 @@ const IconWrapper = styled.div`
 `
 
 interface MobileHeaderProps {
-    showSocialIcons: boolean
+    showSocialIcons?: boolean
 }
 
 export const MobileHeader: React.FC<MobileHeaderProps> = ({

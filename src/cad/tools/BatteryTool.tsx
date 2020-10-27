@@ -4,10 +4,8 @@ import styled, { ThemeProvider } from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 
-import { accentDark } from 'cad/themes/accentDark'
 import { light } from 'cad/themes/light'
 import { useTranslation } from 'react-i18next'
-import { Button } from 'cad/Button'
 import { Portal } from 'cad/Portal'
 import { Battery } from 'cad/ElementsType'
 import { tools } from 'cad/Workplace'
@@ -16,18 +14,16 @@ import {
     calculateDefaultIndent,
 } from 'cad/reusableFunctions'
 import { getElements } from 'cad/storage/selectors'
-import Heater from 'assets/icons/iconsCad/heater.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
 import { HeaterTypePoints, OptionalString } from 'cad/types'
+import { InputSubmit, Line, Title, Wrapper } from './WallTool'
 
-const LineEditorContainerAsk = styled.div`
-    background-color: ${(props) => props.theme.bgColor};
-    padding: 5px;
-`
 const LineEditorContainer = styled.form`
     display: flex;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
+    border: solid 1px ${light.bgColor};
     padding: 5px;
     & p {
         font-size: 18px;
@@ -43,26 +39,12 @@ const LineEditorContainer = styled.form`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         max-width: 320px;
+        box-sizing: border-box;
         justify-items: start;
     }
 `
 const InputWraper = styled.div`
     margin: 0 10px;
-`
-const StartText = styled.span`
-    width: 200px;
-    margin: 0 5px;
-    font-size: 18px;
-    text-align: center;
-    align-self: center;
-`
-const InputSubmit = styled(Button)`
-    height: 54px;
-    display: flex;
-    @media (max-width: 767px) {
-        height: 48px;
-        margin: 5px 10px 0;
-    }
 `
 
 type Props = {
@@ -216,7 +198,7 @@ export const BatteryTool = ({
             },
         })
         setCurrentTool(tools.move)
-        setSelected(tools.move)
+        setSelected(undefined)
     }
     return (
         <>
@@ -233,56 +215,51 @@ export const BatteryTool = ({
 
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    {!selected && (
-                        <LineEditorContainerAsk>
-                            <StartText>{t('SelectWallToContinue')}</StartText>
-                        </LineEditorContainerAsk>
-                    )}
                     {selected && (
-                        <LineEditorContainer onSubmit={handleSubmit}>
-                            <InputWraper>
-                                <p>{t('LeftIndent')}</p>
+                        <Wrapper>
+                            <Title>{t('Heater')}</Title>
+                            <LineEditorContainer onSubmit={handleSubmit}>
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('LeftIndent')}
+                                        setInputValue={setLeftIndent}
+                                        max={
+                                            Number(selectedWallLength) -
+                                            rightIndent
+                                        }
+                                        value={leftIndent}
+                                        onChange={handleLeftIndentChange}
+                                    />
+                                </InputWraper>
 
-                                <NumberInput
-                                    max={
-                                        Number(selectedWallLength) - rightIndent
-                                    }
-                                    value={leftIndent}
-                                    onChange={handleLeftIndentChange}
-                                />
-                            </InputWraper>
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('RightIndent')}
+                                        setInputValue={setRightIndent}
+                                        max={
+                                            Number(selectedWallLength) -
+                                            leftIndent
+                                        }
+                                        value={rightIndent}
+                                        onChange={handleRightIndentChange}
+                                    />
+                                </InputWraper>
 
-                            <InputWraper>
-                                <p>{t('RightIndent')}</p>
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('Depth')}
+                                        setInputValue={setDepth}
+                                        value={depth}
+                                        onChange={handleDepthChange}
+                                    />
+                                </InputWraper>
 
-                                <NumberInput
-                                    max={
-                                        Number(selectedWallLength) - leftIndent
-                                    }
-                                    value={rightIndent}
-                                    onChange={handleRightIndentChange}
-                                />
-                            </InputWraper>
-
-                            <InputWraper>
-                                <p>{t('Depth')}</p>
-
-                                <NumberInput
-                                    value={depth}
-                                    onChange={handleDepthChange}
-                                />
-                            </InputWraper>
-
-                            <InputSubmit
-                                theme={accentDark}
-                                $size="svgMobile"
-                                type="submit"
-                            >
-                                {t('Add')}
-
-                                <Heater />
-                            </InputSubmit>
-                        </LineEditorContainer>
+                                <Line />
+                                <InputSubmit type="submit">
+                                    <EnterSvg />
+                                </InputSubmit>
+                            </LineEditorContainer>
+                        </Wrapper>
                     )}
                 </ThemeProvider>
             </Portal>

@@ -4,35 +4,63 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { LocalizedLink } from 'i18n/LocalizedLink'
-import { Button } from 'cad/Button'
 import { LanguageSwitcherCad } from 'i18n/LanguageSwitcherCad'
 import { accentDark } from 'cad/themes/accentDark'
 import { getElements } from 'cad/storage/selectors'
-import ClearSwg from 'assets/icons/iconsCad/Clean.svg'
+import SaveIcon from 'assets/icons/iconsCad/save.svg'
+import DeleteIcon from 'assets/icons/iconsCad/delete.svg'
 import LogoSwg from 'assets/icons/Logo.svg'
+import { light } from './themes/light'
+import { displayWidth } from 'styles/width'
 
 const ButtonArea = styled.div`
     display: flex;
 `
 const LogoSvg = styled(LogoSwg)`
-    width: 33px;
+    width: 32px;
     margin-left: 5px;
+    fill: #fff;
+    @media (min-width: ${displayWidth.tablet}) {
+        width: 57px;
+    }
 `
 
-const ButtonS = styled(Button)`
+const ButtonS = styled.div`
+    display: flex;
+    align-items: center;
     align-self: center;
-    font-size: 10px;
-    line-height: 12px;
-    margin-right: 5px;
+    height: 26px;
     padding: 5px;
-    @media (min-width: 400px) {
-        font-size: 12px;
-        line-height: 13px;
-        padding: 5px 10px;
+    color: ${light.color};
+    background-color: ${light.bgColor};
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.685714px;
+    text-transform: uppercase;
+    cursor: pointer;
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        @media (min-width: ${displayWidth.tablet}) {
+            margin-right: 12px;
+            width: 26px;
+            height: 26px;
+        }
     }
-    @media (min-width: 850px) {
-        line-height: 22px;
-        font-size: 16px;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin-right: 20px;
+    }
+
+    :hover {
+        color: gray;
+        svg {
+            fill: gray;
+        }
     }
 `
 
@@ -42,11 +70,12 @@ const Logo = styled(LocalizedLink)`
     align-self: center;
     font-size: 28px;
     margin: 0 10px;
-    color: ${accentDark.color};
     text-decoration: none;
 
-    &:hover {
-        color: ${accentDark.bgColorHover};
+    :hover {
+        svg {
+            fill: gray;
+        }
     }
 `
 const AppHeaderContainer = styled.header`
@@ -56,30 +85,37 @@ const AppHeaderContainer = styled.header`
     width: 100%;
     height: 50px;
     background-color: ${(props) => props.theme.bgColor};
+    @media (min-width: ${displayWidth.tablet}) {
+        height: 80px;
+    }
 `
 
 const Banner = styled(LocalizedLink)`
     display: flex;
-    padding: 5px;
-    margin: 6px;
+    align-self: center;
+    padding: 6px 10px;
+    height: 26px;
     background-color: ${accentDark.color};
     color: ${accentDark.bgColor};
     text-align: center;
     font-size: 8px;
     text-decoration: none;
     font-weight: 600;
-    line-height: 1.3;
-    border-radius: 10px;
+    border-radius: 20px;
     align-items: center;
     &:hover {
         background-color: ${accentDark.bgColorHover};
     }
-    @media (min-width: 400px) {
-        font-size: 13px;
-    }
-    @media (min-width: 850px) {
-        padding: 5px 40px;
-        font-size: 18px;
+    @media (min-width: ${displayWidth.tablet}) {
+        padding: 16px 40px;
+        margin: 12px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: 0px;
+        text-align: center;
+        border-radius: 32px;
     }
 `
 
@@ -118,21 +154,31 @@ export const AppHeader = ({
             <Banner to={'/promo'}>{t('Promo')}</Banner>
 
             <ButtonArea>
-                <LanguageSwitcherCad />
                 {stateElements && stateElements.length !== 0 && (
                     <ButtonS onClick={() => setShouldShowAskModal(true)}>
                         {windowWidth > 500 ? (
-                            t('ClearAll')
+                            <>
+                                <DeleteIcon />
+                                {t('ClearAll')}
+                            </>
                         ) : (
-                            <ClearSwg style={{ margin: 0 }} />
+                            <DeleteIcon />
                         )}
                     </ButtonS>
                 )}
                 {stateElements && stateElements.length !== 0 && (
                     <ButtonS onClick={() => setShouldShowSaveModal(true)}>
-                        {t('Export')}
+                        {windowWidth > 500 ? (
+                            <>
+                                <SaveIcon />
+                                {t('Export')}
+                            </>
+                        ) : (
+                            <SaveIcon />
+                        )}
                     </ButtonS>
                 )}
+                <LanguageSwitcherCad />
             </ButtonArea>
         </AppHeaderContainer>
     )

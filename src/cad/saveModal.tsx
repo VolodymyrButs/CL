@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Button, ButtonGroup } from 'cad/Button'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import {
@@ -14,7 +13,6 @@ import {
     isVent,
     isBalconyDoor,
 } from 'cad/types'
-import { accentDark } from 'cad/themes/accentDark'
 import { getElements } from 'cad/storage/selectors'
 import { toDxfStringLine } from 'cad/dxf/lineDxf'
 import { toDxfStringDoor } from 'cad/dxf/doorDxf'
@@ -25,6 +23,10 @@ import { toDxfStringTube } from 'cad/dxf/tubeDxf'
 import { fileDxf } from 'cad/dxf/fileDxf'
 import { download } from 'cad/dxf/downloadDxf'
 import { toDxfStringBalconyDoor } from './dxf/balconyDoor'
+import { displayWidth } from 'styles/width'
+import ISvg from 'assets/icons/iconsCad/i.svg'
+import { accentDark } from './themes/accentDark'
+import { Button } from 'components/Button'
 
 const ModalWraper = styled.div`
     position: absolute;
@@ -34,58 +36,109 @@ const ModalWraper = styled.div`
     z-index: 3;
     width: 100%;
     height: 100%;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: #000000ef;
 `
 const ModalContainer = styled.div`
-    width: 320px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    @media (min-width: ${displayWidth.tablet}) {
+        padding: 70px;
+        align-items: flex-start;
+    }
 `
 const Text = styled.p`
     margin: 0;
-    font-size: 30px;
+    font-size: 36px;
     text-align: center;
-    color: ${(props) => props.theme.color};
+    color: black;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin-bottom: 20px;
+        text-align: left;
+    }
 `
 const SaveNameLabel = styled.label`
     display: block;
     text-align: center;
-    margin: 30px;
-
+    padding: 10px 0px;
     color: ${(props) => props.theme.color};
-    font-size: 20px;
+    font-size: 14px;
 
     & > span {
         display: block;
-        margin-bottom: 10px;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        text-align: left;
+        width: 100%;
     }
 `
 const SaveNameInput = styled.input`
-    width: 240px;
-    padding: 8px 30px;
+    width: 100%;
+    padding: 8px 5px;
     font-size: 20px;
-    text-align: center;
-    border-radius: 10px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
 `
 
 const WarningContainer = styled.section`
     margin: 0 0 30px;
     padding: 15px;
     text-align: center;
-    background: #ff9c06;
-    color: #fff;
+    background: #f7d7d7;
+    color: #000;
+    @media (min-width: ${displayWidth.tablet}) {
+        text-align: left;
+        width: 100%;
+        box-sizing: border-box;
+    }
 `
-
+const WarningIcon = styled(ISvg)`
+    fill: ${accentDark.color};
+    margin-right: 7px;
+    height: 19px;
+`
 const WarningHeader = styled.h2`
     margin: 0;
+    height: 19px;
     margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
 `
 
 const WarningMessage = styled.div`
-    font-size: 20px;
+    font-size: 16px;
+    margin-left: 26px;
 `
-
+const Div = styled.div`
+    display: flex;
+    justify-content: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        justify-content: flex-start;
+    }
+`
+const SaveButton = styled(Button)`
+    margin: 10px;
+`
+const CancelButton = styled(SaveButton)`
+    color: black;
+    background-color: white;
+    :hover {
+        background-color: lightgray;
+    }
+`
+const ButtonWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        flex-direction: row;
+    }
+`
 type Props = {
     setShouldShowSaveModal: (arg: boolean) => void
     isConturLocked?: boolean | undefined
@@ -138,17 +191,19 @@ export const SaveModal = ({
                 </SaveNameLabel>
                 {!isConturLocked && (
                     <WarningContainer>
-                        <WarningHeader>{t('SaveWarningHeader')}</WarningHeader>
-
+                        <Div>
+                            <WarningIcon />
+                            <WarningHeader>
+                                {t('SaveWarningHeader')}
+                            </WarningHeader>
+                        </Div>
                         <WarningMessage>
                             {t('SaveWarningMessage')}
                         </WarningMessage>
                     </WarningContainer>
                 )}
-
-                <ButtonGroup>
-                    <Button
-                        theme={accentDark}
+                <ButtonWrapper>
+                    <SaveButton
                         onClick={() => {
                             setShouldShowSaveModal(false)
                             handleDownloadClick()
@@ -156,17 +211,17 @@ export const SaveModal = ({
                         }}
                     >
                         {t('Save')}
-                    </Button>
+                    </SaveButton>
 
-                    <Button
+                    <CancelButton
                         onClick={() => {
                             setShouldShowSaveModal(false)
                             onClose()
                         }}
                     >
                         {t('Cancel')}
-                    </Button>
-                </ButtonGroup>
+                    </CancelButton>
+                </ButtonWrapper>
             </ModalContainer>
         </ModalWraper>
     )

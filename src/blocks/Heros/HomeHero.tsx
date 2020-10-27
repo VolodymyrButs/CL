@@ -31,6 +31,9 @@ const HomeHeroWraper = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         height: 600px;
     }
+    @media (orientation: landscape) {
+        height: auto;
+    }
 `
 const ContainerStyled = styled(Container)`
     padding: 0 ${indent.mobile};
@@ -59,10 +62,6 @@ const HomeHeroColumn = styled.div`
     box-sizing: border-box;
     border-left: 1px solid ${colors.dark};
     border-right: 1px solid ${colors.dark};
-    :last-child {
-        justify-content: flex-end;
-        max-height: 100%;
-    }
     @media (min-width: ${displayWidth.tablet}) {
         border-left: none;
         border-right: none;
@@ -72,6 +71,9 @@ const HomeHeroColumn = styled.div`
         justify-content: center;
         align-items: flex-start;
     }
+`
+const HomeHeroColumnImage = styled(HomeHeroColumn)`
+    justify-content: flex-end;
 `
 const Title = styled.h1`
     font-size: 16px;
@@ -113,25 +115,25 @@ const Title = styled.h1`
 // `
 const MobileImage = styled(Img)<{ fluid: FluidObject }>`
     width: 90%;
-    height: 105%;
+    height: 100%;
     bottom: -5%;
     z-index: 2;
     max-height: 400px;
-    @media (min-width: 630px) {
-        width: 80%;
-        height: 85%;
+    @media (min-width: 400px) {
+        width: 70%;
+        height: 90%;
         bottom: -4%;
-        max-height: 600px;
     }
     @media (min-width: 840px) {
-        width: 60%;
+        max-height: 600px;
+        width: 75%;
         height: 75%;
-        bottom: -3%;
+        bottom: -4%;
     }
     @media (min-width: ${displayWidth.tablet}) {
         width: 85%;
-        height: 75%;
-        bottom: -3%;
+        height: 95%;
+        bottom: -4%;
     }
     @media (min-width: ${displayWidth.desktop}) {
         display: none;
@@ -144,9 +146,10 @@ const DesktopImage = styled(Img)<{ fluid: FluidObject }>`
         width: 110%;
         height: 95.6%;
         max-height: 90%;
-        bottom: -4%;
+        bottom: -3.8%;
         left: -70px;
         z-index: 2;
+        align-self: flex-end;
     }
 `
 const JumpingArrowWrapper = styled.div`
@@ -156,12 +159,15 @@ const JumpingArrowWrapper = styled.div`
         align-self: flex-start;
         justify-content: center;
         width: 66.6%;
+        margin-top: 30px;
     }
 `
 const LogoS = styled(Logo)`
     width: auto;
     height: 20vh;
+    min-height: 120px;
     fill: #5f7db5;
+    padding: 5px;
     @media (min-width: ${displayWidth.tablet}) {
         width: 250px;
         height: 250px;
@@ -177,7 +183,7 @@ export const HomeHero = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
@@ -222,7 +228,7 @@ export const HomeHero = () => {
                         <JumpingArrow />
                     </JumpingArrowWrapper>
                 </HomeHeroColumn>
-                <HomeHeroColumn>
+                <HomeHeroColumnImage>
                     <MobileImage
                         fluid={homeHeroImageMobile.fluid}
                         imgStyle={{
@@ -235,7 +241,7 @@ export const HomeHero = () => {
                             objectFit: 'containe',
                         }}
                     />
-                </HomeHeroColumn>
+                </HomeHeroColumnImage>
             </ContainerStyled>
         </HomeHeroWraper>
     )

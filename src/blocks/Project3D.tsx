@@ -106,7 +106,7 @@ export const Project3D = () => {
             ) {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             ...GatsbyImageSharpFluid
                         }
                     }

@@ -143,7 +143,7 @@ export const ExamplesOfProjects = () => {
                     node {
                         id
                         childImageSharp {
-                            fluid {
+                            fluid(quality: 100) {
                                 ...GatsbyImageSharpFluid
                             }
                             parent {
@@ -163,7 +163,7 @@ export const ExamplesOfProjects = () => {
                     node {
                         id
                         childImageSharp {
-                            fluid {
+                            fluid(quality: 100) {
                                 ...GatsbyImageSharpFluid
                             }
                             parent {

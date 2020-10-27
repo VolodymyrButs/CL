@@ -39,6 +39,7 @@ import {
 const CanvasContainer = styled.div`
     width: 100%;
     height: 100%;
+    max-width: 100vw;
     position: absolute;
     touch-action: auto;
 `
@@ -216,8 +217,8 @@ export const Canvas = ({
     }
     useGestures(containerRef, {
         onPinchChanged: (event: { scale: number }) => {
-            if (event.scale > 0.3 && event.scale < 2) {
-                setCanvasScale(event.scale / 10)
+            if (event.scale) {
+                setTimeout(setCanvasScale(event.scale / 10), 100)
             }
         },
     })

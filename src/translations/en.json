@@ -83,6 +83,7 @@
     "NicheDepth": "Niche Depth",
     "Height": "Height",
     "Depth": "Depth",
+    "DepthApertupe": "Aperture depth",
     "Width": "Width",
     "Indent": "Indent",
     "LeftIndent": "Left Indent",
@@ -94,7 +95,7 @@
     "Undo": "Undo",
     "Move": "Move",
     "MainDoor": "Main door",
-    "Door": "Interroom Door",
+    "Door": "room Door",
     "Wall": "Wall",
     "Window": "Window",
     "Heater": "Heater",
@@ -117,11 +118,13 @@
     "LeaveFeedback": "Leave a Feedback",
     "HelpUsImproveTheApp": "Please help us improve the Editor by leaving Your feedback",
     "ThanksForYourFeedback": "Thanks for Your feedback",
-    "Balcony": "Balcony door",
+    "Balcony": "Balc.door",
     "SelectBalconyType": "Balcony type?",
     "DoorWidth": "Door width",
     "HeigthBottomDoor": "Door bottom",
     "HeigthBottomWindow": "Window bottom",
     "OutsideWidth": "Outside width",
-    "OutsideDepth": "Outside height"
+    "OutsideDepth": "Outside height",
+    "unit": "mm",
+    "Tools": "Tools"
 }

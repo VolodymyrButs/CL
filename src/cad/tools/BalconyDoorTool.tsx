@@ -5,32 +5,31 @@ import { useTranslation } from 'react-i18next'
 
 import { Portal } from 'cad/Portal'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, ButtonGroup } from 'cad/Button'
-import { BalconyDoor } from 'cad/ElementsType'
+import { BalconyDoor, Wall } from 'cad/ElementsType'
 import { tools } from 'cad/Workplace'
 import { v4 as uuid } from 'uuid'
-import Left from 'assets/icons/iconsCad/arrow-alt-circle-left-solid.svg'
-import Right from 'assets/icons/iconsCad/arrow-alt-circle-right-solid.svg'
+import Left from 'assets/icons/iconsCad/left.svg'
+import Right from 'assets/icons/iconsCad/right.svg'
 import LeftBalcony from 'assets/icons/iconsCad/leftBalcony.svg'
 import RightBalcony from 'assets/icons/iconsCad/rightBalcony.svg'
 import CenterBalcony from 'assets/icons/iconsCad/balcony.svg'
-import { accentDark } from 'cad/themes/accentDark'
 import { light } from 'cad/themes/light'
 import { getElements } from 'cad/storage/selectors'
 import {
     getSelectedWallLength,
     calculateDefaultIndent,
 } from 'cad/reusableFunctions'
-import Door from 'assets/icons/iconsCad/door.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
 import { ApertureTypePoints, OptionalString, WallType } from 'cad/types'
+import { InputSubmit, Title, Wrapper } from './WallTool'
 
 const ApertureEditorContainer = styled.form`
     display: flex;
     justify-content: space-between;
-    max-width: 1000px;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
+    border: solid 1px ${light.bgColor};
     padding: 5px;
     & p {
         max-width: 200px;
@@ -48,21 +47,11 @@ const ApertureEditorContainer = styled.form`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
-        max-width: 100%;
+        max-width: 320px;
+        box-sizing: border-box;
         align-items: flex-end;
         justify-items: center;
     }
-`
-const LineEditorContainerAsk = styled.div`
-    background-color: ${(props) => props.theme.bgColor};
-    padding: 5px;
-`
-const StartText = styled.span`
-    width: 200px;
-    margin: 0 5px;
-    font-size: 18px;
-    text-align: center;
-    align-self: center;
 `
 const InputWraper = styled.div`
     margin: 0 5px;
@@ -71,14 +60,57 @@ const InputWraper = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    div {
+        display: flex;
+    }
 `
 
-const InputSubmit = styled(Button)`
-    height: 100%;
-    display: flex;
+const Line = styled.div`
+    height: 120%;
+    width: 1px;
+    border-left: solid 1px ${light.bgColor};
 `
-const Wrapper = styled.div`
+const WrapperBlock = styled.div`
     display: flex;
+    align-items: center;
+    height: 100%;
+`
+const ButtonDirection = styled.div<{ disabled?: boolean }>`
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    svg {
+        width: 34px;
+        height: 34px;
+        margin: 0 15px;
+        z-index: 2;
+        color: ${(props) => (props.disabled ? 'white' : '#000000a9')};
+        fill: ${(props) => (props.disabled ? '#000000a9' : 'white')};
+    }
+    :hover {
+        svg {
+            color: white;
+            fill: #000000a9;
+        }
+    }
+`
+const Button = styled.button<{ active: boolean }>`
+    cursor: pointer;
+    background-color: ${(props) => (props.active ? light.bgColor : '#fff')};
+    border: none;
+    margin: 3px 10px;
+    svg {
+        width: 34px;
+        height: 34px;
+        margin: 5px;
+        z-index: 2;
+    }
+    :hover {
+        svg {
+            color: white;
+            fill: #000000a9;
+        }
+    }
 `
 type Props = {
     toolEditorContainerNode: React.ReactNode
@@ -1464,62 +1496,86 @@ export const BalconyDoorTool = ({
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         {
-            balconyType === 'center'
-                ? dispatch({
-                      type: 'addElements',
-                      elements: [
-                          {
-                              id: uuid(),
-                              objectType: 'wall',
-                              isApertureWall: true,
-                              points: [
-                                  currentBalconyDoorPoints[4][0],
-                                  currentBalconyDoorPoints[4][1],
-                                  currentBalconyDoorPoints[5][0],
-                                  currentBalconyDoorPoints[5][1],
-                              ],
-                          },
-                          {
-                              id: uuid(),
-                              objectType: 'wall',
-                              isApertureWall: true,
-                              points: [
-                                  currentBalconyDoorPoints[20][0],
-                                  currentBalconyDoorPoints[20][1],
-                                  currentBalconyDoorPoints[21][0],
-                                  currentBalconyDoorPoints[21][1],
-                              ],
-                          },
-                          {
-                              id: uuid(),
-                              objectType: 'balconyDoor',
-                              balconyType,
-                              points: currentBalconyDoorPoints,
-                          },
-                      ],
-                  })
-                : dispatch({
-                      type: 'addElements',
-                      elements: [
-                          {
-                              id: uuid(),
-                              objectType: 'wall',
-                              isApertureWall: true,
-                              points: [
-                                  currentBalconyDoorPoints[4][0],
-                                  currentBalconyDoorPoints[4][1],
-                                  currentBalconyDoorPoints[5][0],
-                                  currentBalconyDoorPoints[5][1],
-                              ],
-                          },
-                          {
-                              id: uuid(),
-                              objectType: 'balconyDoor',
-                              balconyType,
-                              points: currentBalconyDoorPoints,
-                          },
-                      ],
-                  })
+            balconyType === 'center' &&
+                dispatch({
+                    type: 'addElements',
+                    elements: [
+                        {
+                            id: uuid(),
+                            objectType: tools.wall,
+                            isApertureWall: true,
+                            points: [
+                                currentBalconyDoorPoints[4][0],
+                                currentBalconyDoorPoints[4][1],
+                                currentBalconyDoorPoints[5][0],
+                                currentBalconyDoorPoints[5][1],
+                            ],
+                        },
+                        {
+                            id: uuid(),
+                            objectType: tools.wall,
+                            isApertureWall: true,
+                            points: [
+                                currentBalconyDoorPoints[21][0],
+                                currentBalconyDoorPoints[21][1],
+                                currentBalconyDoorPoints[20][0],
+                                currentBalconyDoorPoints[20][1],
+                            ],
+                        },
+                        {
+                            id: uuid(),
+                            objectType: tools.balconyDoor,
+                            balconyType,
+                            points: currentBalconyDoorPoints,
+                        },
+                    ],
+                })
+            balconyType === 'right' &&
+                dispatch({
+                    type: 'addElements',
+                    elements: [
+                        {
+                            id: uuid(),
+                            objectType: tools.wall,
+                            isApertureWall: true,
+                            points: [
+                                currentBalconyDoorPoints[4][0],
+                                currentBalconyDoorPoints[4][1],
+                                currentBalconyDoorPoints[5][0],
+                                currentBalconyDoorPoints[5][1],
+                            ],
+                        },
+                        {
+                            id: uuid(),
+                            objectType: tools.balconyDoor,
+                            balconyType,
+                            points: currentBalconyDoorPoints,
+                        },
+                    ],
+                })
+            balconyType === 'left' &&
+                dispatch({
+                    type: 'addElements',
+                    elements: [
+                        {
+                            id: uuid(),
+                            objectType: tools.wall,
+                            isApertureWall: true,
+                            points: [
+                                currentBalconyDoorPoints[5][0],
+                                currentBalconyDoorPoints[5][1],
+                                currentBalconyDoorPoints[4][0],
+                                currentBalconyDoorPoints[4][1],
+                            ],
+                        },
+                        {
+                            id: uuid(),
+                            objectType: tools.balconyDoor,
+                            balconyType,
+                            points: currentBalconyDoorPoints,
+                        },
+                    ],
+                })
         }
 
         setStartPoint([
@@ -1538,7 +1594,7 @@ export const BalconyDoorTool = ({
     }
     return (
         <>
-            {selected && balconyType !== '' && (
+            {selected && (balconyType === 'left' || balconyType === 'right') && (
                 <Layer>
                     <BalconyDoor
                         isInProgres
@@ -1547,232 +1603,290 @@ export const BalconyDoorTool = ({
                             points: currentBalconyDoorPoints,
                         }}
                     />
+
+                    <Wall
+                        isInProgres
+                        element={{
+                            points: [
+                                currentBalconyDoorPoints[4][0],
+                                currentBalconyDoorPoints[4][1],
+                                currentBalconyDoorPoints[5][0],
+                                currentBalconyDoorPoints[5][1],
+                            ],
+                        }}
+                    />
                 </Layer>
             )}
+            {selected && balconyType === 'center' && (
+                <Layer>
+                    <BalconyDoor
+                        isInProgres
+                        element={{
+                            balconyType,
+                            points: currentBalconyDoorPoints,
+                        }}
+                    />
 
+                    <Wall
+                        isInProgres
+                        element={{
+                            points: [
+                                currentBalconyDoorPoints[4][0],
+                                currentBalconyDoorPoints[4][1],
+                                currentBalconyDoorPoints[5][0],
+                                currentBalconyDoorPoints[5][1],
+                            ],
+                        }}
+                    />
+                    <Wall
+                        isInProgres
+                        element={{
+                            points: [
+                                currentBalconyDoorPoints[21][0],
+                                currentBalconyDoorPoints[21][1],
+                                currentBalconyDoorPoints[20][0],
+                                currentBalconyDoorPoints[20][1],
+                            ],
+                        }}
+                    />
+                </Layer>
+            )}
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    {!selected && (
-                        <LineEditorContainerAsk>
-                            <StartText>{t('SelectWallToContinue')}</StartText>
-                        </LineEditorContainerAsk>
-                    )}
                     {selected && (
-                        <ApertureEditorContainer onSubmit={handleSubmit}>
-                            {inputWindowNumber === 1 && (
-                                <InputWraper>
-                                    <p>{t('SelectBalconyType')}</p>
-                                    <ButtonGroup>
-                                        <Button
-                                            disabled={selected === undefined}
-                                            $buttonForm="square"
-                                            theme={
-                                                balconyType === 'left'
-                                                    ? accentDark
-                                                    : light
-                                            }
-                                            $size="big"
-                                            onClick={() => {
-                                                setBalconyType('left')
-                                            }}
-                                        >
-                                            <LeftBalcony />
-                                        </Button>
-                                        <Button
-                                            disabled={selected === undefined}
-                                            style={{
-                                                padding: '9px',
-                                            }}
-                                            theme={
-                                                balconyType === 'center'
-                                                    ? accentDark
-                                                    : light
-                                            }
-                                            $size="big"
-                                            onClick={() => {
-                                                setBalconyType('center')
-                                            }}
-                                        >
-                                            <CenterBalcony
-                                                style={{
-                                                    margin: '0',
-                                                    width: '40px',
+                        <Wrapper>
+                            <Title>{t('Balcony')}</Title>
+                            <ApertureEditorContainer onSubmit={handleSubmit}>
+                                {inputWindowNumber === 1 && (
+                                    <InputWraper>
+                                        <p>{t('SelectBalconyType')}</p>
+                                        <div>
+                                            <Button
+                                                active={balconyType === 'left'}
+                                                type="button"
+                                                disabled={
+                                                    selected === undefined
+                                                }
+                                                onClick={() => {
+                                                    setBalconyType('left')
                                                 }}
-                                            />
-                                        </Button>
-                                        <Button
-                                            disabled={selected === undefined}
-                                            $buttonForm="square"
-                                            theme={
-                                                balconyType === 'right'
-                                                    ? accentDark
-                                                    : light
-                                            }
-                                            $size="big"
-                                            onClick={() => {
-                                                setBalconyType('right')
-                                            }}
-                                        >
-                                            <RightBalcony />
-                                        </Button>
-                                    </ButtonGroup>
-                                </InputWraper>
-                            )}
-                            {inputWindowNumber === 1 && <div />}
-                            {inputWindowNumber === 2 && (
-                                <>
-                                    <InputWraper>
-                                        <p>{t('RightIndent')}</p>
-                                        <NumberInput
-                                            max={
-                                                Number(selectedWallLength) -
-                                                leftIndent
-                                            }
-                                            value={rightIndent}
-                                            onChange={handleRightIndentChange}
-                                        />
+                                            >
+                                                <LeftBalcony />
+                                            </Button>
+                                            <Button
+                                                type="button"
+                                                active={
+                                                    balconyType === 'center'
+                                                }
+                                                disabled={
+                                                    selected === undefined
+                                                }
+                                                onClick={() => {
+                                                    setBalconyType('center')
+                                                }}
+                                            >
+                                                <CenterBalcony
+                                                    style={{
+                                                        margin: '0',
+                                                        width: '40px',
+                                                        height: '44px',
+                                                    }}
+                                                />
+                                            </Button>
+                                            <Button
+                                                type="button"
+                                                active={balconyType === 'right'}
+                                                disabled={
+                                                    selected === undefined
+                                                }
+                                                onClick={() => {
+                                                    setBalconyType('right')
+                                                }}
+                                            >
+                                                <RightBalcony />
+                                            </Button>
+                                        </div>
                                     </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('DoorWidth')}</p>
-                                        <NumberInput
-                                            max={
-                                                Number(selectedWallLength) -
-                                                (leftIndent + rightIndent)
-                                            }
-                                            value={doorWidth}
-                                            onChange={handleDoorWidthChange}
-                                        />
-                                    </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('LeftIndent')}</p>
-                                        <NumberInput
-                                            max={
-                                                Number(selectedWallLength) -
-                                                rightIndent
-                                            }
-                                            value={leftIndent}
-                                            onChange={handleLeftIndentChange}
-                                        />
-                                    </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('NicheDepth')}</p>
-                                        <NumberInput
-                                            max={apertureDepth}
-                                            value={apertureNicheDepth}
-                                            onChange={
-                                                handleApertureNicheDepthChange
-                                            }
-                                        />
-                                    </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('Depth')}</p>
-                                        <NumberInput
-                                            value={apertureDepth}
-                                            onChange={handleApertureDepthChange}
-                                        />
-                                    </InputWraper>
-                                </>
-                            )}
-                            {inputWindowNumber === 3 && (
-                                <>
-                                    <InputWraper>
-                                        <p>{t('HeigthBottomDoor')}</p>
-                                        <NumberInput
-                                            value={doorHeigthBottom}
-                                            onChange={
-                                                handleDoorHeigthBottomChange
-                                            }
-                                        />
-                                    </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('HeigthBottomWindow')}</p>
-                                        <NumberInput
-                                            value={apertureHeigthBottom}
-                                            onChange={
-                                                handleApertureHeigthBottomChange
-                                            }
-                                        />
-                                    </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('HeigthTop')}</p>
-                                        <NumberInput
-                                            value={apertureHeigthTop}
-                                            onChange={
-                                                handleApertureHeigthTopChange
-                                            }
-                                        />
-                                    </InputWraper>
-                                </>
-                            )}
-                            {inputWindowNumber === 3 && (
-                                <>
-                                    <div /> <div />
-                                </>
-                            )}
-                            {inputWindowNumber === 4 && (
-                                <>
-                                    <InputWraper>
-                                        <p>{t('OutsideWidth')}</p>
-
-                                        <NumberInput
-                                            value={outsideWidth}
-                                            onChange={handleOutsideWidthChange}
-                                        />
-                                    </InputWraper>
-                                    <InputWraper>
-                                        <p>{t('OutsideDepth')}</p>
-
-                                        <NumberInput
-                                            value={outsideDepth}
-                                            onChange={handleOutsideDepthChange}
-                                        />
-                                    </InputWraper>
-                                </>
-                            )}
-                            <Wrapper>
-                                {inputWindowNumber > 1 && (
-                                    <Button
-                                        $buttonForm="square"
-                                        $size="big"
-                                        theme={accentDark}
-                                        onClick={() => {
-                                            setInputWindowNumber(
-                                                inputWindowNumber - 1
-                                            )
-                                        }}
-                                    >
-                                        <Left />
-                                    </Button>
                                 )}
-                                {inputWindowNumber < 4 && (
-                                    <Button
-                                        $buttonForm="square"
-                                        $size="big"
-                                        theme={accentDark}
-                                        disabled={balconyType === ''}
-                                        onClick={() => {
-                                            setInputWindowNumber(
-                                                inputWindowNumber + 1
-                                            )
-                                        }}
-                                    >
-                                        <Right />
-                                    </Button>
+                                {inputWindowNumber === 1 && <div />}
+                                {inputWindowNumber === 2 && (
+                                    <>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('RightIndent')}
+                                                setInputValue={setRightIndent}
+                                                max={
+                                                    Number(selectedWallLength) -
+                                                    leftIndent
+                                                }
+                                                value={rightIndent}
+                                                onChange={
+                                                    handleRightIndentChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('DoorWidth')}
+                                                setInputValue={setDoorWidth}
+                                                max={
+                                                    Number(selectedWallLength) -
+                                                    (leftIndent + rightIndent)
+                                                }
+                                                value={doorWidth}
+                                                onChange={handleDoorWidthChange}
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('LeftIndent')}
+                                                setInputValue={setLeftIndent}
+                                                max={
+                                                    Number(selectedWallLength) -
+                                                    rightIndent
+                                                }
+                                                value={leftIndent}
+                                                onChange={
+                                                    handleLeftIndentChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('NicheDepth')}
+                                                setInputValue={
+                                                    setApertureNicheDepth
+                                                }
+                                                max={apertureDepth}
+                                                value={apertureNicheDepth}
+                                                onChange={
+                                                    handleApertureNicheDepthChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('Depth')}
+                                                setInputValue={setApertureDepth}
+                                                value={apertureDepth}
+                                                onChange={
+                                                    handleApertureDepthChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                    </>
+                                )}
+                                {inputWindowNumber === 3 && (
+                                    <>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t(
+                                                    'HeigthBottomDoor'
+                                                )}
+                                                setInputValue={
+                                                    setDoorHeigthBottom
+                                                }
+                                                value={doorHeigthBottom}
+                                                onChange={
+                                                    handleDoorHeigthBottomChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t(
+                                                    'HeigthBottomWindow'
+                                                )}
+                                                setInputValue={
+                                                    setApertureHeigthBottom
+                                                }
+                                                value={apertureHeigthBottom}
+                                                onChange={
+                                                    handleApertureHeigthBottomChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('HeigthTop')}
+                                                setInputValue={
+                                                    setApertureHeigthTop
+                                                }
+                                                value={apertureHeigthTop}
+                                                onChange={
+                                                    handleApertureHeigthTopChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                    </>
+                                )}
+                                {inputWindowNumber === 3 && (
+                                    <>
+                                        <div /> <div />
+                                    </>
                                 )}
                                 {inputWindowNumber === 4 && (
-                                    <InputWraper>
-                                        <InputSubmit
-                                            theme={accentDark}
-                                            $size="svgMobile"
-                                            type="submit"
-                                        >
-                                            {t('Add')}
-                                            <Door />
-                                        </InputSubmit>
-                                    </InputWraper>
+                                    <>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('OutsideWidth')}
+                                                setInputValue={setOutsideWidth}
+                                                value={outsideWidth}
+                                                onChange={
+                                                    handleOutsideWidthChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                        <InputWraper>
+                                            <NumberInput
+                                                placeholder={t('OutsideDepth')}
+                                                setInputValue={setOutsideDepth}
+                                                value={outsideDepth}
+                                                onChange={
+                                                    handleOutsideDepthChange
+                                                }
+                                            />
+                                        </InputWraper>
+                                    </>
                                 )}
-                            </Wrapper>
-                        </ApertureEditorContainer>
+                                <WrapperBlock>
+                                    {inputWindowNumber > 1 && (
+                                        <ButtonDirection
+                                            onClick={() => {
+                                                setInputWindowNumber(
+                                                    inputWindowNumber - 1
+                                                )
+                                            }}
+                                        >
+                                            <Left />
+                                        </ButtonDirection>
+                                    )}
+                                    {inputWindowNumber < 4 && (
+                                        <ButtonDirection
+                                            disabled={balconyType === ''}
+                                            onClick={() => {
+                                                balconyType !== '' &&
+                                                    setInputWindowNumber(
+                                                        inputWindowNumber + 1
+                                                    )
+                                            }}
+                                        >
+                                            <Right />
+                                        </ButtonDirection>
+                                    )}
+
+                                    {inputWindowNumber === 4 && (
+                                        <>
+                                            <Line />
+
+                                            <InputSubmit type="submit">
+                                                <EnterSvg />
+                                            </InputSubmit>
+                                        </>
+                                    )}
+                                </WrapperBlock>
+                            </ApertureEditorContainer>
+                        </Wrapper>
                     )}
                 </ThemeProvider>
             </Portal>

@@ -3,6 +3,8 @@ import { Line, Ellipse, Text, Circle, Rect } from 'react-konva'
 
 import { tools } from 'cad/Workplace'
 import { ApertureTypePoints, HeaterTypePoints, OptionalString } from './types'
+import { accentDark } from './themes/accentDark'
+import { useTranslation } from 'react-i18next'
 
 type WallProps = {
     isInProgres?: boolean
@@ -44,7 +46,7 @@ export const Wall = ({
     }
     const currentStroke = () => {
         if (isInProgres && !lockedContur) {
-            return 'red'
+            return `${accentDark.color}`
         }
         if (isInProgres && lockedContur) {
             return 'green'
@@ -53,7 +55,7 @@ export const Wall = ({
             return 'blue'
         }
 
-        return 'white'
+        return '#231F20'
     }
     return (
         <>
@@ -176,6 +178,7 @@ type MainDoorProps = {
 }
 
 export const MainDoor = ({ element, isInProgres = false }: MainDoorProps) => {
+    const { t } = useTranslation()
     return (
         <>
             <Line
@@ -220,19 +223,26 @@ export const MainDoor = ({ element, isInProgres = false }: MainDoorProps) => {
                 <>
                     <Ellipse
                         x={element.points[0] + element.points[3] / 2}
-                        y={element.points[1] + element.points[2] / 2}
+                        y={element.points[1] + element.points[2] / 2 - 350}
                         radiusX={200}
                         radiusY={100}
                         strokeWidth={4}
-                        stroke={'white'}
+                        stroke={'black'}
                     />
-
                     <Text
-                        x={element.points[0] + element.points[3] / 2 - 140}
-                        y={element.points[1] + element.points[2] / 2 + 50}
-                        text={`${element.points[4]}`}
-                        fontSize={120}
+                        x={element.points[0] + element.points[3] / 2 - 90}
+                        y={element.points[1] + element.points[2] / 2 - 280}
                         scaleY={-1}
+                        text={t('Height')}
+                        fontSize={60}
+                        fill={'green'}
+                    />
+                    <Text
+                        x={element.points[0] + element.points[3] / 2 - 80}
+                        y={element.points[1] + element.points[2] / 2 - 350}
+                        scaleY={-1}
+                        text={`${element.points[4]}`}
+                        fontSize={80}
                         fill={'green'}
                     />
                 </>
@@ -301,7 +311,7 @@ export const Aperture = ({
                 radiusX={250}
                 radiusY={150}
                 strokeWidth={4}
-                stroke={'white'}
+                stroke={'#231F20'}
             />
 
             <Text
@@ -638,7 +648,7 @@ export const BalconyDoor = ({
                 width={700}
                 height={420}
                 strokeWidth={4}
-                stroke={'white'}
+                stroke={'#231F20'}
             />
             <Text
                 x={element.points[7][0]}
@@ -676,16 +686,6 @@ export const BalconyDoor = ({
                 fontSize={120}
                 fill={'green'}
             />
-            <Wall
-                element={{
-                    points: [
-                        element.points[4][0],
-                        element.points[4][1],
-                        element.points[5][0],
-                        element.points[5][1],
-                    ],
-                }}
-            />
             {element.balconyType === 'center' && (
                 <>
                     <Wall
@@ -695,16 +695,6 @@ export const BalconyDoor = ({
                                 element.points[18][1],
                                 element.points[19][0],
                                 element.points[19][1],
-                            ],
-                        }}
-                    />
-                    <Wall
-                        element={{
-                            points: [
-                                element.points[20][0],
-                                element.points[20][1],
-                                element.points[21][0],
-                                element.points[21][1],
                             ],
                         }}
                     />
