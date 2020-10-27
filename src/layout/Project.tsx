@@ -448,7 +448,7 @@ export const query = graphql`
                     relativeDirectory
                     name
                     childImageSharp {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

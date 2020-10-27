@@ -5,21 +5,21 @@ import { ActionCreators } from 'redux-undo'
 import { useTranslation } from 'react-i18next'
 import { Canvas } from 'cad/Canvas'
 
-import { Button, ButtonGroup } from 'cad/Button'
 import { dark } from 'cad/themes/dark'
 import { accentDark } from 'cad/themes/accentDark'
-import Minus from 'assets/icons/iconsCad/minus-solid.svg'
+import Minus from 'assets/icons/iconsCad/minus.svg'
 import WallSvg from 'assets/icons/iconsCad/wall-svgrepo-com.svg'
 import ApertureSvg from 'assets/icons/iconsCad/window-svgrepo-com.svg'
-import Plus from 'assets/icons/iconsCad/plus-solid.svg'
-import Undo from 'assets/icons/iconsCad/undo-solid.svg'
-import Redo from 'assets/icons/iconsCad/redo-solid.svg'
+import Plus from 'assets/icons/iconsCad/plus.svg'
+import Undo from 'assets/icons/iconsCad/undo.svg'
+import Redo from 'assets/icons/iconsCad/redo.svg'
 import Heater from 'assets/icons/iconsCad/heater.svg'
 import Tube from 'assets/icons/iconsCad/tube.svg'
 import Vent from 'assets/icons/iconsCad/vent.svg'
-import Question from 'assets/icons/iconsCad/question.svg'
-import Fit from 'assets/icons/iconsCad/compress-arrows-alt-solid.svg'
+import Question from 'assets/icons/iconsCad/questionIcon.svg'
+import Fit from 'assets/icons/iconsCad/fit.svg'
 import Door from 'assets/icons/iconsCad/door.svg'
+import Union from 'assets/icons/iconsCad/Union.svg'
 import {
     getElements,
     statePastElements,
@@ -35,32 +35,30 @@ import {
     OptionalString,
     WallType,
 } from './types'
+import { light } from './themes/light'
+import ISvg from 'assets/icons/iconsCad/i.svg'
+import { displayWidth } from 'styles/width'
+import { Button } from 'components/Button'
 
 const WorkplaceStyled = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
+    max-width: 100vw;
     flex-grow: 1;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: #f2f2f2;
+    overflow: hidden;
 `
 const LeftTopTools = styled.div`
     position: absolute;
-    top: 15px;
-    left: 15px;
-    @media (max-width: 767px) {
-        left: 5px;
-    }
+    top: 0;
+    left: 0;
+    z-index: 1;
 `
 const RightTopTools = styled.div`
     position: absolute;
-    top: 15px;
-    right: 15px;
-`
-
-const RightTopHorizontalTool = styled.div`
-    position: absolute;
-    top: 15px;
-    right: 63px;
+    top: 0;
+    right: 0;
 `
 
 const ToolEditorContainer = styled.section`
@@ -78,15 +76,18 @@ const StartWindow = styled.div`
     z-index: 2;
     width: 100%;
     height: 100%;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: #000000ef;
 `
-const ClearWindow = styled(StartWindow)`
+const ClearWindow = styled.div`
     z-index: 3;
     box-sizing: border-box;
-    padding: 0 20px;
-    @media (max-width: 767px) {
-        flex-direction: column;
-        align-items: center;
+    padding: 10px;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        padding: 70px;
     }
 `
 const OrietationScreen = styled(StartWindow)`
@@ -99,78 +100,154 @@ const OrietationScreen = styled(StartWindow)`
     }
 `
 const Ask = styled.p`
-    font-size: 30px;
-    padding-right: 30px;
-    color: ${(props) => props.theme.color};
-    @media (max-width: 767px) {
-        text-align: center;
-        padding-right: 0;
-    }
+    font-family: 'Yeseva One';
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 1.77882px;
+    text-align: center;
+    padding-right: 0;
 `
-const ButtonAsk = styled(Button)`
-    margin-right: 20px;
-    @media (max-width: 767px) {
-        margin-right: 0;
-    }
-`
-const ButtonWraper = styled.label`
+const ButtonWrapper = styled.div`
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
-    > span {
-        margin-left: 5px;
-        color: #a1a1a1;
-        width: 80px;
-        @media (max-width: 767px) {
-            margin: 2px 0 0 0;
-            font-size: 10px;
-            width: 60px;
-            text-align: center;
-        }
-    }
-    @media (max-width: 767px) {
-        flex-direction: column;
-        margin-bottom: 0;
-        height: 60px;
-    }
-    @media (max-width: 330px) {
-        width: 55px;
+    @media (min-width: ${displayWidth.tablet}) {
+        flex-direction: row;
     }
 `
-const ButtonStyled = styled(Button)`
-    position: relative;
+const ButtonConf = styled(Button)`
+    margin: 10px;
 `
-const Hint = styled.span`
+const ButtonCanc = styled(ButtonConf)`
+    color: black;
+    background-color: white;
+    :hover {
+        background-color: lightgray;
+    }
+`
+const Hint = styled.div`
     display: none;
     position: absolute;
-    top: -10px;
-    left: 40px;
-    padding: 3px 5px;
-    background-color: black;
-    white-space: nowrap;
-    opacity: 1;
-    color: #fff;
-    ${ButtonStyled}:hover:disabled & {
-        display: block;
+    left: 95px;
+    top: 25px;
+    svg {
+        position: absolute;
+        left: 0;
+        top: -10px;
+        width: 255px;
+    }
+    p {
+        position: absolute;
+        left: 10px;
+        top: 0px;
+        z-index: 4;
+        color: white;
+        width: 250px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 26px;
+        letter-spacing: 0.4px;
     }
 `
-const ButtonMobileHidden = styled(Button)`
+const ButtonStyled = styled.button<{ active?: boolean; disable?: boolean }>`
+    position: relative;
+    width: 88px;
+    height: 68px;
+    padding-top: 2px;
+    margin: 1px;
+    background-color: ${(props) =>
+        props.active ? accentDark.color : light.bgColor};
+    border: none;
+    background-color: ${(props) => props.disable && ' #a1a1a1ff'};
+    :hover {
+        background-color: #000000a9;
+
+        ${Hint} {
+            display: ${(props) => props.disable && 'block'};
+        }
+    }
+
+    > svg {
+        width: 36px;
+        height: 36px;
+        fill: white;
+    }
+    > p {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 10px;
+        line-height: 14px;
+        text-align: center;
+        letter-spacing: 0.685714px;
+        text-transform: uppercase;
+        color: white;
+        margin: 0;
+    }
+`
+const ButtonTools = styled.button`
+    width: 88px;
+    text-align: center;
+    padding: 4px 0;
+    height: 34px;
+    margin: 1px;
+    margin-top: 3px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 24px;
+    border: 1px solid gray;
+    background-color: white;
+    text-transform: uppercase;
+    border-radius: 0;
+    cursor: pointer;
+    :hover {
+        background-color: gray;
+    }
+`
+const ButtonMobileHidden = styled.span`
     @media (max-width: 767px) {
         display: none;
     }
 `
-const ButtonGroupStyled = styled(ButtonGroup)`
-    @media (max-width: 767px) {
-        flex-direction: row;
-        max-width: 180px;
-        flex-wrap: wrap;
+const ButtonGroupStyled = styled.div<{ showTools?: boolean }>`
+    display: ${(props) => (props.showTools ? 'none' : 'flex')};
+    flex-direction: column;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: ${(props) => (props.showTools ? 'flex' : 'none')};
     }
 `
-const ButtonStart = styled(Button)``
 const MILIMETERS_PER_PIXEL = 0.1
 const ZOOM_FACTOR = 1.1
 const ZOOM_FACTOR_WHEEL = 1.05
-
+const ButtonS = styled.button`
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    margin: 1px;
+    padding: 0;
+    svg {
+        width: 34px;
+        height: 34px;
+        margin: 2px 5px;
+        z-index: 2;
+    }
+    :hover {
+        svg {
+            fill: #000000a9;
+        }
+    }
+    :disabled {
+        svg {
+            fill: #00000056;
+        }
+    }
+`
 export const tools = {
     default: 'default',
     move: 'move',
@@ -183,7 +260,37 @@ export const tools = {
     tube: 'tube',
     balconyDoor: 'balconyDoor',
 }
-
+const LineEditorContainerAskWrapper = styled.div`
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`
+const LineEditorContainerAsk = styled.div`
+    display: flex;
+    max-width: 90vw;
+    background-color: white;
+    border: 1px solid ${light.bgColor};
+    color: ${light.bgColor};
+    padding: 10px 20px;
+    box-sizing: border-box;
+    svg {
+        height: 20px;
+        min-width: 20px;
+    }
+`
+const StartText = styled.span`
+    width: 430px;
+    max-width: 100%;
+    margin: 0 5px;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    align-self: center;
+`
 const getFutureTool = (futureObjectType: string) => {
     if (
         futureObjectType === tools.apertureDoor ||
@@ -262,6 +369,7 @@ const Workplace = ({
     const [startPoint, setStartPoint] = useState<[number, number]>([0, 0])
     const [canvasScale, setCanvasScale] = useState(MILIMETERS_PER_PIXEL)
     const [currentTool, setCurrentTool] = useState(tools.default)
+    const [showTools, setShowTools] = useState(true)
     const [elementDirection, setElementDirection] = useState(
         stateElements.length
             ? getDirection(stateElements[stateElements.length - 1])
@@ -296,7 +404,7 @@ const Workplace = ({
         setToolEditorContainerNode(node)
     }, [])
     useEffect(() => {
-        stateElements.length === 0 && setCurrentTool('mainDoor')
+        stateElements.length === 0 && setCurrentTool(tools.mainDoor)
     }, [stateElements.length])
 
     const shouldShowContinueModal =
@@ -311,10 +419,11 @@ const Workplace = ({
                     | ApertureDoorType
                     | BalconyDoorType
             ) =>
-                (element.objectType === 'wall' && !element.isApertureWall) ||
-                element.objectType === 'mainDoor' ||
-                element.objectType === 'apertureDoor' ||
-                element.objectType === 'balconyDoor'
+                (element.objectType === tools.wall &&
+                    !element.isApertureWall) ||
+                element.objectType === tools.mainDoor ||
+                element.objectType === tools.apertureDoor ||
+                element.objectType === tools.balconyDoor
         )
         const elementToContinueFrom =
             elementsToDetermineContinuePointFrom[
@@ -328,7 +437,7 @@ const Workplace = ({
             ]
         }
         switch (elementToContinueFrom.objectType) {
-            case 'wall': {
+            case tools.wall: {
                 if (isConturLocked) {
                     setCurrentTool(tools.move)
                     return [0, 0]
@@ -338,13 +447,13 @@ const Workplace = ({
                     elementToContinueFrom.points[3],
                 ]
             }
-            case 'balconyDoor': {
+            case tools.balconyDoor: {
                 return [
                     elementToContinueFrom.points[14][0],
                     elementToContinueFrom.points[14][1],
                 ]
             }
-            case 'apertureDoor': {
+            case tools.apertureDoor: {
                 return [
                     elementToContinueFrom.points[1][0],
                     elementToContinueFrom.points[1][1],
@@ -364,7 +473,8 @@ const Workplace = ({
     const apertureDoorElements =
         stateElements.length &&
         stateElements.filter(
-            (element: ApertureDoorType) => element.objectType === 'apertureDoor'
+            (element: ApertureDoorType) =>
+                element.objectType === tools.apertureDoor
         )
     const lastDoorElement =
         apertureDoorElements &&
@@ -383,7 +493,7 @@ const Workplace = ({
     const isConturLocked =
         (stateElements.length &&
             stateElements[stateElements.length - 1].objectType !==
-                'apertureDoor' &&
+                tools.apertureDoor &&
             mainDoorElement.points[0] === lastPoint[0] &&
             mainDoorElement.points[1] + mainDoorElement.points[2] ===
                 lastPoint[1]) ||
@@ -429,6 +539,43 @@ const Workplace = ({
             setCurrentTool(tools.move)
         }
     }, [isConturLocked])
+    useEffect(() => {
+        setSelected(undefined)
+    }, [])
+
+    const disable1 = isConturLocked || !isDoorAdded
+    const disable2 = !isConturLocked || !isDoorAdded
+
+    const currentToolName = () => {
+        switch (currentTool) {
+            case tools.wall: {
+                return t('Wall')
+            }
+            case tools.aperture: {
+                return t('Window')
+            }
+            case tools.apertureDoor: {
+                return t('Door')
+            }
+            case tools.heater: {
+                return t('Heater')
+            }
+            case tools.vent: {
+                return t('Vent')
+            }
+            case tools.tube: {
+                return t('Tube')
+            }
+            case tools.balconyDoor: {
+                return t('Balcony')
+            }
+            case tools.mainDoor: {
+                return t('MainDoor')
+            }
+            default:
+                return ''
+        }
+    }
 
     return (
         <ThemeProvider theme={dark}>
@@ -442,7 +589,18 @@ const Workplace = ({
                 }}
             >
                 <OrietationScreen>{t('Rotate')}</OrietationScreen>
-
+                {!selected &&
+                    currentTool !== tools.wall &&
+                    currentTool !== tools.mainDoor && (
+                        <LineEditorContainerAskWrapper>
+                            <LineEditorContainerAsk>
+                                <ISvg />
+                                <StartText>
+                                    {t('SelectWallToContinue')}
+                                </StartText>
+                            </LineEditorContainerAsk>
+                        </LineEditorContainerAskWrapper>
+                    )}
                 {shouldShowSaveModal && (
                     <SaveModal
                         setShouldShowSaveModal={setShouldShowSaveModal}
@@ -450,80 +608,76 @@ const Workplace = ({
                         onClose={() => setShouldShowFeedbackModal(true)}
                     />
                 )}
-
                 {shouldShowFeedbackModal && (
                     <FeedbackModal
                         onClose={() => setShouldShowFeedbackModal(false)}
                     />
                 )}
-
                 {shouldShowAskModal && (
-                    <ClearWindow>
-                        <Ask>{t('AskDelete')}</Ask>
+                    <StartWindow>
+                        <ClearWindow>
+                            <Ask>{t('AskDelete')}</Ask>
+                            <ButtonWrapper>
+                                <ButtonConf
+                                    onClick={() => {
+                                        setCurrentTool(tools.mainDoor)
+                                        dispatch({
+                                            type: 'deleteState',
+                                        })
+                                        dispatch(ActionCreators.clearHistory())
+                                        setShouldShowAskModal(false)
+                                        setStartPoint([0, 0])
+                                        setCanvasScale(0.1)
+                                        setCenteringState([0, 0])
+                                        setDragableState({
+                                            x: 0,
+                                            y: 0,
+                                        })
+                                        setElementDirection(direction.right)
+                                    }}
+                                >
+                                    {t('Confirm')}
+                                </ButtonConf>
 
-                        <ButtonGroup>
-                            <ButtonAsk
-                                theme={accentDark}
-                                onClick={() => {
-                                    setCurrentTool(tools.mainDoor)
-                                    dispatch({
-                                        type: 'deleteState',
-                                    })
-                                    dispatch(ActionCreators.clearHistory())
-                                    setShouldShowAskModal(false)
-                                    setStartPoint([0, 0])
-                                    setCanvasScale(0.1)
-                                    setCenteringState([0, 0])
-                                    setDragableState({
-                                        x: 0,
-                                        y: 0,
-                                    })
-                                    setElementDirection(direction.right)
-                                }}
-                            >
-                                {t('Confirm')}
-                            </ButtonAsk>
-
-                            <ButtonAsk
-                                onClick={() => {
-                                    setShouldShowAskModal(false)
-                                }}
-                            >
-                                {t('Cancel')}
-                            </ButtonAsk>
-                        </ButtonGroup>
-                    </ClearWindow>
+                                <ButtonCanc
+                                    onClick={() => {
+                                        setShouldShowAskModal(false)
+                                    }}
+                                >
+                                    {t('Cancel')}
+                                </ButtonCanc>
+                            </ButtonWrapper>
+                        </ClearWindow>
+                    </StartWindow>
                 )}
                 {showInstruction && (
                     <Instruction
                         closeFunction={() => setShowInstruction(false)}
-                        showExitButton={true}
                     />
                 )}
                 {shouldShowContinueModal && !isConturLocked && (
                     <StartWindow>
-                        <ButtonStart
+                        <ButtonCanc
                             onClick={() => {
                                 setCurrentTool(tools.wall)
                                 setStartPoint(getPointToContinueFrom())
                             }}
                         >
                             {t('Continue')}
-                        </ButtonStart>
+                        </ButtonCanc>
                     </StartWindow>
                 )}
                 {shouldShowContinueModal && isConturLocked && (
                     <StartWindow>
-                        <ButtonStart
+                        <ButtonCanc
                             onClick={() => {
                                 setCurrentTool(tools.move)
                             }}
                         >
                             {t('Continue')}
-                        </ButtonStart>
+                        </ButtonCanc>
                     </StartWindow>
                 )}
-
                 <Canvas
                     setWallDirection={setWallDirection}
                     centeringState={centeringState}
@@ -547,258 +701,254 @@ const Workplace = ({
                 />
 
                 <LeftTopTools>
-                    <ButtonGroupStyled $direction="column">
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.wall
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.wall)
-                                    setStartPoint(startPoint)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <WallSvg />
+                    <ButtonTools onClick={() => setShowTools(!showTools)}>
+                        {currentTool === tools.move
+                            ? t('Tools')
+                            : currentToolName()}
+                    </ButtonTools>
 
-                                <Hint>{t('AddDoor')}</Hint>
-                            </ButtonStyled>
+                    <ButtonGroupStyled showTools={showTools}>
+                        <ButtonStyled
+                            active={currentTool === tools.wall}
+                            disable={disable1}
+                            onClick={() => {
+                                !disable1 && setCurrentTool(tools.wall)
+                                !disable1 && setStartPoint(startPoint)
+                                !disable1 && setSelected(undefined)
+                                !disable1 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <WallSvg />
+                            <p>{t('Wall')}</p>
+                            <Hint>
+                                <Union />
+                                <p>{t('AddDoor')}</p>
+                            </Hint>
+                        </ButtonStyled>
 
-                            <span>{t('Wall')}</span>
-                        </ButtonWraper>
+                        <ButtonStyled
+                            active={currentTool === tools.aperture}
+                            disable={disable2}
+                            onClick={() => {
+                                !disable2 && setCurrentTool(tools.aperture)
+                                !disable2 && setSelected(undefined)
+                                !disable2 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <ApertureSvg />
+                            <p>{t('Window')}</p>
+                            <Hint>
+                                <Union />
+                                <p>{t('CloseContur')}</p>
+                            </Hint>
+                        </ButtonStyled>
 
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.aperture
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.aperture)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <ApertureSvg />
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
+                        <ButtonStyled
+                            active={currentTool === tools.heater}
+                            disable={disable2}
+                            onClick={() => {
+                                !disable2 && setCurrentTool(tools.heater)
+                                !disable2 && setSelected(undefined)
+                                !disable2 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <Heater />
+                            <p>{t('Heater')}</p>
+                            <Hint>
+                                <Union />
+                                <p>{t('CloseContur')}</p>
+                            </Hint>
+                        </ButtonStyled>
 
-                            <span>{t('Window')}</span>
-                        </ButtonWraper>
+                        <ButtonStyled
+                            active={currentTool === tools.vent}
+                            disable={disable2}
+                            onClick={() => {
+                                !disable2 && setCurrentTool(tools.vent)
+                                !disable2 && setSelected(undefined)
+                                !disable2 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <Vent />
+                            <p>{t('Vent')}</p>
+                            <Hint>
+                                <Union />
+                                <p>{t('CloseContur')}</p>
+                            </Hint>
+                        </ButtonStyled>
 
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.heater
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.heater)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <Heater />
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
+                        <ButtonStyled
+                            active={currentTool === tools.tube}
+                            disable={disable2}
+                            onClick={() => {
+                                !disable2 && setCurrentTool(tools.tube)
+                                !disable2 && setSelected(undefined)
+                                !disable2 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <Tube />
+                            <p>{t('Tube')}</p>
+                            <Hint>
+                                <Union />
+                                <p>{t('CloseContur')}</p>
+                            </Hint>
+                        </ButtonStyled>
 
-                            <span>{t('Heater')}</span>
-                        </ButtonWraper>
+                        <ButtonStyled
+                            active={currentTool === tools.apertureDoor}
+                            disable={disable2}
+                            onClick={() => {
+                                !disable2 && setCurrentTool(tools.apertureDoor)
+                                !disable2 && setSelected(undefined)
+                                !disable2 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <Door />
+                            <p>{t('Door')}</p>
+                            <Hint>
+                                <Union />
 
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.vent
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.vent)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <Vent />
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
+                                <p>{t('CloseContur')}</p>
+                            </Hint>
+                        </ButtonStyled>
 
-                            <span>{t('Vent')}</span>
-                        </ButtonWraper>
-
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.tube
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.tube)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <Tube />
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
-
-                            <span>{t('Tube')}</span>
-                        </ButtonWraper>
-
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.apertureDoor
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.apertureDoor)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <Door />
-
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
-
-                            <span>{t('Door')}</span>
-                        </ButtonWraper>
-
-                        <ButtonWraper>
-                            <ButtonStyled
-                                disabled={!isConturLocked || !isDoorAdded}
-                                theme={
-                                    currentTool === tools.balconyDoor
-                                        ? accentDark
-                                        : undefined
-                                }
-                                $buttonForm="square"
-                                onClick={() => {
-                                    setCurrentTool(tools.balconyDoor)
-                                    setSelected(undefined)
-                                }}
-                            >
-                                <Door />
-                                <Hint>{t('CloseContur')}</Hint>
-                            </ButtonStyled>
-
-                            <span>{t('Balcony')}</span>
-                        </ButtonWraper>
+                        <ButtonStyled
+                            active={currentTool === tools.balconyDoor}
+                            disable={disable2}
+                            onClick={() => {
+                                !disable2 && setCurrentTool(tools.balconyDoor)
+                                !disable2 && setSelected(undefined)
+                                !disable2 &&
+                                    setTimeout(
+                                        () => setShowTools(!showTools),
+                                        2000
+                                    )
+                            }}
+                        >
+                            <Door />
+                            <p>{t('Balcony')}</p>
+                            <Hint>
+                                <Union />
+                                <p>{t('CloseContur')}</p>
+                            </Hint>
+                        </ButtonStyled>
                     </ButtonGroupStyled>
                 </LeftTopTools>
 
                 <RightTopTools>
-                    <ButtonGroup $direction="column">
-                        <Button
-                            onClick={() => setShowInstruction(true)}
-                            $buttonForm="square"
-                            title={t('Instruction')}
-                        >
-                            <Question />
-                        </Button>
-
-                        <ButtonMobileHidden
+                    <ButtonS
+                        onClick={() => setShowInstruction(true)}
+                        title={t('Instruction')}
+                    >
+                        <Question />
+                    </ButtonS>
+                    <ButtonMobileHidden>
+                        <ButtonS
                             onClick={() =>
                                 setCanvasScale(canvasScale * ZOOM_FACTOR)
                             }
-                            $buttonForm="square"
                             title={t('Plus')}
                         >
                             <Plus />
-                        </ButtonMobileHidden>
-
-                        <ButtonMobileHidden
+                        </ButtonS>
+                    </ButtonMobileHidden>
+                    <ButtonMobileHidden>
+                        <ButtonS
                             onClick={() =>
                                 setCanvasScale(canvasScale / ZOOM_FACTOR)
                             }
-                            $buttonForm="square"
                             title={t('Minus')}
                         >
                             <Minus />
-                        </ButtonMobileHidden>
+                        </ButtonS>
+                    </ButtonMobileHidden>
 
-                        <Button
-                            onClick={() => {
-                                setCanvasScale(0.1)
-                                setCenteringState([
-                                    dragableState.x * 10,
-                                    -dragableState.y * 10,
-                                ])
-                            }}
-                            $buttonForm="square"
-                            title={t('Fit')}
-                        >
-                            <Fit />
-                        </Button>
-                    </ButtonGroup>
-                </RightTopTools>
+                    <ButtonS
+                        onClick={() => {
+                            setCanvasScale(0.1)
+                            setCenteringState([
+                                dragableState.x * 10,
+                                -dragableState.y * 10,
+                            ])
+                        }}
+                        title={t('Fit')}
+                    >
+                        <Fit />
+                    </ButtonS>
 
-                <RightTopHorizontalTool>
-                    <ButtonGroup>
-                        <Button
-                            disabled={stateElementsPast.length === 0}
-                            onClick={() => {
-                                dispatch(ActionCreators.undo())
-                                setCurrentTool(
+                    <ButtonS
+                        disabled={!stateElementsPast}
+                        onClick={() => {
+                            dispatch(ActionCreators.undo())
+                            setCurrentTool(
+                                stateElements[stateElements.length - 1]
+                                    .objectType === 'wall'
+                                    ? 'wall'
+                                    : 'move'
+                            )
+                            setElementDirection(
+                                getDirection(
                                     stateElements[stateElements.length - 1]
-                                        .objectType === 'wall'
-                                        ? 'wall'
-                                        : 'move'
                                 )
-                                setElementDirection(
-                                    getDirection(
-                                        stateElements[stateElements.length - 1]
-                                    )
-                                )
-                                setSelected(undefined)
-                            }}
-                            $buttonForm="square"
-                            title={t('Undo')}
-                        >
-                            <Undo />
-                        </Button>
+                            )
+                            setSelected(undefined)
+                        }}
+                        title={t('Undo')}
+                    >
+                        <Undo />
+                    </ButtonS>
 
-                        <Button
-                            disabled={stateElementsFuture.length === 0}
-                            onClick={() => {
-                                dispatch(ActionCreators.redo())
-                                setCurrentTool(
-                                    getFutureTool(
-                                        stateElementsFuture[0][
-                                            stateElementsFuture[0].length - 1
-                                        ].objectType
-                                    )
-                                )
-                                setElementDirection(
-                                    getDirection(
-                                        stateElementsFuture[0][
-                                            stateElementsFuture[0].length - 1
-                                        ]
-                                    )
-                                )
-                                setSelected(tools.move)
-                            }}
-                            $buttonForm="square"
-                            title={t('Redo')}
-                        >
-                            <Redo />
-                        </Button>
-                    </ButtonGroup>
-                </RightTopHorizontalTool>
+                    <ButtonS
+                        disabled={!stateElementsFuture}
+                        onClick={() => {
+                            dispatch(ActionCreators.redo())
 
+                            setCurrentTool(
+                                getFutureTool(
+                                    stateElementsFuture[
+                                        stateElementsFuture.length - 1
+                                    ].objectType
+                                )
+                            )
+
+                            setElementDirection(
+                                getDirection(
+                                    stateElementsFuture[
+                                        stateElementsFuture.length - 1
+                                    ]
+                                )
+                            )
+                            setSelected(undefined)
+                        }}
+                        title={t('Redo')}
+                    >
+                        <Redo />
+                    </ButtonS>
+                </RightTopTools>
                 <ToolEditorContainer ref={toolEditorContainerRef} />
             </WorkplaceStyled>
         </ThemeProvider>

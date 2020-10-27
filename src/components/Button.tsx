@@ -10,10 +10,11 @@ export const Button = styled.button`
     border-radius: 36px;
     color: ${colors.white};
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 300;
     line-height: 24px;
     text-transform: uppercase;
     margin: 10px auto;
+    letter-spacing: 1.7px;
     cursor: pointer;
     :hover {
         opacity: 0.9;

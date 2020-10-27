@@ -39,7 +39,7 @@ const TitleStyled = styled(TitleH1)`
         margin-left: ${indent.heroColumnTablet};
     }
     @media (min-width: ${displayWidth.desktop}) {
-        margin: 80px 10px 48px 49px;
+        margin: 60px 10px 20px 49px;
     }
 `
 const HeroColumn = styled.div`
@@ -102,7 +102,7 @@ export const Services = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

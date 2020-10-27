@@ -5,27 +5,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from 'cad/Button'
 import { light } from 'cad/themes/light'
-import { accentDark } from 'cad/themes/accentDark'
 import { Portal } from 'cad/Portal'
 import { Vent } from 'cad/ElementsType'
 import { tools } from 'cad/Workplace'
 import ChangeIcon from 'assets/icons/iconsCad/change.svg'
 import { getSelectedWallLength } from 'cad/reusableFunctions'
 import { getElements } from 'cad/storage/selectors'
-import VentSvg from 'assets/icons/iconsCad/vent.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
 import { OptionalString } from 'cad/types'
+import { InputSubmit, Line, Title, Wrapper } from './WallTool'
 
-const LineEditorContainerAsk = styled.div`
-    background-color: ${(props) => props.theme.bgColor};
-    padding: 5px;
-`
 const LineEditorContainer = styled.form`
     display: flex;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
+    border: solid 1px ${light.bgColor};
     padding: 5px;
     & p {
         margin: 0 5px;
@@ -38,18 +34,9 @@ const LineEditorContainer = styled.form`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         max-width: 320px;
+        box-sizing: border-box;
         justify-items: center;
     }
-`
-const InputSubmit = styled(Button)`
-    display: flex;
-`
-const StartText = styled.span`
-    width: 200px;
-    margin: 0 5px;
-    font-size: 18px;
-    text-align: center;
-    align-self: center;
 `
 
 type Props = {
@@ -222,44 +209,40 @@ export const VentTool = ({
 
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    {!selected && (
-                        <LineEditorContainerAsk>
-                            <StartText>{t('SelectWallToContinue')}</StartText>
-                        </LineEditorContainerAsk>
-                    )}
                     {selected && (
-                        <LineEditorContainer onSubmit={handleSubmit}>
-                            <p>{t('Indent')}</p>
+                        <Wrapper>
+                            <Title>{t('Vent')}</Title>
+                            <LineEditorContainer onSubmit={handleSubmit}>
+                                <NumberInput
+                                    placeholder={t('Indent')}
+                                    setInputValue={setIndent}
+                                    min={0}
+                                    max={Number(selectedWallLength) - 150}
+                                    value={indent}
+                                    onChange={handleIndentChange}
+                                />
 
-                            <NumberInput
-                                min={0}
-                                max={Number(selectedWallLength) - 150}
-                                value={indent}
-                                onChange={handleIndentChange}
-                            />
+                                <NumberInput
+                                    placeholder={t('Height')}
+                                    setInputValue={setHeight}
+                                    min={0}
+                                    value={height}
+                                    onChange={handleHeightChange}
+                                />
 
-                            <p>{t('Height')}</p>
+                                <InputSubmit
+                                    type="button"
+                                    onClick={handleSwitch}
+                                >
+                                    <ChangeIcon />
+                                </InputSubmit>
 
-                            <NumberInput
-                                min={0}
-                                value={height}
-                                onChange={handleHeightChange}
-                            />
-
-                            <Button $buttonForm="normal" onClick={handleSwitch}>
-                                <ChangeIcon />
-                            </Button>
-
-                            <InputSubmit
-                                theme={accentDark}
-                                $size="svgMobile"
-                                type="submit"
-                            >
-                                {t('Add')}
-
-                                <VentSvg />
-                            </InputSubmit>
-                        </LineEditorContainer>
+                                <Line />
+                                <InputSubmit type="submit">
+                                    <EnterSvg />
+                                </InputSubmit>
+                            </LineEditorContainer>
+                        </Wrapper>
                     )}
                 </ThemeProvider>
             </Portal>

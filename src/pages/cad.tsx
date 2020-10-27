@@ -16,8 +16,10 @@ const pageMetadata = {
 const AppStyled = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    flex-grow: 0;
+    width: 100vw;
     height: 100%;
+    max-height: 100vh;
 `
 
 const CadPage = () => {

@@ -125,7 +125,7 @@ export const Faq = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

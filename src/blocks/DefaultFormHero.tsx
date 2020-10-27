@@ -107,7 +107,7 @@ const Image = styled(Img)<{ fluid: FluidObject }>`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
-        width: 80%;
+        width: 90%;
         height: auto;
         align-self: center;
         color: transparent;
@@ -126,7 +126,7 @@ export const DefaultFormHero = ({
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

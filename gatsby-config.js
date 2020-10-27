@@ -106,7 +106,6 @@ module.exports = {
                 background_color: '#663399', // eslint-disable-line camelcase
                 theme_color: '#663399', // eslint-disable-line camelcase
                 display: 'minimal-ui',
-                icon: `static/icon.png`,
             },
         },
     ],

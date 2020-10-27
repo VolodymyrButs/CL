@@ -6,46 +6,115 @@ import { v4 as uuid } from 'uuid'
 import { useTranslation } from 'react-i18next'
 import isTouchDevice from 'is-touch-device'
 import { tools } from 'cad/Workplace'
-import { accentDark } from 'cad/themes/accentDark'
-import { Button } from 'cad/Button'
 import { light } from 'cad/themes/light'
-import Right from 'assets/icons/iconsCad/arrow-alt-circle-right-solid.svg'
-import Down from 'assets/icons/iconsCad/arrow-alt-circle-down-solid.svg'
-import Left from 'assets/icons/iconsCad/arrow-alt-circle-left-solid.svg'
-import Up from 'assets/icons/iconsCad/arrow-alt-circle-up-solid.svg'
+import Right from 'assets/icons/iconsCad/right.svg'
+import Down from 'assets/icons/iconsCad/down.svg'
+import Left from 'assets/icons/iconsCad/left.svg'
+import Up from 'assets/icons/iconsCad/up.svg'
 import { Portal } from 'cad/Portal'
 import { Wall } from 'cad/ElementsType'
 import { getElements } from 'cad/storage/selectors'
-import WallSvg from 'assets/icons/iconsCad/wall-svgrepo-com.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
 import { WallType, ElementType, WallPoints } from 'cad/types'
+import { displayWidth } from 'styles/width'
 
 const LineEditorContainer = styled.form`
     display: flex;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
     padding: 5px;
-    & p {
-        margin: 0 5px;
-        font-size: 18px;
-        align-self: center;
-    }
-    & button {
-        align-self: center;
-        margin: 0 10px;
-    }
+    border-radius: 9px;
+    border: 1px solid ${light.bgColor};
+    box-sizing: border-box;
     @media (max-width: 767px) {
         flex-direction: column;
+        max-width: 320px;
+        box-sizing: border-box;
     }
 `
-const InputSubmit = styled(Button)`
+export const InputSubmit = styled.button`
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 0 8px 0 10px;
     display: flex;
+    background-color: white;
+    :hover {
+        svg {
+            fill: #000000a9;
+        }
+    }
 `
-
+export const Wrapper = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+`
+export const Title = styled.p`
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+`
 const InputWraper = styled.div`
     display: flex;
+    height: 100%;
+    align-items: center;
     align-self: center;
-    margin: 0 10px;
+    margin: 5px 0;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin: 0;
+    }
+`
+const ButtonDirection = styled.div<{ active: boolean }>`
+    display: flex;
+    align-items: center;
+    svg {
+        width: 34px;
+        height: 34px;
+        margin: 0 15px;
+        color: ${(props) => (props.active ? 'white' : light.bgColor)};
+        fill: ${(props) => (props.active ? light.bgColor : 'white')};
+    }
+    :hover {
+        svg {
+            color: white;
+            fill: #000000a9;
+        }
+    }
+`
+export const Line = styled.div`
+    height: 121%;
+    min-height: 50px;
+    width: 1px;
+    border-left: solid 1px ${light.bgColor};
+
+    @media (max-width: 1023px) {
+        display: none;
+    }
+`
+const LockButton = styled.div`
+    margin-top: 3px;
+    height: 44px;
+    color: white;
+    background-color: ${light.bgColor};
+    padding: 14px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    border-radius: 20px;
+    @media (min-width: ${displayWidth.tablet}) {
+        font-size: 16px;
+    }
 `
 const direction = {
     right: 'right',
@@ -53,6 +122,20 @@ const direction = {
     down: 'down',
     up: 'up',
 }
+const Desktop = styled.div`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: flex;
+        align-items: center;
+    }
+`
+const Mobile = styled.div`
+    display: flex;
+    align-items: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
 
 type Props = {
     toolEditorContainerNode?: React.ReactNode
@@ -82,7 +165,7 @@ export const WallTool = ({
         const helpWithWallLength = () => {
             if (
                 lastDoorElement &&
-                lastDoorElement.objectType === 'apertureDoor' &&
+                lastDoorElement.objectType === tools.apertureDoor &&
                 lastWall[0] === lastWall[2] &&
                 lastWall[0] === lastDoorElement.points[2][0] &&
                 lastWall[2] === lastDoorElement.points[2][0] &&
@@ -96,7 +179,7 @@ export const WallTool = ({
             }
             if (
                 lastDoorElement &&
-                lastDoorElement.objectType === 'mainDoor' &&
+                lastDoorElement.objectType === tools.mainDoor &&
                 lastWall[0] === lastWall[2] &&
                 lastWall[0] === lastDoorElement.points[0] &&
                 lastWall[2] === lastDoorElement.points[0] &&
@@ -117,7 +200,7 @@ export const WallTool = ({
             }
             if (
                 lastDoorElement &&
-                lastDoorElement.objectType === 'apertureDoor' &&
+                lastDoorElement.objectType === tools.apertureDoor &&
                 lastWall[1] === lastWall[3] &&
                 lastWall[1] === lastDoorElement.points[2][1] &&
                 lastWall[3] === lastDoorElement.points[2][1] &&
@@ -131,7 +214,7 @@ export const WallTool = ({
             }
             if (
                 lastDoorElement &&
-                lastDoorElement.objectType === 'mainDoor' &&
+                lastDoorElement.objectType === tools.mainDoor &&
                 lastWall[1] === lastWall[3] &&
                 lastWall[1] ===
                     lastDoorElement.points[2] + lastDoorElement.points[1] &&
@@ -147,7 +230,7 @@ export const WallTool = ({
             }
             if (
                 lastDoorElement &&
-                lastDoorElement.objectType === 'balconyDoor' &&
+                lastDoorElement.objectType === tools.balconyDoor &&
                 lastWall[0] === lastWall[2] &&
                 lastWall[0] === lastDoorElement.points[15][0] &&
                 lastWall[2] === lastDoorElement.points[15][0] &&
@@ -161,7 +244,7 @@ export const WallTool = ({
             }
             if (
                 lastDoorElement &&
-                lastDoorElement.objectType === 'balconyDoor' &&
+                lastDoorElement.objectType === tools.balconyDoor &&
                 lastWall[1] === lastWall[3] &&
                 lastWall[1] === lastDoorElement.points[15][1] &&
                 lastWall[3] === lastDoorElement.points[15][1] &&
@@ -192,30 +275,30 @@ export const WallTool = ({
 
     const elementsToDetermineContinuePointFrom = stateElements.filter(
         (element: ElementType) =>
-            (element.objectType === 'wall' && !element.isApertureWall) ||
-            element.objectType === 'mainDoor' ||
-            element.objectType === 'apertureDoor' ||
-            element.objectType === 'balconyDoor'
+            (element.objectType === tools.wall && !element.isApertureWall) ||
+            element.objectType === tools.mainDoor ||
+            element.objectType === tools.apertureDoor ||
+            element.objectType === tools.balconyDoor
     )
     const lastElementInState =
         elementsToDetermineContinuePointFrom[
             elementsToDetermineContinuePointFrom.length - 1
         ]
     const getPointsToStartWallFrom = (): [number, number] => {
-        if (lastElementInState.objectType === 'mainDoor') {
+        if (lastElementInState.objectType === tools.mainDoor) {
             return [
                 lastElementInState.points[0] + lastElementInState.points[3],
                 lastElementInState.points[1] + lastElementInState.points[2],
             ]
         }
 
-        if (lastElementInState.objectType === 'wall') {
+        if (lastElementInState.objectType === tools.wall) {
             return [lastElementInState.points[2], lastElementInState.points[3]]
         }
-        if (lastElementInState.objectType === 'apertureDoor') {
+        if (lastElementInState.objectType === tools.apertureDoor) {
             return startPoint
         }
-        if (lastElementInState.objectType === 'balconyDoor') {
+        if (lastElementInState.objectType === tools.balconyDoor) {
             return startPoint
         }
         return [0, 0]
@@ -270,47 +353,47 @@ export const WallTool = ({
         stateElements.length &&
         stateElements.filter(
             (element: ElementType) =>
-                element.objectType === 'apertureDoor' ||
-                element.objectType === 'mainDoor' ||
-                element.objectType === 'balconyDoor'
+                element.objectType === tools.mainDoor ||
+                element.objectType === tools.apertureDoor ||
+                element.objectType === tools.balconyDoor
         )
     const lastDoorElement = doorElements[doorElements.length - 1]
     const lastWall = renderCurrentDirection()
 
     const lockedContur =
         (lastDoorElement &&
-            lastDoorElement.objectType === 'apertureDoor' &&
+            lastDoorElement.objectType === tools.apertureDoor &&
             lastWall[0] === lastWall[2] &&
             lastWall[0] === lastDoorElement.points[2][0] &&
             lastWall[2] === lastDoorElement.points[2][0] &&
             lastWall[3] === lastDoorElement.points[2][1]) ||
         (lastDoorElement &&
-            lastDoorElement.objectType === 'apertureDoor' &&
+            lastDoorElement.objectType === tools.apertureDoor &&
             lastWall[1] === lastWall[3] &&
             lastWall[1] === lastDoorElement.points[2][1] &&
             lastWall[3] === lastDoorElement.points[2][1] &&
             lastWall[2] === lastDoorElement.points[2][0]) ||
         (lastDoorElement &&
-            lastDoorElement.objectType === 'balconyDoor' &&
+            lastDoorElement.objectType === tools.balconyDoor &&
             lastWall[0] === lastWall[2] &&
             lastWall[0] === lastDoorElement.points[15][0] &&
             lastWall[2] === lastDoorElement.points[15][0] &&
             lastWall[3] === lastDoorElement.points[15][1]) ||
         (lastDoorElement &&
-            lastDoorElement.objectType === 'balconyDoor' &&
+            lastDoorElement.objectType === tools.balconyDoor &&
             lastWall[1] === lastWall[3] &&
             lastWall[1] === lastDoorElement.points[15][1] &&
             lastWall[3] === lastDoorElement.points[15][1] &&
             lastWall[2] === lastDoorElement.points[15][0]) ||
         (lastDoorElement &&
-            lastDoorElement.objectType === 'mainDoor' &&
+            lastDoorElement.objectType === tools.mainDoor &&
             lastWall[0] === lastWall[2] &&
             lastWall[0] === lastDoorElement.points[0] &&
             lastWall[2] === lastDoorElement.points[0] &&
             lastWall[3] ===
                 lastDoorElement.points[2] + lastDoorElement.points[1]) ||
         (lastDoorElement &&
-            lastDoorElement.objectType === 'mainDoor' &&
+            lastDoorElement.objectType === tools.mainDoor &&
             lastWall[1] === lastWall[3] &&
             lastWall[1] ===
                 lastDoorElement.points[2] + lastDoorElement.points[1] &&
@@ -323,7 +406,7 @@ export const WallTool = ({
             type: 'addElement',
             element: {
                 id: uuid(),
-                objectType: 'wall',
+                objectType: tools.wall,
                 points: renderCurrentDirection(),
             } as WallType,
         })
@@ -356,89 +439,85 @@ export const WallTool = ({
 
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    <LineEditorContainer onSubmit={handleSubmit}>
-                        <InputWraper>
-                            <p>{t('Length')}</p>
+                    <Wrapper>
+                        <Title>{t('Wall')}</Title>
+                        <LineEditorContainer onSubmit={handleSubmit}>
+                            <Desktop>
+                                <NumberInput
+                                    setInputValue={setSizeInputValue}
+                                    forwardRef={inputEl}
+                                    value={sizeInputValue}
+                                    onChange={handleChangeSizeInput}
+                                    placeholder={t('Length')}
+                                />
+                            </Desktop>
 
-                            <NumberInput
-                                forwardRef={inputEl}
-                                value={sizeInputValue}
-                                onChange={handleChangeSizeInput}
-                            />
-                        </InputWraper>
+                            <InputWraper>
+                                <ButtonDirection
+                                    active={elementDirection === direction.left}
+                                    onClick={() => {
+                                        setElementDirection(direction.left)
+                                        selectInputText()
+                                    }}
+                                >
+                                    <Left />
+                                </ButtonDirection>
 
-                        <InputWraper>
-                            <Button
-                                $buttonForm="square"
-                                theme={
-                                    elementDirection === direction.left
-                                        ? accentDark
-                                        : undefined
-                                }
-                                onClick={() => {
-                                    setElementDirection(direction.left)
-                                    selectInputText()
-                                }}
-                            >
-                                <Left />
-                            </Button>
+                                <ButtonDirection
+                                    active={
+                                        elementDirection === direction.right
+                                    }
+                                    onClick={() => {
+                                        setElementDirection(direction.right)
+                                        selectInputText()
+                                    }}
+                                >
+                                    <Right />
+                                </ButtonDirection>
 
-                            <Button
-                                $buttonForm="square"
-                                theme={
-                                    elementDirection === direction.right
-                                        ? accentDark
-                                        : undefined
-                                }
-                                onClick={() => {
-                                    setElementDirection(direction.right)
-                                    selectInputText()
-                                }}
-                            >
-                                <Right />
-                            </Button>
+                                <ButtonDirection
+                                    active={elementDirection === direction.up}
+                                    onClick={() => {
+                                        setElementDirection(direction.up)
+                                        selectInputText()
+                                    }}
+                                >
+                                    <Up />
+                                </ButtonDirection>
 
-                            <Button
-                                $buttonForm="square"
-                                theme={
-                                    elementDirection === direction.up
-                                        ? accentDark
-                                        : undefined
-                                }
-                                onClick={() => {
-                                    setElementDirection(direction.up)
-                                    selectInputText()
-                                }}
-                            >
-                                <Up />
-                            </Button>
-
-                            <Button
-                                $buttonForm="square"
-                                theme={
-                                    elementDirection === direction.down
-                                        ? accentDark
-                                        : undefined
-                                }
-                                onClick={() => {
-                                    setElementDirection(direction.down)
-                                    selectInputText()
-                                }}
-                            >
-                                <Down />
-                            </Button>
-                        </InputWraper>
-
-                        <InputSubmit
-                            theme={accentDark}
-                            $size="svgMobile"
-                            type="submit"
-                        >
-                            {lockedContur ? t('LockContur') : t('Add')}
-
-                            <WallSvg />
-                        </InputSubmit>
-                    </LineEditorContainer>
+                                <ButtonDirection
+                                    active={elementDirection === direction.down}
+                                    onClick={() => {
+                                        setElementDirection(direction.down)
+                                        selectInputText()
+                                    }}
+                                >
+                                    <Down />
+                                </ButtonDirection>
+                            </InputWraper>
+                            <InputWraper>
+                                <Mobile>
+                                    <NumberInput
+                                        setInputValue={setSizeInputValue}
+                                        forwardRef={inputEl}
+                                        value={sizeInputValue}
+                                        onChange={handleChangeSizeInput}
+                                        placeholder={t('Length')}
+                                    />
+                                </Mobile>
+                                <Line />
+                                <InputSubmit type="submit">
+                                    {lockedContur ? (
+                                        <LockButton>
+                                            {t('LockContur')}
+                                        </LockButton>
+                                    ) : (
+                                        <EnterSvg />
+                                    )}
+                                </InputSubmit>
+                            </InputWraper>
+                        </LineEditorContainer>
+                    </Wrapper>
                 </ThemeProvider>
             </Portal>
         </>

@@ -5,29 +5,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from 'cad/Button'
 import { light } from 'cad/themes/light'
-import { accentDark } from 'cad/themes/accentDark'
 import { Portal } from 'cad/Portal'
 import { Tube } from 'cad/ElementsType'
 import { tools } from 'cad/Workplace'
 import ChangeIcon from 'assets/icons/iconsCad/change.svg'
 import { getSelectedWallLength } from 'cad/reusableFunctions'
 import { getElements } from 'cad/storage/selectors'
-import TubeSvg from 'assets/icons/iconsCad/tube.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
 import { OptionalString } from 'cad/types'
+import { InputSubmit, Line } from './WallTool'
 
-const LineEditorContainerAsk = styled.div`
-    background-color: ${(props) => props.theme.bgColor};
-    padding: 5px;
-`
 const LineEditorContainer = styled.form`
     display: flex;
     justify-content: space-between;
-    max-width: 740px;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
+    border: solid 1px ${light.bgColor};
     padding: 5px;
     & p {
         box-sizing: border-box;
@@ -42,7 +37,8 @@ const LineEditorContainer = styled.form`
     }
     @media (max-width: 767px) {
         flex-wrap: wrap;
-        max-width: 500px;
+        max-width: 320px;
+        box-sizing: border-box;
     }
 `
 const InputWraperWide = styled.div`
@@ -60,29 +56,6 @@ const InputWraper = styled.div`
         max-width: 123px;
         margin: 0;
     }
-`
-const InputSubmit = styled(Button)`
-    height: 54px;
-    display: flex;
-    align-self: flex-end;
-    @media (max-width: 767px) {
-        height: 40px;
-    }
-`
-const ChangeButton = styled(Button)`
-    height: 54px;
-    max-width: 68px;
-    align-self: flex-end;
-    @media (max-width: 767px) {
-        height: 40px;
-    }
-`
-const StartText = styled.span`
-    width: 200px;
-    margin: 0 5px;
-    font-size: 18px;
-    text-align: center;
-    align-self: center;
 `
 
 type Props = {
@@ -253,26 +226,21 @@ export const TubeTool = ({
 
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    {!selected && (
-                        <LineEditorContainerAsk>
-                            <StartText>{t('SelectWallToContinue')}</StartText>
-                        </LineEditorContainerAsk>
-                    )}
                     {selected && (
                         <LineEditorContainer onSubmit={handleSubmit}>
                             <InputWraper>
-                                <p>{t('IndentToMainWall')}</p>
-
                                 <NumberInput
+                                    placeholder={t('IndentToMainWall')}
+                                    setInputValue={setIndentMine}
                                     value={indentMine}
                                     onChange={handleIndentMineChange}
                                 />
                             </InputWraper>
 
                             <InputWraperWide>
-                                <p>{t('IndentToSideWall')}</p>
-
                                 <NumberInput
+                                    placeholder={t('IndentToSideWall')}
+                                    setInputValue={setIndentSide}
                                     max={Number(selectedWallLength) - diameter}
                                     value={indentSide}
                                     onChange={handleIndentSideChange}
@@ -280,9 +248,9 @@ export const TubeTool = ({
                             </InputWraperWide>
 
                             <InputWraper>
-                                <p>{t('TubeDiameter')}</p>
-
                                 <NumberInput
+                                    placeholder={t('TubeDiameter')}
+                                    setInputValue={setDiameter}
                                     min={10}
                                     max={
                                         Number(selectedWallLength) - indentSide
@@ -292,21 +260,13 @@ export const TubeTool = ({
                                 />
                             </InputWraper>
 
-                            <ChangeButton
-                                $buttonForm="normal"
-                                onClick={handleSwitch}
-                            >
+                            <InputSubmit type="button" onClick={handleSwitch}>
                                 <ChangeIcon />
-                            </ChangeButton>
+                            </InputSubmit>
 
-                            <InputSubmit
-                                theme={accentDark}
-                                $size="svgMobile"
-                                type="submit"
-                            >
-                                {t('Add')}
-
-                                <TubeSvg />
+                            <Line />
+                            <InputSubmit type="submit">
+                                <EnterSvg />
                             </InputSubmit>
                         </LineEditorContainer>
                     )}

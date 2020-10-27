@@ -50,7 +50,7 @@ const QuestionWrapper = styled.div<{ $isAnswerVisible: boolean }>`
         `}
     @media (min-width: ${displayWidth.tablet}) {
         margin: 0 32px;
-        padding: 10px 0;
+        padding: 0;
         flex-direction: row;
         justify-content: flex-start;
         :before {
@@ -91,7 +91,7 @@ const Answer = styled.div<{ $isAnswerVisible: boolean }>`
     letter-spacing: 0.4px;
     @media (min-width: ${displayWidth.tablet}) {
         border: 1px solid ${colors.dark};
-        padding: 31px 70px;
+        padding: 25px 70px;
         margin: 0 32px;
     }
     strong {
@@ -123,12 +123,11 @@ const ArrowStyled = styled(Arrow)<{ $isAnswerVisible: boolean }>`
     }
 `
 const IconStyled = styled(Icon)<{ $isAnswerVisible: boolean }>`
-    width: 45px;
-    height: 50px;
-    min-width: 45px;
+    width: 57px;
+    height: 57px;
     stroke: ${({ $isAnswerVisible }) => $isAnswerVisible && colors.white};
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 0 15px 0 5px;
+        margin: 0 15px 0 0;
     }
 `
 export interface ServicesItemProp {

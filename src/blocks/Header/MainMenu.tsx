@@ -14,7 +14,7 @@ const MenuWraper = styled.menu`
     flex-wrap: wrap;
     @media (min-width: ${displayWidth.tablet}) {
         flex-direction: row;
-        outline: 1px solid ${colors.dark};
+        border-right: 1px solid ${colors.dark};
         height: 100%;
         display: none;
     }
@@ -29,7 +29,7 @@ const MenuItem = styled(LocalizedLink).attrs({
 })`
     position: relative;
     color: ${colors.white};
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: 0.8px;
     line-height: 19px;
     text-transform: uppercase;
@@ -43,7 +43,7 @@ const MenuItem = styled(LocalizedLink).attrs({
         }
     }
     @media (min-width: ${displayWidth.desktop}) {
-        font-size: 1em;
+        font-size: 16px;
         :nth-child(2) {
             margin: 0 10px;
         }
@@ -74,7 +74,7 @@ const MenuWraperTablet = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
         flex-direction: column;
-        outline: 1px solid ${colors.dark};
+        border-right: 1px solid ${colors.dark};
         align-items: center;
         justify-content: center;
     }

@@ -4,6 +4,8 @@ import { OurServices } from 'blocks/OurServices'
 import { HomeHero } from 'blocks/Heros/HomeHero'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { HelmetFunc } from 'components/PageMetaData'
+import { RunningLine } from 'components/RunningLine'
+import { useTranslation } from 'react-i18next'
 
 const pageMetadata = {
     uk: {
@@ -26,10 +28,12 @@ const pageMetadata = {
 }
 
 const IndexPage = () => {
+    const { t } = useTranslation()
     return (
         <>
             <HelmetFunc data={pageMetadata} />
             <HomeHero />
+            <RunningLine>{t('designProject99')}</RunningLine>
             <OurServices />
             <DefaultFormBlock
                 withPhoneMobile

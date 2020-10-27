@@ -20,9 +20,9 @@ const LanguageList = styled.div<{ open: boolean }>`
     align-items: center;
     justify-content: center;
     width: ${headerHeight.mobile};
-    height: ${headerHeight.mobile};
-    border-right: 1px solid ${colors.white};
+    height: 100%;
     box-sizing: border-box;
+    border-right: 1px solid ${colors.white};
     @media (min-width: ${displayWidth.tablet}) {
         ${(props) =>
             props.open
@@ -35,9 +35,8 @@ const LanguageList = styled.div<{ open: boolean }>`
                       background: transparent;
                   `}
         width:${headerHeight.desktop};
-        height: ${headerHeight.desktop};
+        height: 79px;
         border-right: none;
-        margin-bottom: 0px;
     }
 `
 const IconStyled = styled(ShevronIcon)<{ open: boolean }>`
@@ -58,7 +57,7 @@ const FakeLink = styled.span<{ open: boolean }>`
     justify-content: center;
     color: ${colors.white};
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 19px;
@@ -67,11 +66,13 @@ const FakeLink = styled.span<{ open: boolean }>`
     @media (min-width: ${displayWidth.tablet}) {
         color: ${colors.dark};
         width: ${headerHeight.desktop};
-        height: ${headerHeight.desktop};
+        height: 100%;
         background-color: ${({ open }) =>
             open ? colors.white : 'transparent'};
         border: ${({ open }) => (open ? `1px solid ${colors.dark}` : 'none')};
-        border-bottom: ${({ open }) => open && 'none'};
+        border-bottom: none;
+        border-top: none;
+        box-sizing: border-box;
         :hover {
             background-color: ${({ open }) => open && colors.dark};
             color: ${({ open }) => open && colors.white};
@@ -92,7 +93,7 @@ const LinkStyled = styled(Link).attrs({
     justify-content: center;
     color: ${colors.white};
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 19px;
@@ -138,12 +139,13 @@ const Wrapper = styled.div<{ open: boolean }>`
     justify-content: center;
     @media (min-width: ${displayWidth.tablet}) {
         width: ${headerHeight.desktop};
-        top: ${headerHeight.desktop};
+        top: 79px;
         display: ${({ open }) => (open ? `flex` : 'none')};
     }
 
     :last-child {
-        border-bottom: 1px solid ${colors.dark};
+        border-bottom: ${({ open }) =>
+            open ? `1px solid ${colors.dark}` : 'none'};
     }
 `
 

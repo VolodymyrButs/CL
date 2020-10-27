@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
@@ -19,8 +19,10 @@ const LayoutWraper = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100vh;
+    max-width: 100vw;
     position: relative;
     overflow: hidden;
+    touch-action: none;
 `
 const BlocksWrapper = styled.div`
     position: absolute;
@@ -39,12 +41,14 @@ const BlocksWrapper = styled.div`
     }
 `
 const languagesList = Object.keys(languages)
+
 export const Layout = (props: {
     showSocialIconsInHeader: boolean
     children: React.ReactNode
 }) => {
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
+    const [hideCallback, setHideCallback] = useState(1000)
     const data = useStaticQuery(graphql`
         query {
             allAddressYaml {
@@ -129,12 +133,14 @@ export const Layout = (props: {
     }, [pagePath])
 
     const onScroll = () => {
+        const block = document.getElementById('blockWrapper')
+        const scrollPosition = block!.scrollTop
+        const windowHeight = block!.clientHeight
+        const bodyHeight = block!.scrollHeight
+
+        setHideCallback(bodyHeight - (scrollPosition + windowHeight))
         setTimeout(() => {
             const trackScroll = () => {
-                const block = document.getElementById('blockWrapper')
-                const scrollPosition = block!.scrollTop
-                const windowHeight = block!.clientHeight
-                const bodyHeight = block!.scrollHeight
                 const scrolledRation = Math.ceil(
                     ((scrollPosition + windowHeight) / bodyHeight) * 100
                 )
@@ -230,6 +236,7 @@ export const Layout = (props: {
                 <Footer />
             </BlocksWrapper>
             <CallbackButton
+                hideCallback={hideCallback}
                 tracking={{
                     conversionType: 'CallBackButtonForm',
                     eventCategory: 'CallBackButtonForm',

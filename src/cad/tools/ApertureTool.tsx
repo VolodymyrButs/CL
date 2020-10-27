@@ -5,29 +5,27 @@ import { useTranslation } from 'react-i18next'
 
 import { Portal } from 'cad/Portal'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from 'cad/Button'
 import { Aperture, Wall } from 'cad/ElementsType'
 import { tools } from 'cad/Workplace'
 import { v4 as uuid } from 'uuid'
 
-import { accentDark } from 'cad/themes/accentDark'
 import { light } from 'cad/themes/light'
 import { getElements } from 'cad/storage/selectors'
 import {
     getSelectedWallLength,
     calculateDefaultIndent,
 } from 'cad/reusableFunctions'
-import Door from 'assets/icons/iconsCad/door.svg'
-import ApertureSvg from 'assets/icons/iconsCad/window-svgrepo-com.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
 import { ApertureTypePoints, OptionalString, WallType } from 'cad/types'
+import { InputSubmit, Title, Wrapper } from './WallTool'
 
 const ApertureEditorContainer = styled.form`
     display: flex;
     justify-content: space-between;
-    max-width: 820px;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
+    border: solid 1px ${light.bgColor};
     padding: 5px;
     & p {
         max-width: 200px;
@@ -48,19 +46,10 @@ const ApertureEditorContainer = styled.form`
         max-width: 320px;
         align-items: flex-end;
         justify-items: center;
+        box-sizing: border-box;
     }
 `
-const LineEditorContainerAsk = styled.div`
-    background-color: ${(props) => props.theme.bgColor};
-    padding: 5px;
-`
-const StartText = styled.span`
-    width: 200px;
-    margin: 0 5px;
-    font-size: 18px;
-    text-align: center;
-    align-self: center;
-`
+
 const InputWraper = styled.div`
     margin: 0 5px;
     height: 100%;
@@ -70,13 +59,12 @@ const InputWraper = styled.div`
     align-items: center;
 `
 
-const InputSubmit = styled(Button)`
-    height: 100%;
-    display: flex;
+const Line = styled.div`
+    height: 120%;
+    width: 1px;
+    border-left: solid 1px ${light.bgColor};
     @media (max-width: 767px) {
-        font-size: 16px;
-        height: 39px;
-        margin: 0 auto;
+        display: none;
     }
 `
 
@@ -392,7 +380,7 @@ export const ApertureTool = ({
             ? setCurrentTool(tools.move)
             : setCurrentTool(tools.wall)
 
-        setSelected(tools.move)
+        setSelected(undefined)
     }
     return (
         <>
@@ -432,97 +420,93 @@ export const ApertureTool = ({
 
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    {!selected && (
-                        <LineEditorContainerAsk>
-                            <StartText>{t('SelectWallToContinue')}</StartText>
-                        </LineEditorContainerAsk>
-                    )}
                     {selected && (
-                        <ApertureEditorContainer onSubmit={handleSubmit}>
-                            <InputWraper>
-                                <p>{t('LeftIndent')}</p>
-
-                                <NumberInput
-                                    max={
-                                        Number(selectedWallLength) - rightIndent
-                                    }
-                                    value={leftIndent}
-                                    onChange={handleLeftIndentChange}
-                                />
-                            </InputWraper>
-
-                            <InputWraper>
-                                <p>{t('RightIndent')}</p>
-
-                                <NumberInput
-                                    max={
-                                        Number(selectedWallLength) - leftIndent
-                                    }
-                                    value={rightIndent}
-                                    onChange={handleRightIndentChange}
-                                />
-                            </InputWraper>
-                            {isApertureWindow && (
+                        <Wrapper>
+                            <Title>
+                                {isApertureWindow ? t('Window') : t('Door')}
+                            </Title>
+                            <ApertureEditorContainer onSubmit={handleSubmit}>
                                 <InputWraper>
-                                    <p>{t('NicheDepth')}</p>
-
                                     <NumberInput
-                                        max={apertureDepth}
-                                        value={apertureNicheDepth}
+                                        placeholder={t('LeftIndent')}
+                                        setInputValue={setLeftIndent}
+                                        max={
+                                            Number(selectedWallLength) -
+                                            rightIndent
+                                        }
+                                        value={leftIndent}
+                                        onChange={handleLeftIndentChange}
+                                    />
+                                </InputWraper>
+
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('RightIndent')}
+                                        setInputValue={setRightIndent}
+                                        max={
+                                            Number(selectedWallLength) -
+                                            leftIndent
+                                        }
+                                        value={rightIndent}
+                                        onChange={handleRightIndentChange}
+                                    />
+                                </InputWraper>
+                                {isApertureWindow && (
+                                    <InputWraper>
+                                        <NumberInput
+                                            placeholder={t('NicheDepth')}
+                                            setInputValue={
+                                                setApertureNicheDepth
+                                            }
+                                            max={apertureDepth}
+                                            value={apertureNicheDepth}
+                                            onChange={
+                                                handleApertureNicheDepthChange
+                                            }
+                                        />
+                                    </InputWraper>
+                                )}
+
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('DepthApertupe')}
+                                        setInputValue={setApertureDepth}
+                                        value={apertureDepth}
+                                        onChange={handleApertureDepthChange}
+                                    />
+                                </InputWraper>
+
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('HeigthBottom')}
+                                        setInputValue={setApertureHeigthBottom}
+                                        value={apertureHeigthBottom}
                                         onChange={
-                                            handleApertureNicheDepthChange
+                                            handleApertureHeigthBottomChange
                                         }
                                     />
                                 </InputWraper>
-                            )}
 
-                            <InputWraper>
-                                <p>{t('Depth')}</p>
-
-                                <NumberInput
-                                    value={apertureDepth}
-                                    onChange={handleApertureDepthChange}
-                                />
-                            </InputWraper>
-
-                            <InputWraper>
-                                <p>{t('HeigthBottom')}</p>
-
-                                <NumberInput
-                                    value={apertureHeigthBottom}
-                                    onChange={handleApertureHeigthBottomChange}
-                                />
-                            </InputWraper>
-
-                            <InputWraper>
-                                <p>{t('HeigthTop')}</p>
-
-                                <NumberInput
-                                    value={apertureHeigthTop}
-                                    onChange={handleApertureHeigthTopChange}
-                                />
-                            </InputWraper>
-                            {isApertureWindow && (
-                                <>
-                                    <div />
-                                    <div />
-                                </>
-                            )}
-                            <InputWraper>
-                                <InputSubmit
-                                    theme={accentDark}
-                                    $size="svgMobile"
-                                    type="submit"
-                                >
-                                    {t('Add')}
-                                    {isApertureWindow ? (
-                                        <ApertureSvg />
-                                    ) : (
-                                        <Door />
-                                    )}
+                                <InputWraper>
+                                    <NumberInput
+                                        placeholder={t('HeigthTop')}
+                                        setInputValue={setApertureHeigthTop}
+                                        value={apertureHeigthTop}
+                                        onChange={handleApertureHeigthTopChange}
+                                    />
+                                </InputWraper>
+                                {isApertureWindow && (
+                                    <>
+                                        <div />
+                                        <div />
+                                    </>
+                                )}
+                                <Line />
+                                <InputSubmit type="submit">
+                                    <EnterSvg />
                                 </InputSubmit>
-                            </InputWraper>
-                        </ApertureEditorContainer>
+                            </ApertureEditorContainer>
+                        </Wrapper>
                     )}
                 </ThemeProvider>
             </Portal>

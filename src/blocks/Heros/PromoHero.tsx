@@ -185,10 +185,10 @@ const DesktopImageLeft = styled(Img)<{ fluid: FluidObject }>`
         display: block;
         position: absolute;
         left: 11%;
-        bottom: -148px;
+        bottom: -144px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        bottom: -144px;
+        bottom: -137px;
     }
 `
 const ButtonStyled = styled(Button)`
@@ -223,7 +223,7 @@ export const PromoHero = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid {
+                        fluid(quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

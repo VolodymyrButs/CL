@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from 'cad/Button'
 import { accentDark } from 'cad/themes/accentDark'
 import { light } from 'cad/themes/light'
+import CloseIcon from 'assets/icons/Exit.svg'
+import { colors } from 'styles/colors'
+import { displayWidth } from 'styles/width'
+import { Button } from 'components/Button'
 
 const ModalWraper = styled.div`
     position: absolute;
@@ -14,33 +17,45 @@ const ModalWraper = styled.div`
     z-index: 3;
     width: 100%;
     height: 100%;
-    background-color: ${(props) => props.theme.overlayColor};
+    background-color: #000000ef;
 `
 const ModalContainer = styled.div`
+    position: relative;
     box-sizing: border-box;
-    width: 640px;
+    width: 700px;
     max-width: 90%;
-    padding: 20px;
+    padding: 50px 10px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: white;
+    @media (min-width: ${displayWidth.tablet}) {
+        padding: 30px 70px;
+    }
 `
-
+const CloseIconStyled = styled(CloseIcon)`
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 4;
+    fill: ${colors.dark};
+    stroke: ${colors.white};
+`
 type FeedbackModalProps = {
     onClose: () => void
 }
 
 export const FeedbackModal = ({ onClose }: FeedbackModalProps) => {
-    const { t } = useTranslation()
-
     return (
         <ThemeProvider theme={light}>
             <ModalWraper>
                 <ModalContainer>
                     <FeedbackForm />
 
-                    <Button onClick={onClose}>{t('Close')}</Button>
+                    <CloseIconStyled onClick={onClose} />
                 </ModalContainer>
             </ModalWraper>
         </ThemeProvider>
@@ -54,10 +69,24 @@ const Form = styled.form`
     width: 100%;
     max-width: 100%;
     text-align: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        align-items: flex-start;
+    }
 `
 
 const Text = styled.h3`
-    color: ${({ theme }) => theme.color};
+    color: black;
+    font-family: 'Yeseva One';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 1.77882px;
+    text-align: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        text-align: left;
+        margin-bottom: 20px;
+    }
 `
 
 const FeedbackText = styled.textarea`
@@ -70,10 +99,11 @@ const FeedbackText = styled.textarea`
     height: calc(20px * 6);
     min-height: calc(20px * 6);
     box-sizing: border-box;
+    border-radius: 10px;
 `
 
 const SubmitButton = styled(Button)`
-    margin: 10px 0;
+    margin: 20px 0 0;
 `
 
 export const FeedbackForm = () => {

@@ -4,52 +4,55 @@ import styled, { ThemeProvider } from 'styled-components'
 
 import { Portal } from 'cad/Portal'
 import { useDispatch } from 'react-redux'
-import { Button } from 'cad/Button'
 import { Wall } from 'cad/ElementsType'
 import { tools } from 'cad/Workplace'
 import { v4 as uuid } from 'uuid'
 import { useTranslation } from 'react-i18next'
-import { accentDark } from 'cad/themes/accentDark'
 import { light } from 'cad/themes/light'
-import Door from 'assets/icons/iconsCad/door.svg'
+import EnterSvg from 'assets/icons/iconsCad/enter.svg'
 import { NumberInput } from 'cad/NumberInput'
+import { Title, Wrapper } from './WallTool'
 
 const MainDoorEditorContainer = styled.form`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: center;
-    background-color: ${(props) => props.theme.bgColor};
+    align-items: flex-start;
+    background-color: white;
+    border: solid 1px ${light.bgColor};
     padding: 5px;
     & p {
         margin: 0 5px;
         font-size: 20px;
         align-self: center;
     }
-    & button {
-        align-self: center;
-        margin: 0 10px;
-    }
     @media (max-width: 767px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         max-width: 320px;
+        box-sizing: border-box;
         justify-items: center;
         row-gap: 5px;
     }
 `
-const InputSubmit = styled(Button)`
-    display: flex;
+const InputSubmit = styled.button`
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 5px 8px 0 10px;
+    background-color: white;
 `
-const MainDoorHeader = styled.h3`
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    grid-column-start: 1;
-    grid-column-end: 3;
+const LineS = styled.div`
+    height: 120%;
+    min-height: 50px;
+    width: 1px;
+    border-left: solid 1px ${light.bgColor};
+    transform: translatey(-10%);
+    @media (max-width: 767px) {
+        display: none;
+    }
 `
-
 type Props = {
     toolEditorContainerNode?: React.ReactNode
     setCurrentTool: (arg: string) => void
@@ -160,23 +163,38 @@ export const MainDoorTool = ({
                     <>
                         <Ellipse
                             x={startPoint[0] + MainDoorWidthInputValue / 2}
-                            y={startPoint[1] + MainDoorDepthInputValue / 2}
+                            y={
+                                startPoint[1] +
+                                MainDoorDepthInputValue / 2 -
+                                350
+                            }
                             radiusX={200}
                             radiusY={100}
                             strokeWidth={4}
-                            stroke={'white'}
+                            stroke={'black'}
                         />
-
                         <Text
-                            x={
-                                startPoint[0] +
-                                MainDoorWidthInputValue / 2 -
-                                140
+                            x={startPoint[0] + MainDoorWidthInputValue / 2 - 90}
+                            y={
+                                startPoint[1] +
+                                MainDoorDepthInputValue / 2 -
+                                280
                             }
-                            y={startPoint[1] + MainDoorDepthInputValue / 2 + 50}
+                            scaleY={-1}
+                            text={t('Height')}
+                            fontSize={60}
+                            fill={'green'}
+                        />
+                        <Text
+                            x={startPoint[0] + MainDoorWidthInputValue / 2 - 80}
+                            y={
+                                startPoint[1] +
+                                MainDoorDepthInputValue / 2 -
+                                350
+                            }
                             scaleY={-1}
                             text={String(MainDoorHeigthInputValue)}
-                            fontSize={120}
+                            fontSize={80}
                             fill={'green'}
                         />
                     </>
@@ -185,42 +203,33 @@ export const MainDoorTool = ({
 
             <Portal node={toolEditorContainerNode}>
                 <ThemeProvider theme={light}>
-                    <MainDoorEditorContainer onSubmit={handleSubmit}>
-                        <MainDoorHeader>{t('MainDoor')}</MainDoorHeader>
-
-                        <p>{t('Width')}</p>
-
-                        <NumberInput
-                            value={MainDoorWidthInputValue}
-                            onChange={handleChangeMainDoorWidthInput}
-                        />
-
-                        <p>{t('Depth')}</p>
-
-                        <NumberInput
-                            value={MainDoorDepthInputValue}
-                            onChange={handleChangeMainDoorDepthInput}
-                        />
-
-                        <p>{t('Height')}</p>
-
-                        <NumberInput
-                            value={MainDoorHeigthInputValue}
-                            onChange={handleChangeMainDoorHeigthInput}
-                        />
-
-                        <p />
-
-                        <InputSubmit
-                            theme={accentDark}
-                            $size="svgMobile"
-                            type="submit"
-                        >
-                            {t('Draw')}
-
-                            <Door />
-                        </InputSubmit>
-                    </MainDoorEditorContainer>
+                    <Wrapper>
+                        <Title>{t('MainDoor')}</Title>
+                        <MainDoorEditorContainer onSubmit={handleSubmit}>
+                            <NumberInput
+                                placeholder={t('Width')}
+                                setInputValue={setMainDoorWidthInputValue}
+                                value={MainDoorWidthInputValue}
+                                onChange={handleChangeMainDoorWidthInput}
+                            />
+                            <NumberInput
+                                placeholder={t('Depth')}
+                                setInputValue={setMainDoorDepthInputValue}
+                                value={MainDoorDepthInputValue}
+                                onChange={handleChangeMainDoorDepthInput}
+                            />
+                            <NumberInput
+                                placeholder={t('Height')}
+                                setInputValue={setMainDoorHeigthInputValue}
+                                value={MainDoorHeigthInputValue}
+                                onChange={handleChangeMainDoorHeigthInput}
+                            />
+                            <LineS />
+                            <InputSubmit type="submit">
+                                <EnterSvg />
+                            </InputSubmit>
+                        </MainDoorEditorContainer>
+                    </Wrapper>
                 </ThemeProvider>
             </Portal>
         </>

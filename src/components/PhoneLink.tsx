@@ -29,10 +29,10 @@ export const PhoneLinkWrapper = styled.a`
         animation-timing-function: linear;
         @keyframes rotate {
             from {
-                transform: rotate(360deg);
+                transform: rotate(0);
             }
             to {
-                transform: rotate(0);
+                transform: rotate(360deg);
             }
         }
     }

@@ -83,6 +83,7 @@
     "NicheDepth": "Глубина ниши",
     "Height": "Высота",
     "Depth": "Глубина",
+    "DepthApertupe": "Глубина проема",
     "Width": "Ширина",
     "Indent": "Расстояние сбоку",
     "LeftIndent": "Расстояние слева",
@@ -94,7 +95,7 @@
     "Undo": "Назад",
     "Move": "Двигать",
     "MainDoor": "Входная дверь",
-    "Door": "Mежкомнатные двери",
+    "Door": "Mежк.двери",
     "Wall": "Стена",
     "Window": "Окно",
     "Heater": "Батарея",
@@ -117,11 +118,13 @@
     "LeaveFeedback": "Оставте отзыв",
     "HelpUsImproveTheApp": "Помогите нам улучшить Редактор, оставив отзыв",
     "ThanksForYourFeedback": "Спасибо за Ваш отзыв",
-    "Balcony": "Балконная дверь",
+    "Balcony": "Балк.дверь",
     "SelectBalconyType": "Тип балкона?",
     "DoorWidth": "Ширина дверей",
     "HeigthBottomDoor": "Низ дверей",
     "HeigthBottomWindow": "Низ окна",
     "OutsideWidth": "Ширина проема снаружи",
-    "OutsideDepth": "Глубина проема снаружи"
+    "OutsideDepth": "Глубина проема снаружи",
+    "unit": "мм",
+    "Tools": "инструменты"
 }
