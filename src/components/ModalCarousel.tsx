@@ -9,7 +9,7 @@ import { displayWidth } from 'styles/width'
 import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 
 const ImageModal = styled(Img)<{ fluid: FluidObject }>`
-    height: 95vh;
+    height: 90vh;
 `
 const SliderStyled = styled(Slider)`
     .slick-list {

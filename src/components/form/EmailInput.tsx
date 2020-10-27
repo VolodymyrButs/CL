@@ -12,15 +12,13 @@ export const EmailInput = React.forwardRef<HTMLInputElement, EmailInputProps>(
         const { t } = useTranslation()
 
         return (
-            <>
-                <Input
-                    type="email"
-                    name="email"
-                    placeholder={t('email')}
-                    ref={ref}
-                    isValid={err}
-                />
-            </>
+            <Input
+                type="email"
+                name="email"
+                placeholder={t('email')}
+                ref={ref}
+                isValid={err}
+            />
         )
     }
 )

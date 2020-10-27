@@ -76,7 +76,13 @@ const DivS = styled.div`
     margin-bottom: 30px;
 `
 
-export const CommercialProposalFormBlock = ({ text }: { text?: boolean }) => {
+export const CommercialProposalFormBlock = ({
+    text,
+    placement,
+}: {
+    text?: boolean
+    placement?: string
+}) => {
     const { t } = useTranslation()
 
     return (
@@ -103,7 +109,7 @@ export const CommercialProposalFormBlock = ({ text }: { text?: boolean }) => {
                             </h3>
                         </DivS>
                     )}
-                    <ComercialForm />
+                    <ComercialForm placement={placement} />
                 </FormColumn>
             </Container>
         </FormWrapper>

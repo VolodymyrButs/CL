@@ -6,20 +6,21 @@ import Img, { FluidObject } from 'gatsby-image'
 import { headerBg } from 'styles/headerBg'
 import { colors, backgroundColors } from 'styles/colors'
 import { Container } from 'components/Container'
-import { JumpingArrow } from 'components/JumpingArrow'
-import { Button } from 'components/Button'
 import LampIcon from 'assets/icons/Lamp.svg'
 import sofaDesktopRight from 'assets/images/sofaDesktopRight.svg'
 import i18n from 'i18n/config'
 import { displayWidth } from 'styles/width'
 import { headerHeight } from 'styles/height'
-import { LocalizedLinkAnchor } from 'i18n/LocalizedLink'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
 import { TitleH1 } from 'components/TitleComponent'
 import { useTranslation } from 'react-i18next'
-import { sendEvent } from 'tracking'
+import { useFormHandler } from 'hooks/useFormHandler'
+import { Form, IChildrenProps } from 'components/form/Form'
+import { PhoneInput } from 'components/form/PhoneInput'
+import { EmailInput } from 'components/form/EmailInput'
+import { MessageInput } from 'components/form/MessageInput'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -32,11 +33,9 @@ const PromoHeroWraper = styled.div`
     :before {
         ${headerBg}
     }
-    @media (orientation: landscape) {
-        min-height: 590px;
-    }
+
     @media (min-width: ${displayWidth.tablet}) {
-        height: 500px;
+        height: 505px;
         border-bottom: nonne;
     }
     @media (min-width: ${displayWidth.desktop}) {
@@ -65,6 +64,25 @@ const PromoHeroColumn = styled.div`
             border-right: none;
         }
     }
+    div {
+        form {
+            div {
+                button {
+                    width: 100%;
+                    height: 150px;
+                    padding: 26px 10px;
+                    margin: 30px;
+                    font-size: 24px;
+                    line-height: 36px;
+                    border-radius: 80px;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+    :first-child {
+        justify-content: flex-start;
+    }
 `
 const ContainerStyled = styled(Container)`
     padding: 0 ${indent.mobile};
@@ -73,14 +91,6 @@ const ContainerStyled = styled(Container)`
     }
 `
 
-const JumpingArrowWrapper = styled.div`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-        align-self: center;
-        justify-content: center;
-    }
-`
 const LampIconStyled = styled(LampIcon)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
@@ -101,8 +111,11 @@ const TitleWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    @media (min-width: ${displayWidth.desktop}) {
+    @media (min-width: ${displayWidth.tablet}) {
         width: 375px;
+        position: absolute;
+        top: 40px;
+        left: 0px;
     }
 `
 const TitleStyled = styled(TitleH1)`
@@ -123,6 +136,8 @@ const TitleStyled = styled(TitleH1)`
         line-height: 56px;
         letter-spacing: 0.8px;
         text-align: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     @media (min-width: ${displayWidth.desktop}) {
         font-size: 64px;
@@ -141,9 +156,6 @@ const Price = styled.span`
     width: 100%;
     text-align: center;
     @media (min-width: ${displayWidth.tablet}) {
-        position: absolute;
-        left: 350px;
-        bottom: 30px;
         font-size: 133px;
         line-height: 90px;
         letter-spacing: 1.52778px;
@@ -153,17 +165,7 @@ const Price = styled.span`
         line-height: 115px;
     }
 `
-const MobileImage = styled(Img)<{ fluid: FluidObject }>`
-    width: 90%;
-    height: auto;
-    align-self: flex-end;
-    @media (orientation: landscape) {
-        max-width: 50vw;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
-`
+
 const DesktopImageRight = styled(sofaDesktopRight)`
     display: none;
     width: 75%;
@@ -186,20 +188,13 @@ const DesktopImageLeft = styled(Img)<{ fluid: FluidObject }>`
         display: block;
         position: absolute;
         left: 11%;
-        bottom: -148px;
+        bottom: -105px;
     }
     @media (min-width: ${displayWidth.desktop}) {
         bottom: -144px;
     }
 `
-const ButtonStyled = styled(Button)`
-    @media (min-width: ${displayWidth.tablet}) {
-        margin: 30px 0;
-    }
-`
-const LocalizedLinkStyled = styled(LocalizedLinkAnchor)`
-    text-decoration: none;
-`
+
 const For = styled.span`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
@@ -216,6 +211,25 @@ const For = styled.span`
         display: none;
         position: relative;
     }
+`
+const InputBlock = styled.div`
+    display: flex;
+    flex-direction: column;
+    @media (min-width: ${displayWidth.desktop}) {
+        margin: 0 auto;
+        width: 80%;
+    }
+`
+const FormTitle = styled.div`
+    font-family: 'Yeseva One', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: 1px;
+    color: ${colors.dark};
+    text-align: center;
+    margin: 50px 0 10px;
 `
 export const PromoHeroNew = () => {
     const { t } = useTranslation()
@@ -258,13 +272,43 @@ export const PromoHeroNew = () => {
         data.allImageSharp,
         promoHeroData.image
     )
-    const imageSofaMobile = getImageByImageName(
-        data.allImageSharp,
-        promoHeroData.imageMobile
-    )
+    const {
+        handleSubmitStatus,
+        handleFormSendStart,
+        formSendStatus,
+    } = useFormHandler()
     return (
         <PromoHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
+                <PromoHeroColumn>
+                    <FormTitle>{t('connection.modalTitle')}</FormTitle>
+                    <Form
+                        buttonText={t('formHeroDeskPosadka')}
+                        onFormSubmit={handleSubmitStatus}
+                        formSendStatus={formSendStatus}
+                        onFormSendStart={handleFormSendStart}
+                        conversionType={'TopFormDesktopPosadka'}
+                        eventCategory={'TopFormDesktopPosadka'}
+                    >
+                        {({ register, errors }: IChildrenProps) => (
+                            <InputBlock>
+                                <PhoneInput
+                                    ref={register({
+                                        minLength: 18,
+                                        required: true,
+                                    })}
+                                    err={errors.phone}
+                                />
+
+                                <EmailInput ref={register} err={errors.email} />
+                                <MessageInput
+                                    ref={register}
+                                    err={errors.message}
+                                />
+                            </InputBlock>
+                        )}
+                    </Form>
+                </PromoHeroColumn>
                 <PromoHeroColumn>
                     <TitleWrapper>
                         <TitleStyled>{promoHeroData.title}</TitleStyled>
@@ -273,27 +317,6 @@ export const PromoHeroNew = () => {
                             {promoHeroData.price}
                         </Price>
                     </TitleWrapper>
-                    <LocalizedLinkStyled
-                        to={'/promo/#projectStructure'}
-                        onClick={() => {
-                            sendEvent('Click', {
-                                eventCategory: 'ShowMoreButton',
-                                placement: 'PromoHero',
-                                target: 'ProjectStructure',
-                            })
-                        }}
-                    >
-                        <ButtonStyled>
-                            <p>{promoHeroData.buttonText}</p>
-                        </ButtonStyled>
-                    </LocalizedLinkStyled>
-                    <JumpingArrowWrapper>
-                        <JumpingArrow />
-                    </JumpingArrowWrapper>
-
-                    <MobileImage fluid={imageSofaMobile.fluid} />
-                </PromoHeroColumn>
-                <PromoHeroColumn>
                     <DesktopImageLeft fluid={imageSofa.fluid} />
                 </PromoHeroColumn>
                 <PromoHeroColumn>

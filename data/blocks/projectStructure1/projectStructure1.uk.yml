@@ -1,0 +1,25 @@
+title: Що входить в дизайн за
+image: table.png
+price: $99
+items:
+  - content: !markdown |
+      Найнижча ціна за **дизайн проект**
+    svg: clock1.svg
+  - content: !markdown |
+      **Всі необхідні креслення** для проведення ремонту і підбору меблів
+    svg: pen.svg
+  - content: !markdown |
+      Зустрічі з дизайнером, варіанти перепланування і розстановки меблів **не обмежені**
+    svg: infinity.svg
+  - content: !markdown |
+      **Індивідуальний** підхід до проектування
+    svg: ruler.svg
+  - content: !markdown |
+      Середній термін виконання дизайн-проекту **2 тижні**
+    svg: clock.svg
+  - content: !markdown |
+      До ваших послуг **команда досвідчених дизайнерів**
+    svg: team.svg
+  - content: !markdown |
+      **Безкоштовна консультація** в офісі або по телефону
+    svg: consultation.svg

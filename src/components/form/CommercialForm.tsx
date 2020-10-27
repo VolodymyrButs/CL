@@ -106,7 +106,7 @@ const InputBlock = styled.div`
         }
     }
 `
-export const ComercialForm = () => {
+export const ComercialForm = ({ placement }: { placement?: string }) => {
     const { t } = useTranslation()
     const formName = 'Commercial Proposall Form'
     const { errors, control, handleSubmit } = useForm({
@@ -122,7 +122,7 @@ export const ComercialForm = () => {
 
     const onSubmit = (data: object) => {
         sendEvent('FormSubminAttempt', {
-            eventCategory: 'FormCommercialProposal',
+            eventCategory: `FormCommercialProposal${placement}`,
         })
 
         handleFormSendStart()
@@ -132,13 +132,13 @@ export const ComercialForm = () => {
 
                 sendConversion('FormCommercialProposal')
                 sendEvent('FormSubminSuccess', {
-                    eventCategory: 'FormCommercialProposal',
+                    eventCategory: `FormCommercialProposal${placement}`,
                 })
             })
             .catch(() => {
                 handleSubmitStatus(false)
                 sendEvent('FormSubminFail', {
-                    eventCategory: 'FormCommercialProposal',
+                    eventCategory: `FormCommercialProposal${placement}`,
                 })
             })
     }

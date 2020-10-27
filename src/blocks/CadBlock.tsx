@@ -194,7 +194,7 @@ export const Cad = () => {
                         <TitleStyled> {title}</TitleStyled>
                         <SubTitle>{subTitle}</SubTitle>
                     </div>
-                    <Image fluid={imageFluid.fluid} />
+                    <Image fluid={imageFluid.fluid} loading="eager" />
                 </HeroColumn>
                 <InstructionColumn>
                     {/* <Video>

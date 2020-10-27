@@ -8,7 +8,6 @@ import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
 import { IconList } from 'components/IconList'
 import { displayWidth } from 'styles/width'
-import tableFlower from 'assets/images/tableFlower.svg'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
@@ -28,6 +27,20 @@ const ProjectStructureWrapper = styled.div`
 `
 const IconListStyled = styled(IconList)`
     border-bottom: 1px solid ${colors.dark};
+    padding: 16px;
+    > div {
+        padding: 16px;
+        p {
+            font-size: 18px;
+        }
+        /* flex-direction: row;
+        svg {
+            min-width: 45px;
+            max-width: 45px;
+            max-height: 34px;
+            margin-right: 10px;
+        } */
+    }
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
     }
@@ -60,12 +73,7 @@ const RightSidebar = styled(LeftSidebar)`
     }
 `
 
-const PriceWrapper = styled.span`
-    display: inline-block;
-    width: 120px;
-    position: relative;
-`
-const Price = styled.p`
+const Price = styled.span`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -82,62 +90,9 @@ const Price = styled.p`
         letter-spacing: 1.11111px;
     }
 `
-const ImgWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-`
 
-const ImgBlock = styled.div`
-    position: relative;
-    align-self: flex-end;
-    width: 140px;
-    height: 10px;
-    @media (min-width: 450px) {
-        width: 185px;
-        height: 300px;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        width: 140px;
-        height: 200px;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        width: 185px;
-        height: 300px;
-    }
-`
-const ImageSvg = styled(tableFlower)`
-    width: 100%;
-    height: 2000%;
-    position: absolute;
-    bottom: -30px;
-    fill: ${backgroundColors.promotion};
-    @media (min-width: 450px) {
-        bottom: -50px;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        right: 60%;
-        bottom: -30px;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        right: 70%;
-        bottom: -40px;
-    }
-`
-const Image = styled(Img)<{ fluid: FluidObject }>`
-    width: 70%;
-    height: auto;
-    align-self: flex-end;
-    margin-right: 3px;
-    @media (orientation: landscape) {
-        max-width: 50vw;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        width: 90%;
-    }
-`
 const TitleStyled = styled(Title)`
-    margin: 30px 110px 10px 32px;
+    margin: 30px;
     @media (min-width: ${displayWidth.tablet}) {
         margin-left: ${indent.heroColumnTablet};
         max-width: 250px;
@@ -146,13 +101,24 @@ const TitleStyled = styled(Title)`
         margin-left: ${indent.heroColumnDesktop};
     }
 `
+
+const MobileImage = styled(Img)<{ fluid: FluidObject }>`
+    width: 90%;
+    height: auto;
+    align-self: flex-end;
+    margin: 0px auto 0px;
+    @media (orientation: landscape) {
+        max-width: 50vw;
+    }
+`
+
 interface IProjectStructureProps {
     id?: string
 }
 export const ProjectStructureNew: React.FC<IProjectStructureProps> = ({
     id,
 }) => {
-    const { i18n } = useTranslation()
+    const { i18n, t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
             allImageSharp {
@@ -165,7 +131,7 @@ export const ProjectStructureNew: React.FC<IProjectStructureProps> = ({
                     }
                 }
             }
-            allProjectStructureYaml {
+            allProjectStructure1Yaml {
                 edges {
                     node {
                         title
@@ -186,13 +152,15 @@ export const ProjectStructureNew: React.FC<IProjectStructureProps> = ({
         }
     `)
     const projectStructureData = getDataByLanguage(
-        data.allProjectStructureYaml,
+        data.allProjectStructure1Yaml,
         i18n.language
     )
-    const { title, items, price } = projectStructureData
-    const imageTable = getImageByImageName(
+
+    const { items, price } = projectStructureData
+
+    const imageSofaMobile = getImageByImageName(
         data.allImageSharp,
-        projectStructureData.image
+        'sofaMobile3.png'
     )
 
     return (
@@ -201,17 +169,16 @@ export const ProjectStructureNew: React.FC<IProjectStructureProps> = ({
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
                     <TitleStyled>
-                        {title}
-                        <PriceWrapper>
+                        {t('structurePosadka')}
+                        <p>
+                            {t('for')}
                             <Price>{price}</Price>
-                        </PriceWrapper>
+                        </p>
                     </TitleStyled>
-                    <ImgWrapper>
-                        <ImgBlock>
-                            <ImageSvg />
-                        </ImgBlock>
-                        <Image fluid={imageTable.fluid} />
-                    </ImgWrapper>
+                    <MobileImage
+                        fluid={imageSofaMobile.fluid}
+                        loading="eager"
+                    />
                 </HeroColumn>
                 <IconListStyled
                     items={items}

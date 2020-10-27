@@ -38,8 +38,6 @@ const ModalWindow = styled.div<{ image: boolean }>`
         width: 80%;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        height: auto;
-
         max-height: 90%;
     }
     @media (orientation: landscape) and (max-height: 700px) {

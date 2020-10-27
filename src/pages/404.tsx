@@ -13,6 +13,7 @@ import { getImageByImageName } from 'utils/getImageByImageName'
 import { Button } from 'components/Button'
 import { SocialIcons } from 'components/SocialIcons'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 
 const pageMetadata = {
     uk: { title: 'ClearLine', description: 'Студія дизайну інтер`єра' },
@@ -128,25 +129,33 @@ const NotFoundPage = () => {
         window.history.length === 1 && setNoHistori(false)
     }, [])
     return (
-        <Wrapper>
-            <HelmetFunc data={pageMetadata} />
-            <LogoStyled />
-            <PhoneLinkStyled href={`tel:${contactInformation.primaryPhone}`}>
-                {contactInformation.primaryPhone}
-            </PhoneLinkStyled>
-            <DesktopImageLeft />
-            <CenterBlock>
-                <Title>404</Title>
-                <SubTitle>{t('pageNotFound')}</SubTitle>
-                {noHistory && (
-                    <ButtonStyled onClick={() => window.history.back()}>
-                        {t('goBack')}
-                    </ButtonStyled>
-                )}
-                <SocialIcons fill={colors.white} showAllIcons placement="404" />
-            </CenterBlock>
-            <DesktopImageRight fluid={imageSofa.fluid} />
-        </Wrapper>
+        <Layout>
+            <Wrapper>
+                <HelmetFunc data={pageMetadata} />
+                <LogoStyled />
+                <PhoneLinkStyled
+                    href={`tel:${contactInformation.primaryPhone}`}
+                >
+                    {contactInformation.primaryPhone}
+                </PhoneLinkStyled>
+                <DesktopImageLeft />
+                <CenterBlock>
+                    <Title>404</Title>
+                    <SubTitle>{t('pageNotFound')}</SubTitle>
+                    {noHistory && (
+                        <ButtonStyled onClick={() => window.history.back()}>
+                            {t('goBack')}
+                        </ButtonStyled>
+                    )}
+                    <SocialIcons
+                        fill={colors.white}
+                        showAllIcons
+                        placement="404"
+                    />
+                </CenterBlock>
+                <DesktopImageRight fluid={imageSofa.fluid} />
+            </Wrapper>
+        </Layout>
     )
 }
 export default NotFoundPage

@@ -151,6 +151,7 @@ export const Advantages3D = () => {
                         imgStyle={{
                             objectFit: 'containe',
                         }}
+                        loading="eager"
                     />
                 </HeroColumn>
                 <IconListStyled items={items} fill={backgroundColors.project} />

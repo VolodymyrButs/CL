@@ -2,8 +2,6 @@ import React from 'react'
 import { I18nextProvider } from 'react-i18next'
 import i18n from './src/i18n/config'
 
-import { Layout } from 'layout/Layout'
-
 const wrapPageElement = ({ element, props }) => {
     const addResources = (pc, language) => {
         if (pc && pc.localeResources) {
@@ -23,25 +21,11 @@ const wrapPageElement = ({ element, props }) => {
         }
     }
 
-    if (element.props.path.includes('cad')) {
-        return (
-            <I18nextProvider i18n={i18n} {...props}>
-                {element}
-            </I18nextProvider>
-        )
-    } else {
-        return (
-            <I18nextProvider i18n={i18n} {...props}>
-                <Layout
-                    showSocialIconsInHeader={
-                        !element.props.path.includes('-fns')
-                    }
-                >
-                    {element}
-                </Layout>
-            </I18nextProvider>
-        )
-    }
+    return (
+        <I18nextProvider i18n={i18n} {...props}>
+            {element}
+        </I18nextProvider>
+    )
 }
 
 export default wrapPageElement

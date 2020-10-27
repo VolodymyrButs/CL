@@ -1,27 +1,21 @@
 import React from 'react'
-import styled from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
-import Img, { FluidObject } from 'gatsby-image'
+import styled, { css, keyframes } from 'styled-components'
 
-import { headerBg } from 'styles/headerBg'
 import { colors, backgroundColors } from 'styles/colors'
 import { Container } from 'components/Container'
 import { PhoneInput } from 'components/form/PhoneInput'
-import { EmailInput } from 'components/form/EmailInput'
-import { MessageInput } from 'components/form/MessageInput'
-import i18n from 'i18n/config'
+
 import { displayWidth } from 'styles/width'
-import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { getImageByImageName } from 'utils/getImageByImageName'
+
 import { indent } from 'styles/indent'
-import { TitleH1 } from 'components/TitleComponent'
 import { useTranslation } from 'react-i18next'
 import { Form, IChildrenProps } from 'components/form/Form'
 import { useFormHandler } from 'hooks/useFormHandler'
-import { RunningLine } from 'components/RunningLine'
+import { inputStyle } from 'styles/inputStyle'
 
 const Wrapper = styled.div`
     display: block;
+    margin-top: 0.1px;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }
@@ -31,14 +25,8 @@ const PromoHeroWraper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.promotion};
+    background-color: ${backgroundColors.contact};
     border-bottom: 1px solid ${colors.dark};
-    :before {
-        ${headerBg}
-    }
-    @media (orientation: landscape) {
-        min-height: 590px;
-    }
 `
 
 const PromoHeroColumn = styled.div`
@@ -51,62 +39,38 @@ const PromoHeroColumn = styled.div`
     border-left: 1px solid ${colors.dark};
     border-right: 1px solid ${colors.dark};
     flex-grow: 0;
+    button {
+        width: 94%;
+        margin: 10px auto 20px;
+    }
 `
 const ContainerStyled = styled(Container)`
     padding: 0 ${indent.mobile};
     box-sizing: border-box;
 `
 
-const TitleWrapper = styled.div`
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-const TitleStyled = styled(TitleH1)`
-    font-size: 50px;
-    line-height: 65px;
-    letter-spacing: 0.666667px;
-    overflow: visible;
-    text-align: center;
-    color: #296963;
-    margin-top: 30px;
-`
-const Price = styled.span`
-    font-family: 'Yeseva One', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 60px;
-    line-height: 50px;
-    letter-spacing: 0.888889px;
-    color: ${colors.accentText};
-    width: 100%;
-    text-align: center;
-`
-const MobileImage = styled(Img)<{ fluid: FluidObject }>`
-    width: 99%;
-    height: auto;
-    align-self: flex-end;
-    margin: 50px 2px 0px;
-    @media (orientation: landscape) {
-        max-width: 50vw;
-    }
-`
-
-const For = styled.span`
-    font-family: 'Yeseva One', sans-serif;
-    font-style: normal;
-    font-size: 50px;
-    line-height: 65px;
-    letter-spacing: 0.666667px;
-    text-align: center;
-    color: #296963;
-`
 const InputBlock = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 16px;
+    input {
+        border: 1px solid black;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 7px;
+    }
+    label {
+        span {
+            display: none;
+        }
+
+        input {
+            border: 1px solid black;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 7px;
+        }
+    }
 `
 const FormTitle = styled.div`
     font-family: 'Yeseva One', sans-serif;
@@ -115,67 +79,88 @@ const FormTitle = styled.div`
     font-size: 30px;
     line-height: 30px;
     letter-spacing: 1px;
-    color: ${colors.dark};
+    color: #00655b;
     text-align: center;
-    margin: 24px 0;
-`
-const FormColumn = styled.div`
-    width: 100%;
-    box-sizing: border-box;
-    background-color: ${backgroundColors.formPromo};
-    border-bottom: 1px solid ${colors.dark};
-`
-const SubTitle = styled.h3`
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 26px;
-    text-align: center;
-    letter-spacing: 0.4px;
-    color: ${colors.dark};
-    margin: 0 16px;
+    margin: 10px;
+    p {
+        margin-top: 5px;
+        text-transform: uppercase;
+    }
 `
 
+const InputStyle = styled.input<{ isValid?: string }>`
+    ${inputStyle}
+    ${(props) =>
+        props.isValid &&
+        css`
+            border-bottom-color: red;
+        `};
+    :-webkit-autofill {
+        transition: background-color 5000s ease-in-out 0s;
+        background: -webkit-linear-gradient(
+            top,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(0, 174, 255, 0.04) 50%,
+            rgba(255, 255, 255, 0) 51%,
+            rgba(0, 174, 255, 0.03) 100%
+        );
+    }
+`
+const run = keyframes`
+0% {
+    transform:translateX(100%)
+}
+100% {
+    transform:translateX(-100%)
+}
+`
+const run2 = keyframes`
+0% {
+    transform:translateX(0)
+}
+100% {
+    transform:translateX(-200%)
+}
+`
+const RunningTextContainer = styled.div`
+    width: 100%;
+    height: 50px;
+    background-color: ${backgroundColors.formPromo};
+    color: ${colors.dark};
+    border-bottom: 1px solid ${colors.dark};
+
+    overflow: hidden;
+    position: relative;
+`
+const Wrapper1 = styled.div`
+    height: 100%;
+    display: flex;
+`
+const Text = styled.p`
+    align-self: center;
+    color: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    animation: ${run} 240s linear infinite;
+    animation-delay: -120s;
+    @media (min-width: ${displayWidth.tablet}) {
+        animation: ${run} 120s linear infinite;
+        animation-delay: -60s;
+    }
+`
+const Text2 = styled(Text)`
+    animation: ${run2} 240s linear infinite;
+    animation-delay: -240s;
+    @media (min-width: ${displayWidth.tablet}) {
+        animation: ${run2} 120s linear infinite;
+        animation-delay: -120s;
+    }
+`
 export const PromoHeroMobile = () => {
     const { t } = useTranslation()
-    const data = useStaticQuery(graphql`
-        query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
-            allPromoHeroYaml {
-                edges {
-                    node {
-                        title
-                        price
-                        buttonText
-                        image
-                        imageMobile
-                        parent {
-                            ... on File {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `)
-    const promoHeroData = getDataByLanguage(
-        data.allPromoHeroYaml,
-        i18n.language
-    )
 
-    const imageSofaMobile = getImageByImageName(
-        data.allImageSharp,
-        promoHeroData.imageMobile
-    )
     const {
         handleSubmitStatus,
         handleFormSendStart,
@@ -191,19 +176,50 @@ export const PromoHeroMobile = () => {
             <PromoHeroWraper>
                 <ContainerStyled columns={'1fr'}>
                     <PromoHeroColumn>
-                        <TitleWrapper>
-                            <TitleStyled>{promoHeroData.title}</TitleStyled>
-                            <Price>
-                                <For>{t('for')} </For>
-                                {promoHeroData.price}
-                            </Price>
-                        </TitleWrapper>
-                        <MobileImage fluid={imageSofaMobile.fluid} />
+                        <Form
+                            buttonText="Отправить заявку"
+                            onFormSubmit={handleSubmitStatus}
+                            formSendStatus={formSendStatus}
+                            onFormSendStart={handleFormSendStart}
+                            {...tracking}
+                        >
+                            {({ register, errors }: IChildrenProps) => (
+                                <>
+                                    <FormTitle>
+                                        {t('formHeroPosadka')}
+                                    </FormTitle>
+                                    <InputBlock>
+                                        <PhoneInput
+                                            placeholder={t('phone')}
+                                            ref={register({
+                                                minLength: 18,
+                                                required: true,
+                                            })}
+                                            err={errors.phone}
+                                        />
+                                        <InputStyle
+                                            type="email"
+                                            name="email"
+                                            placeholder={t('email')}
+                                            ref={register}
+                                            isValid={errors.email}
+                                        />
+                                    </InputBlock>
+                                </>
+                            )}
+                        </Form>
+                        {/* <MobileImage fluid={imageSofaMobile.fluid} /> */}
                     </PromoHeroColumn>
                 </ContainerStyled>
             </PromoHeroWraper>
-            <RunningLine>{t('designProject99')}</RunningLine>
-            <FormColumn>
+            <RunningTextContainer>
+                <Wrapper1>
+                    <Text>{t('designProject99').repeat(20)}</Text>
+                    <Text2>{t('designProject99').repeat(20)}</Text2>
+                </Wrapper1>
+            </RunningTextContainer>
+
+            {/* <FormColumn>
                 <ContainerStyled columns={'1fr'}>
                     <PromoHeroColumn>
                         <Form
@@ -241,7 +257,7 @@ export const PromoHeroMobile = () => {
                         </Form>
                     </PromoHeroColumn>
                 </ContainerStyled>
-            </FormColumn>
+            </FormColumn> */}
         </Wrapper>
     )
 }

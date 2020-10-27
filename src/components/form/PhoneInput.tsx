@@ -8,10 +8,11 @@ import { useHasValue } from 'hooks/useHasValue'
 
 interface PhoneInputProps {
     err: string
+    placeholder?: string
 }
 
 export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
-    ({ err }, ref) => {
+    ({ err, placeholder }, ref) => {
         const { t } = useTranslation()
         const { inputHandler, hasValue } = useHasValue()
         return (
@@ -34,6 +35,7 @@ export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
                             isValid={err}
                             name="phone"
                             ref={ref}
+                            placeholder={placeholder}
                         />
                     )}
                 </InputMask>

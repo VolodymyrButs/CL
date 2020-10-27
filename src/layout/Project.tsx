@@ -19,6 +19,7 @@ import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 import { sendEvent } from 'tracking'
 import { Helmet } from 'react-helmet'
 import { LocalizedLink } from 'i18n/LocalizedLink'
+import { Layout } from './Layout'
 
 const ProjectWrapper = styled.div`
     display: flex;
@@ -299,7 +300,7 @@ const ProjectLayout = ({
     const [isModalOpen, setModalIsOpen] = useState(false)
     const [imageIndex, setImageIndex] = useState(0)
     return (
-        <>
+        <Layout>
             <Helmet>
                 <title>Clearline-{name}</title>
                 <meta name="description" content={description} />
@@ -431,7 +432,7 @@ const ProjectLayout = ({
                     }}
                 />
             </Connection>
-        </>
+        </Layout>
     )
 }
 

@@ -140,7 +140,7 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
                 {/* <MenuItem
                     onClick={onMenuItemClick}
                     aria-label={(t('goTo'), 'wiki')}
-                    to="/wiki"
+                    to="/promo-f"
                 >
                     {t('wiki')}
                 </MenuItem> */}

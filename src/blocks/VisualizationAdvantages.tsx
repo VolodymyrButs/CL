@@ -106,7 +106,7 @@ export const VisualizationAdvantages = () => {
                 <HeroColumn>
                     <Title>{title}</Title>
 
-                    <Image fluid={imageFluid.fluid} />
+                    <Image fluid={imageFluid.fluid} loading="eager" />
                 </HeroColumn>
                 <IconListStyled
                     items={items}

@@ -116,6 +116,7 @@ export const WorksProjectItem = ({
                 }}
                 alt={photo.parent.name}
                 title={photo.parent.name}
+                loading="eager"
             />
             <HoverWrapper aria-label={link} to={`works/${link}`}>
                 <LogoStyled />

@@ -7,6 +7,7 @@ import { Connection } from 'blocks/Connection'
 import { ButtonWithModal } from 'components/ButtonWithModal'
 import { WorksProjectGrid } from 'blocks/Works/WorksProjectGrid'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 
 const pageMetadata = {
     uk: {
@@ -26,7 +27,7 @@ const pageMetadata = {
 const WorksPage = () => {
     const { t } = useTranslation()
     return (
-        <>
+        <Layout>
             <HelmetFunc data={pageMetadata} />
             <WorksHero />
             <WorksProjectGrid />
@@ -44,7 +45,7 @@ const WorksPage = () => {
                     }}
                 />
             </Connection>
-        </>
+        </Layout>
     )
 }
 

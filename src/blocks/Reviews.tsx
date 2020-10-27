@@ -78,9 +78,9 @@ const TextWrapper = styled.div`
 `
 const Text = styled.div`
     width: 100%;
-    margin-top: 5px;
     overflow-y: auto;
     p {
+        padding-top: 10px;
         text-align: center;
         font-style: normal;
         font-weight: normal;
@@ -214,10 +214,8 @@ export const Reviews = () => {
     const sliderSettings = {
         dots: true,
         infinite: true,
-        speed: 1000,
+        speed: 100,
         arrows: false,
-        autoplay: true,
-        autoplaySpeed: 5000,
     }
 
     const RandomList = createRand(5, 0, reviewsArr.length - 1)

@@ -20,15 +20,19 @@ const run2 = keyframes`
     transform:translateX(-200%)
 }
 `
-const RunningTextContainer = styled.div`
+const RunningTextContainer = styled.div<{ $inverse: boolean | undefined }>`
     width: 100%;
     height: 50px;
-    background-color: ${colors.white};
-    color: ${colors.dark};
+    background-color: ${({ $inverse }) =>
+        $inverse === true ? colors.dark : colors.white};
+    color: ${({ $inverse }) =>
+        $inverse === true ? colors.white : colors.dark};
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
-        background-color: ${colors.dark};
-        color: ${colors.white};
+        background-color: ${({ $inverse }) =>
+            $inverse === true ? colors.white : colors.dark};
+        color: ${({ $inverse }) =>
+            $inverse === true ? colors.dark : colors.white};
     }
     overflow: hidden;
     position: relative;
@@ -59,11 +63,17 @@ const Text2 = styled(Text)`
         animation-delay: -120s;
     }
 `
-export const RunningLine = ({ children }: { children: string }) => {
+export const RunningLine = ({
+    children,
+    inverse,
+}: {
+    children: string
+    inverse?: boolean
+}) => {
     const runningLineContent =
         children.length < 10 ? children.repeat(100) : children.repeat(20)
     return (
-        <RunningTextContainer>
+        <RunningTextContainer $inverse={inverse}>
             <Wrapper>
                 <Text>{runningLineContent}</Text>
                 <Text2>{runningLineContent}</Text2>

@@ -1,0 +1,25 @@
+title: What is included in the design for
+image: table.png
+price: $99
+items:
+  - content: !markdown |
+      Lowest price for **design project**
+    svg: clock1.svg
+  - content: !markdown |
+      **All the necessary drawings** for the repair and selection of furniture
+    svg: pen.svg
+  - content: !markdown |
+      Meetings with the designer, options for redevelopment and furniture placement **are not limited**
+    svg: infinity.svg
+  - content: !markdown |
+      **Individual** approach to design
+    svg: ruler.svg
+  - content: !markdown |
+      Average term of a design project **2 weeks**
+    svg: clock.svg
+  - content: !markdown |
+      At your service **a team of experienced designers**
+    svg: team.svg
+  - content: !markdown |
+      **Free consultation** in the office or by phone
+    svg: consultation.svg

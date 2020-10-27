@@ -32,9 +32,7 @@ const PromoHeroWraper = styled.div`
     :before {
         ${headerBg}
     }
-    @media (orientation: landscape) {
-        min-height: 590px;
-    }
+
     @media (min-width: ${displayWidth.tablet}) {
         height: 500px;
         border-bottom: nonne;
@@ -185,7 +183,7 @@ const DesktopImageLeft = styled(Img)<{ fluid: FluidObject }>`
         display: block;
         position: absolute;
         left: 11%;
-        bottom: -144px;
+        bottom: -105px;
     }
     @media (min-width: ${displayWidth.desktop}) {
         bottom: -137px;
@@ -290,10 +288,13 @@ export const PromoHero = () => {
                         <JumpingArrow />
                     </JumpingArrowWrapper>
 
-                    <MobileImage fluid={imageSofaMobile.fluid} />
+                    <MobileImage
+                        fluid={imageSofaMobile.fluid}
+                        loading="eager"
+                    />
                 </PromoHeroColumn>
                 <PromoHeroColumn>
-                    <DesktopImageLeft fluid={imageSofa.fluid} />
+                    <DesktopImageLeft fluid={imageSofa.fluid} loading="eager" />
                 </PromoHeroColumn>
                 <PromoHeroColumn>
                     <DesktopImageRight />

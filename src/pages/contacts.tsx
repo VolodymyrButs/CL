@@ -15,6 +15,7 @@ import { headerHeight } from 'styles/height'
 import { sendConversion, sendEvent } from 'tracking'
 import { sendForm } from 'components/form/api'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 
 const pageMetadata = {
     uk: {
@@ -157,83 +158,86 @@ const ContactsPage = () => {
     const { street, city } = addressData
 
     return (
-        <ContactsWrapper>
-            <HelmetFunc data={pageMetadata} />
-            <LeftSidebar />
-            <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
-                <ContactsColumn>
-                    <Title>{t('contacts')}</Title>
-                    <Header>{t('companyAddress')}:</Header>
-                    <Paragraph>
-                        <a
-                            href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
-                            target="blank"
-                            onClick={() => {
-                                sendEvent('Click', {
-                                    eventCategory: 'Address',
-                                    placement: 'Contacts',
-                                })
-                            }}
-                        >
-                            <p>{street}</p>
-                            <p> {city}</p>
-                        </a>
-                    </Paragraph>
-                    <Header>{t('contacts')}:</Header>
-                    <Paragraph>
-                        <a
-                            href={`tel:${contactInformation.primaryPhone}`}
-                            onClick={() => {
-                                sendForm(`ContactsPhoneClick`, {})
-                                sendConversion('PhoneClick')
-                                sendEvent('Phone', {
-                                    eventCategory: 'PhoneClick',
-                                    placement: 'Contacts',
-                                    phone: contactInformation.primaryPhone,
-                                })
-                            }}
-                        >
-                            {contactInformation.primaryPhone}
-                        </a>
-                    </Paragraph>
-                    <Paragraph>
-                        <a
-                            href={`tel:${contactInformation.secondaryPhones}`}
-                            onClick={() => {
-                                sendForm(`ContactsStationarPhoneClick`, {})
-                                sendConversion('PhoneClick')
-                                sendEvent('Phone', {
-                                    eventCategory: 'PhoneClick',
-                                    placement: 'Contacts',
-                                    phone: contactInformation.secondaryPhones,
-                                })
-                            }}
-                        >
-                            {contactInformation.secondaryPhones}
-                        </a>
-                    </Paragraph>
-                    <Paragraph>
-                        <a
-                            href={`mailto:${contactInformation.email}`}
-                            onClick={() => {
-                                sendConversion('EmailClick')
-                                sendEvent('Email', {
-                                    eventCategory: 'EmailClick',
-                                    placement: 'Contacts',
-                                    email: contactInformation.email,
-                                })
-                            }}
-                        >
-                            {contactInformation.email}
-                        </a>
-                    </Paragraph>
-                </ContactsColumn>
-                <MapWrapper>
-                    <SimpleMap />
-                </MapWrapper>
-            </Container>
-            <RightSidebar />
-        </ContactsWrapper>
+        <Layout>
+            <ContactsWrapper>
+                <HelmetFunc data={pageMetadata} />
+                <LeftSidebar />
+                <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
+                    <ContactsColumn>
+                        <Title>{t('contacts')}</Title>
+                        <Header>{t('companyAddress')}:</Header>
+                        <Paragraph>
+                            <a
+                                href="https://www.google.com.ua/maps/dir//50.4407395,30.5076001/@50.4406349,30.5077912,21z?hl=uk&authuser=0"
+                                target="blank"
+                                onClick={() => {
+                                    sendEvent('Click', {
+                                        eventCategory: 'Address',
+                                        placement: 'Contacts',
+                                    })
+                                }}
+                            >
+                                <p>{street}</p>
+                                <p> {city}</p>
+                            </a>
+                        </Paragraph>
+                        <Header>{t('contacts')}:</Header>
+                        <Paragraph>
+                            <a
+                                href={`tel:${contactInformation.primaryPhone}`}
+                                onClick={() => {
+                                    sendForm(`ContactsPhoneClick`, {})
+                                    sendConversion('PhoneClick')
+                                    sendEvent('Phone', {
+                                        eventCategory: 'PhoneClick',
+                                        placement: 'Contacts',
+                                        phone: contactInformation.primaryPhone,
+                                    })
+                                }}
+                            >
+                                {contactInformation.primaryPhone}
+                            </a>
+                        </Paragraph>
+                        <Paragraph>
+                            <a
+                                href={`tel:${contactInformation.secondaryPhones}`}
+                                onClick={() => {
+                                    sendForm(`ContactsStationarPhoneClick`, {})
+                                    sendConversion('PhoneClick')
+                                    sendEvent('Phone', {
+                                        eventCategory: 'PhoneClick',
+                                        placement: 'Contacts',
+                                        phone:
+                                            contactInformation.secondaryPhones,
+                                    })
+                                }}
+                            >
+                                {contactInformation.secondaryPhones}
+                            </a>
+                        </Paragraph>
+                        <Paragraph>
+                            <a
+                                href={`mailto:${contactInformation.email}`}
+                                onClick={() => {
+                                    sendConversion('EmailClick')
+                                    sendEvent('Email', {
+                                        eventCategory: 'EmailClick',
+                                        placement: 'Contacts',
+                                        email: contactInformation.email,
+                                    })
+                                }}
+                            >
+                                {contactInformation.email}
+                            </a>
+                        </Paragraph>
+                    </ContactsColumn>
+                    <MapWrapper>
+                        <SimpleMap />
+                    </MapWrapper>
+                </Container>
+                <RightSidebar />
+            </ContactsWrapper>
+        </Layout>
     )
 }
 

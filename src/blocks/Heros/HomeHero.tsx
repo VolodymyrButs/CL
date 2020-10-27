@@ -234,12 +234,14 @@ export const HomeHero = () => {
                         imgStyle={{
                             objectFit: 'containe',
                         }}
+                        loading="eager"
                     />
                     <DesktopImage
                         fluid={homeHeroImageDesktop.fluid}
                         imgStyle={{
                             objectFit: 'containe',
                         }}
+                        loading="eager"
                     />
                 </HomeHeroColumnImage>
             </ContainerStyled>

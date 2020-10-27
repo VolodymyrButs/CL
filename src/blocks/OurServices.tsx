@@ -67,6 +67,26 @@ const CadBlock = styled(Block)`
 const FaqBlock = styled(Block)`
     background-color: ${backgroundColors.project};
 `
+const ExampleBlock = styled(Block)`
+    width: 50%;
+    background-color: ${backgroundColors.promotion};
+    flex-grow: 0;
+    @media (min-width: ${displayWidth.tablet}) {
+        justify-content: space-between;
+        border-bottom: none;
+        padding: 32px 16px 5px;
+        outline: 1px solid ${colors.dark};
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        padding: 32px 32px 5px;
+        align-items: flex-start;
+    }
+    :after {
+        display: none;
+    }
+`
+
+ExampleBlock
 const Title = styled.h2`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
@@ -243,5 +263,31 @@ export const OurServices = () => {
                 </Container>
             </OurServicesWrapper>
         </>
+    )
+}
+
+export const ExampleOfProject = () => {
+    const { t } = useTranslation()
+    return (
+        <ExampleBlock>
+            <Title>{t('comercialForm.example')}</Title>
+            <SubTitle>{t('exampleSubtitle')}</SubTitle>
+            <LocalizedLink
+                to={'exapmle'}
+                onClick={() => {
+                    sendEvent('Click', {
+                        eventCategory: 'ShowExampleOfProject',
+                        placement: 'Our Services',
+                        target: 'Example',
+                    })
+                }}
+            >
+                <ButtonStyled
+                    aria-label={(t('goTo'), t('comercialForm.example'))}
+                >
+                    {t('showProject')}
+                </ButtonStyled>
+            </LocalizedLink>
+        </ExampleBlock>
     )
 }
