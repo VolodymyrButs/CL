@@ -37,6 +37,8 @@ const LanguageList = styled.div<{ open: boolean }>`
         width:${headerHeight.desktop};
         height: 79px;
         border-right: none;
+        margin-bottom: 0px;
+        z-index: 1;
     }
 `
 const IconStyled = styled(ShevronIcon)<{ open: boolean }>`

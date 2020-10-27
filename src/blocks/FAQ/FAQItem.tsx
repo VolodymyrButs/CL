@@ -15,6 +15,7 @@ const QuestionWrapper = styled.div`
     justify-content: space-between;
     position: relative;
     margin-top: 36px;
+    text-decoration: none;
     cursor: pointer;
     @media (min-width: ${displayWidth.tablet}) {
         margin-top: 24px;
@@ -22,18 +23,22 @@ const QuestionWrapper = styled.div`
 `
 const Question = styled.div`
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 16px;
     line-height: 22px;
     color: ${colors.dark};
     margin-right: 30px;
     padding-bottom: 8px;
+    @media (min-width: ${displayWidth.tablet}) {
+        font-weight: normal;
+    }
 `
 const Answer = styled(Question)<{ $isAnswerVisible: boolean }>`
     display: ${({ $isAnswerVisible }) => ($isAnswerVisible ? 'block' : 'none')};
     color: ${colors.darkText};
     margin-top: 2px;
     opacity: 0.7;
+    font-weight: normal;
     strong {
         font-weight: bold;
     }
@@ -68,10 +73,18 @@ export const FAQItem = ({
     setIsAnswerVisible,
     name,
 }: IFAQItem) => {
+    const scroll = () => {
+        window!.document!.getElementById(`${name}faq`)!.scrollIntoView({
+            block: 'center',
+            behavior: 'auto',
+        })
+    }
     return (
         <FaqListItemWrapper>
             <QuestionWrapper
+                id={`${name}faq`}
                 onClick={() => {
+                    setTimeout(scroll, 40)
                     isAnswerVisible === name
                         ? setIsAnswerVisible(-1)
                         : setIsAnswerVisible(name)

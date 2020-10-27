@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Form, IChildrenProps, FormTracking } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
@@ -49,17 +49,66 @@ const FormTitle = styled.div`
     }
 `
 
-const FormColumn = styled.div`
+const FormColumn = styled.div<{ $size: boolean }>`
     width: 100%;
-    padding: 0 32px;
+    padding: ${({ $size }) => ($size === true ? '0' : '0 32px')};
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
     box-sizing: border-box;
+    ${({ $size }) =>
+        $size === true
+            ? css`
+                  span {
+                      box-sizing: border-box;
+                      padding: 0 32px;
+                      width: 100%;
+                      @media (min-width: ${displayWidth.tablet}) {
+                          width: 50%;
+                      }
+                      div {
+                          @media (min-width: ${displayWidth.tablet}) {
+                              min-width: 200px;
+                          }
+                          form {
+                              div {
+                                  @media (min-width: ${displayWidth.tablet}) {
+                                      margin-right: 0px;
+                                      width: calc(100% - 50px);
+                                  }
+                              }
+                          }
+                      }
+                      span {
+                          padding: 0;
+                      }
+                  }
+                  > div {
+                      border-top: 1px solid #000;
+                      width: 100%;
+                      flex-shrink: 0;
+                      @media (min-width: ${displayWidth.tablet}) {
+                          width: 50%;
+                          border-top: none;
+                      }
+                  }
+              `
+            : ''}
+    @media (min-width: ${displayWidth.tablet}) {
+        flex-direction: row;
+    }
+`
+const Wrap = styled.span`
+    width: 100%;
 `
 export const DefaultFormBlock = ({
     withPhoneMobile,
     tracking,
+    children = null,
 }: {
     withPhoneMobile?: boolean
     tracking: FormTracking
+    children?: React.ReactNode
 }) => {
     const { t } = useTranslation()
 
@@ -74,32 +123,38 @@ export const DefaultFormBlock = ({
         <FormWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <DefaultFormHero withPhoneMobile={withPhoneMobile} />
-                <FormColumn>
-                    <FormTitle>{t('defaultFormTitle')}</FormTitle>
-                    <Form
-                        buttonText={t('send')}
-                        onFormSubmit={handleSubmitStatus}
-                        formSendStatus={formSendStatus}
-                        onFormSendStart={handleFormSendStart}
-                        {...tracking}
-                    >
-                        {({ register, errors }: IChildrenProps) => (
-                            <InputBlock>
-                                <PhoneInput
-                                    ref={register({
-                                        minLength: 18,
-                                        required: true,
-                                    })}
-                                    err={errors.phone}
-                                />
-                                <MessageInput
-                                    ref={register}
-                                    err={errors.message}
-                                />
-                                <EmailInput ref={register} err={errors.email} />
-                            </InputBlock>
-                        )}
-                    </Form>
+                <FormColumn $size={Boolean(children)}>
+                    <Wrap>
+                        <FormTitle>{t('defaultFormTitle')}</FormTitle>
+                        <Form
+                            buttonText={t('send')}
+                            onFormSubmit={handleSubmitStatus}
+                            formSendStatus={formSendStatus}
+                            onFormSendStart={handleFormSendStart}
+                            {...tracking}
+                        >
+                            {({ register, errors }: IChildrenProps) => (
+                                <InputBlock>
+                                    <PhoneInput
+                                        ref={register({
+                                            minLength: 18,
+                                            required: true,
+                                        })}
+                                        err={errors.phone}
+                                    />
+                                    <MessageInput
+                                        ref={register}
+                                        err={errors.message}
+                                    />
+                                    <EmailInput
+                                        ref={register}
+                                        err={errors.email}
+                                    />
+                                </InputBlock>
+                            )}
+                        </Form>
+                    </Wrap>
+                    {children}
                 </FormColumn>
             </Container>
         </FormWrapper>

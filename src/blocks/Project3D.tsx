@@ -156,7 +156,7 @@ export const Project3D = () => {
                     <JumpingArrow />
                 </HeroColumn>
                 <ImgWrapper>
-                    <ImgStyled fluid={image.fluid} />
+                    <ImgStyled fluid={image.fluid} loading="eager" />
                 </ImgWrapper>
             </Container>
         </Visualization3dWrapper>

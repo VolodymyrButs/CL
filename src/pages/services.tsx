@@ -6,6 +6,7 @@ import { RunningLine } from 'components/RunningLine'
 import { Reviews } from 'blocks/Reviews'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 
 const pageMetadata = {
     uk: {
@@ -29,7 +30,7 @@ const ServicesPage = () => {
     const { t } = useTranslation()
 
     return (
-        <div>
+        <Layout>
             <HelmetFunc data={pageMetadata} />
             <Services />
             <RunningLine>{t('designProject99')}</RunningLine>
@@ -41,7 +42,7 @@ const ServicesPage = () => {
                     eventCategory: 'FormServicesPageBottom',
                 }}
             />
-        </div>
+        </Layout>
     )
 }
 

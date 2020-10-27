@@ -146,6 +146,7 @@ export const Services = () => {
                         imgStyle={{
                             objectFit: 'containe',
                         }}
+                        loading="eager"
                     />
                     <ChairImg iconName="chairServices.svg" />
                 </HeroColumn>

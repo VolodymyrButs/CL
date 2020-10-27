@@ -18,7 +18,7 @@ const HeaderWraper = styled.div`
     width: 100%;
     max-height: 80px;
     border-bottom: 1px solid ${colors.dark};
-    z-index: 3;
+    z-index: 10;
     box-sizing: border-box;
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;

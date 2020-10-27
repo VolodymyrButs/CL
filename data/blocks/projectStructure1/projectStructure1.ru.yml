@@ -1,0 +1,25 @@
+title: Что входит в дизайн за
+image: table.png
+price: $99
+items:
+  - content: !markdown |
+      Самая низкая цена за **дизайн проект**
+    svg: clock1.svg
+  - content: !markdown |
+      **Все необходимые чертежи** для проведения ремонта и подбора мебели
+    svg: pen.svg
+  - content: !markdown |
+      Встречи с дизайнером, варианты перепланировки и расстановки мебели **не ограничены**
+    svg: infinity.svg
+  - content: !markdown |
+      **Индивидуальный** подход к проектированию
+    svg: ruler.svg
+  - content: !markdown |
+      Средний срок исполнения дизайн-проекта **2 недели**
+    svg: clock.svg
+  - content: !markdown |
+      К вашим услугам **команда опытных дизайнеров**
+    svg: team.svg
+  - content: !markdown |
+      **Бесплатная консультация** в офисе или по телефону
+    svg: consultation.svg

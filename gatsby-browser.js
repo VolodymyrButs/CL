@@ -8,9 +8,11 @@ export const shouldUpdateScroll = ({ routerProps: { location } }) => {
     document.body.style.msTransform = scale // IE 9
     document.body.style.transform = scale
     const blockWrapper = window.document.getElementById('blockWrapper')
+    const blockWrapper1 = window.document.getElementById('wrap')
     if (location.hash) {
         return true
     } else {
+        blockWrapper1?.scrollTo({ top: 0, behavior: 'auto' })
         blockWrapper?.scrollTo({ top: 0, behavior: 'auto' })
         return false
     }

@@ -21,6 +21,8 @@ const HeroColumn = styled.div`
     padding: 0 32px;
     box-sizing: border-box;
     border-bottom: 1px solid ${colors.dark};
+    width: 100%;
+    max-width: 100vw;
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
         padding: 0;
@@ -33,6 +35,7 @@ const HeroColumn = styled.div`
 const TitleStyledMobile = styled(Title)`
     margin: 56px 0 30px;
     font-size: 25px;
+    max-width: 100%;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
         padding: 0 32px;
@@ -167,7 +170,7 @@ export const DefaultFormHero = ({
                 withPhoneMobile={withPhoneMobile}
                 placement={'Form'}
             />
-            {image && <Image fluid={imageFluid.fluid} />}
+            {image && <Image fluid={imageFluid.fluid} loading="eager" />}
         </HeroColumn>
     )
 }

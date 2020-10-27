@@ -20,7 +20,7 @@ const CarouselWrapper = styled.div`
         padding: 0;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        width: calc((${displayWidth.desktop} - 160px) * 0.6666);
+        max-width: calc((${displayWidth.desktop} - 160px) * 0.6666);
         max-height: 600px;
     }
     .slick-list {

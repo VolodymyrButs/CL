@@ -9,7 +9,6 @@ import { ProjectStructure } from 'blocks/ProjectStructure'
 import { VisualizationAdvantages } from 'blocks/VisualizationAdvantages'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
 import { Faq } from 'blocks/FAQ/FAQ'
-import { ExamplesOfProjects } from 'blocks/ExamplesOfProjects'
 import { Reviews } from 'blocks/Reviews'
 import { Project3D } from 'blocks/Project3D'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
@@ -18,6 +17,7 @@ import { Connection } from 'blocks/Connection'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { ButtonWithModal } from 'components/ButtonWithModal'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 
 const pageMetadata = {
     uk: {
@@ -40,20 +40,19 @@ const pageMetadata = {
 const Promo = () => {
     const { t } = useTranslation()
     return (
-        <>
+        <Layout>
             <HelmetFunc data={pageMetadata} />
             <PromoHero />
             <RunningLine>{t('designProject99')}</RunningLine>
             <div id="projectStructure" />
             <ProjectStructure />
-            <ExamplesOfProjects />
             <Reviews />
             <CommercialProposalFormBlock text />
             <RunningLine>{t('designProject99')}</RunningLine>
             <Project3D />
             <div id="project3dAdvantages" />
             <Advantages3D />
-            <Connection text={t('connection.text')}>
+            <Connection text={t('connection.text3d')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
                     modalDescription={t('connection.modalDescription')}
@@ -83,7 +82,7 @@ const Promo = () => {
                     eventCategory: 'FormPromoPageBottom',
                 }}
             />
-        </>
+        </Layout>
     )
 }
 

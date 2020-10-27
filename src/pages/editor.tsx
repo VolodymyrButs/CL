@@ -1,6 +1,7 @@
 import React from 'react'
 import { Cad } from 'blocks/CadBlock'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 
 const pageMetadata = {
     uk: {
@@ -22,10 +23,10 @@ const pageMetadata = {
 
 const EditorPage = () => {
     return (
-        <>
+        <Layout>
             <HelmetFunc data={pageMetadata} />
             <Cad />
-        </>
+        </Layout>
     )
 }
 

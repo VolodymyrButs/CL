@@ -33,10 +33,12 @@ const FaqListStyled = styled.div<{ showFaqListMobile: boolean }>`
     flex-direction: column;
     padding: 28px 33px 64px;
     box-sizing: border-box;
+    border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
         outline: 1px solid ${colors.dark};
         padding: 40px 48px 64px;
+        border-bottom: none;
     }
     @media (min-width: ${displayWidth.desktop}) {
         padding: 56px 48px;
@@ -106,6 +108,11 @@ const CnairImg = styled(Chair)`
     }
     @media (min-width: ${displayWidth.desktop}) {
         width: 40%;
+    }
+`
+const Id = styled.div`
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
     }
 `
 export interface IFAQItem {
@@ -193,6 +200,14 @@ export const Faq = () => {
                     <SubTitle>{subTitle}</SubTitle>
                     <ButtonFaq
                         onClick={() => {
+                            !showFaqListMobile &&
+                                window.document.getElementById('faq') &&
+                                window!
+                                    .document!.getElementById('faq')!
+                                    .scrollIntoView({
+                                        block: 'center',
+                                        behavior: 'smooth',
+                                    })
                             setShowFaqListMobile(!showFaqListMobile)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButtonFAQ',
@@ -204,7 +219,7 @@ export const Faq = () => {
                     <Image fluid={imageLamp.fluid} />
                     <CnairImg />
                 </HeroColumn>
-
+                <Id id="faq" />
                 <FaqListStyled showFaqListMobile={showFaqListMobile}>
                     {questions.map((item: IFAQItem, index: number) => {
                         return (

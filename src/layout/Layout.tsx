@@ -41,11 +41,7 @@ const BlocksWrapper = styled.div`
     }
 `
 const languagesList = Object.keys(languages)
-
-export const Layout = (props: {
-    showSocialIconsInHeader: boolean
-    children: React.ReactNode
-}) => {
+export const Layout = ({ children }: { children: React.ReactNode }) => {
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
     const [hideCallback, setHideCallback] = useState(1000)
@@ -230,9 +226,9 @@ export const Layout = (props: {
                         }`}
                 </script>
             </Helmet>
-            <Header showSocialIcons={props.showSocialIconsInHeader} />
+            <Header />
             <BlocksWrapper id="blockWrapper" onScroll={onScroll}>
-                {props.children}
+                {children}
                 <Footer />
             </BlocksWrapper>
             <CallbackButton

@@ -153,7 +153,7 @@ export const SelectionOfPaints = () => {
                     <JumpingArrow />
                 </HeroColumn>
                 <ImgWrapper>
-                    <ImgStyled fluid={image.fluid} />
+                    <ImgStyled fluid={image.fluid} loading="eager" />
                 </ImgWrapper>
             </Container>
         </SelectionOfPaintWrapper>

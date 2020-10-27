@@ -211,7 +211,7 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
                         <ImgBlock>
                             <ImageSvg />
                         </ImgBlock>
-                        <Image fluid={imageTable.fluid} />
+                        <Image fluid={imageTable.fluid} loading="eager" />
                     </ImgWrapper>
                 </HeroColumn>
                 <IconListStyled

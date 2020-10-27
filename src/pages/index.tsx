@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { OurServices } from 'blocks/OurServices'
+import { ExampleOfProject, OurServices } from 'blocks/OurServices'
 import { HomeHero } from 'blocks/Heros/HomeHero'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { HelmetFunc } from 'components/PageMetaData'
+import { Layout } from 'layout/Layout'
 import { RunningLine } from 'components/RunningLine'
 import { useTranslation } from 'react-i18next'
 
@@ -30,7 +31,7 @@ const pageMetadata = {
 const IndexPage = () => {
     const { t } = useTranslation()
     return (
-        <>
+        <Layout>
             <HelmetFunc data={pageMetadata} />
             <HomeHero />
             <RunningLine>{t('designProject99')}</RunningLine>
@@ -41,8 +42,10 @@ const IndexPage = () => {
                     conversionType: 'FormIndexPageBottom',
                     eventCategory: 'FormIndexPageBottom',
                 }}
-            />
-        </>
+            >
+                <ExampleOfProject />
+            </DefaultFormBlock>
+        </Layout>
     )
 }
 
