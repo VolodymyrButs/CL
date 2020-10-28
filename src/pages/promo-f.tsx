@@ -154,7 +154,6 @@ const WrapDesktop = styled.div`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
-        border-top: 1px solid #000;
         top: 80px;
         height: calc(100vh - 80px);
         left: 0;

@@ -100,6 +100,9 @@ const FormColumn = styled.div<{ $size: boolean }>`
 `
 const Wrap = styled.span`
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 export const DefaultFormBlock = ({
     withPhoneMobile,

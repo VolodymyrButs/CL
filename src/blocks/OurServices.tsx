@@ -74,11 +74,11 @@ const ExampleBlock = styled(Block)`
     @media (min-width: ${displayWidth.tablet}) {
         justify-content: space-between;
         border-bottom: none;
-        padding: 32px 16px 5px;
+        padding: 32px 16px 0px;
         outline: 1px solid ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 32px 32px 5px;
+        padding: 32px 32px 0px;
         align-items: flex-start;
     }
     :after {
