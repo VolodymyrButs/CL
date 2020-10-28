@@ -183,10 +183,10 @@ const DesktopImageLeft = styled(Img)<{ fluid: FluidObject }>`
         display: block;
         position: absolute;
         left: 11%;
-        bottom: -105px;
+        bottom: -100px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        bottom: -137px;
+        bottom: -136px;
     }
 `
 const ButtonStyled = styled(Button)`

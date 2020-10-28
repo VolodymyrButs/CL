@@ -35,7 +35,7 @@ const PromoHeroWraper = styled.div`
     }
 
     @media (min-width: ${displayWidth.tablet}) {
-        height: 505px;
+        height: 605px;
         border-bottom: nonne;
     }
     @media (min-width: ${displayWidth.desktop}) {
@@ -59,23 +59,34 @@ const PromoHeroColumn = styled.div`
         position: relative;
         border-left: none;
         justify-content: center;
-        max-width: calc((100vw - 160px) / 3);
+
+        box-sizing: border-box;
         :nth-child(3n) {
             border-right: none;
         }
     }
     div {
+        min-width: 100px;
         form {
+            max-width: calc((100vw - 160px) / 3.4);
             div {
                 button {
-                    width: 100%;
-                    height: 150px;
-                    padding: 26px 10px;
-                    margin: 30px;
-                    font-size: 24px;
-                    line-height: 36px;
-                    border-radius: 80px;
-                    font-weight: normal;
+                    @media (min-width: ${displayWidth.tablet}) {
+                        height: 100px;
+                        padding: 18px 10px;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                    @media (min-width: ${displayWidth.desktop}) {
+                        width: 100%;
+                        height: 170px;
+                        padding: 30px 30px;
+                        margin: 30px;
+                        font-size: 23px;
+                        line-height: 36px;
+                        border-radius: 80px;
+                        font-weight: normal;
+                    }
                 }
             }
         }
@@ -132,7 +143,7 @@ const TitleStyled = styled(TitleH1)`
     @media (min-width: ${displayWidth.tablet}) {
         box-sizing: border-box;
         padding-left: 60px;
-        font-size: 56px;
+        font-size: 46px;
         line-height: 56px;
         letter-spacing: 0.8px;
         text-align: left;
@@ -188,10 +199,10 @@ const DesktopImageLeft = styled(Img)<{ fluid: FluidObject }>`
         display: block;
         position: absolute;
         left: 11%;
-        bottom: -105px;
+        bottom: -150px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        bottom: -144px;
+        bottom: -136px;
     }
 `
 
@@ -224,12 +235,17 @@ const FormTitle = styled.div`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 50px;
-    line-height: 58px;
+    font-size: 40px;
+    line-height: 48px;
     letter-spacing: 1px;
     color: ${colors.dark};
     text-align: center;
     margin: 50px 0 10px;
+    @media (min-width: ${displayWidth.desktop}) {
+        font-size: 50px;
+        line-height: 58px;
+        margin: 50px 0 10px;
+    }
 `
 export const PromoHeroNew = () => {
     const { t } = useTranslation()
