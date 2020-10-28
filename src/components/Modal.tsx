@@ -19,7 +19,7 @@ const ModalWrapper = styled.div<{ open: boolean }>`
 `
 const ModalWindow = styled.div<{ image: boolean }>`
     position: relative;
-    max-width: 90%;
+    max-width: 100%;
     max-height: 90%;
     z-index: 40;
     ${({ image }) =>
@@ -28,10 +28,10 @@ const ModalWindow = styled.div<{ image: boolean }>`
             : `padding: 40px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
 
     box-sizing: border-box;
+    overflow-y: auto;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: 70%;
         ${({ image }) => image && ` max-width: 90%;`};
-        overflow-y: auto;
         max-height: 90%;
     }
     @media (orientation: portrait) and (min-width: ${displayWidth.tablet}) {
@@ -48,8 +48,8 @@ const ModalWindow = styled.div<{ image: boolean }>`
 `
 const CloseIconStyled = styled(CloseIcon)<{ $image: boolean }>`
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 30px;
+    right: 30px;
     width: 30px;
     height: 30px;
     cursor: pointer;

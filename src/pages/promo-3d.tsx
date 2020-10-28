@@ -1,17 +1,12 @@
+import React, { useState } from 'react'
+import styled, { css } from 'styled-components'
 import { RunningLine } from 'components/RunningLine'
-
-import { ProjectStructureNew } from 'blocks/ProjectStructureNew'
 
 import { Faq } from 'blocks/FAQ/FAQ'
 
 import { Reviews } from 'blocks/Reviews'
 
 import { HelmetFunc } from 'components/PageMetaData'
-import { PromoHeroMobile } from 'blocks/Heros/MobilePromoHeroNew'
-import { PromoHeroNew } from 'blocks/Heros/PromoHeroNew'
-
-import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
 
 import { LanguageSwitcher } from 'i18n/LanguageSwitcher'
 import ExitSvg from 'assets/icons/Exit.svg'
@@ -33,16 +28,20 @@ import { PhoneLink } from 'components/PhoneLink'
 import { sendForm } from 'components/form/api'
 import Proposal from 'assets/icons/proposal.svg'
 import Pensile from 'assets/icons/pensile.svg'
-import Handshake from 'assets/icons/handshake.svg'
+import Cube from 'assets/icons/cube.svg'
 import { ButtonWithModal } from 'components/ButtonWithModal'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Container } from 'components/Container'
 import { ComercialForm } from 'components/form/CommercialForm'
 import { Footer } from 'blocks/Footer'
-import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { Connection } from 'blocks/Connection'
-import { ProjectStructure } from 'blocks/ProjectStructure'
 import { Header } from 'blocks/Header/Header'
+import { Project3D } from 'blocks/Project3D'
+import { Advantages3D } from 'blocks/Advantages3D'
+import { PromoHero3d } from 'blocks/Heros/PromoHero3d'
+import { PromoHeroMobile3d } from 'blocks/Heros/PromoHeroMobile3d'
+import { CommercialProposalFormBlock3d } from 'blocks/ComercialProposalForm3d'
+import { Project3DPosadka } from 'blocks/Project3DPosadka'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -208,12 +207,6 @@ const pageMetadata = {
     },
 }
 
-const Block = styled.div`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-    }
-`
 const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
     display: flex;
     justify-content: center;
@@ -247,13 +240,13 @@ const svgStyle = css`
     min-width: 40px;
     margin-right: 10px;
 `
-const HandshakeS = styled(Handshake)`
-    ${svgStyle}
-`
-const PensileS = styled(Pensile)`
+const CubeS = styled(Cube)`
     ${svgStyle}
 `
 const ProposalS = styled(Proposal)`
+    ${svgStyle}
+`
+const PensileS = styled(Pensile)`
     ${svgStyle}
 `
 const FormColumn = styled.div`
@@ -318,11 +311,11 @@ const Posadka = () => {
                     <a
                         href={'tel:+380982117690'}
                         onClick={() => {
-                            sendForm(`PosadkaHeaderPhoneClick`, {})
+                            sendForm(`PosadkaHeaderPhoneClick3d`, {})
                             sendConversion('PhoneClick')
                             sendEvent('Phone', {
                                 eventCategory: 'PhoneClick',
-                                placement: 'PosadkaHeader',
+                                placement: 'PosadkaHeader3d',
                             })
                         }}
                     >
@@ -344,7 +337,7 @@ const Posadka = () => {
                     <MainMenu onMenuItemClick={() => setIsMenuOpen(false)} />
                     <PhoneLinkStyled
                         phone={contactInformation.primaryPhone}
-                        placement={'MobileMenuPosadka'}
+                        placement={'MobileMenuPosadka3d'}
                     >
                         <RoundText color={colors.white} text={t('callUs')}>
                             <PhoneSvgAnimated color={colors.white} />
@@ -361,7 +354,7 @@ const Posadka = () => {
                                 sendConversion('SocialIconViber')
                                 sendEvent('SocialIcon', {
                                     eventCategory: 'SocialIconViber',
-                                    placement: 'PosadkaMobile',
+                                    placement: 'PosadkaMobile3d',
                                 })
                             }}
                         >
@@ -375,7 +368,7 @@ const Posadka = () => {
                                 sendConversion('SocialIconWhatsApp')
                                 sendEvent('SocialIcon', {
                                     eventCategory: 'SocialIconWhatsApp',
-                                    placement: 'PosadkaMobile',
+                                    placement: 'PosadkaMobile3d',
                                 })
                             }}
                         >
@@ -392,7 +385,7 @@ const Posadka = () => {
                                     sendConversion('SocialIconTelegram')
                                     sendEvent('SocialIcon', {
                                         eventCategory: 'SocialIconTelegram',
-                                        placement: 'PosadkaMobile',
+                                        placement: 'PosadkaMobile3d',
                                     })
                                 }}
                             />
@@ -400,13 +393,9 @@ const Posadka = () => {
                     </IconWrapper>
                 </BottomIcons>
 
-                <PromoHeroMobile />
-                <Block>
-                    <PromoHeroNew />
-                </Block>
-
-                <div id="projectStructure1" />
-                <ProjectStructureNew />
+                <PromoHeroMobile3d />
+                <Project3DPosadka />
+                <Advantages3D />
                 <CommunicationWrapper>
                     <ContainerStyle columns={'1fr'} tabletColumns={'1fr'}>
                         <ButtonWithModal
@@ -416,8 +405,8 @@ const Posadka = () => {
                             placeholder={t('connection.placeholder')}
                             submitLabel={t('connection.submitLabel')}
                             tracking={{
-                                conversionType: 'CallbackFromPosadkaMobile',
-                                eventCategory: 'CallbackFromPosadkaMobile',
+                                conversionType: 'CallbackFromPosadkaMobile3d',
+                                eventCategory: 'CallbackFromPosadkaMobile3d',
                             }}
                         />
                     </ContainerStyle>
@@ -438,11 +427,12 @@ const Posadka = () => {
                             {t('comercialForm.example')}
                         </h3>
                         <h3>
-                            <HandshakeS /> {t('comercialForm.conditions')}
+                            <CubeS />
+                            {t('comercialForm.3d')}
                         </h3>
                     </DivS>
 
-                    <ComercialForm placement="PosadkaMobile" />
+                    <ComercialForm placement="Posadka3dMobile" />
                 </FormColumn>
                 <Footer />
             </Wrap>
@@ -450,10 +440,10 @@ const Posadka = () => {
             <Desktop id="blockWrapper">
                 <Header />
                 <WrapDesktop>
-                    <PromoHeroNew />
+                    <PromoHero3d />
                     <RunningLine inverse>{t('designProject99')}</RunningLine>
-                    <ProjectStructure />
-
+                    <Project3D />
+                    <Advantages3D />
                     <Connection text={t('connection.text')}>
                         <ButtonWithModal
                             modalTitle={t('connection.modalTitle')}
@@ -462,8 +452,8 @@ const Posadka = () => {
                             placeholder={t('connection.placeholder')}
                             submitLabel={t('connection.submitLabel')}
                             tracking={{
-                                conversionType: 'CallbackFromPosadka',
-                                eventCategory: 'CallbackFromPosadka',
+                                conversionType: 'CallbackFromPosadka3d',
+                                eventCategory: 'CallbackFromPosadka3d',
                             }}
                         />
                     </Connection>
@@ -471,7 +461,7 @@ const Posadka = () => {
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
                     <Faq />
-                    <CommercialProposalFormBlock placement="Posadka" />
+                    <CommercialProposalFormBlock3d placement="Posadka3d" />
                     <Footer />
                 </WrapDesktop>
             </Desktop>

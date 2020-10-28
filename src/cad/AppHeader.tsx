@@ -83,7 +83,7 @@ const AppHeaderContainer = styled.header`
     justify-content: space-between;
     flex-shrink: 0;
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: ${(props) => props.theme.bgColor};
     @media (min-width: ${displayWidth.tablet}) {
         height: 80px;
@@ -91,14 +91,14 @@ const AppHeaderContainer = styled.header`
 `
 
 const Banner = styled(LocalizedLink)`
-    display: flex;
     align-self: center;
-    padding: 6px 10px;
-    height: 26px;
+    padding: 5px 10px 6px;
+    height: 36px;
     background-color: ${accentDark.color};
     color: ${accentDark.bgColor};
     text-align: center;
-    font-size: 8px;
+    font-size: 16px;
+    line-height: 18px;
     text-decoration: none;
     font-weight: 600;
     border-radius: 20px;
@@ -106,13 +106,20 @@ const Banner = styled(LocalizedLink)`
     &:hover {
         background-color: ${accentDark.bgColorHover};
     }
+    p {
+        margin: 0 auto;
+        text-align: center;
+    }
+    @media (max-width: 350px) {
+        font-size: 10px;
+    }
     @media (min-width: ${displayWidth.tablet}) {
+        display: flex;
         padding: 16px 40px;
         margin: 12px;
-        font-size: 16px;
-        font-style: normal;
+        font-size: 26px;
         font-weight: 700;
-        line-height: 24px;
+        line-height: 30px;
         letter-spacing: 0px;
         text-align: center;
         border-radius: 32px;
@@ -151,7 +158,10 @@ export const AppHeader = ({
                 <LogoSvg />
             </Logo>
 
-            <Banner to={'/promo'}>{t('Promo')}</Banner>
+            <Banner to={'/promo'}>
+                <p>{t('promoRaw')}</p>
+                <p> {t('designProject99')}</p>
+            </Banner>
 
             <ButtonArea>
                 {stateElements && stateElements.length !== 0 && (

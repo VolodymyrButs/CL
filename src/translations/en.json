@@ -2,6 +2,7 @@
     "home": "Home",
     "works": "Works",
     "promo": "Promotion $99",
+    "promoRaw": "Sale !",
     "services": "Services",
     "wiki": "Wiki",
     "callUs": "Call Us \u2005 Call Us \u2005 Call Us \u2005 Call Us",
@@ -13,8 +14,9 @@
     "callback": "Callback",
     "goBack": "Go back",
     "learnMore": "Learn more",
-    "designProject99": "Design project - $99  \u2005 \u2005",
+    "designProject99": "\u2005 Design project - $99  \u2005 ",
     "send": "Send",
+    "sendAsk": "Send request",
     "name": "Name",
     "phone": "Phone",
     "email": "E-mail",
@@ -30,10 +32,12 @@
     "homeType": {
         "flat": "Apartment",
         "house": "House, townhouse, cottage",
-        "comercialBuilding": "Non-residential premises"
+        "comercialBuilding": "Non-residential premises",
+        "3d": "Link to sample 3D design online"
     },
     "homeTypeQuestion": "Room type",
     "roomSize": "Room size",
+    "3dDesignFlat": "3D Apartment Design",
     "availabilityDrawings": "Dimensional drawing of the apartment",
     "hasDrawing": "Measured the room and transferred it to a computer program",
     "noDrawing": "I didn't measure the premises, there is a plan from the developer",
