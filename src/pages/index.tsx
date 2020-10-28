@@ -8,6 +8,7 @@ import { Layout } from 'layout/Layout'
 import { RunningLine } from 'components/RunningLine'
 import { useTranslation } from 'react-i18next'
 
+
 const pageMetadata = {
     uk: {
         title:
