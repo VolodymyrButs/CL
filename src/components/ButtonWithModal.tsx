@@ -33,6 +33,7 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    overflow-y: auto;
     @media (min-width: ${displayWidth.tablet}) {
         align-items: flex-start;
         justify-content: space-around;

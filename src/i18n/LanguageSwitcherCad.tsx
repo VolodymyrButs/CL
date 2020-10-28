@@ -128,7 +128,7 @@ const LangItem = styled.button<{ open: boolean }>`
 const Wrapper = styled.div<{ open: boolean }>`
     position: absolute;
     left: 0;
-    top: 49px;
+    top: 59px;
     width: ${headerHeight.cadMobile};
     display: flex;
     flex-direction: column;
