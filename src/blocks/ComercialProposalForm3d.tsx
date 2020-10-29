@@ -48,6 +48,7 @@ const FormTitle = styled.div<{ text?: boolean }>`
 `
 const svgStyle = css`
     width: 20px;
+    height: 20px;
     min-width: 20px;
     margin-right: 10px;
 `

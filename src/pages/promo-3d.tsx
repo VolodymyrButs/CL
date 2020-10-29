@@ -292,7 +292,7 @@ const FormTitle = styled.div<{ text?: boolean }>`
     }
 `
 
-const Posadka = () => {
+const Posadka3d = () => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
@@ -444,7 +444,7 @@ const Posadka = () => {
                     <RunningLine inverse>{t('designProject99')}</RunningLine>
                     <Project3D />
                     <Advantages3D />
-                    <Connection text={t('connection.text')}>
+                    <Connection text={t('connection.text3d')}>
                         <ButtonWithModal
                             modalTitle={t('connection.modalTitle')}
                             modalDescription={t('connection.modalDescription')}
@@ -469,4 +469,4 @@ const Posadka = () => {
     )
 }
 
-export default Posadka
+export default Posadka3d
