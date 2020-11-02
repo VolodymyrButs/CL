@@ -129,7 +129,7 @@ export const DefaultFormHero = ({
             allImageSharp {
                 edges {
                     node {
-                        fluid(quality: 100) {
+                        fluid(srcSetBreakpoints: [400]) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
@@ -154,7 +154,7 @@ export const DefaultFormHero = ({
             }
         }
     `)
-    const imageFluid = getImageByImageName(data.allImageSharp, 'fikus.png')
+    const imageFluid = getImageByImageName(data.allImageSharp, 'fikus.webp')
     const formYaml = getDataByLanguage(data.allFormYaml, i18n.language)
     const { titleMobile, titleDesktop, description, price } = formYaml
     return (

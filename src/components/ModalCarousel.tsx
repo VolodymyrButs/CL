@@ -10,12 +10,22 @@ import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 
 const ImageModal = styled(Img)<{ fluid: FluidObject }>`
     height: 90vh;
+    @media (min-width: ${displayWidth.desktop}) {
+        height: 100%;
+    }
 `
 const SliderStyled = styled(Slider)`
+    height: 100%;
     .slick-list {
+        height: 100%;
         margin: 0 -10px;
         @media (min-width: ${displayWidth.tablet}) {
             margin: 0 -10px;
+        }
+        @media (min-width: ${displayWidth.desktop}) {
+            div {
+                height: 100%;
+            }
         }
     }
     img {

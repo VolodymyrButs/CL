@@ -90,7 +90,7 @@ export const WorksProjectItem = ({
             allImageSharp {
                 edges {
                     node {
-                        fluid(quality: 100) {
+                        fluid(srcSetBreakpoints: [400]) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

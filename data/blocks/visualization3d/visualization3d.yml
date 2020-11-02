@@ -1,13 +1,13 @@
 images:
-  - image: IMG-6305d3364e6bf43a485fe9b6a61e344c-V.jpg
-  - image: IMG-c084dbe2efd99b9257b6e403f75ed1df-V.jpg
-  - image: visualization.png
-  - image: v.png
-  - image: v2.png
+  - image: IMG-6305d3364e6bf43a485fe9b6a61e344c-V.webp
+  - image: IMG-c084dbe2efd99b9257b6e403f75ed1df-V.webp
+  - image: visualization.webp
+  - image: v.webp
+  - image: v2.webp
 mobileImages:
-  - image: mobileVisualization3d2.png
-  - image: mobileVisualization3d1.png
-  - image: mobileVisualization3d4.png
-  - image: mobileVisualization3d3.png
-  - image: mobileVisualization3d6.png
-  - image: mobileVisualization3d5.png
+  - image: mobileVisualization3d2.webp
+  - image: mobileVisualization3d1.webp
+  - image: mobileVisualization3d4.webp
+  - image: mobileVisualization3d3.webp
+  - image: mobileVisualization3d6.webp
+  - image: mobileVisualization3d5.webp

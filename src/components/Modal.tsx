@@ -24,11 +24,11 @@ const ModalWindow = styled.div<{ image: boolean }>`
     z-index: 40;
     ${({ image }) =>
         image
-            ? 'padding: 0;background-color: transparent;border: none;width:90%;max-width: 90%;'
-            : `padding: 40px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};`};
+            ? 'padding: 0;background-color: transparent;border: none;width:90%;max-width: 90%;overflow: none;'
+            : `padding: 40px ;background-color: ${colors.white}; border: 1px solid ${colors.dark};overflow-y: auto;`};
 
     box-sizing: border-box;
-    overflow-y: auto;
+    justify-content: center;
     @media (min-width: ${displayWidth.tablet}) {
         max-width: 70%;
         ${({ image }) => image && ` max-width: 90%;`};
@@ -38,12 +38,11 @@ const ModalWindow = styled.div<{ image: boolean }>`
         width: 80%;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        max-height: 90%;
+        ${({ image }) => (image ? `height: 100%;` : `max-height: 90%;`)};
     }
     @media (orientation: landscape) and (max-height: 700px) {
         padding: 50px 70px;
-        overflow-y: auto;
-        justify-content: flex-start;
+        justify-content: center;
     }
 `
 const CloseIconStyled = styled(CloseIcon)<{ $image: boolean }>`

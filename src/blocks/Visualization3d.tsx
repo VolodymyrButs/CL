@@ -17,6 +17,7 @@ import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
 import { sendEvent } from 'tracking'
+import { imagesDataProp } from 'pages/promo'
 
 const Visualization3dWrapper = styled.div`
     display: flex;
@@ -109,25 +110,16 @@ const MobileWrapper = styled.div`
     }
 `
 
-export const Visualization3d = () => {
+export const Visualization3d = ({
+    imagesData,
+    notButton,
+}: {
+    imagesData: imagesDataProp
+    notButton?: boolean
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                        parent {
-                            ... on File {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
             allVisualization3DYaml {
                 edges {
                     node {
@@ -178,18 +170,20 @@ export const Visualization3d = () => {
                 <HeroColumn>
                     <Title>{title}</Title>
                     <SubTitle>{subTitle}</SubTitle>
-                    <LocalizedLinkStyled
-                        to={'/promo/#visualization3dAdvantages'}
-                        onClick={() => {
-                            sendEvent('Click', {
-                                eventCategory: 'ShowMoreButton',
-                                placement: 'Vizualization3d',
-                                target: 'AdvantagesVizualization',
-                            })
-                        }}
-                    >
-                        <ButtonStyled>{buttonText}</ButtonStyled>
-                    </LocalizedLinkStyled>
+                    {!notButton && (
+                        <LocalizedLinkStyled
+                            to={'/promo/#visualization3dAdvantages'}
+                            onClick={() => {
+                                sendEvent('Click', {
+                                    eventCategory: 'ShowMoreButton',
+                                    placement: 'Vizualization3d',
+                                    target: 'AdvantagesVizualization',
+                                })
+                            }}
+                        >
+                            <ButtonStyled>{buttonText}</ButtonStyled>
+                        </LocalizedLinkStyled>
+                    )}
                     <JumpingArrow />
                 </HeroColumn>
                 <DesctopWrapper>
@@ -197,7 +191,7 @@ export const Visualization3d = () => {
                         {commonImages.images.map(
                             (item: { image: string }, index: number) => {
                                 const ImageNode = getImageByImageName(
-                                    data.allImageSharp,
+                                    imagesData.allImageSharp,
                                     item.image
                                 )
 
@@ -221,7 +215,7 @@ export const Visualization3d = () => {
                         {commonImages.mobileImages.map(
                             (item: { image: string }, index: number) => {
                                 const ImageNode = getImageByImageName(
-                                    data.allImageSharp,
+                                    imagesData.allImageSharp,
                                     item.image
                                 )
 

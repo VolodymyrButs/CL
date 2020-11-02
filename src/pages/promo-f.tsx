@@ -43,6 +43,8 @@ import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { Connection } from 'blocks/Connection'
 import { ProjectStructure } from 'blocks/ProjectStructure'
 import { Header } from 'blocks/Header/Header'
+import { graphql } from 'gatsby'
+import { imagesDataProp } from './promo'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -299,7 +301,7 @@ const FormTitle = styled.div<{ text?: boolean }>`
     }
 `
 
-const Posadka = () => {
+const Posadka = ({ data }: { data: imagesDataProp }) => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
@@ -402,11 +404,11 @@ const Posadka = () => {
 
                 <PromoHeroMobile />
                 <Block>
-                    <PromoHeroNew />
+                    <PromoHeroNew imagesData={data} />
                 </Block>
 
                 <div id="projectStructure1" />
-                <ProjectStructureNew />
+                <ProjectStructureNew imagesData={data} />
                 <CommunicationWrapper>
                     <ContainerStyle columns={'1fr'} tabletColumns={'1fr'}>
                         <ButtonWithModal
@@ -425,7 +427,7 @@ const Posadka = () => {
 
                 <Reviews />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
-                <Faq />
+                <Faq imagesData={data} />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
 
@@ -450,9 +452,9 @@ const Posadka = () => {
             <Desktop id="blockWrapper">
                 <Header />
                 <WrapDesktop>
-                    <PromoHeroNew />
+                    <PromoHeroNew imagesData={data} />
                     <RunningLine inverse>{t('designProject99')}</RunningLine>
-                    <ProjectStructure />
+                    <ProjectStructure imagesData={data} />
 
                     <Connection text={t('connection.text')}>
                         <ButtonWithModal
@@ -470,7 +472,7 @@ const Posadka = () => {
 
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
-                    <Faq />
+                    <Faq imagesData={data} />
                     <CommercialProposalFormBlock placement="Posadka" />
                     <Footer />
                 </WrapDesktop>
@@ -480,3 +482,23 @@ const Posadka = () => {
 }
 
 export default Posadka
+
+export const query = graphql`
+    query {
+        allImageSharp {
+            edges {
+                node {
+                    fluid(srcSetBreakpoints: [400]) {
+                        originalName
+                        ...GatsbyImageSharpFluid
+                    }
+                    parent {
+                        ... on File {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+    }
+`

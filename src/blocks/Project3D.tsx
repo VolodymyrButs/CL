@@ -15,6 +15,8 @@ import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
 import { sendEvent } from 'tracking'
+import { imagesDataProp } from 'pages/promo'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const Visualization3dWrapper = styled.div`
     display: flex;
@@ -97,21 +99,10 @@ const ButtonStyled = styled(Button)`
     }
 `
 
-export const Project3D = () => {
+export const Project3D = ({ imagesData }: { imagesData: imagesDataProp }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp(
-                filter: { fluid: { originalName: { eq: "picture3D.png" } } }
-            ) {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allProject3DYaml {
                 edges {
                     node {
@@ -132,7 +123,11 @@ export const Project3D = () => {
         data.allProject3DYaml,
         i18n.language
     )
-    const image = data.allImageSharp.edges[0].node
+    const image = getImageByImageName(
+        imagesData.allImageSharp,
+        'picture3D.webp'
+    )
+
     const { title, subTitle, buttonText } = project3DYaml
 
     return (

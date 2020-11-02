@@ -13,6 +13,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
+import { imagesDataProp } from 'pages/promo'
 
 const ProjectStructureWrapper = styled.div`
     display: flex;
@@ -112,25 +113,16 @@ const MobileImage = styled(Img)<{ fluid: FluidObject }>`
     }
 `
 
-interface IProjectStructureProps {
-    id?: string
-}
-export const ProjectStructureNew: React.FC<IProjectStructureProps> = ({
+export const ProjectStructureNew = ({
+    imagesData,
     id,
+}: {
+    imagesData: imagesDataProp
+    id?: string
 }) => {
     const { i18n, t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allProjectStructure1Yaml {
                 edges {
                     node {
@@ -159,8 +151,8 @@ export const ProjectStructureNew: React.FC<IProjectStructureProps> = ({
     const { items, price } = projectStructureData
 
     const imageSofaMobile = getImageByImageName(
-        data.allImageSharp,
-        'sofaMobile3.png'
+        imagesData.allImageSharp,
+        'sofaMobile3.webp'
     )
 
     return (

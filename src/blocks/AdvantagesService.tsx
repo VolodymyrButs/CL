@@ -11,6 +11,7 @@ import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { imagesDataProp } from 'pages/promo'
 
 const VisualizationAdvantagesWrapper = styled.div`
     display: flex;
@@ -65,20 +66,14 @@ const RightSidebar = styled(LeftSidebar)`
         background-color: ${colors.white};
     }
 `
-export const AdvantagesServices = () => {
+export const AdvantagesServices = ({
+    imagesData,
+}: {
+    imagesData: imagesDataProp
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allAdvantagesServiceYaml {
                 edges {
                     node {
@@ -102,7 +97,10 @@ export const AdvantagesServices = () => {
         i18n.language
     )
     const { title, items } = advantagesServiceData
-    const imageFluid = getImageByImageName(data.allImageSharp, 'collage.png')
+    const imageFluid = getImageByImageName(
+        imagesData.allImageSharp,
+        'collage.webp'
+    )
     return (
         <VisualizationAdvantagesWrapper>
             <LeftSidebar />

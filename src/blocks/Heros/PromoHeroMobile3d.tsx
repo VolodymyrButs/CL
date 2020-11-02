@@ -175,46 +175,6 @@ export const PromoHeroMobile3d = () => {
                     <Text2>{t('designProject99').repeat(20)}</Text2>
                 </Wrapper1>
             </RunningTextContainer>
-
-            {/* <FormColumn>
-                <ContainerStyled columns={'1fr'}>
-                    <PromoHeroColumn>
-                        <Form
-                            buttonText={t('send')}
-                            onFormSubmit={handleSubmitStatus}
-                            formSendStatus={formSendStatus}
-                            onFormSendStart={handleFormSendStart}
-                            {...tracking}
-                        >
-                            {({ register, errors }: IChildrenProps) => (
-                                <>
-                                    <FormTitle>
-                                        {t('defaultFormTitle')}
-                                    </FormTitle>
-                                    <SubTitle>{t('weSendToYou')}</SubTitle>
-                                    <InputBlock>
-                                        <PhoneInput
-                                            ref={register({
-                                                minLength: 18,
-                                                required: true,
-                                            })}
-                                            err={errors.phone}
-                                        />
-                                        <EmailInput
-                                            ref={register}
-                                            err={errors.email}
-                                        />
-                                        <MessageInput
-                                            ref={register}
-                                            err={errors.message}
-                                        />
-                                    </InputBlock>
-                                </>
-                            )}
-                        </Form>
-                    </PromoHeroColumn>
-                </ContainerStyled>
-            </FormColumn> */}
         </Wrapper>
     )
 }
