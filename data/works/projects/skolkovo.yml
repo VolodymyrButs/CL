@@ -1,13 +1,13 @@
 name: ‘a’
 previewImage:
-  landscape: 'skolkovoLandscape.png'
-  portrait: 'skolkovoPortrait.jpg'
+  landscape: 'skolkovoLandscape.webp'
+  portrait: 'skolkovoPortrait.webp'
 uk:
-  name: Сколково
+  name: 'Інтер`єр в стилі contemporary: розкішна простота'
   description: Ця історія про те, як ретельно продумана задумка повністю відповідає чудовому остаточному результату!
 ru:
-  name: Сколково
+  name: 'Интерьер в стиле contemporary : роскошная простота'
   description: Эта история про то, как тщательно продуманная задумка полностью соответстует превосходному окончательному результату!
 en:
-  name: Skolkovo
+  name: 'Contemporary interior: luxurious simplicity'
   description: This story is about how a carefully thought-out idea perfectly matches the perfect final result!

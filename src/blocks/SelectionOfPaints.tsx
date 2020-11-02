@@ -15,6 +15,8 @@ import { Button } from 'components/Button'
 import { JumpingArrow } from 'components/JumpingArrow'
 import { indent } from 'styles/indent'
 import { sendEvent } from 'tracking'
+import { imagesDataProp } from 'pages/promo'
+import { getImageByImageName } from 'utils/getImageByImageName'
 
 const SelectionOfPaintWrapper = styled.div`
     display: flex;
@@ -91,23 +93,14 @@ const ButtonStyled = styled(Button)`
     }
 `
 
-export const SelectionOfPaints = () => {
+export const SelectionOfPaints = ({
+    imagesData,
+}: {
+    imagesData: imagesDataProp
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp(
-                filter: {
-                    fluid: { originalName: { eq: "colorsAndTextur.png" } }
-                }
-            ) {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allSelectionOfPaintYaml {
                 edges {
                     node {
@@ -130,8 +123,10 @@ export const SelectionOfPaints = () => {
     )
     const { title, subTitle, buttonText } = selectionOfPaintYaml
 
-    const image = data.allImageSharp.edges[0].node
-
+    const image = getImageByImageName(
+        imagesData.allImageSharp,
+        'colorsAndTextur.webp'
+    )
     return (
         <SelectionOfPaintWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>

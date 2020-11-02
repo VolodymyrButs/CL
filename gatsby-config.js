@@ -83,9 +83,14 @@ module.exports = {
         },
         `gatsby-transformer-remark`,
         'gatsby-transformer-sharp',
-        'gatsby-plugin-sharp',
         'gatsby-plugin-typescript',
         'gatsby-plugin-styled-components',
+        {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+                pngCompressionSpeed: 10,
+            },
+        },
         {
             resolve: `gatsby-plugin-prefetch-google-fonts`,
             options: {

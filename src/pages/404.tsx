@@ -114,7 +114,7 @@ const NotFoundPage = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid(quality: 100) {
+                        fluid(srcSetBreakpoints: [400]) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
@@ -123,7 +123,7 @@ const NotFoundPage = () => {
             }
         }
     `)
-    const imageSofa = getImageByImageName(data.allImageSharp, 'sofa.png')
+    const imageSofa = getImageByImageName(data.allImageSharp, 'sofa.webp')
     const [noHistory, setNoHistori] = useState(true)
     useEffect(() => {
         window.history.length === 1 && setNoHistori(false)

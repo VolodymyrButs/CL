@@ -20,6 +20,7 @@ import { indent } from 'styles/indent'
 import { TitleH1 } from 'components/TitleComponent'
 import { useTranslation } from 'react-i18next'
 import { sendEvent } from 'tracking'
+import { imagesDataProp } from 'pages/promo'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -214,20 +215,10 @@ const For = styled.span`
         position: relative;
     }
 `
-export const PromoHero = () => {
+export const PromoHero = ({ imagesData }: { imagesData: imagesDataProp }) => {
     const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allPromoHeroYaml {
                 edges {
                     node {
@@ -252,11 +243,11 @@ export const PromoHero = () => {
     )
 
     const imageSofa = getImageByImageName(
-        data.allImageSharp,
+        imagesData.allImageSharp,
         promoHeroData.image
     )
     const imageSofaMobile = getImageByImageName(
-        data.allImageSharp,
+        imagesData.allImageSharp,
         promoHeroData.imageMobile
     )
     return (

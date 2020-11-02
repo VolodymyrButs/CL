@@ -1,7 +1,7 @@
 name: ‘g’
 previewImage:
-  landscape: 'lesyaLandscape.png'
-  portrait: 'lesyaPortrait.jpg'
+  landscape: 'lesyaLandscape.webp'
+  portrait: 'lesyaPortrait.webp'
 uk:
   name: Smart квартира на 30 кв.метрах
   description: Чи може бути квартира на 30 квадратних метрах повноцінною? Ще як може, переконайтеся самі! Кожен сантиметр було враховано, а відсутність зайвої площі скомпенсована оригінальними рішеннями при проектуванні меблів.

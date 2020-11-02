@@ -55,7 +55,8 @@ const ButtonStyled = styled(Button)`
         width: 250px;
     }
     @media (min-width: ${displayWidth.tablet}) {
-        width: 220px;
+        min-width: 220px;
+        width: 230px;
         margin: 30px 0;
     }
     @media (min-width: ${displayWidth.desktop}) {

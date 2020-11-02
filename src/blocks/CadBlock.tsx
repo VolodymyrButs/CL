@@ -158,7 +158,7 @@ export const Cad = () => {
             allImageSharp {
                 edges {
                     node {
-                        fluid(quality: 100) {
+                        fluid(srcSetBreakpoints: [400]) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
@@ -185,7 +185,7 @@ export const Cad = () => {
     `)
     const cadYaml = getDataByLanguage(data.allCadYaml, i18n.language)
     const { title, subTitle, /* video, */ instruction, buttonText } = cadYaml
-    const imageFluid = getImageByImageName(data.allImageSharp, 'cactus.png')
+    const imageFluid = getImageByImageName(data.allImageSharp, 'cactus.webp')
     return (
         <CadWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>

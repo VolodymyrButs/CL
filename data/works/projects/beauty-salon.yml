@@ -1,7 +1,7 @@
 name: ‘i’
 previewImage:
-  landscape: 'beautysalonLandscape.png'
-  portrait: 'beautysalonPortrait.jpg'
+  landscape: 'beautysalonLandscape.webp'
+  portrait: 'beautysalonPortrait.webp'
 uk:
   name: Beauty coworking в стилi лофт
   description: Для основи цього інтер'єру була обрана індустріальна стилістика з простими формами, металевими конструкціями, матеріалами під бетон і цегла, ну а деталі яскраво-зеленого, яблучного і смарагдових відтінків додали життєствердного контрасту.

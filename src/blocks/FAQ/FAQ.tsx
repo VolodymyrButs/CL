@@ -16,6 +16,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { sendEvent } from 'tracking'
+import { imagesDataProp } from 'pages/promo'
 
 const FaqWrapper = styled.div`
     display: flex;
@@ -123,22 +124,12 @@ export interface IFAQItem {
     name: number
 }
 
-export const Faq = () => {
+export const Faq = ({ imagesData }: { imagesData: imagesDataProp }) => {
     const { i18n } = useTranslation()
     const [showFaqListMobile, setShowFaqListMobile] = useState(false)
     const [isAnswerVisible, setIsAnswerVisible] = useState(-1)
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allFaqYaml {
                 edges {
                     node {
@@ -171,7 +162,7 @@ export const Faq = () => {
         questions,
     } = getDataByLanguage(data.allFaqYaml, i18n.language)
 
-    const imageLamp = getImageByImageName(data.allImageSharp, image)
+    const imageLamp = getImageByImageName(imagesData.allImageSharp, image)
 
     const faqData = questions.map((item: IFAQItem) => {
         return {

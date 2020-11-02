@@ -13,6 +13,7 @@ import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { imagesDataProp } from 'pages/promo'
 
 const Advantages3DWrapper = styled.div`
     display: flex;
@@ -96,7 +97,11 @@ const DesktopImage = styled(Img)<{ fluid: FluidObject }>`
         overflow: hidden;
     }
 `
-export const Advantages3D = () => {
+export const Advantages3D = ({
+    imagesData,
+}: {
+    imagesData: imagesDataProp
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -116,16 +121,6 @@ export const Advantages3D = () => {
                     }
                 }
             }
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
         }
     `)
     const advantages3DData = getDataByLanguage(
@@ -134,10 +129,13 @@ export const Advantages3D = () => {
     )
     const { title, items } = advantages3DData
     const proposalImage = getImageByImageName(
-        data.allImageSharp,
-        'comercialProposalImage.png'
+        imagesData.allImageSharp,
+        'comercialProposalImage.webp'
     )
-    const imageFluid = getImageByImageName(data.allImageSharp, 'fikus.png')
+    const imageFluid = getImageByImageName(
+        imagesData.allImageSharp,
+        'fikus.webp'
+    )
     return (
         <Advantages3DWrapper>
             <LeftSidebar />

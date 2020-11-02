@@ -11,6 +11,7 @@ import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
+import { imagesDataProp } from 'pages/promo'
 
 const VisualizationAdvantagesWrapper = styled.div`
     display: flex;
@@ -61,20 +62,14 @@ const RightSidebar = styled(LeftSidebar)`
         background-color: ${colors.white};
     }
 `
-export const VisualizationAdvantages = () => {
+export const VisualizationAdvantages = ({
+    imagesData,
+}: {
+    imagesData: imagesDataProp
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allVisualizationAdvantagesYaml {
                 edges {
                     node {
@@ -98,7 +93,10 @@ export const VisualizationAdvantages = () => {
         i18n.language
     )
     const { title, items } = projectStructureData
-    const imageFluid = getImageByImageName(data.allImageSharp, 'carpet.png')
+    const imageFluid = getImageByImageName(
+        imagesData.allImageSharp,
+        'carpet.webp'
+    )
     return (
         <VisualizationAdvantagesWrapper>
             <LeftSidebar />

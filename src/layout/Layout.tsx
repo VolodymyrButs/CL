@@ -188,7 +188,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                             key={lang}
                             rel="alternate"
                             hrefLang={lang}
-                            href={getPagePath(lang)}
+                            href={
+                                `https://clearline.com.ua/new${ 
+                                getPagePath(lang)}`
+                            }
                         />
                     )
                 })}
@@ -196,14 +199,14 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     {`{
                         "@context": "https://schema.org/",
                             "@type": "Organization",
-                            "url": "https://clearline.gitlab.io/cl-website/",
-                            "logo": "https://clearline.gitlab.io/cl-website/email-logo.jpg",
+                            "url": "https://clearline.com.ua/new/",
+                            "logo": "https://clearline.com.ua/new/email-logo.jpg",
                             "geo": {
                                     "@type": "GeoCoordinates",
                                     "latitude": 50.440771,
                                     "longitude": 30.507301
                             },
-                            "image": "https://clearline.gitlab.io/cl-website/email-logo.jpg",
+                            "image": "https://clearline.com.ua/new/email-logo.jpg",
                             "name": "${companyName}",
                             "telephone": "${contactInformation.primaryPhone}",
                             "address" :{

@@ -21,6 +21,7 @@ import { Form, IChildrenProps } from 'components/form/Form'
 import { PhoneInput } from 'components/form/PhoneInput'
 import { EmailInput } from 'components/form/EmailInput'
 import { MessageInput } from 'components/form/MessageInput'
+import { imagesDataProp } from 'pages/promo'
 
 const PromoHeroWraper = styled.div`
     display: flex;
@@ -247,20 +248,14 @@ const FormTitle = styled.div`
         margin: 50px 0 10px;
     }
 `
-export const PromoHeroNew = () => {
+export const PromoHeroNew = ({
+    imagesData,
+}: {
+    imagesData: imagesDataProp
+}) => {
     const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allPromoHeroYaml {
                 edges {
                     node {
@@ -285,7 +280,7 @@ export const PromoHeroNew = () => {
     )
 
     const imageSofa = getImageByImageName(
-        data.allImageSharp,
+        imagesData.allImageSharp,
         promoHeroData.image
     )
     const {

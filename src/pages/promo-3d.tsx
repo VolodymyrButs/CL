@@ -42,6 +42,8 @@ import { PromoHero3d } from 'blocks/Heros/PromoHero3d'
 import { PromoHeroMobile3d } from 'blocks/Heros/PromoHeroMobile3d'
 import { CommercialProposalFormBlock3d } from 'blocks/ComercialProposalForm3d'
 import { Project3DPosadka } from 'blocks/Project3DPosadka'
+import { graphql } from 'gatsby'
+import { imagesDataProp } from './promo'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -292,7 +294,7 @@ const FormTitle = styled.div<{ text?: boolean }>`
     }
 `
 
-const Posadka3d = () => {
+const Posadka3d = ({ data }: { data: imagesDataProp }) => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
@@ -394,8 +396,8 @@ const Posadka3d = () => {
                 </BottomIcons>
 
                 <PromoHeroMobile3d />
-                <Project3DPosadka />
-                <Advantages3D />
+                <Project3DPosadka imagesData={data} />
+                <Advantages3D imagesData={data} />
                 <CommunicationWrapper>
                     <ContainerStyle columns={'1fr'} tabletColumns={'1fr'}>
                         <ButtonWithModal
@@ -414,7 +416,7 @@ const Posadka3d = () => {
 
                 <Reviews />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
-                <Faq />
+                <Faq imagesData={data} />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
 
@@ -440,10 +442,10 @@ const Posadka3d = () => {
             <Desktop id="blockWrapper">
                 <Header />
                 <WrapDesktop>
-                    <PromoHero3d />
+                    <PromoHero3d imagesData={data} />
                     <RunningLine inverse>{t('designProject99')}</RunningLine>
-                    <Project3D />
-                    <Advantages3D />
+                    <Project3D imagesData={data} />
+                    <Advantages3D imagesData={data} />
                     <Connection text={t('connection.text3d')}>
                         <ButtonWithModal
                             modalTitle={t('connection.modalTitle')}
@@ -460,7 +462,7 @@ const Posadka3d = () => {
 
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
-                    <Faq />
+                    <Faq imagesData={data} />
                     <CommercialProposalFormBlock3d placement="Posadka3d" />
                     <Footer />
                 </WrapDesktop>
@@ -470,3 +472,23 @@ const Posadka3d = () => {
 }
 
 export default Posadka3d
+
+export const query = graphql`
+    query {
+        allImageSharp {
+            edges {
+                node {
+                    fluid(srcSetBreakpoints: [400]) {
+                        originalName
+                        ...GatsbyImageSharpFluid
+                    }
+                    parent {
+                        ... on File {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+    }
+`

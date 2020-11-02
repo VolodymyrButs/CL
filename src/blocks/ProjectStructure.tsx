@@ -14,6 +14,7 @@ import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { getImageByImageName } from 'utils/getImageByImageName'
 import { indent } from 'styles/indent'
+import { imagesDataProp } from 'pages/promo'
 
 const ProjectStructureWrapper = styled.div`
     display: flex;
@@ -147,23 +148,17 @@ const TitleStyled = styled(Title)`
         margin-left: ${indent.heroColumnDesktop};
     }
 `
-interface IProjectStructureProps {
+
+export const ProjectStructure = ({
+    imagesData,
+    id,
+}: {
+    imagesData: imagesDataProp
     id?: string
-}
-export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
+}) => {
     const { i18n, t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allImageSharp {
-                edges {
-                    node {
-                        fluid(quality: 100) {
-                            originalName
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
-            }
             allProjectStructureYaml {
                 edges {
                     node {
@@ -190,7 +185,7 @@ export const ProjectStructure: React.FC<IProjectStructureProps> = ({ id }) => {
     )
     const { title, items, price } = projectStructureData
     const imageTable = getImageByImageName(
-        data.allImageSharp,
+        imagesData.allImageSharp,
         projectStructureData.image
     )
 
