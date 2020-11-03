@@ -30,7 +30,11 @@ module.exports = {
         {
             resolve: `gatsby-plugin-google-gtag`,
             options: {
-                trackingIds: [process.env.GA_ID, process.env.GADS_ID],
+                trackingIds: [
+                    process.env.GA_ID,
+                    process.env.GADS_ID,
+                    process.env.GA4_ID,
+                ],
                 pluginConfig: {
                     head: true,
                 },
@@ -105,14 +109,15 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
-                name: 'gatsby-starter-default',
-                short_name: 'starter', // eslint-disable-line camelcase
-                start_url: '/', // eslint-disable-line camelcase
+                name: 'clearline',
+                short_name: 'CL', // eslint-disable-line camelcase
+                start_url: process.env.SITE_ADDRESS, // eslint-disable-line camelcase
                 background_color: '#663399', // eslint-disable-line camelcase
                 theme_color: '#663399', // eslint-disable-line camelcase
                 display: 'minimal-ui',
                 icon: `static/favicon.png`,
             },
         },
+        'gatsby-plugin-offline',
     ],
 }
