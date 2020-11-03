@@ -3,11 +3,11 @@ previewImage:
   landscape: 'skolkovoLandscape.webp'
   portrait: 'skolkovoPortrait.webp'
 uk:
-  name: 'Інтер`єр в стилі contemporary: розкішна простота'
+  name: 'Інтер`єр в стилі contemporary'
   description: Ця історія про те, як ретельно продумана задумка повністю відповідає чудовому остаточному результату!
 ru:
-  name: 'Интерьер в стиле contemporary : роскошная простота'
+  name: 'Интерьер в стиле contemporary'
   description: Эта история про то, как тщательно продуманная задумка полностью соответстует превосходному окончательному результату!
 en:
-  name: 'Contemporary interior: luxurious simplicity'
+  name: 'Contemporary interior'
   description: This story is about how a carefully thought-out idea perfectly matches the perfect final result!

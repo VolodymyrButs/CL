@@ -1,0 +1,13 @@
+name: ‘m’
+previewImage:
+  landscape: 'one_bathroom5.webp'
+  portrait: 'one_bathroom2.webp'
+uk:
+  name: Однокімнатна квартира на 38 метрах
+  description: Головним завданням у створенні цього інтер'єру було облаштування зручного спального місця з робочою зоною в нейтральних приглушених відтінках.
+ru:
+  name: Однокомнатная квартира на 38 метрах
+  description: Главной задачей в создании этого интерьера было обустройство удобного спального места с рабочей зоной в нейтральных приглушенных оттенках.
+en:
+  name: Studio apartment at 38 meters
+  description: The main task in creating this interior was the arrangement of a comfortable sleeping place with a working area in neutral muted shades.

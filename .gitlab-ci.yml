@@ -52,6 +52,7 @@ build_prod:
   variables:
     GA_ID: 'UA-48694500-1'
     GADS_ID: 'AW-983170276'
+    GA4_ID: 'G-8783RKEEP7'
     GATSBY_FB_PIXEL_ID: '1561387770623152'
   only:
     refs:
