@@ -44,6 +44,7 @@ const FormTitle = styled.div`
     text-align: center;
     margin: 40px 0 24px;
     @media (min-width: ${displayWidth.tablet}) {
+        font-size: 32px;
         text-align: left;
         margin: 56px 0 24px;
     }
@@ -108,10 +109,12 @@ export const DefaultFormBlock = ({
     withPhoneMobile,
     tracking,
     children = null,
+    textTitle,
 }: {
     withPhoneMobile?: boolean
     tracking: FormTracking
     children?: React.ReactNode
+    textTitle?: boolean
 }) => {
     const { t } = useTranslation()
 
@@ -128,7 +131,11 @@ export const DefaultFormBlock = ({
                 <DefaultFormHero withPhoneMobile={withPhoneMobile} />
                 <FormColumn $size={Boolean(children)}>
                     <Wrap>
-                        <FormTitle>{t('defaultFormTitle')}</FormTitle>
+                        <FormTitle>
+                            {textTitle
+                                ? t('designQuestion')
+                                : t('defaultFormTitle')}
+                        </FormTitle>
                         <Form
                             buttonText={t('send')}
                             onFormSubmit={handleSubmitStatus}

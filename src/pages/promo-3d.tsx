@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { RunningLine } from 'components/RunningLine'
 
@@ -23,7 +23,7 @@ import Whatsapp from 'assets/icons/Whatsapp.svg'
 import { RoundText } from 'components/RoundText'
 import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { useTranslation } from 'react-i18next'
-import { sendConversion, sendEvent } from 'tracking'
+import { sendConversion, sendEvent, gtag } from 'tracking'
 import { PhoneLink } from 'components/PhoneLink'
 import { sendForm } from 'components/form/api'
 import Proposal from 'assets/icons/proposal.svg'
@@ -44,6 +44,7 @@ import { CommercialProposalFormBlock3d } from 'blocks/ComercialProposalForm3d'
 import { Project3DPosadka } from 'blocks/Project3DPosadka'
 import { graphql } from 'gatsby'
 import { imagesDataProp } from './promo'
+import { usePagePath } from 'hooks/usePagePath'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -193,19 +194,17 @@ const IconWrapper = styled.div`
 
 const pageMetadata = {
     uk: {
-        title: 'Дизайн проект квартири за $99',
-        description:
-            "Виконаємо дизайн проект інтер'єру усієї квартири за 99 доларів США",
+        title: 'Дизайн проект квартири в 3D',
+        description: "Виконаємо 3D дизайн проект інтер'єру квартири",
     },
     ru: {
-        title: 'Дизайн проект квартиры за $99',
-        description:
-            'Выполним дизайн проект интерьера всей квартиры за 99 долларов США',
+        title: 'Дизайн проект квартиры в 3D',
+        description: 'Выполним 3D дизайн проект интерьера  квартиры',
     },
     en: {
-        title: 'Apartment design for $99',
+        title: 'Apartment design in 3D',
         description:
-            'We will design the interior project of the entire apartment for 99 US dollars',
+            'We will design the interior project of the entire apartment ',
     },
 }
 
@@ -295,12 +294,137 @@ const FormTitle = styled.div<{ text?: boolean }>`
 `
 
 const Posadka3d = ({ data }: { data: imagesDataProp }) => {
-    const { t } = useTranslation()
+    const { i18n, t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { getPagePath } = usePagePath()
+    const scrolled25Send = useRef(false)
+    const scrolled50Send = useRef(false)
+    const scrolled75Send = useRef(false)
+    const scrolled100Send = useRef(false)
+
+    const pagePath = getPagePath(i18n.language)
+
+    // Reset scroll event when page changes
+    useEffect(() => {
+        scrolled25Send.current = false
+        scrolled50Send.current = false
+        scrolled75Send.current = false
+        scrolled100Send.current = false
+        gtag('config', `${process.env.GA_ID}`, {
+            // eslint-disable-next-line camelcase
+            page_location: document.location,
+        })
+    }, [pagePath])
+
+    const onScroll = () => {
+        const block = document.getElementById('block3d')
+        const scrollPosition = block!.scrollTop
+        const windowHeight = block!.clientHeight
+        const bodyHeight = block!.scrollHeight
+        const blockMod = document.getElementById('wrap')
+        const scrollPositionMob = blockMod!.scrollTop
+        const windowHeightMob = blockMod!.clientHeight
+        const bodyHeightMob = blockMod!.scrollHeight
+        setTimeout(() => {
+            const trackScroll = () => {
+                const scrolledRation = Math.ceil(
+                    ((scrollPosition + windowHeight) / bodyHeight) * 100
+                )
+                if (
+                    block &&
+                    !scrolled100Send!.current &&
+                    scrolledRation >= 100
+                ) {
+                    sendEvent('100', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled100Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled75Send!.current && scrolledRation >= 75) {
+                    sendEvent('75', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled75Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled50Send!.current && scrolledRation >= 50) {
+                    sendEvent('50', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled50Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled25Send!.current && scrolledRation >= 25) {
+                    sendEvent('25', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled25Send!.current = true
+                }
+            }
+            const trackScrollMob = () => {
+                const scrolledRationMob = Math.ceil(
+                    ((scrollPositionMob + windowHeightMob) / bodyHeightMob) *
+                        100
+                )
+                if (
+                    block &&
+                    !scrolled100Send!.current &&
+                    scrolledRationMob >= 100
+                ) {
+                    sendEvent('100', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled100Send!.current = true
+                    return
+                }
+
+                if (
+                    block &&
+                    !scrolled75Send!.current &&
+                    scrolledRationMob >= 75
+                ) {
+                    sendEvent('75', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled75Send!.current = true
+                    return
+                }
+
+                if (
+                    block &&
+                    !scrolled50Send!.current &&
+                    scrolledRationMob >= 50
+                ) {
+                    sendEvent('50', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled50Send!.current = true
+                    return
+                }
+
+                if (
+                    block &&
+                    !scrolled25Send!.current &&
+                    scrolledRationMob >= 25
+                ) {
+                    sendEvent('25', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled25Send!.current = true
+                }
+            }
+            trackScrollMob()
+            trackScroll()
+        }, 700)
+    }
     return (
         <div>
             <HelmetFunc data={pageMetadata} />
-            <Wrap id="wrap">
+            <Wrap id="wrap" onScroll={onScroll}>
                 <MobileHeaderWraper isMenuOpen={isMenuOpen}>
                     <Logo />
                     <BurgerButton
@@ -439,7 +563,7 @@ const Posadka3d = ({ data }: { data: imagesDataProp }) => {
                 <Footer />
             </Wrap>
 
-            <Desktop id="blockWrapper">
+            <Desktop id="block3d" onScroll={onScroll}>
                 <Header />
                 <WrapDesktop>
                     <PromoHero3d imagesData={data} />

@@ -22,11 +22,12 @@ const Wrapper = styled.div`
     }
 `
 
-const PromoHeroWraper = styled.div`
+const PromoHeroWraper = styled.div<{ text?: boolean }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.contact};
+    background-color: ${({ text }) =>
+        text ? backgroundColors.formPromo : backgroundColors.contact};
     border-bottom: 1px solid ${colors.dark};
 `
 
@@ -122,7 +123,7 @@ const Text2 = styled(Text)`
         animation-delay: -120s;
     }
 `
-export const PromoHeroMobile3d = () => {
+export const PromoHeroMobile3d = ({ text }: { text?: boolean }) => {
     const { t } = useTranslation()
 
     const {
@@ -133,10 +134,12 @@ export const PromoHeroMobile3d = () => {
 
     return (
         <Wrapper>
-            <PromoHeroWraper>
+            <PromoHeroWraper text={text}>
                 <ContainerStyled columns={'1fr'}>
                     <PromoHeroColumn>
-                        <FormTitle>{t('writeToUs')}</FormTitle>
+                        <FormTitle>
+                            {text ? t('designQuestion') : t('writeToUs')}
+                        </FormTitle>
                         <Form
                             buttonText={t('send')}
                             onFormSubmit={handleSubmitStatus}
@@ -169,12 +172,14 @@ export const PromoHeroMobile3d = () => {
                     </PromoHeroColumn>
                 </ContainerStyled>
             </PromoHeroWraper>
-            <RunningTextContainer>
-                <Wrapper1>
-                    <Text>{t('designProject99').repeat(20)}</Text>
-                    <Text2>{t('designProject99').repeat(20)}</Text2>
-                </Wrapper1>
-            </RunningTextContainer>
+            {!text && (
+                <RunningTextContainer>
+                    <Wrapper1>
+                        <Text>{t('designProject99').repeat(20)}</Text>
+                        <Text2>{t('designProject99').repeat(20)}</Text2>
+                    </Wrapper1>
+                </RunningTextContainer>
+            )}
         </Wrapper>
     )
 }

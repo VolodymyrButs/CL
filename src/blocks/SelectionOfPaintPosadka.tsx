@@ -77,6 +77,9 @@ const TitleS = styled(Title)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 44px;
     }
 `
 const TitleWrapper = styled.div`
@@ -90,6 +93,7 @@ const TitleWrapper = styled.div`
         display: none;
     }
 `
+
 const TitleStyled = styled(TitleH1)`
     font-size: 36px;
     line-height: 45px;
@@ -103,6 +107,7 @@ const TitleStyled = styled(TitleH1)`
         line-height: 45px;
     }
 `
+
 const Price = styled.span`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
@@ -157,9 +162,7 @@ export const SelectionOfPaintsPosadka = ({
                     <TitleS>{title}</TitleS>
                     <TitleWrapper>
                         <TitleStyled>{t('consultation')}</TitleStyled>
-                        <Price>
-                            450 UAH {t('for')} {t('h')}
-                        </Price>
+                        <Price>{t('for')} 450 UAH</Price>
                     </TitleWrapper>
                     <SubTitle>{subTitle}</SubTitle>
 

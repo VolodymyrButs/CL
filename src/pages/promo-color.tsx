@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { RunningLine } from 'components/RunningLine'
 
-import { Faq } from 'blocks/FAQ/FAQ'
+import { IFAQItem } from 'blocks/FAQ/FAQ'
 
 import { Reviews } from 'blocks/Reviews'
 
@@ -23,26 +23,28 @@ import Whatsapp from 'assets/icons/Whatsapp.svg'
 import { RoundText } from 'components/RoundText'
 import { PhoneSvgAnimated } from 'components/PhoneSvgAnimated'
 import { useTranslation } from 'react-i18next'
-import { sendConversion, sendEvent } from 'tracking'
+
 import { PhoneLink } from 'components/PhoneLink'
 import { sendForm } from 'components/form/api'
-import Proposal from 'assets/icons/proposal.svg'
-import Pensile from 'assets/icons/pensile.svg'
-import Handshake from 'assets/icons/handshake.svg'
-import { ButtonWithModal } from 'components/ButtonWithModal'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Container } from 'components/Container'
-import { ComercialForm } from 'components/form/CommercialForm'
 import { Footer } from 'blocks/Footer'
-import { Connection } from 'blocks/Connection'
 import { Header } from 'blocks/Header/Header'
 import { PromoHeroMobile3d } from 'blocks/Heros/PromoHeroMobile3d'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
 import { SelectionOfPaintsPosadka } from 'blocks/SelectionOfPaintPosadka'
 import { PromoHeroColor } from 'blocks/Heros/PromoHeroColor'
-import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { graphql } from 'gatsby'
-import { imagesDataProp } from './promo'
+import { Button } from 'components/Button'
+import { FAQItem } from 'blocks/FAQ/FAQItem'
+import Chair from 'assets/images/chair.svg'
+import { Title } from 'components/TitleComponent'
+import { getDataByLanguage } from 'utils/getDataByLanguage'
+import { getImageByImageName } from 'utils/getImageByImageName'
+import { sendConversion, sendEvent, gtag } from 'tracking'
+import Img, { FluidObject } from 'gatsby-image'
+import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
+import { usePagePath } from 'hooks/usePagePath'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -189,117 +191,276 @@ const IconWrapper = styled.div`
     justify-content: flex-end;
     padding-right: 13px;
 `
-
-const pageMetadata = {
-    uk: {
-        title: 'Дизайн проект квартири за $99',
-        description:
-            "Виконаємо дизайн проект інтер'єру усієї квартири за 99 доларів США",
-    },
-    ru: {
-        title: 'Дизайн проект квартиры за $99',
-        description:
-            'Выполним дизайн проект интерьера всей квартиры за 99 долларов США',
-    },
-    en: {
-        title: 'Apartment design for $99',
-        description:
-            'We will design the interior project of the entire apartment for 99 US dollars',
-    },
-}
-
-const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
+const FaqWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${(props) =>
-        props.backgroundColors
-            ? props.backgroundColors
-            : backgroundColors.formPromo};
+    background-color: ${backgroundColors.contact};
     position: relative;
-    border-bottom: 1px solid ${colors.dark};
-    ${mobileAfterBorder}
-    z-index:9;
-`
-
-const ContainerStyle = styled(Container)`
-    margin: 30px 0;
     @media (min-width: ${displayWidth.tablet}) {
-        margin: 0;
-        outline: none;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        justify-content: space-between;
+        border-bottom: 1px solid ${colors.dark};
     }
 `
+const pageMetadata = {
+    uk: {
+        title: 'Підбір кольорів і текстур в дизайні інтер`єру',
+        description:
+            "Дизайнер підбере кольори і текстури для вашого інтер'єру на консультації в офісі",
+    },
+    ru: {
+        title: 'Подбор цветов и текстур в дизайне интерьера',
+        description:
+            'Дизайнер подберет цвета и текстуры для вашего интерьера на консультации в офисе',
+    },
+    en: {
+        title: 'Selection of colors and textures in interior design',
+        description:
+            'The designer will select colors and textures for your interior for consultation in the office',
+    },
+}
 
-const svgStyle = css`
-    width: 40px;
-    min-width: 40px;
-    margin-right: 10px;
-`
-const HandshakeS = styled(Handshake)`
-    ${svgStyle}
-`
-const ProposalS = styled(Proposal)`
-    ${svgStyle}
-`
-const PensileS = styled(Pensile)`
-    ${svgStyle}
-`
-const FormColumn = styled.div`
-    position: relative;
-    ${mobileAfterBorder};
-    width: 100%;
-    padding: 0 24px 30px;
+const FaqListStyled = styled.div<{ showFaqListMobile: boolean }>`
+    display: ${({ showFaqListMobile }) =>
+        showFaqListMobile ? 'flex' : 'none'};
+    flex-direction: column;
+    padding: 28px 33px 64px;
     box-sizing: border-box;
-    background-color: ${backgroundColors.formPromo};
-    h3 {
-        display: flex;
-        align-items: center;
-        font-size: 20px;
-        line-height: 24px;
-        padding: 10px 0;
-    }
-`
-const DivS = styled.div`
-    margin: 0 10px 30px;
-`
-const FormTitle = styled.div<{ text?: boolean }>`
-    font-family: 'Yeseva One', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-
-    line-height: 40px;
-    letter-spacing: 1px;
-    ${({ text }) =>
-        text === true
-            ? `color:${colors.dark};font-size: 24px;`
-            : `color: #437b13;font-size: 34px;`}
-
-    text-align: center;
-    padding: 40px 0 24px;
-    white-space: pre-wrap;
+    border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
-        text-align: left;
-        margin: 60px 0 24px;
-        width: 350px;
+        display: flex;
+        outline: 1px solid ${colors.dark};
+        padding: 40px 48px 64px;
+        border-bottom: none;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        width: 100%;
+        padding: 56px 48px;
     }
 `
 
-const PosadkaColor = ({ data }: { data: imagesDataProp }) => {
+const SubTitle = styled.p`
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: ${colors.dark};
+    margin: 0 30px;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
+const ButtonFaq = styled(Button)`
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    background: transparent;
+    color: ${colors.darkText};
+    margin: 40px 28px 58px;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+    :focus {
+        outline: none;
+    }
+`
+
+const Image = styled(Img)<{ fluid: FluidObject }>`
+    display: none;
+    width: 60%;
+    height: auto;
+    color: transparent;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        width: 95%;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 60%;
+    }
+`
+const HeroColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid ${colors.dark};
+    ${mobileAfterBorder}
+    @media (min-width: ${displayWidth.tablet}) {
+        border-bottom: none;
+        position: relative;
+        align-items: flex-start;
+    }
+`
+const CnairImg = styled(Chair)`
+    display: none;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        position: absolute;
+        width: 40%;
+        height: auto;
+        bottom: 0;
+        right: 10%;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 40%;
+    }
+`
+const Id = styled.div`
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
+const TitleColor = styled(Title)`
+    margin-bottom: 0px;
+`
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const PosadkaColor = ({ data }: { data: any }) => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { i18n } = useTranslation()
+    const [showFaqListMobile, setShowFaqListMobile] = useState(false)
+    const [isAnswerVisible, setIsAnswerVisible] = useState(-1)
+
+    const {
+        image,
+        buttonTextOpen,
+        buttonTextClose,
+        subTitle,
+        title,
+        questions,
+    } = getDataByLanguage(data.allFaqColorYaml, i18n.language)
+
+    const imageLamp = getImageByImageName(data.allImageSharp, image)
+    const { getPagePath } = usePagePath()
+    const scrolled25Send = useRef(false)
+    const scrolled50Send = useRef(false)
+    const scrolled75Send = useRef(false)
+    const scrolled100Send = useRef(false)
+
+    const pagePath = getPagePath(i18n.language)
+
+    // Reset scroll event when page changes
+    useEffect(() => {
+        scrolled25Send.current = false
+        scrolled50Send.current = false
+        scrolled75Send.current = false
+        scrolled100Send.current = false
+        gtag('config', `${process.env.GA_ID}`, {
+            // eslint-disable-next-line camelcase
+            page_location: document.location,
+        })
+    }, [pagePath])
+
+    const onScroll = () => {
+        const block = document.getElementById('blockColor')
+        const scrollPosition = block!.scrollTop
+        const windowHeight = block!.clientHeight
+        const bodyHeight = block!.scrollHeight
+        const blockMod = document.getElementById('wrap')
+        const scrollPositionMob = blockMod!.scrollTop
+        const windowHeightMob = blockMod!.clientHeight
+        const bodyHeightMob = blockMod!.scrollHeight
+        setTimeout(() => {
+            const trackScroll = () => {
+                const scrolledRation = Math.ceil(
+                    ((scrollPosition + windowHeight) / bodyHeight) * 100
+                )
+                if (
+                    block &&
+                    !scrolled100Send!.current &&
+                    scrolledRation >= 100
+                ) {
+                    sendEvent('100', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled100Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled75Send!.current && scrolledRation >= 75) {
+                    sendEvent('75', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled75Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled50Send!.current && scrolledRation >= 50) {
+                    sendEvent('50', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled50Send!.current = true
+                    return
+                }
+
+                if (block && !scrolled25Send!.current && scrolledRation >= 25) {
+                    sendEvent('25', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled25Send!.current = true
+                }
+            }
+            const trackScrollMob = () => {
+                const scrolledRationMob = Math.ceil(
+                    ((scrollPositionMob + windowHeightMob) / bodyHeightMob) *
+                        100
+                )
+                if (
+                    block &&
+                    !scrolled100Send!.current &&
+                    scrolledRationMob >= 100
+                ) {
+                    sendEvent('100', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled100Send!.current = true
+                    return
+                }
+
+                if (
+                    block &&
+                    !scrolled75Send!.current &&
+                    scrolledRationMob >= 75
+                ) {
+                    sendEvent('75', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled75Send!.current = true
+                    return
+                }
+
+                if (
+                    block &&
+                    !scrolled50Send!.current &&
+                    scrolledRationMob >= 50
+                ) {
+                    sendEvent('50', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled50Send!.current = true
+                    return
+                }
+
+                if (
+                    block &&
+                    !scrolled25Send!.current &&
+                    scrolledRationMob >= 25
+                ) {
+                    sendEvent('25', {
+                        eventCategory: 'ScrollDepth',
+                    })
+                    scrolled25Send!.current = true
+                }
+            }
+            trackScrollMob()
+            trackScroll()
+        }, 700)
+    }
     return (
         <div>
             <HelmetFunc data={pageMetadata} />
-            <Wrap id="wrap">
+            <Wrap id="wrap" onScroll={onScroll}>
                 <MobileHeaderWraper isMenuOpen={isMenuOpen}>
                     <Logo />
                     <BurgerButton
@@ -395,50 +556,60 @@ const PosadkaColor = ({ data }: { data: imagesDataProp }) => {
                 </BottomIcons>
                 <PromoHeroMobile3d />
                 <SelectionOfPaintsPosadka imagesData={data} />
-                <AdvantagesServices imagesData={data} />
-
-                <CommunicationWrapper>
-                    <ContainerStyle columns={'1fr'} tabletColumns={'1fr'}>
-                        <ButtonWithModal
-                            modalTitle={t('connection.modalTitle')}
-                            modalDescription={t('connection.modalDescription')}
-                            buttonLabel={t('writeToUs')}
-                            placeholder={t('connection.placeholder')}
-                            submitLabel={t('connection.submitLabel')}
-                            tracking={{
-                                conversionType:
-                                    'CallbackFromPosadkaMobileColor',
-                                eventCategory: 'CallbackFromPosadkaMobileColor',
-                            }}
-                        />
-                    </ContainerStyle>
-                </CommunicationWrapper>
+                <AdvantagesServices imagesData={data} imgNot />
 
                 <Reviews />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
-                <Faq imagesData={data} />
-                <FormColumn>
-                    <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
-
-                    <DivS>
-                        <h3>
-                            <PensileS />
-                            {t('comercialForm.example')}
-                        </h3>
-                        <h3>
-                            <HandshakeS /> {t('comercialForm.conditions')}
-                        </h3>
-                        <h3>
-                            <ProposalS /> {t('comercialForm.proposal')}
-                        </h3>
-                    </DivS>
-
-                    <ComercialForm placement="Posadka3dMobile" />
-                </FormColumn>
+                <FaqWrapper>
+                    <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
+                        <HeroColumn>
+                            <TitleColor>{title}</TitleColor>
+                            <SubTitle>{subTitle}</SubTitle>
+                            <ButtonFaq
+                                onClick={() => {
+                                    !showFaqListMobile &&
+                                        window.document.getElementById('faq') &&
+                                        window!
+                                            .document!.getElementById('faq')!
+                                            .scrollIntoView({
+                                                block: 'center',
+                                                behavior: 'smooth',
+                                            })
+                                    setShowFaqListMobile(!showFaqListMobile)
+                                    sendEvent('Click', {
+                                        eventCategory: 'ShowMoreButtonFAQ',
+                                    })
+                                }}
+                            >
+                                {!showFaqListMobile
+                                    ? buttonTextOpen
+                                    : buttonTextClose}
+                            </ButtonFaq>
+                            <Image fluid={imageLamp.fluid} />
+                            <CnairImg />
+                        </HeroColumn>
+                        <Id id="faq" />
+                        <FaqListStyled showFaqListMobile={showFaqListMobile}>
+                            {questions.map((item: IFAQItem, index: number) => {
+                                return (
+                                    <FAQItem
+                                        key={index}
+                                        question={item.question}
+                                        answer={item.answer}
+                                        isAnswerVisible={isAnswerVisible}
+                                        setIsAnswerVisible={setIsAnswerVisible}
+                                        name={index}
+                                    />
+                                )
+                            })}
+                        </FaqListStyled>
+                    </Container>
+                </FaqWrapper>
+                <PromoHeroMobile3d text />
                 <Footer />
             </Wrap>
 
-            <Desktop id="blockWrapper">
+            <Desktop id="blockColor" onScroll={onScroll}>
                 <Header />
                 <WrapDesktop>
                     <PromoHeroColor imagesData={data} />
@@ -446,24 +617,73 @@ const PosadkaColor = ({ data }: { data: imagesDataProp }) => {
                     <SelectionOfPaintsPosadka imagesData={data} />
                     <div id="selectionOfPaintPosadka" />
                     <AdvantagesServices imagesData={data} />
-                    <Connection text={t('connection.color')}>
-                        <ButtonWithModal
-                            modalTitle={t('connection.modalTitle')}
-                            modalDescription={t('connection.modalDescription')}
-                            buttonLabel={t('connection.buttonLabel')}
-                            placeholder={t('connection.placeholder')}
-                            submitLabel={t('connection.submitLabel')}
-                            tracking={{
-                                conversionType: 'CallbackFromPosadkaColor',
-                                eventCategory: 'CallbackFromPosadka3Color',
-                            }}
-                        />
-                    </Connection>
-
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
-                    <Faq imagesData={data} />
-                    <CommercialProposalFormBlock placement="PosadkaColor" />
+                    <FaqWrapper>
+                        <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
+                            <HeroColumn>
+                                <TitleColor>{title}</TitleColor>
+                                <SubTitle>{subTitle}</SubTitle>
+                                <ButtonFaq
+                                    onClick={() => {
+                                        !showFaqListMobile &&
+                                            window.document.getElementById(
+                                                'faq'
+                                            ) &&
+                                            window!
+                                                .document!.getElementById(
+                                                    'faq'
+                                                )!
+                                                .scrollIntoView({
+                                                    block: 'center',
+                                                    behavior: 'smooth',
+                                                })
+                                        setShowFaqListMobile(!showFaqListMobile)
+                                        sendEvent('Click', {
+                                            eventCategory: 'ShowMoreButtonFAQ',
+                                        })
+                                    }}
+                                >
+                                    {!showFaqListMobile
+                                        ? buttonTextOpen
+                                        : buttonTextClose}
+                                </ButtonFaq>
+                                <Image fluid={imageLamp.fluid} />
+                                <CnairImg />
+                            </HeroColumn>
+                            <Id id="faq" />
+                            <FaqListStyled
+                                showFaqListMobile={showFaqListMobile}
+                            >
+                                {questions.map(
+                                    (item: IFAQItem, index: number) => {
+                                        return (
+                                            <FAQItem
+                                                key={index}
+                                                question={item.question}
+                                                answer={item.answer}
+                                                isAnswerVisible={
+                                                    isAnswerVisible
+                                                }
+                                                setIsAnswerVisible={
+                                                    setIsAnswerVisible
+                                                }
+                                                name={index}
+                                            />
+                                        )
+                                    }
+                                )}
+                            </FaqListStyled>
+                        </Container>
+                    </FaqWrapper>
+                    <DefaultFormBlock
+                        textTitle
+                        withPhoneMobile
+                        tracking={{
+                            conversionType: 'PosadkaColor',
+                            eventCategory: 'PosadkaColor',
+                        }}
+                    />
                     <Footer />
                 </WrapDesktop>
             </Desktop>
@@ -481,6 +701,26 @@ export const query = graphql`
                     fluid(srcSetBreakpoints: [400]) {
                         originalName
                         ...GatsbyImageSharpFluid
+                    }
+                    parent {
+                        ... on File {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+        allFaqColorYaml {
+            edges {
+                node {
+                    title
+                    image
+                    subTitle
+                    buttonTextOpen
+                    buttonTextClose
+                    questions {
+                        question
+                        answer
                     }
                     parent {
                         ... on File {
