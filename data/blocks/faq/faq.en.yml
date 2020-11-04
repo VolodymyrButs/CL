@@ -29,11 +29,11 @@ questions:
   - question: Do you work with a designer in the office or remotely?
     answer: !markdown |
       We work in the office or online. We do a lot of projects remotely for customers from different cities.
-  - question: What do you need to create a 3D visualization?
+  - question: Is it possible to make a design project in 3D?
     answer: !markdown |
-      You will need room drawings in dwg format with an approved furniture arrangement plan and possible redevelopment.
+      Yes, we do such projects. The arrangement of furniture and redevelopment is carried out in a three-dimensional model as clearly as possible.
 
-      You also need to define combinations of colors and textures for the main surfaces, using the international palette ncs, ral. etc. You can draw up a technical task for visualization on your own or take advantage of the designer's consultation on the selection of colors and textures.
+      As a result, you receive a project with all the drawings for the renovation (including wall sweeps and isometry) and a link to a 3D model of your apartment, which you can use at any time.
   - question: We need a quick electrician, can we start with her?
     answer: !markdown |
       No, the electrician is the second part of the project. First, the redevelopment and arrangement of furniture is approved, and only then sockets, switches, lights, etc. are designed.

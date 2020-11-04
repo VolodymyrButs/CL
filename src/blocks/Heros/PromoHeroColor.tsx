@@ -122,7 +122,7 @@ const TitleWrapper = styled.div`
         align-items: flex-start;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        width: 650px;
+        width: 660px;
     }
 `
 const TitleStyled = styled(TitleH1)`
@@ -147,7 +147,7 @@ const TitleStyled = styled(TitleH1)`
         margin-bottom: 10px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        font-size: 42px;
+        font-size: 44px;
         line-height: 50px;
         padding-left: 40px;
         margin-left: 0;
@@ -164,6 +164,7 @@ const Price = styled.span`
     width: 100%;
     text-align: left;
     padding-left: 48px;
+    white-space: nowrap;
     @media (min-width: ${displayWidth.tablet}) {
         width: 70%;
         padding-left: 36px;
@@ -309,9 +310,7 @@ export const PromoHeroColor = ({
                 <PromoHeroColumn>
                     <TitleWrapper>
                         <TitleStyled>{t('consultation')}</TitleStyled>
-                        <Price>
-                            450 UAH {t('for')} {t('h')}
-                        </Price>
+                        <Price>{t('for')} 450 UAH</Price>
                     </TitleWrapper>
                     <DesktopImageLeft fluid={imageSofa.fluid} />
                 </PromoHeroColumn>

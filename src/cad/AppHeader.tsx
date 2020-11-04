@@ -158,7 +158,7 @@ export const AppHeader = ({
                 <LogoSvg />
             </Logo>
 
-            <Banner to={'/promo'}>
+            <Banner to={'/promo-f'}>
                 <p>{t('promoRaw')}</p>
                 <p> {t('designProject99')}</p>
             </Banner>

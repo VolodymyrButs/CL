@@ -68,7 +68,8 @@
     "h": "час",
     "from": "от",
     "visualization": "Визуализация 3D",
-    "consultation": " Консультация дизайнера по цветам и текстурам",
+    "consultation": "Подбор цветов и текстур",
+    "designQuestion": "Задать вопрос дизайнеру",
     "comercialForm": {
         "example": "Образец дизайн проекта",
         "conditions": "Условия работы",

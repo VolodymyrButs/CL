@@ -40,7 +40,7 @@ const Image = styled(Img)<{ fluid: FluidObject }>`
         color: ${backgroundColors.services};
     }
 `
-const HeroColumn = styled.div`
+const HeroColumn = styled.div<{ imgNot?: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -66,10 +66,21 @@ const RightSidebar = styled(LeftSidebar)`
         background-color: ${colors.white};
     }
 `
+const TitleS = styled(Title)`
+    margin: 30px;
+    text-align: center;
+    line-height: 45px;
+    @media (min-width: ${displayWidth.tablet}) {
+        margin: 30px 0 30px 30px;
+        text-align: left;
+    }
+`
 export const AdvantagesServices = ({
     imagesData,
+    imgNot,
 }: {
     imagesData: imagesDataProp
+    imgNot?: boolean
 }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
@@ -78,6 +89,7 @@ export const AdvantagesServices = ({
                 edges {
                     node {
                         title
+                        titleColor
                         items {
                             content
                             svg
@@ -96,7 +108,7 @@ export const AdvantagesServices = ({
         data.allAdvantagesServiceYaml,
         i18n.language
     )
-    const { title, items } = advantagesServiceData
+    const { title, items, titleColor } = advantagesServiceData
     const imageFluid = getImageByImageName(
         imagesData.allImageSharp,
         'collage.webp'
@@ -105,10 +117,10 @@ export const AdvantagesServices = ({
         <VisualizationAdvantagesWrapper>
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
-                <HeroColumn>
-                    <Title>{title}</Title>
+                <HeroColumn imgNot>
+                    <TitleS>{imgNot ? titleColor : title}</TitleS>
 
-                    <Image fluid={imageFluid.fluid} />
+                    {!imgNot && <Image fluid={imageFluid.fluid} />}
                 </HeroColumn>
                 <IconListStyled
                     items={items}

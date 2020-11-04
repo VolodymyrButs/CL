@@ -34,7 +34,7 @@ const CallbackButtonWrapperMobile = styled.button<{
         (hideCallback < 550 || hideCallback === 0) && `display:none`};
     border: 1px solid ${colors.dark};
     border-radius: 50%;
-    z-index: 11;
+    z-index: 13;
     :after,
     :before {
         pointer-events: none;

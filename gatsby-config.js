@@ -111,11 +111,15 @@ module.exports = {
             options: {
                 name: 'clearline',
                 short_name: 'CL', // eslint-disable-line camelcase
-                start_url: process.env.SITE_ADDRESS, // eslint-disable-line camelcase
+                start_url: '/', // eslint-disable-line camelcase
                 background_color: '#663399', // eslint-disable-line camelcase
                 theme_color: '#663399', // eslint-disable-line camelcase
                 display: 'minimal-ui',
                 icon: `static/favicon.png`,
+                // eslint-disable-next-line camelcase
+                icon_options: {
+                    purpose: `maskable`, // eslint-disable-line camelcase
+                },
             },
         },
         'gatsby-plugin-offline',

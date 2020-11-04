@@ -69,7 +69,8 @@
     "h": "hour",
     "from": "from",
     "visualization": "3D Visualization",
-    "consultation": "Consultation of the designer on colors and textures",
+    "consultation": "Selection of colors and textures",
+    "designQuestion": "Ask questions to the designer",
     "comercialForm": {
         "example": "Sample design project",
         "conditions": "Working conditions",
