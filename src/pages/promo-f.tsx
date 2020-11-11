@@ -2,8 +2,6 @@ import { RunningLine } from 'components/RunningLine'
 
 import { ProjectStructureNew } from 'blocks/ProjectStructureNew'
 
-import { Faq } from 'blocks/FAQ/FAQ'
-
 import { Reviews } from 'blocks/Reviews'
 
 import { HelmetFunc } from 'components/PageMetaData'
@@ -36,9 +34,7 @@ import Pensile from 'assets/icons/pensile.svg'
 import Handshake from 'assets/icons/handshake.svg'
 import { ButtonWithModal } from 'components/ButtonWithModal'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { Container } from 'components/Container'
 import { ComercialForm } from 'components/form/CommercialForm'
-import { Footer } from 'blocks/Footer'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { Connection } from 'blocks/Connection'
 import { ProjectStructure } from 'blocks/ProjectStructure'
@@ -215,33 +211,6 @@ const Block = styled.div`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
-    }
-`
-const CommunicationWrapper = styled.div<{ backgroundColors?: string }>`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    background-color: ${(props) =>
-        props.backgroundColors
-            ? props.backgroundColors
-            : backgroundColors.formPromo};
-    position: relative;
-    border-bottom: 1px solid ${colors.dark};
-    ${mobileAfterBorder}
-    z-index:9;
-`
-
-const ContainerStyle = styled(Container)`
-    margin: 30px 0;
-    @media (min-width: ${displayWidth.tablet}) {
-        margin: 0;
-        outline: none;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    @media (min-width: ${displayWidth.tablet}) {
-        justify-content: space-between;
     }
 `
 
@@ -534,26 +503,8 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                 </Block>
 
                 <div id="projectStructure1" />
-                <ProjectStructureNew imagesData={data} />
-                <CommunicationWrapper>
-                    <ContainerStyle columns={'1fr'} tabletColumns={'1fr'}>
-                        <ButtonWithModal
-                            modalTitle={t('connection.modalTitle')}
-                            modalDescription={t('connection.modalDescription')}
-                            buttonLabel={t('writeToUs')}
-                            placeholder={t('connection.placeholder')}
-                            submitLabel={t('connection.submitLabel')}
-                            tracking={{
-                                conversionType: 'CallbackFromPosadkaMobile',
-                                eventCategory: 'CallbackFromPosadkaMobile',
-                            }}
-                        />
-                    </ContainerStyle>
-                </CommunicationWrapper>
-
-                <Reviews />
+                <ProjectStructureNew />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
-                <Faq imagesData={data} />
                 <FormColumn>
                     <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
 
@@ -572,7 +523,6 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
 
                     <ComercialForm placement="PosadkaMobile" />
                 </FormColumn>
-                <Footer />
             </Wrap>
 
             <Desktop id="blockF" onScroll={onScroll}>
@@ -598,9 +548,7 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
 
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
-                    <Faq imagesData={data} />
                     <CommercialProposalFormBlock placement="Posadka" />
-                    <Footer />
                 </WrapDesktop>
             </Desktop>
         </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -11,9 +10,8 @@ import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
 import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { getImageByImageName } from 'utils/getImageByImageName'
+
 import { indent } from 'styles/indent'
-import { imagesDataProp } from 'pages/promo'
 
 const ProjectStructureWrapper = styled.div`
     display: flex;
@@ -93,7 +91,7 @@ const Price = styled.span`
 `
 
 const TitleStyled = styled(Title)`
-    margin: 30px;
+    margin: 35px 25px;
     @media (min-width: ${displayWidth.tablet}) {
         margin-left: ${indent.heroColumnTablet};
         max-width: 250px;
@@ -103,23 +101,7 @@ const TitleStyled = styled(Title)`
     }
 `
 
-const MobileImage = styled(Img)<{ fluid: FluidObject }>`
-    width: 90%;
-    height: auto;
-    align-self: flex-end;
-    margin: 0px auto 0px;
-    @media (orientation: landscape) {
-        max-width: 50vw;
-    }
-`
-
-export const ProjectStructureNew = ({
-    imagesData,
-    id,
-}: {
-    imagesData: imagesDataProp
-    id?: string
-}) => {
+export const ProjectStructureNew = ({ id }: { id?: string }) => {
     const { i18n, t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -150,11 +132,6 @@ export const ProjectStructureNew = ({
 
     const { items, price } = projectStructureData
 
-    const imageSofaMobile = getImageByImageName(
-        imagesData.allImageSharp,
-        'sofaMobile3.webp'
-    )
-
     return (
         <ProjectStructureWrapper id={id}>
             <LeftSidebar />
@@ -167,10 +144,6 @@ export const ProjectStructureNew = ({
                             <Price>{price}</Price>
                         </p>
                     </TitleStyled>
-                    <MobileImage
-                        fluid={imageSofaMobile.fluid}
-                        loading="eager"
-                    />
                 </HeroColumn>
                 <IconListStyled
                     items={items}
