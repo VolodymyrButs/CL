@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import { colors, backgroundColors } from 'styles/colors'
 import { Container } from 'components/Container'
@@ -11,7 +11,8 @@ import { indent } from 'styles/indent'
 import { useTranslation } from 'react-i18next'
 import { Form, IChildrenProps } from 'components/form/Form'
 import { useFormHandler } from 'hooks/useFormHandler'
-import { inputStyle } from 'styles/inputStyle'
+import { EmailInput } from 'components/form/EmailInput'
+import { MessageInput } from 'components/form/MessageInput'
 
 const Wrapper = styled.div`
     display: block;
@@ -53,24 +54,6 @@ const InputBlock = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 16px;
-    input {
-        border: 1px solid black;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 7px;
-    }
-    label {
-        span {
-            display: none;
-        }
-
-        input {
-            border: 1px solid black;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 7px;
-        }
-    }
 `
 const FormTitle = styled.div`
     font-family: 'Yeseva One', sans-serif;
@@ -88,24 +71,6 @@ const FormTitle = styled.div`
     }
 `
 
-const InputStyle = styled.input<{ isValid?: string }>`
-    ${inputStyle}
-    ${(props) =>
-        props.isValid &&
-        css`
-            border-bottom-color: red;
-        `};
-    :-webkit-autofill {
-        transition: background-color 5000s ease-in-out 0s;
-        background: -webkit-linear-gradient(
-            top,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(0, 174, 255, 0.04) 50%,
-            rgba(255, 255, 255, 0) 51%,
-            rgba(0, 174, 255, 0.03) 100%
-        );
-    }
-`
 const run = keyframes`
 0% {
     transform:translateX(100%)
@@ -167,45 +132,39 @@ export const PromoHeroMobile = () => {
         formSendStatus,
     } = useFormHandler()
 
-    const tracking = {
-        conversionType: 'FormPromoPageTop',
-        eventCategory: 'FormPromoPageBTOP',
-    }
     return (
         <Wrapper>
             <PromoHeroWraper>
                 <ContainerStyled columns={'1fr'}>
                     <PromoHeroColumn>
+                        <FormTitle>{t('writeToUs')}</FormTitle>
                         <Form
-                            buttonText={t('sendAsk')}
+                            buttonText={t('send')}
                             onFormSubmit={handleSubmitStatus}
                             formSendStatus={formSendStatus}
                             onFormSendStart={handleFormSendStart}
-                            {...tracking}
+                            conversionType={'TopFormDesktopPosadka3d'}
+                            eventCategory={'TopFormDesktopPosadka3d'}
                         >
                             {({ register, errors }: IChildrenProps) => (
-                                <>
-                                    <FormTitle>
-                                        {t('formHeroPosadka')}
-                                    </FormTitle>
-                                    <InputBlock>
-                                        <PhoneInput
-                                            placeholder={t('phone')}
-                                            ref={register({
-                                                minLength: 18,
-                                                required: true,
-                                            })}
-                                            err={errors.phone}
-                                        />
-                                        <InputStyle
-                                            type="email"
-                                            name="email"
-                                            placeholder={t('email')}
-                                            ref={register}
-                                            isValid={errors.email}
-                                        />
-                                    </InputBlock>
-                                </>
+                                <InputBlock>
+                                    <PhoneInput
+                                        ref={register({
+                                            minLength: 18,
+                                            required: true,
+                                        })}
+                                        err={errors.phone}
+                                    />
+
+                                    <EmailInput
+                                        ref={register}
+                                        err={errors.email}
+                                    />
+                                    <MessageInput
+                                        ref={register}
+                                        err={errors.message}
+                                    />
+                                </InputBlock>
                             )}
                         </Form>
                     </PromoHeroColumn>

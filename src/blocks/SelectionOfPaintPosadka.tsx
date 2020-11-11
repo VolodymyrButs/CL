@@ -67,8 +67,10 @@ const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     }
 `
 const ImgWrapper = styled.div`
+    display: none;
     padding: 0 16px;
     @media (min-width: ${displayWidth.tablet}) {
+        display: block;
         padding: 0;
     }
 `
@@ -80,6 +82,7 @@ const TitleS = styled(Title)`
         text-align: center;
         text-transform: uppercase;
         line-height: 44px;
+        font-size: 34px;
     }
 `
 const TitleWrapper = styled.div`
@@ -95,7 +98,7 @@ const TitleWrapper = styled.div`
 `
 
 const TitleStyled = styled(TitleH1)`
-    font-size: 36px;
+    font-size: 34px;
     line-height: 45px;
     letter-spacing: 0.666667px;
     overflow: visible;
@@ -109,6 +112,7 @@ const TitleStyled = styled(TitleH1)`
 `
 
 const Price = styled.span`
+    display: none;
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -118,6 +122,9 @@ const Price = styled.span`
     color: ${colors.accentText};
     width: 100%;
     text-align: center;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+    }
 `
 
 export const SelectionOfPaintsPosadka = ({
@@ -162,7 +169,7 @@ export const SelectionOfPaintsPosadka = ({
                     <TitleS>{title}</TitleS>
                     <TitleWrapper>
                         <TitleStyled>{t('consultation')}</TitleStyled>
-                        <Price>{t('for')} 450 UAH</Price>
+                        <Price>{t('alternate')}</Price>
                     </TitleWrapper>
                     <SubTitle>{subTitle}</SubTitle>
 

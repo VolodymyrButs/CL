@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { RunningLine } from 'components/RunningLine'
 
-import { IFAQItem } from 'blocks/FAQ/FAQ'
-
 import { Reviews } from 'blocks/Reviews'
 
 import { HelmetFunc } from 'components/PageMetaData'
@@ -26,23 +24,13 @@ import { useTranslation } from 'react-i18next'
 
 import { PhoneLink } from 'components/PhoneLink'
 import { sendForm } from 'components/form/api'
-import { mobileAfterBorder } from 'styles/mobileAfterBorder'
-import { Container } from 'components/Container'
-import { Footer } from 'blocks/Footer'
 import { Header } from 'blocks/Header/Header'
 import { PromoHeroMobile3d } from 'blocks/Heros/PromoHeroMobile3d'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
 import { SelectionOfPaintsPosadka } from 'blocks/SelectionOfPaintPosadka'
 import { PromoHeroColor } from 'blocks/Heros/PromoHeroColor'
 import { graphql } from 'gatsby'
-import { Button } from 'components/Button'
-import { FAQItem } from 'blocks/FAQ/FAQItem'
-import Chair from 'assets/images/chair.svg'
-import { Title } from 'components/TitleComponent'
-import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { getImageByImageName } from 'utils/getImageByImageName'
 import { sendConversion, sendEvent, gtag } from 'tracking'
-import Img, { FluidObject } from 'gatsby-image'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { usePagePath } from 'hooks/usePagePath'
 
@@ -157,10 +145,10 @@ const WrapDesktop = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
         top: 80px;
-        height: calc(100vh - 80px);
+        height: calc(100vh - 20px);
         left: 0;
         right: 0;
-        bottom: 60px;
+        bottom: 0;
         position: absolute;
         overflow: auto;
     }
@@ -191,16 +179,7 @@ const IconWrapper = styled.div`
     justify-content: flex-end;
     padding-right: 13px;
 `
-const FaqWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    background-color: ${backgroundColors.contact};
-    position: relative;
-    @media (min-width: ${displayWidth.tablet}) {
-        border-bottom: 1px solid ${colors.dark};
-    }
-`
+
 const pageMetadata = {
     uk: {
         title: 'Підбір кольорів і текстур в дизайні інтер`єру',
@@ -219,119 +198,12 @@ const pageMetadata = {
     },
 }
 
-const FaqListStyled = styled.div<{ showFaqListMobile: boolean }>`
-    display: ${({ showFaqListMobile }) =>
-        showFaqListMobile ? 'flex' : 'none'};
-    flex-direction: column;
-    padding: 28px 33px 64px;
-    box-sizing: border-box;
-    border-bottom: 1px solid ${colors.dark};
-    @media (min-width: ${displayWidth.tablet}) {
-        display: flex;
-        outline: 1px solid ${colors.dark};
-        padding: 40px 48px 64px;
-        border-bottom: none;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        padding: 56px 48px;
-    }
-`
-
-const SubTitle = styled.p`
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
-    color: ${colors.dark};
-    margin: 0 30px;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
-`
-const ButtonFaq = styled(Button)`
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    text-transform: uppercase;
-    background: transparent;
-    color: ${colors.darkText};
-    margin: 40px 28px 58px;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
-    :focus {
-        outline: none;
-    }
-`
-
-const Image = styled(Img)<{ fluid: FluidObject }>`
-    display: none;
-    width: 60%;
-    height: auto;
-    color: transparent;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: block;
-        width: 95%;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        width: 60%;
-    }
-`
-const HeroColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid ${colors.dark};
-    ${mobileAfterBorder}
-    @media (min-width: ${displayWidth.tablet}) {
-        border-bottom: none;
-        position: relative;
-        align-items: flex-start;
-    }
-`
-const CnairImg = styled(Chair)`
-    display: none;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: block;
-        position: absolute;
-        width: 40%;
-        height: auto;
-        bottom: 0;
-        right: 10%;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        width: 40%;
-    }
-`
-const Id = styled.div`
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
-`
-const TitleColor = styled(Title)`
-    margin-bottom: 0px;
-`
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const PosadkaColor = ({ data }: { data: any }) => {
     const { t } = useTranslation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { i18n } = useTranslation()
-    const [showFaqListMobile, setShowFaqListMobile] = useState(false)
-    const [isAnswerVisible, setIsAnswerVisible] = useState(-1)
 
-    const {
-        image,
-        buttonTextOpen,
-        buttonTextClose,
-        subTitle,
-        title,
-        questions,
-    } = getDataByLanguage(data.allFaqColorYaml, i18n.language)
-
-    const imageLamp = getImageByImageName(data.allImageSharp, image)
     const { getPagePath } = usePagePath()
     const scrolled25Send = useRef(false)
     const scrolled50Send = useRef(false)
@@ -558,55 +430,9 @@ const PosadkaColor = ({ data }: { data: any }) => {
                 <SelectionOfPaintsPosadka imagesData={data} />
                 <AdvantagesServices imagesData={data} imgNot />
 
-                <Reviews />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
-                <FaqWrapper>
-                    <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
-                        <HeroColumn>
-                            <TitleColor>{title}</TitleColor>
-                            <SubTitle>{subTitle}</SubTitle>
-                            <ButtonFaq
-                                onClick={() => {
-                                    !showFaqListMobile &&
-                                        window.document.getElementById('faq') &&
-                                        window!
-                                            .document!.getElementById('faq')!
-                                            .scrollIntoView({
-                                                block: 'center',
-                                                behavior: 'smooth',
-                                            })
-                                    setShowFaqListMobile(!showFaqListMobile)
-                                    sendEvent('Click', {
-                                        eventCategory: 'ShowMoreButtonFAQ',
-                                    })
-                                }}
-                            >
-                                {!showFaqListMobile
-                                    ? buttonTextOpen
-                                    : buttonTextClose}
-                            </ButtonFaq>
-                            <Image fluid={imageLamp.fluid} />
-                            <CnairImg />
-                        </HeroColumn>
-                        <Id id="faq" />
-                        <FaqListStyled showFaqListMobile={showFaqListMobile}>
-                            {questions.map((item: IFAQItem, index: number) => {
-                                return (
-                                    <FAQItem
-                                        key={index}
-                                        question={item.question}
-                                        answer={item.answer}
-                                        isAnswerVisible={isAnswerVisible}
-                                        setIsAnswerVisible={setIsAnswerVisible}
-                                        name={index}
-                                    />
-                                )
-                            })}
-                        </FaqListStyled>
-                    </Container>
-                </FaqWrapper>
+
                 <PromoHeroMobile3d text />
-                <Footer />
             </Wrap>
 
             <Desktop id="blockColor" onScroll={onScroll}>
@@ -619,63 +445,6 @@ const PosadkaColor = ({ data }: { data: any }) => {
                     <AdvantagesServices imagesData={data} />
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
-                    <FaqWrapper>
-                        <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
-                            <HeroColumn>
-                                <TitleColor>{title}</TitleColor>
-                                <SubTitle>{subTitle}</SubTitle>
-                                <ButtonFaq
-                                    onClick={() => {
-                                        !showFaqListMobile &&
-                                            window.document.getElementById(
-                                                'faq'
-                                            ) &&
-                                            window!
-                                                .document!.getElementById(
-                                                    'faq'
-                                                )!
-                                                .scrollIntoView({
-                                                    block: 'center',
-                                                    behavior: 'smooth',
-                                                })
-                                        setShowFaqListMobile(!showFaqListMobile)
-                                        sendEvent('Click', {
-                                            eventCategory: 'ShowMoreButtonFAQ',
-                                        })
-                                    }}
-                                >
-                                    {!showFaqListMobile
-                                        ? buttonTextOpen
-                                        : buttonTextClose}
-                                </ButtonFaq>
-                                <Image fluid={imageLamp.fluid} />
-                                <CnairImg />
-                            </HeroColumn>
-                            <Id id="faq" />
-                            <FaqListStyled
-                                showFaqListMobile={showFaqListMobile}
-                            >
-                                {questions.map(
-                                    (item: IFAQItem, index: number) => {
-                                        return (
-                                            <FAQItem
-                                                key={index}
-                                                question={item.question}
-                                                answer={item.answer}
-                                                isAnswerVisible={
-                                                    isAnswerVisible
-                                                }
-                                                setIsAnswerVisible={
-                                                    setIsAnswerVisible
-                                                }
-                                                name={index}
-                                            />
-                                        )
-                                    }
-                                )}
-                            </FaqListStyled>
-                        </Container>
-                    </FaqWrapper>
                     <DefaultFormBlock
                         textTitle
                         withPhoneMobile
@@ -684,7 +453,6 @@ const PosadkaColor = ({ data }: { data: any }) => {
                             eventCategory: 'PosadkaColor',
                         }}
                     />
-                    <Footer />
                 </WrapDesktop>
             </Desktop>
         </div>

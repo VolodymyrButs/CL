@@ -68,28 +68,9 @@ const PromoHeroColumn = styled.div`
     }
     div {
         min-width: 100px;
+
         form {
             max-width: calc((100vw - 160px) / 3.4);
-            div {
-                button {
-                    @media (min-width: ${displayWidth.tablet}) {
-                        height: 100px;
-                        padding: 18px 10px;
-                        font-size: 16px;
-                        line-height: 24px;
-                    }
-                    @media (min-width: ${displayWidth.desktop}) {
-                        width: 100%;
-                        height: 170px;
-                        padding: 30px 30px;
-                        margin: 30px;
-                        font-size: 23px;
-                        line-height: 36px;
-                        border-radius: 80px;
-                        font-weight: normal;
-                    }
-                }
-            }
         }
     }
     :first-child {
@@ -245,7 +226,7 @@ const FormTitle = styled.div`
     @media (min-width: ${displayWidth.desktop}) {
         font-size: 50px;
         line-height: 58px;
-        margin: 50px 0 10px;
+        margin: 50px 10px 10px;
     }
 `
 export const PromoHeroNew = ({
@@ -292,9 +273,9 @@ export const PromoHeroNew = ({
         <PromoHeroWraper>
             <ContainerStyled columns={'1fr'} tabletColumns={'1fr 1fr 1fr'}>
                 <PromoHeroColumn>
-                    <FormTitle>{t('connection.modalTitle')}</FormTitle>
+                    <FormTitle>{t('writeToUs')}</FormTitle>
                     <Form
-                        buttonText={t('formHeroDeskPosadka')}
+                        buttonText={t('send')}
                         onFormSubmit={handleSubmitStatus}
                         formSendStatus={formSendStatus}
                         onFormSendStart={handleFormSendStart}
