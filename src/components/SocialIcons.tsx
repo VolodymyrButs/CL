@@ -83,7 +83,7 @@ export const SocialIcons: React.FC<ISocialIconsProps> = ({
                 <ViberIconS aria-label="ViberButton" fill={fill} />
             </a>
             <a
-                href="tg://resolve?domain=clearline_com_ua"
+                href="tg://resolve?domain=ClearLine_bot"
                 target="blank"
                 onClick={() => {
                     sendForm(`${placement}TelegramIcon`, {})

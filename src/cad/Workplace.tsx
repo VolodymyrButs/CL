@@ -237,14 +237,17 @@ const ButtonS = styled.button`
         margin: 2px 5px;
         z-index: 2;
     }
-    :hover {
-        svg {
-            fill: #000000a9;
-        }
-    }
+
     :disabled {
         svg {
             fill: #00000056;
+        }
+    }
+    @media (min-width: ${displayWidth.tablet}) {
+        :hover {
+            svg {
+                fill: #000000a9;
+            }
         }
     }
 `
@@ -540,6 +543,7 @@ const Workplace = ({
         }
     }, [isConturLocked])
     useEffect(() => {
+        setCanvasScale(0.16)
         setSelected(undefined)
     }, [])
 

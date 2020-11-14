@@ -50,7 +50,7 @@ const HeroColumn = styled.div`
     justify-content: space-between;
     position: relative;
     @media (min-width: ${displayWidth.tablet}) {
-        padding: 0 32px 56px;
+        padding: 0 32px;
         align-items: flex-start;
         border-right: 1px solid ${colors.dark};
     }
@@ -147,7 +147,8 @@ const Image = styled(Img)<{ fluid: FluidObject }>`
         height: auto;
         color: transparent;
         position: relative;
-        bottom: -7%;
+        margin-top: 30px;
+        bottom: 0;
         left: 0;
     }
 `

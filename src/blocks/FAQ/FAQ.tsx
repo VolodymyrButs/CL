@@ -196,7 +196,7 @@ export const Faq = ({ imagesData }: { imagesData: imagesDataProp }) => {
                                 window!
                                     .document!.getElementById('faq')!
                                     .scrollIntoView({
-                                        block: 'center',
+                                        block: 'start',
                                         behavior: 'smooth',
                                     })
                             setShowFaqListMobile(!showFaqListMobile)

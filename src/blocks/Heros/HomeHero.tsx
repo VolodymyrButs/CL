@@ -116,7 +116,7 @@ const Title = styled.h1`
 const MobileImage = styled(Img)<{ fluid: FluidObject }>`
     width: 90%;
     height: 100%;
-    bottom: -5%;
+    bottom: -4%;
     z-index: 2;
     max-height: 400px;
     @media (min-width: 400px) {
@@ -146,7 +146,7 @@ const DesktopImage = styled(Img)<{ fluid: FluidObject }>`
         width: 110%;
         height: 95.6%;
         max-height: 90%;
-        bottom: -3.8%;
+        bottom: -4.1%;
         left: -70px;
         z-index: 2;
         align-self: flex-end;

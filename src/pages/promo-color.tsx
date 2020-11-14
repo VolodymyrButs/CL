@@ -409,7 +409,7 @@ const PosadkaColor = ({ data }: { data: any }) => {
                             <WhatsappIconStyled aria-label="Whatsapp Button" />
                         </a>
                         <a
-                            href="tg://resolve?domain=clearline_com_ua"
+                            href="tg://resolve?domain=ClearLine_bot"
                             target="blank"
                         >
                             <TelegramIconStyled

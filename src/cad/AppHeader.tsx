@@ -113,9 +113,12 @@ const Banner = styled(LocalizedLink)`
     @media (max-width: 350px) {
         font-size: 10px;
     }
+    @media (max-width: 360px) {
+        font-size: 14px;
+    }
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
-        padding: 16px 40px;
+        padding: 10px 40px;
         margin: 12px;
         font-size: 26px;
         font-weight: 700;
