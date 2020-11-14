@@ -120,12 +120,15 @@ const IntroductionContentContainer = styled.div`
     }
 `
 const ExitButton = styled.button`
-    position: absolute;
-    top: 15px;
+    position: fixed;
+    top: 75px;
     right: 15px;
     border: none;
     cursor: pointer;
     z-index: 11;
+    @media (min-width: ${displayWidth.tablet}) {
+        top: 95px;
+    }
 `
 type Props = {
     closeFunction?: () => void
