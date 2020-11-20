@@ -95,7 +95,7 @@ module.exports = {
                 pngCompressionSpeed: 10,
             },
         },
-        {
+        /*        {
             resolve: `gatsby-plugin-prefetch-google-fonts`,
             options: {
                 fonts: [
@@ -105,7 +105,7 @@ module.exports = {
                     },
                 ],
             },
-        },
+        }, */
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
@@ -114,7 +114,7 @@ module.exports = {
                 start_url: '/', // eslint-disable-line camelcase
                 background_color: '#663399', // eslint-disable-line camelcase
                 theme_color: '#663399', // eslint-disable-line camelcase
-                display: 'minimal-ui',
+                display: 'fullscreen',
                 icon: `static/favicon.png`,
                 // eslint-disable-next-line camelcase
                 icon_options: {

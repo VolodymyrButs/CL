@@ -215,7 +215,13 @@ const For = styled.span`
         position: relative;
     }
 `
-export const PromoHero = ({ imagesData }: { imagesData: imagesDataProp }) => {
+export const PromoHero = ({
+    imagesData,
+    setProjectStructureIsVisible,
+}: {
+    imagesData: imagesDataProp
+    setProjectStructureIsVisible: (arg: boolean) => void
+}) => {
     const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -264,6 +270,7 @@ export const PromoHero = ({ imagesData }: { imagesData: imagesDataProp }) => {
                     <LocalizedLinkStyled
                         to={'/promo/#projectStructure'}
                         onClick={() => {
+                            setProjectStructureIsVisible(true)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButton',
                                 placement: 'PromoHero',

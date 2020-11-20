@@ -12,7 +12,6 @@ const TitleGeneralStyle = css`
     text-align: center;
     letter-spacing: 1.68px;
     margin: 56px 16px 10px;
-    text-align: center;
     color: ${colors.dark};
     @media (max-width: 355px) {
         font-size: 30px;
@@ -22,7 +21,6 @@ const TitleGeneralStyle = css`
     @media (min-width: ${displayWidth.tablet}) {
         font-size: 28px;
         line-height: 32px;
-        letter-spacing: 1px;
         margin: 40px 10px 20px ${indent.heroColumnTablet};
         text-align: left;
     }
@@ -30,7 +28,7 @@ const TitleGeneralStyle = css`
         font-size: 36px;
         line-height: 42px;
         letter-spacing: 1.77882px;
-        margin: 60px 25px 50px 48px;
+        margin: 60px auto 50px 48px;
     }
 `
 
