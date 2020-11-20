@@ -113,9 +113,11 @@ const MobileWrapper = styled.div`
 export const Visualization3d = ({
     imagesData,
     notButton,
+    setVisualizationAdvantagesIsVisible,
 }: {
     imagesData: imagesDataProp
     notButton?: boolean
+    setVisualizationAdvantagesIsVisible: (arg: boolean) => void
 }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
@@ -174,6 +176,7 @@ export const Visualization3d = ({
                         <LocalizedLinkStyled
                             to={'/promo/#visualization3dAdvantages'}
                             onClick={() => {
+                                setVisualizationAdvantagesIsVisible(true)
                                 sendEvent('Click', {
                                     eventCategory: 'ShowMoreButton',
                                     placement: 'Vizualization3d',

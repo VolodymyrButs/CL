@@ -26,9 +26,6 @@ const Visualization3dWrapper = styled.div`
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
-    @media (min-width: ${displayWidth.tablet}) {
-        border-bottom: none;
-    }
 `
 
 const SubTitle = styled.h3`
@@ -44,7 +41,7 @@ const SubTitle = styled.h3`
         text-align: left;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        margin: 0 0 48px ${indent.heroColumnDesktop};
+        margin: 0 ${indent.heroColumnDesktop} 48px;
     }
 `
 
@@ -99,7 +96,13 @@ const ButtonStyled = styled(Button)`
     }
 `
 
-export const Project3D = ({ imagesData }: { imagesData: imagesDataProp }) => {
+export const Project3D = ({
+    imagesData,
+    setAdvantages3DIsVisible,
+}: {
+    imagesData: imagesDataProp
+    setAdvantages3DIsVisible: (arg: boolean) => void
+}) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -139,6 +142,7 @@ export const Project3D = ({ imagesData }: { imagesData: imagesDataProp }) => {
                     <LocalizedLinkStyled
                         to={'/promo/#project3dAdvantages'}
                         onClick={() => {
+                            setAdvantages3DIsVisible(true)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButton',
                                 placement: 'Project3D',

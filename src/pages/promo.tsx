@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { PromoHero } from 'blocks/Heros/PromoHero'
@@ -45,20 +45,40 @@ export interface imagesDataProp {
     }
 }
 const Promo = ({ data }: { data: imagesDataProp }) => {
+    const [projectStructureIsVisible, setProjectStructureIsVisible] = useState(
+        false
+    )
+    const [advantages3DIsVisible, setAdvantages3DIsVisible] = useState(false)
+    const [
+        advantagesServicesIsVisible,
+        setAdvantagesServicesIsVisible,
+    ] = useState(false)
+    const [
+        visualizationAdvantagesIsVisible,
+        setVisualizationAdvantagesIsVisible,
+    ] = useState(false)
     const { t } = useTranslation()
     return (
         <Layout>
             <HelmetFunc data={pageMetadata} />
-            <PromoHero imagesData={data} />
+            <PromoHero
+                imagesData={data}
+                setProjectStructureIsVisible={setProjectStructureIsVisible}
+            />
             <RunningLine>{t('designProject99')}</RunningLine>
             <div id="projectStructure" />
-            <ProjectStructure imagesData={data} />
+            {projectStructureIsVisible && (
+                <ProjectStructure imagesData={data} />
+            )}
             <Reviews />
             <CommercialProposalFormBlock text />
             <RunningLine>{t('designProject99')}</RunningLine>
-            <Project3D imagesData={data} />
+            <Project3D
+                imagesData={data}
+                setAdvantages3DIsVisible={setAdvantages3DIsVisible}
+            />
             <div id="project3dAdvantages" />
-            <Advantages3D imagesData={data} />
+            {advantages3DIsVisible && <Advantages3D imagesData={data} />}
             <Connection text={t('connection.text3d')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
@@ -72,14 +92,26 @@ const Promo = ({ data }: { data: imagesDataProp }) => {
                     }}
                 />
             </Connection>
-            <SelectionOfPaints imagesData={data} />
+            <SelectionOfPaints
+                imagesData={data}
+                setAdvantagesServicesIsVisible={setAdvantagesServicesIsVisible}
+            />
             <div id="selectionOfPaintsAdvantages" />
-            <AdvantagesServices imagesData={data} />
+            {advantagesServicesIsVisible && (
+                <AdvantagesServices imagesData={data} />
+            )}
             <RunningLine>{t('designProject99')}</RunningLine>
             <div id="visualization3d" />
-            <Visualization3d imagesData={data} />
+            <Visualization3d
+                imagesData={data}
+                setVisualizationAdvantagesIsVisible={
+                    setVisualizationAdvantagesIsVisible
+                }
+            />
             <div id="visualization3dAdvantages" />
-            <VisualizationAdvantages imagesData={data} />
+            {visualizationAdvantagesIsVisible && (
+                <VisualizationAdvantages imagesData={data} />
+            )}
             <div id="faq" />
             <Faq imagesData={data} />
             <DefaultFormBlock

@@ -449,7 +449,7 @@ export const query = graphql`
                     relativeDirectory
                     name
                     childImageSharp {
-                        fluid(srcSetBreakpoints: [400]) {
+                        fluid(srcSetBreakpoints: [400, 1200], quality: 100) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }

@@ -95,8 +95,10 @@ const ButtonStyled = styled(Button)`
 
 export const SelectionOfPaints = ({
     imagesData,
+    setAdvantagesServicesIsVisible,
 }: {
     imagesData: imagesDataProp
+    setAdvantagesServicesIsVisible: (arg: boolean) => void
 }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
@@ -136,6 +138,7 @@ export const SelectionOfPaints = ({
                     <LocalizedLinkStyled
                         to={'/promo/#selectionOfPaintsAdvantages'}
                         onClick={() => {
+                            setAdvantagesServicesIsVisible(true)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButton',
                                 placement: 'ColorSelection',
