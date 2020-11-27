@@ -144,5 +144,8 @@
     "OutsideWidth": "Outside width",
     "OutsideDepth": "Outside height",
     "unit": "mm",
-    "Tools": "Tools"
+    "Tools": "Tools",
+    "InputPhone": "Enter your phone number",
+    "InputEmail": "Enter your e-mail for reply",
+    "InputQuestion": "Enter your question"
 }

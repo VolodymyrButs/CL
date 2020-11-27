@@ -5,18 +5,24 @@ import { useTranslation } from 'react-i18next'
 import { Label } from './Label'
 import { InputStyle } from './Input'
 import { useHasValue } from 'hooks/useHasValue'
+import { TFunction } from 'i18next'
 
 interface PhoneInputProps {
     err: string
-    placeholder?: string
+    placeholder?: TFunction | string
+    labelBottom?: number
 }
 
 export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
-    ({ err, placeholder }, ref) => {
+    ({ err, placeholder, labelBottom }, ref) => {
         const { t } = useTranslation()
         const { inputHandler, hasValue } = useHasValue()
         return (
-            <Label hasValue={hasValue} placeholder={t('phone')}>
+            <Label
+                labelBottom={labelBottom}
+                hasValue={hasValue}
+                placeholder={placeholder || t('phone')}
+            >
                 <InputMask
                     maskChar={null}
                     mask="+3\8(999) 99 999 99"
@@ -35,7 +41,6 @@ export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
                             isValid={err}
                             name="phone"
                             ref={ref}
-                            placeholder={placeholder}
                         />
                     )}
                 </InputMask>

@@ -18,7 +18,7 @@ const LayoutWraper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     max-width: 100vw;
     position: relative;
     overflow: hidden;
@@ -188,10 +188,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                             key={lang}
                             rel="alternate"
                             hrefLang={lang}
-                            href={
-                                `https://clearline.com.ua/new${ 
-                                getPagePath(lang)}`
-                            }
+                            href={`https://clearline.com.ua/new${getPagePath(
+                                lang
+                            )}`}
                         />
                     )
                 })}

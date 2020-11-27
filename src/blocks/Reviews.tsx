@@ -15,6 +15,8 @@ import Google from 'assets/icons/google.svg'
 import { createRand } from 'utils/getRandomArray'
 import { indent } from 'styles/indent'
 import { sendEvent } from 'tracking'
+import Next from 'assets/icons/arrowRight.svg'
+import Previous from 'assets/icons/arrowLeft.svg'
 
 const ReviewsWrapper = styled.div`
     display: flex;
@@ -173,8 +175,29 @@ const HeroColumn = styled.div`
 `
 
 const SlideWrapper = styled.div``
-
-export const Reviews = () => {
+const ArrowNext = styled(Next)`
+    width: 30px;
+    height: 30px;
+    border: 1px solid ${colors.white};
+    border-radius: 50%;
+    top: 95%;
+    right: 20px;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
+const ArrowPrevious = styled(Previous)`
+    width: 30px;
+    height: 30px;
+    border: 1px solid ${colors.white};
+    border-radius: 50%;
+    top: 95%;
+    left: 20px;
+    @media (min-width: ${displayWidth.tablet}) {
+        display: none;
+    }
+`
+export const Reviews = ({ arrows }: { arrows?: boolean }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -211,11 +234,14 @@ export const Reviews = () => {
     const { rating, reviewsQuantity, link, reviewsArr } = commonData
     const reviewsYaml = getDataByLanguage(data.allReviewsYaml, i18n.language)
     const { title, ourRank, quantity1, quantity2 } = reviewsYaml
+    const arr = arrows ? true : false
     const sliderSettings = {
         dots: true,
         infinite: true,
         speed: 100,
-        arrows: false,
+        arrows: arr,
+        nextArrow: <ArrowNext />,
+        prevArrow: <ArrowPrevious />,
     }
 
     const RandomList = createRand(5, 0, reviewsArr.length - 1)

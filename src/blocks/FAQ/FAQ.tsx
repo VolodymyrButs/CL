@@ -111,11 +111,6 @@ const CnairImg = styled(Chair)`
         width: 40%;
     }
 `
-const Id = styled.div`
-    @media (min-width: ${displayWidth.tablet}) {
-        display: none;
-    }
-`
 export interface IFAQItem {
     question: string
     answer: string
@@ -195,10 +190,7 @@ export const Faq = ({ imagesData }: { imagesData: imagesDataProp }) => {
                                 window.document.getElementById('faq') &&
                                 window!
                                     .document!.getElementById('faq')!
-                                    .scrollIntoView({
-                                        block: 'start',
-                                        behavior: 'smooth',
-                                    })
+                                    .scrollIntoView(true)
                             setShowFaqListMobile(!showFaqListMobile)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButtonFAQ',
@@ -210,8 +202,8 @@ export const Faq = ({ imagesData }: { imagesData: imagesDataProp }) => {
                     <Image fluid={imageLamp.fluid} />
                     <CnairImg />
                 </HeroColumn>
-                <Id id="faq" />
-                <FaqListStyled showFaqListMobile={showFaqListMobile}>
+
+                <FaqListStyled showFaqListMobile={showFaqListMobile} id="faq">
                     {questions.map((item: IFAQItem, index: number) => {
                         return (
                             <FAQItem

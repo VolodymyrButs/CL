@@ -22,12 +22,13 @@ const TextArea = styled.textarea<{ isValid?: string; maxheight?: string }>`
 `
 
 export const MessageInput = React.forwardRef<HTMLTextAreaElement, IInputProps>(
-    ({ err, placeholder, maxHeight }, ref) => {
+    ({ err, placeholder, maxHeight, labelBottom }, ref) => {
         const { t } = useTranslation()
         const { inputHandler, hasValue } = useHasValue()
 
         return (
             <Label
+                labelBottom={labelBottom}
                 hasValue={hasValue}
                 placeholder={placeholder || t('message')}
             >
