@@ -40,6 +40,7 @@ import { imagesDataProp } from './promo'
 import { usePagePath } from 'hooks/usePagePath'
 import { ProjectStructureQuestion } from 'blocks/ProjectStructureQuestion'
 import { PromoHeroMobile99 } from 'blocks/Heros/PromoHeroMobile99'
+import { ProjectStructureWhy } from 'blocks/ProjectStructureWhy'
 
 const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
@@ -52,7 +53,7 @@ const MobileHeaderWraper = styled.div<{ isMenuOpen: boolean }>`
     height: 65px;
     z-index: 10;
     background-color: ${({ isMenuOpen }) =>
-        isMenuOpen ? colors.dark : backgroundColors.contact};
+        isMenuOpen ? colors.dark : '#ebebeb'};
 
     border-bottom: 1px solid
         ${({ isMenuOpen }) => (isMenuOpen ? colors.white : colors.dark)};
@@ -225,7 +226,7 @@ const FormColumn = styled.div`
     width: 100%;
     padding: 0 24px 30px;
     box-sizing: border-box;
-    background-color: ${backgroundColors.formPromo};
+    background-color: ${backgroundColors.vizualization};
     h3 {
         display: flex;
         align-items: center;
@@ -241,7 +242,7 @@ const FormTitle = styled.div<{ text?: boolean }>`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-
+    font-size: 32px;
     line-height: 40px;
     letter-spacing: 1px;
     ${({ text }) =>
@@ -491,9 +492,12 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                 <div id="projectStructure1" />
                 <ProjectStructureQuestion />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
-                <Reviews arrows />
+                <Reviews arrows bottom />
+                <ProjectStructureWhy />
                 <FormColumn>
-                    <FormTitle>{t('ComercialProposalFormTitle')}</FormTitle>
+                    <FormTitle text>
+                        {t('ComercialProposalFormTitle')}
+                    </FormTitle>
 
                     <DivS>
                         <h3>

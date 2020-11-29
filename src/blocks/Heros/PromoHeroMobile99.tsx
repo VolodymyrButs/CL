@@ -26,8 +26,7 @@ const PromoHeroWraper = styled.div<{ text?: boolean }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${({ text }) =>
-        text ? backgroundColors.formPromo : backgroundColors.contact};
+    background-color: white;
     border-bottom: 1px solid ${colors.dark};
 `
 
@@ -68,7 +67,7 @@ const InputBlock = styled.div`
     span {
         bottom: 16px;
         font-size: 16px;
-        color: #aeaeae;
+        color: #757474;
     }
 `
 const FormTitle = styled.div`

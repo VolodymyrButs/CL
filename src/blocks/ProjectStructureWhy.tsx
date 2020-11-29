@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
-import { IconListQuestion } from 'components/IconListQuestion'
+import { IconListWhy } from 'components/IconListWhy'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
@@ -17,15 +17,21 @@ const ProjectStructureWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.promotion};
+    background-color: #e6e6e6;
     position: relative;
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: 1px solid ${colors.dark};
     }
     ${mobileAfterBorder}
 `
-const IconListStyled = styled(IconListQuestion)`
+const IconListStyled = styled(IconListWhy)`
     border-bottom: 1px solid ${colors.dark};
+    padding: 16px;
+    background-color: #e6e6e6;
+    > div {
+        padding: 16px;
+        background-color: #e6e6e6;
+    }
     @media (min-width: ${displayWidth.tablet}) {
         border-bottom: none;
     }
@@ -58,23 +64,13 @@ const RightSidebar = styled(LeftSidebar)`
     }
 `
 
-const Price = styled.span`
-    color: #b75034;
-    font-size: 28px;
-    font-weight: bold;
-`
-
-const Big = styled.span`
-    font-size: 30px;
-    line-height: 45px;
-    font-family: 'Open Sans', sans-serif;
-`
-
 const TitleStyled = styled(Title)`
     font-size: 26px;
-    font-family: 'Comfortaa', cursive;
     margin: 35px 20px;
-    font-weight: bold;
+    strong {
+        color: #b75034;
+        font-size: 28px;
+    }
     @media (min-width: ${displayWidth.tablet}) {
         margin-left: ${indent.heroColumnTablet};
         max-width: 250px;
@@ -84,11 +80,11 @@ const TitleStyled = styled(Title)`
     }
 `
 
-export const ProjectStructureQuestion = ({ id }: { id?: string }) => {
-    const { i18n, t } = useTranslation()
+export const ProjectStructureWhy = ({ id }: { id?: string }) => {
+    const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allProjectStructureQuestionYaml {
+            allProjectStructureWhyYaml {
                 edges {
                     node {
                         title
@@ -111,24 +107,26 @@ export const ProjectStructureQuestion = ({ id }: { id?: string }) => {
         }
     `)
     const projectStructureData = getDataByLanguage(
-        data.allProjectStructureQuestionYaml,
+        data.allProjectStructureWhyYaml,
         i18n.language
     )
-    const { title, items, price, promo } = projectStructureData
+
+    const { items, title } = projectStructureData
 
     return (
         <ProjectStructureWrapper id={id}>
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <TitleStyled>
-                        <Price>{promo}</Price> {title} {t('for')}{' '}
-                        <Big>{price}</Big>
-                    </TitleStyled>
+                    <TitleStyled
+                        dangerouslySetInnerHTML={{
+                            __html: title,
+                        }}
+                    />
                 </HeroColumn>
                 <IconListStyled
                     items={items}
-                    fill={backgroundColors.promotion}
+                    fill={backgroundColors.formPromo}
                 />
             </Container>
             <RightSidebar />
