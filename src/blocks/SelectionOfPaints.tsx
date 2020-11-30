@@ -92,7 +92,15 @@ const ButtonStyled = styled(Button)`
         width: 264px;
     }
 `
-
+const TitleS = styled(Title)`
+    @media (min-width: ${displayWidth.tablet}) {
+        display: block;
+        text-align: center;
+        margin-right: 48px;
+        line-height: 44px;
+        font-size: 37px;
+    }
+`
 export const SelectionOfPaints = ({
     imagesData,
     setAdvantagesServicesIsVisible,
@@ -133,7 +141,7 @@ export const SelectionOfPaints = ({
         <SelectionOfPaintWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <Title>{title}</Title>
+                    <TitleS>{title}</TitleS>
                     <SubTitle>{subTitle}</SubTitle>
                     <LocalizedLinkStyled
                         to={'/promo/#selectionOfPaintsAdvantages'}

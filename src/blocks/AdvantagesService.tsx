@@ -67,11 +67,15 @@ const RightSidebar = styled(LeftSidebar)`
     }
 `
 const TitleS = styled(Title)`
-    margin: 30px;
+    margin: 30px 20px;
     text-align: center;
+    font-size: 32px;
     line-height: 45px;
     @media (min-width: ${displayWidth.tablet}) {
         margin: 30px 0 30px 30px;
+        text-align: left;
+    }
+    @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
     }
 `
