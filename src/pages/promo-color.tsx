@@ -138,7 +138,6 @@ const Wrap = styled.div`
     overflow: auto;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
-        bottom: 0px;
     }
 `
 const WrapDesktop = styled.div`
