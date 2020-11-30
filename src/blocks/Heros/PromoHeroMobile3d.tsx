@@ -17,6 +17,7 @@ import { MessageInput } from 'components/form/MessageInput'
 const Wrapper = styled.div`
     display: block;
     margin-top: 0.1px;
+    margin-bottom: 0.1px;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }
