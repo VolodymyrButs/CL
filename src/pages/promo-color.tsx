@@ -432,7 +432,7 @@ const PosadkaColor = ({ data }: { data: any }) => {
 
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
 
-                <PromoHeroMobile3d noLine />
+                <PromoHeroMobile3d />
             </Wrap>
 
             <Desktop id="blockColor" onScroll={onScroll}>

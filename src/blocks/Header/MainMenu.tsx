@@ -137,13 +137,13 @@ export const MainMenu: React.FC<IMainMenuProps> = ({
                 >
                     {t('services')}
                 </MenuItem>
-                <MenuItem
+                {/* <MenuItem
                     onClick={onMenuItemClick}
                     aria-label={(t('goTo'), 'wiki')}
                     to="/promo-color"
                 >
                     {t('wiki')}
-                </MenuItem>
+                </MenuItem> */}
             </MenuWraper>
             <MenuWraperTablet>
                 <Div>
