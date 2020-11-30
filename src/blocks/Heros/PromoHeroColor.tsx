@@ -153,36 +153,36 @@ const TitleStyled = styled(TitleH1)`
         margin-left: 0;
     }
 `
-const Price = styled.span`
-    font-family: 'Yeseva One', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    line-height: 40px;
-    letter-spacing: 0.888889px;
-    color: ${colors.accentText};
-    width: 100%;
-    text-align: left;
-    padding-left: 48px;
-    white-space: nowrap;
-    @media (min-width: ${displayWidth.tablet}) {
-        width: 70%;
-        padding-left: 36px;
-        font-size: 50px;
-        line-height: 60px;
-        letter-spacing: 1.52778px;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        width: 90%;
-        bottom: 46px;
+// const Price = styled.span`
+//     font-family: 'Yeseva One', sans-serif;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 40px;
+//     line-height: 40px;
+//     letter-spacing: 0.888889px;
+//     color: ${colors.accentText};
+//     width: 100%;
+//     text-align: left;
+//     padding-left: 48px;
+//     white-space: nowrap;
+//     @media (min-width: ${displayWidth.tablet}) {
+//         width: 70%;
+//         padding-left: 36px;
+//         font-size: 50px;
+//         line-height: 60px;
+//         letter-spacing: 1.52778px;
+//     }
+//     @media (min-width: ${displayWidth.desktop}) {
+//         width: 90%;
+//         bottom: 46px;
 
-        left: 0;
-        font-size: 38px;
-        line-height: 50px;
-        margin-left: 0px;
-        margin-top: 100px;
-    }
-`
+//         left: 0;
+//         font-size: 38px;
+//         line-height: 50px;
+//         margin-left: 0px;
+//         margin-top: 100px;
+//     }
+// `
 
 const DesktopImageRight = styled(sofaDesktopRight)`
     display: none;
@@ -312,7 +312,6 @@ export const PromoHeroColor = ({
                 <PromoHeroColumn>
                     <TitleWrapper>
                         <TitleStyled>{t('consultation')}</TitleStyled>
-                        <Price>{t('alternate')}</Price>
                     </TitleWrapper>
                     <DesktopImageLeft fluid={imageSofa.fluid} />
                 </PromoHeroColumn>

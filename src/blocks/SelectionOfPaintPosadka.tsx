@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import { useStaticQuery, graphql } from 'gatsby'
+// import { useStaticQuery, graphql } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
 
 import { Container } from 'components/Container'
@@ -9,9 +9,8 @@ import { backgroundColors, colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title, TitleH1 } from 'components/TitleComponent'
-import { getDataByLanguage } from 'utils/getDataByLanguage'
-import { JumpingArrow } from 'components/JumpingArrow'
-import { indent } from 'styles/indent'
+// import { getDataByLanguage } from 'utils/getDataByLanguage'
+// import { indent } from 'styles/indent'
 import { imagesDataProp } from 'pages/promo'
 import { getImageByImageName } from 'utils/getImageByImageName'
 
@@ -25,28 +24,11 @@ const SelectionOfPaintWrapper = styled.div`
     ${mobileAfterBorder}
 `
 
-const SubTitle = styled.h3`
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 26px;
-    text-align: center;
-    letter-spacing: 0.4px;
-    color: ${colors.dark};
-    margin: 20px auto;
-    @media (min-width: ${displayWidth.tablet}) {
-        margin: 0 ${indent.heroColumnTablet} 48px;
-        text-align: left;
-    }
-    @media (min-width: ${displayWidth.desktop}) {
-        margin: 0 ${indent.heroColumnDesktop} 48px;
-    }
-`
-
 const HeroColumn = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 32px 32px;
+    padding: 0 25px 22px;
     align-items: center;
     border-bottom: 1px solid ${colors.dark};
     @media (min-width: ${displayWidth.tablet}) {
@@ -67,7 +49,6 @@ const ImgStyled = styled(Img)<{ fluid: FluidObject }>`
     }
 `
 const ImgWrapper = styled.div`
-    display: none;
     padding: 0 16px;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
@@ -80,9 +61,9 @@ const TitleS = styled(Title)`
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
         text-align: center;
-        text-transform: uppercase;
+        margin-right: 48px;
         line-height: 44px;
-        font-size: 34px;
+        font-size: 37px;
     }
 `
 const TitleWrapper = styled.div`
@@ -98,7 +79,7 @@ const TitleWrapper = styled.div`
 `
 
 const TitleStyled = styled(TitleH1)`
-    font-size: 34px;
+    font-size: 32px;
     line-height: 45px;
     letter-spacing: 0.666667px;
     overflow: visible;
@@ -111,52 +92,28 @@ const TitleStyled = styled(TitleH1)`
     }
 `
 
-const Price = styled.span`
-    display: none;
-    font-family: 'Yeseva One', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    line-height: 40px;
-    letter-spacing: 0.888889px;
-    color: ${colors.accentText};
-    width: 100%;
-    text-align: center;
-    @media (min-width: ${displayWidth.tablet}) {
-        display: block;
-    }
-`
+// const Price = styled.span`
+//     display: none;
+//     font-family: 'Yeseva One', sans-serif;
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 40px;
+//     line-height: 40px;
+//     letter-spacing: 0.888889px;
+//     color: ${colors.accentText};
+//     width: 100%;
+//     text-align: center;
+//     @media (min-width: ${displayWidth.tablet}) {
+//         display: block;
+//     }
+// `
 
 export const SelectionOfPaintsPosadka = ({
     imagesData,
 }: {
     imagesData: imagesDataProp
 }) => {
-    const { i18n, t } = useTranslation()
-    const data = useStaticQuery(graphql`
-        query {
-            allSelectionOfPaintYaml {
-                edges {
-                    node {
-                        title
-                        subTitle
-                        buttonText
-                        parent {
-                            ... on File {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `)
-    const selectionOfPaintYaml = getDataByLanguage(
-        data.allSelectionOfPaintYaml,
-        i18n.language
-    )
-    const { title, subTitle } = selectionOfPaintYaml
-
+    const { t } = useTranslation()
     const image = getImageByImageName(
         imagesData.allImageSharp,
         'colorsAndTextur.webp'
@@ -166,14 +123,10 @@ export const SelectionOfPaintsPosadka = ({
         <SelectionOfPaintWrapper>
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <TitleS>{title}</TitleS>
+                    <TitleS>{t('alternate')}</TitleS>
                     <TitleWrapper>
                         <TitleStyled>{t('consultation')}</TitleStyled>
-                        <Price>{t('alternate')}</Price>
                     </TitleWrapper>
-                    <SubTitle>{subTitle}</SubTitle>
-
-                    <JumpingArrow />
                 </HeroColumn>
                 <ImgWrapper>
                     <ImgStyled fluid={image.fluid} loading="eager" />
