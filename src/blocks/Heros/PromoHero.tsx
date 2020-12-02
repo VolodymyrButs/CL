@@ -110,6 +110,7 @@ const TitleStyled = styled(TitleH1)`
     letter-spacing: 0.666667px;
     overflow: visible;
     text-align: center;
+    color: #296963;
     @media (max-width: 355px) {
         font-size: 40px;
         line-height: 45px;
@@ -121,11 +122,13 @@ const TitleStyled = styled(TitleH1)`
         line-height: 56px;
         letter-spacing: 0.8px;
         text-align: left;
+        margin-left: 0;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        font-size: 64px;
+        font-size: 60px;
         line-height: 64px;
         padding-left: 0px;
+        margin-left: 48px;
     }
 `
 const Price = styled.span`
