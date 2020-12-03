@@ -8,18 +8,19 @@ import { Visualization3d } from 'blocks/Visualization3d'
 import { ProjectStructure } from 'blocks/ProjectStructure'
 import { VisualizationAdvantages } from 'blocks/VisualizationAdvantages'
 import { AdvantagesServices } from 'blocks/AdvantagesService'
-import { Faq } from 'blocks/FAQ/FAQ'
+// import { Faq } from 'blocks/FAQ/FAQ'
 import { Reviews } from 'blocks/Reviews'
 import { Project3D } from 'blocks/Project3D'
 import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { SelectionOfPaints } from 'blocks/SelectionOfPaints'
-import { Connection } from 'blocks/Connection'
-import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
-import { ButtonWithModal } from 'components/ButtonWithModal'
+// import { Connection } from 'blocks/Connection'
+// import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
+// import { ButtonWithModal } from 'components/ButtonWithModal'
 import { HelmetFunc } from 'components/PageMetaData'
 import { Layout } from 'layout/Layout'
 import { graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
+import { ShowMore } from 'blocks/ShowMoreBlock'
 const pageMetadata = {
     uk: {
         title: 'Дизайн проект інтер`єру квартири за $99',
@@ -45,9 +46,6 @@ export interface imagesDataProp {
     }
 }
 const Promo = ({ data }: { data: imagesDataProp }) => {
-    const [projectStructureIsVisible, setProjectStructureIsVisible] = useState(
-        false
-    )
     const [advantages3DIsVisible, setAdvantages3DIsVisible] = useState(false)
     const [
         advantagesServicesIsVisible,
@@ -59,26 +57,24 @@ const Promo = ({ data }: { data: imagesDataProp }) => {
     ] = useState(false)
     const { t } = useTranslation()
     return (
-        <Layout>
+        <Layout noFooter={visualizationAdvantagesIsVisible}>
             <HelmetFunc data={pageMetadata} />
-            <PromoHero
-                imagesData={data}
-                setProjectStructureIsVisible={setProjectStructureIsVisible}
-            />
+            <PromoHero imagesData={data} />
             <RunningLine>{t('designProject99')}</RunningLine>
             <div id="projectStructure" />
-            {projectStructureIsVisible && (
-                <ProjectStructure imagesData={data} />
-            )}
+            <ProjectStructure imagesData={data} />
             <Reviews />
-            <CommercialProposalFormBlock text />
-            <RunningLine>{t('designProject99')}</RunningLine>
-            <Project3D
-                imagesData={data}
-                setAdvantages3DIsVisible={setAdvantages3DIsVisible}
-            />
-            <div id="project3dAdvantages" />
-            {advantages3DIsVisible && <Advantages3D imagesData={data} />}
+            {/* <CommercialProposalFormBlock text /> */}
+            {/* <DefaultFormBlock
+                withPhoneMobile
+                tracking={{
+                    conversionType: 'FormPromoPageBottom',
+                    eventCategory: 'FormPromoPageBottom',
+                }}
+            /> */}
+            <RunningLine inverse>{t('designProject99')}</RunningLine>
+
+            {/* 
             <Connection text={t('connection.text3d')}>
                 <ButtonWithModal
                     modalTitle={t('connection.modalTitle')}
@@ -91,29 +87,7 @@ const Promo = ({ data }: { data: imagesDataProp }) => {
                         eventCategory: 'CallbackFromPromo',
                     }}
                 />
-            </Connection>
-            <SelectionOfPaints
-                imagesData={data}
-                setAdvantagesServicesIsVisible={setAdvantagesServicesIsVisible}
-            />
-            <div id="selectionOfPaintsAdvantages" />
-            {advantagesServicesIsVisible && (
-                <AdvantagesServices imagesData={data} />
-            )}
-            <RunningLine>{t('designProject99')}</RunningLine>
-            <div id="visualization3d" />
-            <Visualization3d
-                imagesData={data}
-                setVisualizationAdvantagesIsVisible={
-                    setVisualizationAdvantagesIsVisible
-                }
-            />
-            <div id="visualization3dAdvantages" />
-            {visualizationAdvantagesIsVisible && (
-                <VisualizationAdvantages imagesData={data} />
-            )}
-            <div id="faq" />
-            <Faq imagesData={data} />
+            </Connection> */}
             <DefaultFormBlock
                 withPhoneMobile
                 tracking={{
@@ -121,6 +95,110 @@ const Promo = ({ data }: { data: imagesDataProp }) => {
                     eventCategory: 'FormPromoPageBottom',
                 }}
             />
+            <div id="SelectionOfPaints" />
+            {!advantagesServicesIsVisible && (
+                <ShowMore
+                    advantages3DIsVisible={advantages3DIsVisible}
+                    setAdvantages3DIsVisible={setAdvantages3DIsVisible}
+                    advantagesServicesIsVisible={advantagesServicesIsVisible}
+                    setAdvantagesServicesIsVisible={
+                        setAdvantagesServicesIsVisible
+                    }
+                    visualizationAdvantagesIsVisible={
+                        visualizationAdvantagesIsVisible
+                    }
+                    setVisualizationAdvantagesIsVisible={
+                        setVisualizationAdvantagesIsVisible
+                    }
+                />
+            )}
+            {advantagesServicesIsVisible && (
+                <>
+                    <SelectionOfPaints
+                        imagesData={data}
+                        setAdvantagesServicesIsVisible={
+                            setAdvantagesServicesIsVisible
+                        }
+                    />
+                    <div id="selectionOfPaintsAdvantages" />
+                    <AdvantagesServices imagesData={data} />
+                    <RunningLine>{t('designProject99')}</RunningLine>
+                </>
+            )}
+            <div id="Project3D" />
+            {advantagesServicesIsVisible && !advantages3DIsVisible && (
+                <ShowMore
+                    advantages3DIsVisible={advantages3DIsVisible}
+                    setAdvantages3DIsVisible={setAdvantages3DIsVisible}
+                    advantagesServicesIsVisible={advantagesServicesIsVisible}
+                    setAdvantagesServicesIsVisible={
+                        setAdvantagesServicesIsVisible
+                    }
+                    visualizationAdvantagesIsVisible={
+                        visualizationAdvantagesIsVisible
+                    }
+                    setVisualizationAdvantagesIsVisible={
+                        setVisualizationAdvantagesIsVisible
+                    }
+                />
+            )}
+            {advantages3DIsVisible && (
+                <>
+                    <Project3D imagesData={data} />
+                    <div id="project3dAdvantages" />
+                    <Advantages3D imagesData={data} />
+                    <RunningLine>{t('designProject99')}</RunningLine>
+                </>
+            )}
+            <div id="visualization3d" />
+            {advantages3DIsVisible && !visualizationAdvantagesIsVisible && (
+                <ShowMore
+                    advantages3DIsVisible={advantages3DIsVisible}
+                    setAdvantages3DIsVisible={setAdvantages3DIsVisible}
+                    advantagesServicesIsVisible={advantagesServicesIsVisible}
+                    setAdvantagesServicesIsVisible={
+                        setAdvantagesServicesIsVisible
+                    }
+                    visualizationAdvantagesIsVisible={
+                        visualizationAdvantagesIsVisible
+                    }
+                    setVisualizationAdvantagesIsVisible={
+                        setVisualizationAdvantagesIsVisible
+                    }
+                />
+            )}
+            {visualizationAdvantagesIsVisible && (
+                <>
+                    <Visualization3d imagesData={data} />
+                    <div id="visualization3dAdvantages" />
+                    <VisualizationAdvantages imagesData={data} />
+                    <RunningLine>{t('designProject99')}</RunningLine>
+                </>
+            )}
+            {visualizationAdvantagesIsVisible && (
+                <DefaultFormBlock
+                    withPhoneMobile
+                    tracking={{
+                        conversionType: 'FormPromoPageBottom',
+                        eventCategory: 'FormPromoPageBottom',
+                    }}
+                />
+            )}
+            {/* <ShowMore
+                advantages3DIsVisible={advantages3DIsVisible}
+                setAdvantages3DIsVisible={setAdvantages3DIsVisible}
+                advantagesServicesIsVisible={advantagesServicesIsVisible}
+                setAdvantagesServicesIsVisible={setAdvantagesServicesIsVisible}
+                visualizationAdvantagesIsVisible={
+                    visualizationAdvantagesIsVisible
+                }
+                setVisualizationAdvantagesIsVisible={
+                    setVisualizationAdvantagesIsVisible
+                }
+            /> */}
+
+            {/* <div id="faq" /> */}
+            {/* <Faq imagesData={data} /> */}
         </Layout>
     )
 }

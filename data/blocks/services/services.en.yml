@@ -18,6 +18,8 @@ questions:
   - question: Design project of a house (cottage, townhouse) for a promotion
     answer: !markdown |
       $1 for м<sup>2</sup> (minimum cost of work $150)
+
+      \* you need a measurement drawing to get started
     icon: house.svg
   - question: Measurement of the premises
     answer: !markdown |
