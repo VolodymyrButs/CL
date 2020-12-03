@@ -191,14 +191,6 @@ export const Faq = ({ imagesData }: { imagesData: imagesDataProp }) => {
                     <SubTitle>{subTitle}</SubTitle>
                     <ButtonFaq
                         onClick={() => {
-                            !showFaqListMobile &&
-                                window.document.getElementById('faq') &&
-                                window!
-                                    .document!.getElementById('faq')!
-                                    .scrollIntoView({
-                                        block: 'start',
-                                        behavior: 'smooth',
-                                    })
                             setShowFaqListMobile(!showFaqListMobile)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButtonFAQ',

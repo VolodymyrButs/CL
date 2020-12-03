@@ -89,7 +89,7 @@ export const ShowMore = ({
                             block: 'start',
                             behavior: 'smooth',
                         }),
-                600
+                400
             )
         } else if (
             advantagesServicesIsVisible &&
@@ -110,7 +110,7 @@ export const ShowMore = ({
                             block: 'start',
                             behavior: 'auto',
                         }),
-                600
+                400
             )
         } else if (
             advantagesServicesIsVisible &&
@@ -131,7 +131,7 @@ export const ShowMore = ({
                             block: 'start',
                             behavior: 'auto',
                         }),
-                600
+                400
             )
         } else return
     }
