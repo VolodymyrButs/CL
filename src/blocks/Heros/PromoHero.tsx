@@ -36,7 +36,7 @@ const PromoHeroWraper = styled.div`
 
     @media (min-width: ${displayWidth.tablet}) {
         height: 500px;
-        border-bottom: nonne;
+        border-bottom: none;
     }
     @media (min-width: ${displayWidth.desktop}) {
         height: 630px;
@@ -208,7 +208,7 @@ const For = styled.span`
     line-height: 55px;
     letter-spacing: 0.666667px;
     text-align: center;
-    color: ${colors.dark};
+    color: #296963;
     @media (max-width: 355px) {
         font-size: 40px;
         line-height: 45px;
@@ -218,13 +218,7 @@ const For = styled.span`
         position: relative;
     }
 `
-export const PromoHero = ({
-    imagesData,
-    setProjectStructureIsVisible,
-}: {
-    imagesData: imagesDataProp
-    setProjectStructureIsVisible: (arg: boolean) => void
-}) => {
+export const PromoHero = ({ imagesData }: { imagesData: imagesDataProp }) => {
     const { t } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -273,7 +267,6 @@ export const PromoHero = ({
                     <LocalizedLinkStyled
                         to={'/promo/#projectStructure'}
                         onClick={() => {
-                            setProjectStructureIsVisible(true)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButton',
                                 placement: 'PromoHero',

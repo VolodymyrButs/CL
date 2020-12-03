@@ -144,5 +144,8 @@
     "OutsideWidth": "Outside width",
     "OutsideDepth": "Outside height",
     "unit": "mm",
-    "Tools": "Tools"
+    "Tools": "Tools",
+    "showPromo": "View more offers from the studio",
+    "CL": "CLearline",
+    "showPromoMobile": "More suggestions from"
 }

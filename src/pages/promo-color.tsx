@@ -382,7 +382,7 @@ const PosadkaColor = ({ data }: { data: any }) => {
                 <BottomIcons>
                     <IconWrapper>
                         <a
-                            href="viber://chat?number=%2B380982117690"
+                            href="viber://pa?chatURI=clearline_com_ua"
                             target="blank"
                             onClick={() => {
                                 sendForm(`PosadkaMobileViberIcon`, {})
