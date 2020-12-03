@@ -246,7 +246,7 @@ export const OurServices = () => {
                         <Title>{allOurServicesData.titleFaq}</Title>
                         <SubTitle>{allOurServicesData.subTitleFaq}</SubTitle>
                         <LocalizedLinkAnchor
-                            to={'promo/#faq'}
+                            to={'/faq'}
                             onClick={() => {
                                 sendEvent('Click', {
                                     eventCategory: 'ShowMoreButton',

@@ -43,7 +43,7 @@ const BlocksWrapper = styled.div`
 const languagesList = Object.keys(languages)
 export const Layout = ({
     children,
-    noFooter,
+    noFooter = true,
 }: {
     children: React.ReactNode
     noFooter?: boolean
