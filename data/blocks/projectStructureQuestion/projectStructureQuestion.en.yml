@@ -1,0 +1,28 @@
+title: What is included in the design
+image: table.webp
+price: $99
+items:
+  - question: !markdown |
+      **All the necessary drawings** for the repair and selection of furniture
+    svg: pen.svg
+    answer: la
+  - question: !markdown |
+      Meetings with the designer, options for redevelopment and furniture placement **are not limited**
+    svg: infinity.svg
+    answer: la
+  - question: !markdown |
+      **Individual** approach to design
+    svg: ruler.svg
+    answer: la
+  - question: !markdown |
+      Average term of a design project **2 weeks**
+    svg: clock.svg
+    answer: la
+  - question: !markdown |
+      At your service **a team of experienced designers**
+    svg: team.svg
+    answer: la
+  - question: !markdown |
+      **Free consultation** in the office or by phone
+    svg: consultation.svg
+    answer: la

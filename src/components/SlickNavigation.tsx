@@ -22,18 +22,25 @@ const ArrowWrapper = styled.div`
     }
 `
 const ArrowWrapperPrevious = styled(ArrowWrapper)<{
-    modal: boolean | undefined
+    modal?: boolean
+    bottom?: boolean
 }>`
     left: ${(props) => (props.modal ? '-0' : '30px')};
+    ${(props) => props.bottom === true && 'top:95%;left:15px;'};
 `
-const ArrowWrapperNext = styled(ArrowWrapper)<{ modal: boolean | undefined }>`
+const ArrowWrapperNext = styled(ArrowWrapper)<{
+    modal?: boolean
+    bottom?: boolean
+}>`
     right: ${(props) => (props.modal ? '2px' : '30px')};
+    ${(props) => props.bottom === true && 'top:95%;right:15px;'};
 `
 const ArrowNext = styled(Next)`
     width: 30px;
     height: 30px;
     border: 1px solid ${colors.white};
     border-radius: 50%;
+
     @media (min-width: ${displayWidth.desktop}) {
         width: 45px;
         height: 45px;
@@ -44,6 +51,7 @@ const ArrowPrevious = styled(Previous)`
     height: 30px;
     border: 1px solid ${colors.white};
     border-radius: 50%;
+
     @media (min-width: ${displayWidth.desktop}) {
         width: 45px;
         height: 45px;
@@ -52,34 +60,36 @@ const ArrowPrevious = styled(Previous)`
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface SlickButtonProps {
     [x: string]: any
-    currentSlide?: any
-    slideCount?: any
+    $currentslide?: any
+    $slidecount?: any
     children?: any
     modal?: boolean
 }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const SlickNext = ({
-    currentSlide,
-    slideCount,
+    $currentslide,
+    $slidecount,
     children,
     modal,
+    bottom,
     ...props
 }: SlickButtonProps) => (
-    <ArrowWrapperNext {...props} modal={modal}>
+    <ArrowWrapperNext {...props} bottom={bottom} modal={modal}>
         <ArrowNext />
     </ArrowWrapperNext>
 )
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const SlickPrevious = ({
-    currentSlide,
-    slideCount,
+    $currentslide,
+    $slidecount,
     children,
     modal,
+    bottom,
     ...props
 }: SlickButtonProps) => (
-    <ArrowWrapperPrevious {...props} modal={modal}>
+    <ArrowWrapperPrevious {...props} bottom={bottom} modal={modal}>
         <ArrowPrevious />
     </ArrowWrapperPrevious>
 )

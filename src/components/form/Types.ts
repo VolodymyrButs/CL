@@ -1,9 +1,11 @@
+import { TFunction } from 'i18next'
 import React from 'react'
 
 export interface IInputProps {
     err?: string
     isValid?: string
-    placeholder?: string
+    labelBottom?: number
+    placeholder?: TFunction | string
     type?: string
     name?: string
     id?: string

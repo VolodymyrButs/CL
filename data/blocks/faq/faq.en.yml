@@ -49,3 +49,24 @@ questions:
       Yes, we provide a service of concept selection by colors and materials for the main surfaces.
 
       The consultation takes place in the office with an experienced designer - decorator. The result is fixed by a selection of images and color numbers from international palettes.
+  - question: What should you have with you for consultation on the selection of colors and materials?
+    answer: !markdown |
+      At the meeting, a plan for the arrangement of furniture will be needed and if something of the materials has already been purchased or determined, it is advisable to provide photographs.
+  - question: Will the designer help to determine the style and what is needed for this?
+    answer: !markdown |
+      If you have a selection of inspiring photos, please bring them to the meeting. If not, then it's okay, we'll find out everything at the consultation.
+  - question: What will I have in the end of the consultation?
+    answer: !markdown |
+      During the meeting, the designer will form a letter with a list of the main interior elements with the assignment of textures and clarification of the numbering from the NCS and RAL color palettes.
+
+      The letter will be accompanied by images, which later will be convenient for you to rely on when choosing materials. At the end of the meeting, an email is sent to you.
+  - question: Can a designer help in choosing colors if part of the renovation has already been done?
+    answer: !markdown |
+      Yes, the designer offers the best color matching solutions taking into account existing surfaces and materials.
+  - question: What do you need to create a 3D visualization?
+    answer: !markdown |
+      You will need room drawings in dwg format with an approved furniture arrangement plan and possible redevelopment.
+
+      You also need to define combinations of colors and textures for the main surfaces, using the international palettes ncs, ral. and etc.
+
+      You can draw up a technical task for visualization yourself or take advantage of the designer's consultation on the selection of colors and textures.

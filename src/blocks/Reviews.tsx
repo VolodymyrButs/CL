@@ -15,6 +15,7 @@ import Google from 'assets/icons/google.svg'
 import { createRand } from 'utils/getRandomArray'
 import { indent } from 'styles/indent'
 import { sendEvent } from 'tracking'
+import { SlickNext, SlickPrevious } from 'components/SlickNavigation'
 
 const ReviewsWrapper = styled.div`
     display: flex;
@@ -174,7 +175,7 @@ const HeroColumn = styled.div`
 
 const SlideWrapper = styled.div``
 
-export const Reviews = () => {
+export const Reviews = ({ arrows }: { arrows?: boolean; bottom?: boolean }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -211,11 +212,14 @@ export const Reviews = () => {
     const { rating, reviewsQuantity, link, reviewsArr } = commonData
     const reviewsYaml = getDataByLanguage(data.allReviewsYaml, i18n.language)
     const { title, ourRank, quantity1, quantity2 } = reviewsYaml
+    const arr = arrows ? true : false
     const sliderSettings = {
         dots: true,
         infinite: true,
         speed: 100,
-        arrows: false,
+        arrows: arr,
+        nextArrow: <SlickNext bottom />,
+        prevArrow: <SlickPrevious bottom />,
     }
 
     const RandomList = createRand(5, 0, reviewsArr.length - 1)

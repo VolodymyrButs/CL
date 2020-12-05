@@ -27,6 +27,7 @@ import { displayWidth } from 'styles/width'
 import ISvg from 'assets/icons/iconsCad/i.svg'
 import { accentDark } from './themes/accentDark'
 import { Button } from 'components/Button'
+import { sendEvent } from 'tracking/tracking'
 
 const ModalWraper = styled.div`
     position: absolute;
@@ -205,6 +206,10 @@ export const SaveModal = ({
                 <ButtonWrapper>
                     <SaveButton
                         onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'Sava Draw',
+                                placement: 'CAD',
+                            })
                             setShouldShowSaveModal(false)
                             handleDownloadClick()
                             onClose()
