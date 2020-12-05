@@ -41,7 +41,13 @@ const BlocksWrapper = styled.div`
     }
 `
 const languagesList = Object.keys(languages)
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+export const Layout = ({
+    children,
+    noFooter = true,
+}: {
+    children: React.ReactNode
+    noFooter?: boolean
+}) => {
     const { i18n } = useTranslation()
     const { getPagePath } = usePagePath()
     const [hideCallback, setHideCallback] = useState(1000)
@@ -231,7 +237,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <Header />
             <BlocksWrapper id="blockWrapper" onScroll={onScroll}>
                 {children}
-                <Footer />
+                {noFooter && <Footer />}
             </BlocksWrapper>
             <CallbackButton
                 hideCallback={hideCallback}

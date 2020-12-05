@@ -149,7 +149,6 @@ const TitleStyled = styled(TitleH1)`
         font-size: 50px;
         line-height: 64px;
         padding-left: 0px;
-        margin-left: 0;
     }
 `
 const Price = styled.span`

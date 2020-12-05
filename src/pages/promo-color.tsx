@@ -123,7 +123,7 @@ const Desktop = styled.div`
     position: relative;
     display: none;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
     }
@@ -144,8 +144,9 @@ const WrapDesktop = styled.div`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: block;
-        top: 80px;
-        height: calc(100vh - 20px);
+        top: 0;
+        height: calc(100vh - 80px);
+        margin-top: 80px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -381,7 +382,7 @@ const PosadkaColor = ({ data }: { data: any }) => {
                 <BottomIcons>
                     <IconWrapper>
                         <a
-                            href="viber://chat?number=%2B380982117690"
+                            href="viber://pa?chatURI=clearline_com_ua"
                             target="blank"
                             onClick={() => {
                                 sendForm(`PosadkaMobileViberIcon`, {})
@@ -426,13 +427,12 @@ const PosadkaColor = ({ data }: { data: any }) => {
                         </a>
                     </IconWrapper>
                 </BottomIcons>
-                <PromoHeroMobile3d />
                 <SelectionOfPaintsPosadka imagesData={data} />
                 <AdvantagesServices imagesData={data} imgNot />
 
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
 
-                <PromoHeroMobile3d text />
+                <PromoHeroMobile3d />
             </Wrap>
 
             <Desktop id="blockColor" onScroll={onScroll}>

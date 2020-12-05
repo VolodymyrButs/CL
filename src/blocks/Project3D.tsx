@@ -96,13 +96,7 @@ const ButtonStyled = styled(Button)`
     }
 `
 
-export const Project3D = ({
-    imagesData,
-    setAdvantages3DIsVisible,
-}: {
-    imagesData: imagesDataProp
-    setAdvantages3DIsVisible: (arg: boolean) => void
-}) => {
+export const Project3D = ({ imagesData }: { imagesData: imagesDataProp }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
@@ -142,7 +136,6 @@ export const Project3D = ({
                     <LocalizedLinkStyled
                         to={'/promo/#project3dAdvantages'}
                         onClick={() => {
-                            setAdvantages3DIsVisible(true)
                             sendEvent('Click', {
                                 eventCategory: 'ShowMoreButton',
                                 placement: 'Project3D',

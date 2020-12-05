@@ -70,7 +70,7 @@
     "from": "from",
     "alternate": "Alternative to 3D visualization",
     "visualization": "3D Visualization",
-    "consultation": "Selection of colors and textures",
+    "consultation": "Selection of colors and textures in the interior",
     "designQuestion": "Ask questions to the designer",
     "comercialForm": {
         "example": "Sample design project",
@@ -147,5 +147,8 @@
     "Tools": "Tools",
     "InputPhone": "Enter your phone number",
     "InputEmail": "Enter your e-mail for reply",
-    "InputQuestion": "Enter your question"
+    "InputQuestion": "Enter your question",
+    "showPromo": "View more offers from the studio",
+    "CL": "CLearline",
+    "showPromoMobile": "More suggestions from"
 }

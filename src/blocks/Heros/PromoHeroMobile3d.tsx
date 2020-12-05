@@ -17,6 +17,7 @@ import { MessageInput } from 'components/form/MessageInput'
 const Wrapper = styled.div`
     display: block;
     margin-top: 0.1px;
+    margin-bottom: 0.1px;
     @media (min-width: ${displayWidth.tablet}) {
         display: none;
     }
@@ -43,7 +44,7 @@ const PromoHeroColumn = styled.div`
     flex-grow: 0;
     button {
         width: 94%;
-        margin: 10px auto 20px;
+        margin: 10px auto 40px;
     }
 `
 const ContainerStyled = styled(Container)`
@@ -123,7 +124,13 @@ const Text2 = styled(Text)`
         animation-delay: -120s;
     }
 `
-export const PromoHeroMobile3d = ({ text }: { text?: boolean }) => {
+export const PromoHeroMobile3d = ({
+    text,
+    noLine,
+}: {
+    text?: boolean
+    noLine?: boolean
+}) => {
     const { t } = useTranslation()
 
     const {
@@ -172,7 +179,7 @@ export const PromoHeroMobile3d = ({ text }: { text?: boolean }) => {
                     </PromoHeroColumn>
                 </ContainerStyled>
             </PromoHeroWraper>
-            {!text && (
+            {!noLine && !text && (
                 <RunningTextContainer>
                     <Wrapper1>
                         <Text>{t('designProject99').repeat(20)}</Text>
