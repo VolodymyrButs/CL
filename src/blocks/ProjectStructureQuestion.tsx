@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import { useStaticQuery, graphql } from 'gatsby'
 
 import { Container } from 'components/Container'
 import { backgroundColors, colors } from 'styles/colors'
@@ -40,6 +39,11 @@ const HeroColumn = styled.div`
         border-bottom: none;
         border-right: 1px solid #231f20;
     }
+    @media (min-width: ${displayWidth.desktop}) {
+        justify-content: center;
+        border-right: none;
+        align-items: center;
+    }
 `
 const LeftSidebar = styled.div`
     display: none;
@@ -62,12 +66,18 @@ const Price = styled.span`
     color: #b75034;
     font-size: 28px;
     font-weight: bold;
+    @media (min-width: ${displayWidth.desktop}) {
+        font-size: 36px;
+    }
 `
 
 const Big = styled.span`
     font-size: 30px;
     line-height: 45px;
     font-family: 'Open Sans', sans-serif;
+    @media (min-width: ${displayWidth.desktop}) {
+        font-size: 36px;
+    }
 `
 
 const TitleStyled = styled(Title)`
@@ -80,36 +90,21 @@ const TitleStyled = styled(Title)`
         max-width: 250px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        margin-left: ${indent.heroColumnDesktop};
+        max-width: 1000px;
+        font-size: 32px;
     }
 `
 
-export const ProjectStructureQuestion = ({ id }: { id?: string }) => {
+export const ProjectStructureQuestion = ({
+    id,
+    data,
+}: {
+    id?: string
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    data?: any
+}) => {
     const { i18n, t } = useTranslation()
-    const data = useStaticQuery(graphql`
-        query {
-            allProjectStructureQuestionYaml {
-                edges {
-                    node {
-                        title
-                        price
-                        image
-                        promo
-                        items {
-                            question
-                            answer
-                            svg
-                        }
-                        parent {
-                            ... on File {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `)
+
     const projectStructureData = getDataByLanguage(
         data.allProjectStructureQuestionYaml,
         i18n.language
@@ -120,6 +115,42 @@ export const ProjectStructureQuestion = ({ id }: { id?: string }) => {
         <ProjectStructureWrapper id={id}>
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
+                <HeroColumn>
+                    <TitleStyled>
+                        <Price>{promo}</Price> {title} {t('for')}{' '}
+                        <Big>{price}</Big>
+                    </TitleStyled>
+                </HeroColumn>
+                <IconListStyled
+                    items={items}
+                    fill={backgroundColors.promotion}
+                />
+            </Container>
+            <RightSidebar />
+        </ProjectStructureWrapper>
+    )
+}
+
+export const ProjectStructureQuestionDesktop = ({
+    id,
+    data,
+}: {
+    id?: string
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    data?: any
+}) => {
+    const { i18n, t } = useTranslation()
+
+    const projectStructureData = getDataByLanguage(
+        data.allProjectStructureQuestionYaml,
+        i18n.language
+    )
+    const { title, items, price, promo } = projectStructureData
+
+    return (
+        <ProjectStructureWrapper id={id}>
+            <LeftSidebar />
+            <Container columns={'1fr'} tabletColumns={'1fr'}>
                 <HeroColumn>
                     <TitleStyled>
                         <Price>{promo}</Price> {title} {t('for')}{' '}

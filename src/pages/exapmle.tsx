@@ -1,10 +1,10 @@
 import React from 'react'
 import { HelmetFunc } from 'components/PageMetaData'
 import { ExamplesOfProjects } from 'blocks/ExamplesOfProjects'
-import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
 import { RunningLine } from 'components/RunningLine'
 import { useTranslation } from 'react-i18next'
 import { Layout } from 'layout/Layout'
+import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 
 const pageMetadata = {
     uk: {
@@ -31,7 +31,13 @@ const ExamplePage = () => {
             <HelmetFunc data={pageMetadata} />
             <ExamplesOfProjects />
             <RunningLine>{t('designProject99')}</RunningLine>
-            <CommercialProposalFormBlock text />
+            <DefaultFormBlock
+                withPhoneMobile
+                tracking={{
+                    conversionType: 'FormExample',
+                    eventCategory: 'FormExample',
+                }}
+            />
         </Layout>
     )
 }

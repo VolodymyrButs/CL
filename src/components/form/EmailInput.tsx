@@ -6,7 +6,7 @@ import { TFunction } from 'i18next'
 
 interface EmailInputProps {
     err: string
-    placeholder: TFunction | string
+    placeholder?: TFunction | string
     labelBottom?: number
 }
 

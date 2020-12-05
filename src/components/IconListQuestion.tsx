@@ -16,7 +16,7 @@ const IconListWrapper = styled.div<{ background: string }>`
         padding: 46px 10px 46px 30px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 56px 48px;
+        padding: 0px 48px 20px;
     }
 `
 const IconItem = styled.div`
@@ -28,6 +28,11 @@ const IconItem = styled.div`
     @media (min-width: ${displayWidth.tablet}) {
         width: 50%;
         align-items: flex-start;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 100%;
+        align-items: flex-start;
+        padding: 5px 16px;
     }
     > div {
         display: flex;

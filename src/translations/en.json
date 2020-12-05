@@ -28,7 +28,7 @@
     "formHeroPosadka": "Leave a request and get a sample project",
     "formHeroDeskPosadka": "Submit and get a sample project",
     "structurePosadka": "Promotion - apartment design",
-    "exampleSubtitle": "View a sample project, that you will receive at the end of the work",
+    "exampleSubtitle": "The project contains all the necessary drawings for construction and finishing works",
     "homeType": {
         "flat": "Apartment",
         "house": "House, townhouse, cottage",
@@ -73,7 +73,7 @@
     "consultation": "Selection of colors and textures in the interior",
     "designQuestion": "Ask questions to the designer",
     "comercialForm": {
-        "example": "Sample design project",
+        "example": "Sample design project promo",
         "conditions": "Working conditions",
         "proposal": "Commercial proposal for your object"
     },

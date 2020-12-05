@@ -15,6 +15,7 @@ const conversionTypes = [
     'SocialIconInstagram',
     'PhoneClick',
     'EmailClick',
+    'FormExample',
 ]
 export type ConversionType = typeof conversionTypes[number]
 export const isConversionType = (value: string): value is ConversionType =>

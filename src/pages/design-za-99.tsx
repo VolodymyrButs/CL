@@ -29,16 +29,19 @@ import { sendForm } from 'components/form/api'
 import Proposal from 'assets/icons/proposal.svg'
 import Pensile from 'assets/icons/pensile.svg'
 import Handshake from 'assets/icons/handshake.svg'
-import { ButtonWithModal } from 'components/ButtonWithModal'
+
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { ComercialForm } from 'components/form/CommercialForm'
 import { CommercialProposalFormBlock } from 'blocks/CommercialProposalFormBlock'
-import { Connection } from 'blocks/Connection'
+
 import { Header } from 'blocks/Header/Header'
 import { graphql } from 'gatsby'
 import { imagesDataProp } from './promo'
 import { usePagePath } from 'hooks/usePagePath'
-import { ProjectStructureQuestion } from 'blocks/ProjectStructureQuestion'
+import {
+    ProjectStructureQuestion,
+    ProjectStructureQuestionDesktop,
+} from 'blocks/ProjectStructureQuestion'
 import { PromoHeroMobile99 } from 'blocks/Heros/PromoHeroMobile99'
 import { ProjectStructureWhy } from 'blocks/ProjectStructureWhy'
 
@@ -490,7 +493,7 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                 </BottomIcons>
                 <PromoHeroMobile99 />
                 <div id="projectStructure1" />
-                <ProjectStructureQuestion />
+                <ProjectStructureQuestion data={data} />
                 <RunningLine inverse>{t('designProject99')}</RunningLine>
                 <Reviews arrows bottom />
                 <ProjectStructureWhy />
@@ -521,8 +524,8 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                 <WrapDesktop>
                     <PromoHeroNew imagesData={data} />
                     <RunningLine inverse>{t('designProject99')}</RunningLine>
-                    <ProjectStructureQuestion />
-
+                    <ProjectStructureQuestionDesktop data={data} />
+                    {/* 
                     <Connection text={t('connection.text')}>
                         <ButtonWithModal
                             modalTitle={t('connection.modalTitle')}
@@ -535,10 +538,11 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                                 eventCategory: 'CallbackFromPosadka',
                             }}
                         />
-                    </Connection>
+                    </Connection> */}
 
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
+                    <ProjectStructureWhy />
                     <CommercialProposalFormBlock placement="Posadka" />
                 </WrapDesktop>
             </Desktop>
@@ -556,6 +560,26 @@ export const query = graphql`
                     fluid(srcSetBreakpoints: [400]) {
                         originalName
                         ...GatsbyImageSharpFluid
+                    }
+                    parent {
+                        ... on File {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+        allProjectStructureQuestionYaml {
+            edges {
+                node {
+                    title
+                    price
+                    image
+                    promo
+                    items {
+                        question
+                        answer
+                        svg
                     }
                     parent {
                         ... on File {

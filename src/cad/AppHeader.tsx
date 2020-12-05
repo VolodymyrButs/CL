@@ -12,6 +12,7 @@ import DeleteIcon from 'assets/icons/iconsCad/delete.svg'
 import LogoSwg from 'assets/icons/Logo.svg'
 import { light } from './themes/light'
 import { displayWidth } from 'styles/width'
+import { sendEvent } from 'tracking/tracking'
 
 const ButtonArea = styled.div`
     display: flex;
@@ -161,7 +162,15 @@ export const AppHeader = ({
                 <LogoSvg />
             </Logo>
 
-            <Banner to={'/promo-f'}>
+            <Banner
+                to={'/promo-f'}
+                onClicc={() =>
+                    sendEvent('Click', {
+                        eventCategory: 'Banner',
+                        placement: 'CAD',
+                    })
+                }
+            >
                 <p>{t('promoRaw')}</p>
                 <p> {t('designProject99')}</p>
             </Banner>

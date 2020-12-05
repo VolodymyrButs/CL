@@ -16,7 +16,7 @@ const IconListWrapper = styled.div<{ background: string }>`
         padding: 46px 10px 46px 30px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        padding: 56px 48px;
+        padding: 0px 48px 20px;
     }
 `
 const IconItem = styled.div`
@@ -30,13 +30,19 @@ const IconItem = styled.div`
         width: 50%;
         align-items: flex-start;
     }
-    > div {
+    @media (min-width: ${displayWidth.desktop}) {
+        width: 100%;
+        align-items: flex-start;
+    }
+    > div:first-child {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: start;
+        @media (min-width: ${displayWidth.desktop}) {
+            justify-content: start;
+        }
         svg {
-            min-width: 75px;
             margin-right: 10px;
         }
     }
@@ -44,36 +50,58 @@ const IconItem = styled.div`
 const Text = styled.div`
     margin-top: 15px;
 
-    text-align: center;
+    text-align: left;
 
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 26px;
     letter-spacing: 0.4px;
     @media (min-width: ${displayWidth.tablet}) {
-        text-align: left;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        font-size: 32px;
+        margin-top: 0px;
     }
 `
 const Text2 = styled(Text)`
+    font-size: 18px;
     p {
+        font-size: 18px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        display: none;
+    }
+`
+const TextD = styled(Text)`
+    display: none;
+    @media (min-width: ${displayWidth.desktop}) {
+        display: block;
         font-size: 24px;
+        margin-top: 15px;
+        line-height: 35px;
     }
 `
 interface IIconStyledProps {
     fill: string
 }
 const IconStyled = styled(Icon)<IIconStyledProps>`
+    min-width: 75px;
     overflow: visible;
     .iconCircle {
-        fill: ${(props) => props.fill};
+        fill: #ebebeb;
         stroke: #b75034;
-        stroke-width: 7px;
+        stroke-width: 1px;
+    }
+    @media (min-width: ${displayWidth.desktop}) {
+        min-width: 120px;
+        min-height: 65px;
     }
 `
 interface IItem {
     question: string
     answer: string
+    answerDesctop: string
     svg?: string
 }
 
@@ -98,17 +126,18 @@ export const IconListWhy: React.FC<IIconListProps> = ({
                             {item.svg && (
                                 <IconStyled iconName={item.svg} fill={fill} />
                             )}
-                            <Text2
+                            <Text
                                 dangerouslySetInnerHTML={{
                                     __html: item.question,
                                 }}
                             />
                         </div>
-                        <Text
+                        <Text2
                             dangerouslySetInnerHTML={{
                                 __html: item.answer,
                             }}
                         />
+                        <TextD> {item.answerDesctop}</TextD>
                     </IconItem>
                 )
             })}
