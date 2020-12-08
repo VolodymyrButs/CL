@@ -103,7 +103,7 @@ export const CommercialProposalFormBlock3d = ({
                             </h3>
                             <h3>
                                 <PensileS />
-                                {t('comercialForm.example')}
+                                {t('comercialForm.example3d')}
                             </h3>
 
                             <h3>

@@ -126,7 +126,7 @@ export const ComercialForm = ({ placement }: { placement?: string }) => {
         })
 
         handleFormSendStart()
-        sendForm(formName, data)
+        sendForm(formName, data, placement)
             .then((success) => {
                 handleSubmitStatus(success.success)
 

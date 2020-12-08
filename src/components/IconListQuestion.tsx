@@ -32,7 +32,7 @@ const IconItem = styled.div`
     @media (min-width: ${displayWidth.desktop}) {
         width: 100%;
         align-items: flex-start;
-        padding: 5px 16px;
+        padding: 10px 16px;
     }
     > div {
         display: flex;
@@ -55,7 +55,7 @@ const Text = styled.span`
 `
 const Text2 = styled(Text)`
     position: relative;
-    border-left: 8px solid #b75034;
+    border-left: 8px solid ${colors.accentText};
     margin-bottom: 15px;
     p {
         display: flex;

@@ -1,28 +1,41 @@
-title: What is included in the design
+title: Design project of apartment
+promo: Sale -
 image: table.webp
 price: $99
 items:
   - question: !markdown |
-      **All the necessary drawings** for the repair and selection of furniture
+      Is it possible to order a design project for $ 99?
     svg: pen.svg
-    answer: la
+    answer: Yes, for this amount we offer a project option with all the necessary drawings, plans, layouts, sufficient to select furniture and finishing materials.
   - question: !markdown |
-      Meetings with the designer, options for redevelopment and furniture placement **are not limited**
-    svg: infinity.svg
-    answer: la
-  - question: !markdown |
-      **Individual** approach to design
+      Are there any restrictions on the number of meetings with a designer?
     svg: ruler.svg
-    answer: la
+    answer: No, work happens until the desired result is achieved.
   - question: !markdown |
-      Average term of a design project **2 weeks**
+      Is it possible to start renovation with this project?
     svg: clock.svg
-    answer: la
+    answer: Yes, the project has all the necessary plans and drawings to start construction and finishing works.
   - question: !markdown |
-      At your service **a team of experienced designers**
+      Is this an individual design project?
+    svg: ruler.svg
+    answer: Yes, this is an individual design project, a dimensional drawing is required to get started.
+  - question: !markdown |
+      Who will work with us and where is the office located?
+    svg: infinity.svg
+    answer: A designer with an artistic taste and experience since 1997 is at your service. The office is located in the city center, not far from the metro, and is equipped with all the necessary equipment and software.
+  - question: !markdown |
+      How does the work begin?
     svg: team.svg
-    answer: la
+    answer: The best place to start is with a free designer consultation. You can ask the questions you are interested in and get answers immediately.
   - question: !markdown |
-      **Free consultation** in the office or by phone
+      Is there an opportunity for an urgent project?
     svg: consultation.svg
-    answer: la
+    answer: Yes, there is such an opportunity, we will do it in 7 days.
+  - question: !markdown |
+      Where can I see a sample of the finished project?
+    svg: clock1.svg
+    answer: A sample of the finished project can be viewed on our website interior design.
+  - question: !markdown |
+      How is the project presented?
+    svg: pen.svg
+    answer: The project is provided in paper and electronic forms.

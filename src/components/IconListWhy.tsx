@@ -33,6 +33,7 @@ const IconItem = styled.div`
     @media (min-width: ${displayWidth.desktop}) {
         width: 100%;
         align-items: flex-start;
+        padding: 30px 16px;
     }
     > div:first-child {
         width: 100%;

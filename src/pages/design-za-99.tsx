@@ -449,7 +449,7 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                             href="viber://chat?number=%2B380982117690"
                             target="blank"
                             onClick={() => {
-                                sendForm(`PosadkaMobileViberIcon`, {})
+                                sendForm(`PosadkaMobileZa99ViberIcon`, {})
                                 sendConversion('SocialIconViber')
                                 sendEvent('SocialIcon', {
                                     eventCategory: 'SocialIconViber',
@@ -463,7 +463,7 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                             href="https://wa.me/+380958363420"
                             target="blank"
                             onClick={() => {
-                                sendForm(`PosadkaMobileWhatsAppIcon`, {})
+                                sendForm(`PosadkaMobileZa99WhatsAppIcon`, {})
                                 sendConversion('SocialIconWhatsApp')
                                 sendEvent('SocialIcon', {
                                     eventCategory: 'SocialIconWhatsApp',
@@ -480,7 +480,10 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                             <TelegramIconStyled
                                 aria-label="Telegram Button"
                                 onClick={() => {
-                                    sendForm(`PosadkaMobileTelegramIcon`, {})
+                                    sendForm(
+                                        `PosadkaMobileZa99TelegramIcon`,
+                                        {}
+                                    )
                                     sendConversion('SocialIconTelegram')
                                     sendEvent('SocialIcon', {
                                         eventCategory: 'SocialIconTelegram',
@@ -515,7 +518,7 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                         </h3>
                     </DivS>
 
-                    <ComercialForm placement="PosadkaMobile" />
+                    <ComercialForm placement="PosadkaMobileZa99" />
                 </FormColumn>
             </Wrap>
 
@@ -543,7 +546,7 @@ const Posadka = ({ data }: { data: imagesDataProp }) => {
                     <Reviews />
                     <RunningLine>{t('designProject99')}</RunningLine>
                     <ProjectStructureWhy />
-                    <CommercialProposalFormBlock placement="Posadka" />
+                    <CommercialProposalFormBlock placement="PosadkaZa99" />
                 </WrapDesktop>
             </Desktop>
         </div>
