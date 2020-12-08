@@ -1,0 +1,37 @@
+items:
+  - question: !markdown |
+      Are there any restrictions on the number of meetings with a designer?
+    svg: pen.svg
+    answer: There are no restrictions, the work takes place until the desired result is achieved.
+  - question: !markdown |
+      How the work is done?
+    svg: ruler.svg
+    answer: Work in the office or online. On a large monitor in real time, the customer and the designer in 3D move the walls, arrange the kitchen, plumbing, and other interior items.
+  - question: !markdown |
+      Is it possible to start repairs with this project?
+    svg: clock.svg
+    answer: Yes, the project has all the necessary plans and drawings to start construction and finishing works, including wall sweeps and isometry of complex nodes.
+  - question: !markdown |
+      Does the project include kitchen design?
+    svg: ruler.svg
+    answer: Yes, the constructive design of the kitchen and other cabinet furniture is being worked out in detail.
+  - question: !markdown |
+      Is this an individual design project?
+    svg: infinity.svg
+    answer: Yes, this is an individual design project, a dimensional drawing of the room is required to get started.
+  - question: !markdown |
+      Is there an opportunity for an urgent project?
+    svg: team.svg
+    answer: Yes, it can be done in 2 weeks.
+  - question: !markdown |
+      Who will work with us?
+    svg: consultation.svg
+    answer: An in-house design team is working.
+  - question: !markdown |
+      How is the project presented?
+    svg: clock1.svg
+    answer: The project is provided in paper and electronic versions. A link to the 3D model of the room is also provided.
+  - question: !markdown |
+      Where can I see a sample design project?
+    svg: pen.svg
+    answer: On the main page of the site there is a sample project with all drawings and a link to the 3D model.

@@ -63,7 +63,7 @@ const RightSidebar = styled(LeftSidebar)`
 `
 
 const Price = styled.span`
-    color: #b75034;
+    color: ${colors.accentText};
     font-size: 28px;
     font-weight: bold;
     @media (min-width: ${displayWidth.desktop}) {
@@ -82,7 +82,6 @@ const Big = styled.span`
 
 const TitleStyled = styled(Title)`
     font-size: 26px;
-    font-family: 'Comfortaa', cursive;
     margin: 35px 20px;
     font-weight: bold;
     @media (min-width: ${displayWidth.tablet}) {

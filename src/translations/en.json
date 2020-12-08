@@ -74,8 +74,10 @@
     "designQuestion": "Ask questions to the designer",
     "comercialForm": {
         "example": "Sample design project promo",
+        "example3d": "Sample design project 3D",
         "conditions": "Working conditions",
-        "proposal": "Commercial proposal for your object"
+        "proposal": "Commercial proposal for your object",
+        "3d": "Link to 3D model"
     },
     "Language": "EN",
     "SelectWallToContinue": "Select Tool and Wall To Continue",
@@ -150,5 +152,6 @@
     "InputQuestion": "Enter your question",
     "showPromo": "View more offers from the studio",
     "CL": "CLearline",
-    "showPromoMobile": "More suggestions from"
+    "showPromoMobile": "More suggestions from",
+    "m": "m"
 }

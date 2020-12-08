@@ -121,7 +121,7 @@ const TitleWrapper = styled.div`
         left: 0px;
     }
     @media (min-width: ${displayWidth.desktop}) {
-        width: 650px;
+        width: 700px;
     }
 `
 const TitleStyled = styled(TitleH1)`
@@ -300,7 +300,8 @@ export const PromoHero3d = ({ imagesData }: { imagesData: imagesDataProp }) => {
                     <TitleWrapper>
                         <TitleStyled>{t('3dDesignFlat')}</TitleStyled>
                         <Price>
-                            $4 {t('for')} m<sup>2</sup>
+                            $4 {t('for')} {t('m')}
+                            <sup>2</sup>
                         </Price>
                     </TitleWrapper>
                     <DesktopImageLeft fluid={imageSofa.fluid} />

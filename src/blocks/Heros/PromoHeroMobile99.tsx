@@ -44,7 +44,7 @@ const PromoHeroColumn = styled.div`
         width: 68%;
         margin: 10px auto 30px;
         height: 60px;
-        background-color: #b75034;
+        background-color: ${colors.accentText};
     }
 `
 const ContainerStyled = styled(Container)`
@@ -77,7 +77,7 @@ const FormTitle = styled.div`
     font-size: 30px;
     line-height: 50px;
     letter-spacing: 1px;
-    color: #b75034;
+    color: ${colors.accentText};
     text-align: center;
     margin: 10px;
     p {

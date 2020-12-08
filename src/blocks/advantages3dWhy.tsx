@@ -90,11 +90,11 @@ const TitleStyled = styled(Title)`
     }
 `
 
-export const ProjectStructureWhy = ({ id }: { id?: string }) => {
+export const Advantages3dWhy = ({ id }: { id?: string }) => {
     const { i18n } = useTranslation()
     const data = useStaticQuery(graphql`
         query {
-            allProjectStructureWhyYaml {
+            allAdvantages3DposadkaWhyYaml {
                 edges {
                     node {
                         title
@@ -117,7 +117,7 @@ export const ProjectStructureWhy = ({ id }: { id?: string }) => {
         }
     `)
     const projectStructureData = getDataByLanguage(
-        data.allProjectStructureWhyYaml,
+        data.allAdvantages3DposadkaWhyYaml,
         i18n.language
     )
 

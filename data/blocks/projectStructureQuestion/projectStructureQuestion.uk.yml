@@ -1,28 +1,41 @@
-title: What is included in the design
+title: Дизайн проект всієї квартири
+promo: Акція -
 image: table.webp
-price: $99
+price: $ 99
 items:
   - question: !markdown |
-      **All the necessary drawings** for the repair and selection of furniture
+      Чи можна замовити дизайн проект за 99$?
     svg: pen.svg
-    answer: la
+    answer: Так, за цю суму ми пропонуємо варіант проекту з усіма необхідними кресленнями, планами, розкладками, достатніми для того, щоб вибрати меблі та оздоблювальні матеріали.
   - question: !markdown |
-      Meetings with the designer, options for redevelopment and furniture placement **are not limited**
-    svg: infinity.svg
-    answer: la
-  - question: !markdown |
-      **Individual** approach to design
+      Чи є обмеження по кількості зустрічей з дизайнером?
     svg: ruler.svg
-    answer: la
+    answer: Ні, робота відбувається до досягнення бажаного результату.
   - question: !markdown |
-      Average term of a design project **2 weeks**
+      Це індивідуальний дизайн проект?
+    svg: ruler.svg
+    answer: Так, це індивідуальний дизайн проект, для початку роботи потрібне обмірне креслення.
+  - question: !markdown |
+      Хто з нами буде працювати і де знаходиться офіс?
+    svg: infinity.svg
+    answer: До ваших послуг дизайнер з художнім смаком і досвідом роботи з 1997 року. Офіс знаходиться в центрі міста, недалеко від метро, ​​обладнаний всією необхідною технікою і програмним забезпеченням.
+  - question: !markdown |
+      Чи можна з цим проектом починати ремонт?
     svg: clock.svg
-    answer: la
+    answer: Так, в проекті є всі необхідні плани і креслення для початку будівельних і оздоблювальних робіт.
   - question: !markdown |
-      At your service **a team of experienced designers**
+      З чого починається робота?
     svg: team.svg
-    answer: la
+    answer: Найкраще почати з безкоштовної консультації дизайнера. Ви зможете задати ваші запитання і відразу отримати відповіді.
   - question: !markdown |
-      **Free consultation** in the office or by phone
+      Чи є можливість термінового виконання проекту?
     svg: consultation.svg
-    answer: la
+    answer: Так, така можливість є, зробимо за 7 днів.
+  - question: !markdown |
+      Де можна подивитися зразок готового проекту?
+    svg: clock1.svg
+    answer: Зразок готового проекту можна подивитися на головній сторінці.
+  - question: !markdown |
+      У якому вигляді надається проект?
+    svg: pen.svg
+    answer: Проект надається в паперовому та електронному видах.
