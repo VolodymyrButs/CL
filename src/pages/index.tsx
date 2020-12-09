@@ -1,13 +1,12 @@
 import React from 'react'
 
-import { ExampleOfProject, OurServices } from 'blocks/OurServices'
+import { OurServices } from 'blocks/OurServices'
 import { HomeHero } from 'blocks/Heros/HomeHero'
-import { DefaultFormBlock } from 'blocks/DefaultFormBlock'
 import { HelmetFunc } from 'components/PageMetaData'
 import { Layout } from 'layout/Layout'
 import { RunningLine } from 'components/RunningLine'
 import { useTranslation } from 'react-i18next'
-
+import { OurServicesBottom } from 'blocks/OurServicesBottom'
 
 const pageMetadata = {
     uk: {
@@ -37,15 +36,7 @@ const IndexPage = () => {
             <HomeHero />
             <RunningLine>{t('designProject99')}</RunningLine>
             <OurServices />
-            <DefaultFormBlock
-                withPhoneMobile
-                tracking={{
-                    conversionType: 'FormIndexPageBottom',
-                    eventCategory: 'FormIndexPageBottom',
-                }}
-            >
-                <ExampleOfProject />
-            </DefaultFormBlock>
+            <OurServicesBottom />
         </Layout>
     )
 }

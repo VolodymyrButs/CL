@@ -29,6 +29,7 @@
     "formHeroDeskPosadka": "Submit and get a sample project",
     "structurePosadka": "Promotion - apartment design",
     "exampleSubtitle": "The project contains all the necessary drawings for construction and finishing works",
+    "exampleSubtitle3d": "The project contains all the necessary plans and drawings to start construction and finishing works, including wall unfolding and isometry of complex nodes and a 3D model",
     "homeType": {
         "flat": "Apartment",
         "house": "House, townhouse, cottage",
