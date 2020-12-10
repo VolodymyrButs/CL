@@ -9,7 +9,6 @@ import { backgroundColors, colors } from 'styles/colors'
 import { displayWidth } from 'styles/width'
 import { mobileAfterBorder } from 'styles/mobileAfterBorder'
 import { Title } from 'components/TitleComponent'
-import { getDataByLanguage } from 'utils/getDataByLanguage'
 import { SliderComponent } from 'components/SliderComponent'
 import { indent } from 'styles/indent'
 import FullScreen from 'assets/icons/fullScreen.svg'
@@ -22,7 +21,7 @@ const ExampleOfProjectWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${backgroundColors.promotion};
+    background-color: ${backgroundColors.index};
     position: relative;
     border-bottom: 1px solid ${colors.dark};
     ${mobileAfterBorder}
@@ -31,21 +30,6 @@ const ExampleOfProjectWrapper = styled.div`
     }
 `
 
-const Price = styled.span`
-    font-family: 'Yeseva One', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 64px;
-    line-height: 74px;
-    letter-spacing: 0.888889px;
-    color: ${colors.accentText};
-    margin-left: 6px;
-    @media (min-width: ${displayWidth.tablet}) {
-        font-size: 36px;
-        line-height: 42px;
-        letter-spacing: 1.77882px;
-    }
-`
 const SubTitle = styled.h3`
     font-weight: normal;
     font-size: 16px;
@@ -56,6 +40,18 @@ const SubTitle = styled.h3`
     margin-bottom: 32px;
     @media (min-width: ${displayWidth.tablet}) {
         text-align: left;
+    }
+`
+const Link = styled(SubTitle)`
+    a {
+        cursor: pointer;
+        text-decoration: none;
+        color: ${colors.accentText};
+        font-size: 20px;
+        :hover {
+            font-size: 21px;
+            transition: font-size 0.1s linear;
+        }
     }
 `
 const TitleStyled = styled(Title)`
@@ -74,6 +70,7 @@ const HeroColumn = styled.div`
         border-right: 1px solid ${colors.dark};
     }
     @media (min-width: ${displayWidth.desktop}) {
+        justify-content: space-between;
         padding: 0 ${indent.heroColumnDesktop} 24px;
     }
 `
@@ -83,7 +80,7 @@ const LeftSidebar = styled.div`
         display: flex;
         flex-grow: 1;
         min-width: 79px;
-        background-color: ${backgroundColors.promotion};
+        background-color: ${backgroundColors.index};
         box-sizing: border-box;
         margin-left: 1px;
     }
@@ -134,8 +131,8 @@ const FullScreenButton = styled(FullScreen)`
         right: 10px;
     }
 `
-export const ExamplesOfProjects = () => {
-    const { i18n } = useTranslation()
+export const ExamplesOfProjects3d = () => {
+    const { t } = useTranslation()
     const [isModalOpen, setModalIsOpen] = useState(false)
     const data = useStaticQuery(graphql`
         query {
@@ -159,48 +156,9 @@ export const ExamplesOfProjects = () => {
                     }
                 }
             }
-            mobile: allFile(
-                filter: { relativeDirectory: { eq: "projectExamplesMobile" } }
-                sort: { fields: absolutePath }
-            ) {
-                edges {
-                    node {
-                        id
-                        childImageSharp {
-                            fluid(srcSetBreakpoints: [400]) {
-                                ...GatsbyImageSharpFluid
-                            }
-                            parent {
-                                ... on File {
-                                    name
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            allExamplesOfProjectsYaml {
-                edges {
-                    node {
-                        title
-                        price
-                        description
-                        parent {
-                            ... on File {
-                                name
-                            }
-                        }
-                    }
-                }
-            }
         }
     `)
-    const examplesOfProjectsYaml = getDataByLanguage(
-        data.allExamplesOfProjectsYaml,
-        i18n.language
-    )
 
-    const { price, description, title } = examplesOfProjectsYaml
     const sliderSettings = {
         infinite: true,
         responsive: [
@@ -219,11 +177,13 @@ export const ExamplesOfProjects = () => {
             <LeftSidebar />
             <Container columns={'1fr'} tabletColumns={'1fr 2fr'}>
                 <HeroColumn>
-                    <TitleStyled>
-                        {title}
-                        <Price>{price}</Price>
-                    </TitleStyled>
-                    <SubTitle> {description}</SubTitle>
+                    <TitleStyled>{t('comercialForm.example3d')}</TitleStyled>
+                    <SubTitle> {t('exampleSubtitle3d')}</SubTitle>
+                    <Link>
+                        <a href="#" target="blank">
+                            {t('comercialForm.3d')}
+                        </a>
+                    </Link>
                 </HeroColumn>
                 <WrapperDesktop>
                     <FullScreenButton
@@ -289,7 +249,7 @@ export const ExamplesOfProjects = () => {
                             })
                         }}
                     >
-                        {data.mobile.edges.map(
+                        {data.desktop.edges.map(
                             (
                                 item: {
                                     node: {
