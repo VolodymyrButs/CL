@@ -207,7 +207,7 @@ export const SaveModal = ({
                     <SaveButton
                         onClick={() => {
                             sendEvent('Click', {
-                                eventCategory: 'Sava Draw',
+                                eventCategory: 'Save Draw',
                                 placement: 'CAD',
                             })
                             setShouldShowSaveModal(false)
