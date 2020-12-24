@@ -180,13 +180,13 @@ export const Footer = () => {
                         <a
                             href={`tel:${contactInformation.primaryPhone}`}
                             onClick={() => {
-                                sendForm(`FooterPhoneClick`, {})
-                                sendConversion('PhoneClick')
                                 sendEvent('Phone', {
                                     eventCategory: 'PhoneClick',
                                     placement: 'Footer',
                                     phone: contactInformation.primaryPhone,
                                 })
+                                sendForm(`FooterPhoneClick`, {})
+                                sendConversion('PhoneClick')
                             }}
                         >
                             {contactInformation.primaryPhone}
