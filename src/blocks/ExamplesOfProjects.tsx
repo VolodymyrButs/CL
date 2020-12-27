@@ -228,11 +228,11 @@ export const ExamplesOfProjects = () => {
                 <WrapperDesktop>
                     <FullScreenButton
                         onClick={() => {
-                            setModalIsOpen(true)
                             sendEvent('FullScreen', {
                                 eventCategory: 'Slider',
                                 placement: 'ExampleOfProject',
                             })
+                            setModalIsOpen(true)
                         }}
                     />
                     <SliderComponent

@@ -14,6 +14,7 @@ export type TrackingEventName =
     | '50'
     | '75'
     | '100'
+    | 'Banner'
 
 export type TrackingEventCategory =
     | ConversionType
@@ -29,3 +30,12 @@ export type TrackingEventCategory =
     | 'ReviewItem'
     | 'Slider'
     | 'ScrollDepth'
+    | 'Banner'
+    | 'ShowExampleOfProject'
+    | 'TopFormDesktopPosadka3d'
+    | 'TopFormDesktopPosadkaColor'
+    | 'TopFormDesktopPosadka99'
+    | 'TopFormDesktopPosadka'
+    | 'Save Draw'
+    | 'FormIndexPageBottom'
+    | 'FormServicesPageBottom'

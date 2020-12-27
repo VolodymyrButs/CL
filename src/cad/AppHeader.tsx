@@ -163,13 +163,13 @@ export const AppHeader = ({
             </Logo>
 
             <Banner
-                to={'/promo-f'}
-                onClicc={() =>
+                onClick={() =>
                     sendEvent('Click', {
                         eventCategory: 'Banner',
                         placement: 'CAD',
                     })
                 }
+                to={'/design-za-99'}
             >
                 <p>{t('promoRaw')}</p>
                 <p> {t('designProject99')}</p>

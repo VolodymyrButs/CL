@@ -186,7 +186,7 @@ export const OurServices = () => {
                         </Title>
                         <SubTitle>{allOurServicesData.subTitlePromo}</SubTitle>
                         <LocalizedLink
-                            to={'/promo'}
+                            to={'/design-za-99'}
                             onClick={() => {
                                 sendEvent('Click', {
                                     eventCategory: 'ShowMoreButton',

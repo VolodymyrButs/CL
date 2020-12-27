@@ -160,8 +160,8 @@ export const PromoHeroMobile99 = ({ text }: { text?: boolean }) => {
                             onFormSubmit={handleSubmitStatus}
                             formSendStatus={formSendStatus}
                             onFormSendStart={handleFormSendStart}
-                            conversionType={'TopFormDesktopPosadka3d'}
-                            eventCategory={'TopFormDesktopPosadka3d'}
+                            conversionType={'TopFormDesktopPosadka99'}
+                            eventCategory={'TopFormDesktopPosadka99'}
                         >
                             {({ register, errors }: IChildrenProps) => (
                                 <InputBlock>
