@@ -181,7 +181,14 @@ export const ExamplesOfProjects3d = () => {
                 <HeroColumn>
                     <TitleStyled>{t('comercialForm.example3d')}</TitleStyled>
                     <SubTitle> {t('exampleSubtitle3d')}</SubTitle>
-                    <Link>
+                    <Link
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'ShowExample3d',
+                                placement: 'ExampleOfProject3d',
+                            })
+                        }}
+                    >
                         <a
                             href="http://model.clearline.com.ua/pages/popravki/full.html"
                             target="blank"
@@ -196,7 +203,7 @@ export const ExamplesOfProjects3d = () => {
                             setModalIsOpen(true)
                             sendEvent('FullScreen', {
                                 eventCategory: 'Slider',
-                                placement: 'ExampleOfProject',
+                                placement: 'ExampleOfProject3d',
                             })
                         }}
                     />
@@ -207,7 +214,7 @@ export const ExamplesOfProjects3d = () => {
                             sendEvent('ShowSlide', {
                                 eventCategory: 'Slider',
                                 currentSlide: `${current}`,
-                                placement: 'ExampleOfProject',
+                                placement: 'ExampleOfProject3d',
                             })
                         }}
                     >
@@ -252,7 +259,7 @@ export const ExamplesOfProjects3d = () => {
                             sendEvent('ShowSlide', {
                                 eventCategory: 'Slider',
                                 currentSlide: `${current + 1}`,
-                                placement: 'ExampleOfProject',
+                                placement: 'ExampleOfProject3d',
                             })
                         }}
                     >
