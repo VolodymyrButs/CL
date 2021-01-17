@@ -134,10 +134,12 @@ const FullScreenButton = styled(FullScreen)`
 export const ExamplesOfProjects3d = () => {
     const { t } = useTranslation()
     const [isModalOpen, setModalIsOpen] = useState(false)
+    const [currentSlide, setCurrentSlide] = useState(1)
+
     const data = useStaticQuery(graphql`
         query {
             desktop: allFile(
-                filter: { relativeDirectory: { eq: "projectExampleDesktop" } }
+                filter: { relativeDirectory: { eq: "projectExample3d" } }
                 sort: { fields: absolutePath }
             ) {
                 edges {
@@ -180,7 +182,10 @@ export const ExamplesOfProjects3d = () => {
                     <TitleStyled>{t('comercialForm.example3d')}</TitleStyled>
                     <SubTitle> {t('exampleSubtitle3d')}</SubTitle>
                     <Link>
-                        <a href="#" target="blank">
+                        <a
+                            href="http://model.clearline.com.ua/pages/popravki/full.html"
+                            target="blank"
+                        >
                             {t('comercialForm.3d')}
                         </a>
                     </Link>
@@ -198,6 +203,7 @@ export const ExamplesOfProjects3d = () => {
                     <SliderComponent
                         {...sliderSettings}
                         afterChange={(current: number) => {
+                            setCurrentSlide(current)
                             sendEvent('ShowSlide', {
                                 eventCategory: 'Slider',
                                 currentSlide: `${current}`,
@@ -242,6 +248,7 @@ export const ExamplesOfProjects3d = () => {
                     <SliderComponent
                         {...sliderSettings}
                         afterChange={(current: number) => {
+                            setCurrentSlide(current)
                             sendEvent('ShowSlide', {
                                 eventCategory: 'Slider',
                                 currentSlide: `${current + 1}`,
@@ -290,7 +297,7 @@ export const ExamplesOfProjects3d = () => {
                 )}
                 isModalOpen={isModalOpen}
                 closeHandler={() => setModalIsOpen(false)}
-                initialSlideIndex={1}
+                initialSlideIndex={currentSlide}
             />
         </ExampleOfProjectWrapper>
     )
