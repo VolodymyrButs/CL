@@ -254,6 +254,13 @@ export const ExamplesOfProjects3d = () => {
 
             parrent.scrollTop = pos
         }
+        let parrentM = document.getElementById('ListNumbersM')
+        let childM = document.getElementById(`number${currentSlideS}M`)
+        if (childM !== null && parrentM !== null) {
+            let pos = childM.offsetTop - parrentM.offsetTop
+
+            parrentM.scrollTop = pos
+        }
     }
 
     return (
@@ -432,7 +439,7 @@ export const ExamplesOfProjects3d = () => {
                             }
                         )}
                     </SliderComponent>
-                    <Counter id="countModal">
+                    <Counter id="countModalM">
                         <p
                             onClick={() => {
                                 setListWisible(!listWisible)
@@ -446,14 +453,14 @@ export const ExamplesOfProjects3d = () => {
                         </p>
 
                         <ListNumbers
-                            id="ListNumbers"
+                            id="ListNumbersM"
                             onMouseLeave={() => setListWisible(false)}
                             listWisible={listWisible}
                         >
                             {numbers.map((i) => {
                                 return (
                                     <li
-                                        id={`number${i}`}
+                                        id={`number${i}M`}
                                         onClick={() => {
                                             setListWisible(!listWisible)
                                             sliderM !== null &&
