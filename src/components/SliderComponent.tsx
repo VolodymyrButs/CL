@@ -58,14 +58,14 @@ const CarouselWrapper = styled.div`
 `
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const SliderComponent = ({ children, ...props }: any) => {
+export const SliderComponent = ({ children, forwardRef, ...props }: any) => {
     const settings = {
         nextArrow: <SlickNext />,
         prevArrow: <SlickPrevious />,
     }
     return (
         <CarouselWrapper {...props}>
-            <Slider {...settings} {...props}>
+            <Slider {...settings} {...props} ref={forwardRef}>
                 {children}
             </Slider>
         </CarouselWrapper>

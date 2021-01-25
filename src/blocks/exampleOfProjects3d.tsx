@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -16,6 +16,7 @@ import { ModalCarousel } from 'components/ModalCarousel'
 import { ProjectData } from 'layout/Project'
 import { sendEvent } from 'tracking'
 import { headerBg } from 'styles/headerBg'
+import Slider from 'react-slick'
 
 const ExampleOfProjectWrapper = styled.div`
     display: flex;
@@ -131,11 +132,66 @@ const FullScreenButton = styled(FullScreen)`
         right: 10px;
     }
 `
+const Counter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Yeseva One', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 35px;
+    z-index: 10;
+    width: 111px;
+    height: 65px;
+    position: absolute;
+    bottom: 0px;
+    right: 16px;
+    background-color: ${colors.white};
+    span {
+        opacity: 0.6;
+        font-size: 22px;
+        line-height: 30px;
+        margin-left: 5px;
+    }
+    p {
+        display: flex;
+        align-items: center;
+        b {
+            font-size: 12px;
+            margin-left: 3px;
+        }
+        cursor: pointer;
+    }
+
+    @media (min-width: ${displayWidth.desktop}) {
+        right: 0px;
+    }
+`
+const ListNumbers = styled.ul<{ listWisible: boolean }>`
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    max-height: 175px;
+    text-align: center;
+    padding: 5px;
+    overflow-y: scroll;
+    background-color: ${colors.white};
+    border: 1px solid black;
+    z-index: 10;
+    ${(props) => (props.listWisible === true ? 'top: 12px;' : 'top: -10000px;')}
+    li {
+        cursor: pointer;
+    }
+    li :hover {
+        text-decoration: underline;
+    }
+`
 export const ExamplesOfProjects3d = () => {
     const { t } = useTranslation()
     const [isModalOpen, setModalIsOpen] = useState(false)
-    const [currentSlide, setCurrentSlide] = useState(1)
-
+    const [currentSlideS, setCurrentSlideS] = useState(0)
+    const [listWisible, setListWisible] = useState(false)
     const data = useStaticQuery(graphql`
         query {
             desktop: allFile(
@@ -168,10 +224,21 @@ export const ExamplesOfProjects3d = () => {
                 breakpoint: 1024,
                 settings: {
                     arrows: false,
-                    dots: true,
+                    dots: false,
                 },
             },
         ],
+    }
+    const numbers = [...Array(data.desktop.edges.length).keys()]
+    const sliderRef = useRef<Slider | null>(null)
+    const sliderS = sliderRef.current
+
+    function handleListOpen() {
+        if (document.getElementById(`number${currentSlideS}`) !== null) {
+            document
+                .getElementById(`number${currentSlideS}`)!
+                .scrollIntoView({ block: 'center', behavior: 'smooth' })
+        }
     }
 
     return (
@@ -181,6 +248,22 @@ export const ExamplesOfProjects3d = () => {
                 <HeroColumn>
                     <TitleStyled>{t('comercialForm.example3d')}</TitleStyled>
                     <SubTitle> {t('exampleSubtitle3d')}</SubTitle>
+                    <Link
+                        onClick={() => {
+                            sendEvent('Click', {
+                                eventCategory: 'DownloadExample3d',
+                                placement: 'ExampleOfProject3d',
+                            })
+                        }}
+                    >
+                        <a
+                            href="https://clearline.gitlab.io/cl-website/exampleProject3d.pdf"
+                            download
+                        >
+                            {t('comercialForm.download3d')}(27.1
+                            {t('m')})
+                        </a>
+                    </Link>
                     <Link
                         onClick={() => {
                             sendEvent('Click', {
@@ -198,6 +281,40 @@ export const ExamplesOfProjects3d = () => {
                     </Link>
                 </HeroColumn>
                 <WrapperDesktop>
+                    <Counter id="countModal">
+                        <p
+                            onClick={() => {
+                                setListWisible(!listWisible)
+                                handleListOpen()
+                            }}
+                        >
+                            {currentSlideS + 1}
+                            <b>▼</b>
+                        </p>
+
+                        <ListNumbers
+                            onMouseLeave={() => setListWisible(false)}
+                            listWisible={listWisible}
+                        >
+                            {numbers.map((i) => {
+                                return (
+                                    <li
+                                        id={`number${i}`}
+                                        onClick={() => {
+                                            setListWisible(!listWisible)
+                                            sliderS !== null &&
+                                                sliderS.slickGoTo(i)
+                                        }}
+                                        key={i}
+                                    >
+                                        {i + 1}
+                                    </li>
+                                )
+                            })}
+                        </ListNumbers>
+
+                        <span>/ {data.desktop.edges.length}</span>
+                    </Counter>
                     <FullScreenButton
                         onClick={() => {
                             setModalIsOpen(true)
@@ -209,8 +326,9 @@ export const ExamplesOfProjects3d = () => {
                     />
                     <SliderComponent
                         {...sliderSettings}
+                        forwardRef={sliderRef}
                         afterChange={(current: number) => {
-                            setCurrentSlide(current)
+                            setCurrentSlideS(current)
                             sendEvent('ShowSlide', {
                                 eventCategory: 'Slider',
                                 currentSlide: `${current}`,
@@ -255,7 +373,7 @@ export const ExamplesOfProjects3d = () => {
                     <SliderComponent
                         {...sliderSettings}
                         afterChange={(current: number) => {
-                            setCurrentSlide(current)
+                            setCurrentSlideS(current)
                             sendEvent('ShowSlide', {
                                 eventCategory: 'Slider',
                                 currentSlide: `${current + 1}`,
@@ -303,8 +421,12 @@ export const ExamplesOfProjects3d = () => {
                     ({ node }: { node: ProjectData }) => node
                 )}
                 isModalOpen={isModalOpen}
-                closeHandler={() => setModalIsOpen(false)}
-                initialSlideIndex={currentSlide}
+                setCurrentSlideS={setCurrentSlideS}
+                closeHandler={() => {
+                    setModalIsOpen(false)
+                    sliderS !== null && sliderS.slickGoTo(currentSlideS)
+                }}
+                initialSlideIndex={currentSlideS}
             />
         </ExampleOfProjectWrapper>
     )

@@ -38,6 +38,7 @@ interface IModalProps {
     data: ProjectImages[]
     isModalOpen: boolean
     initialSlideIndex: number
+    setCurrentSlideS?: (arg: number) => void
 }
 
 export const ModalCarousel: React.FC<IModalProps> = ({
@@ -45,6 +46,7 @@ export const ModalCarousel: React.FC<IModalProps> = ({
     isModalOpen,
     closeHandler,
     initialSlideIndex,
+    setCurrentSlideS,
 }) => {
     const sliderSettings = {
         infinite: true,
@@ -79,7 +81,13 @@ export const ModalCarousel: React.FC<IModalProps> = ({
     }, [initialSlideIndex, slider])
     return (
         <Modal isOpen={isModalOpen} closeHandler={closeHandler} image={true}>
-            <SliderStyled ref={sliderRef} {...sliderSettings}>
+            <SliderStyled
+                ref={sliderRef}
+                {...sliderSettings}
+                afterChange={(current: number) => {
+                    setCurrentSlideS !== undefined && setCurrentSlideS(current)
+                }}
+            >
                 {slides}
             </SliderStyled>
         </Modal>
