@@ -142,19 +142,19 @@ const Counter = styled.div`
     font-family: 'Yeseva One', sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 25px;
     z-index: 10;
     width: 111px;
-    height: 40px;
+    height: 30px;
     position: absolute;
     bottom: 0px;
     left: calc(50% - 55px);
     background-color: ${colors.white};
     span {
         opacity: 0.6;
-        font-size: 22px;
-        line-height: 30px;
+        font-size: 18px;
+        line-height: 24px;
         margin-left: 5px;
     }
     p {
@@ -167,8 +167,14 @@ const Counter = styled.div`
         cursor: pointer;
     }
 
-    @media (min-width: ${displayWidth.desktop}) {
-        right: 0px;
+    @media (min-width: ${displayWidth.tablet}) {
+        height: 40px;
+        font-size: 30px;
+        line-height: 35px;
+        span {
+            font-size: 22px;
+            line-height: 30px;
+        }
     }
 `
 const ListNumbers = styled.ul<{ listWisible: boolean }>`
@@ -236,9 +242,10 @@ export const ExamplesOfProjects3d = () => {
         ],
     }
     const numbers = [...Array(data.desktop.edges.length).keys()]
-    const sliderRef = useRef<Slider | null>(null)
-    const sliderS = sliderRef.current
-
+    const sliderRefD = useRef<Slider | null>(null)
+    const sliderRefM = useRef<Slider | null>(null)
+    const sliderD = sliderRefD.current
+    const sliderM = sliderRefM.current
     function handleListOpen() {
         let parrent = document.getElementById('ListNumbers')
         let child = document.getElementById(`number${currentSlideS}`)
@@ -313,8 +320,8 @@ export const ExamplesOfProjects3d = () => {
                                         id={`number${i}`}
                                         onClick={() => {
                                             setListWisible(!listWisible)
-                                            sliderS !== null &&
-                                                sliderS.slickGoTo(i)
+                                            sliderD !== null &&
+                                                sliderD.slickGoTo(i)
                                         }}
                                         key={i}
                                     >
@@ -337,7 +344,7 @@ export const ExamplesOfProjects3d = () => {
                     />
                     <SliderComponentS
                         {...sliderSettings}
-                        forwardRef={sliderRef}
+                        forwardRef={sliderRefD}
                         afterChange={(current: number) => {
                             setCurrentSlideS(current)
                             sendEvent('ShowSlide', {
@@ -383,6 +390,7 @@ export const ExamplesOfProjects3d = () => {
                 <WrapperMobile>
                     <SliderComponent
                         {...sliderSettings}
+                        forwardRef={sliderRefM}
                         afterChange={(current: number) => {
                             setCurrentSlideS(current)
                             sendEvent('ShowSlide', {
@@ -424,6 +432,43 @@ export const ExamplesOfProjects3d = () => {
                             }
                         )}
                     </SliderComponent>
+                    <Counter id="countModal">
+                        <p
+                            onClick={() => {
+                                setListWisible(!listWisible)
+                                setTimeout(() => {
+                                    handleListOpen()
+                                }, 100)
+                            }}
+                        >
+                            {currentSlideS + 1}
+                            <b>▼</b>
+                        </p>
+
+                        <ListNumbers
+                            id="ListNumbers"
+                            onMouseLeave={() => setListWisible(false)}
+                            listWisible={listWisible}
+                        >
+                            {numbers.map((i) => {
+                                return (
+                                    <li
+                                        id={`number${i}`}
+                                        onClick={() => {
+                                            setListWisible(!listWisible)
+                                            sliderM !== null &&
+                                                sliderM.slickGoTo(i)
+                                        }}
+                                        key={i}
+                                    >
+                                        {i + 1}
+                                    </li>
+                                )
+                            })}
+                        </ListNumbers>
+
+                        <span>/ {data.desktop.edges.length}</span>
+                    </Counter>
                 </WrapperMobile>
             </Container>
             <RightSidebar />
@@ -435,7 +480,7 @@ export const ExamplesOfProjects3d = () => {
                 setCurrentSlideS={setCurrentSlideS}
                 closeHandler={() => {
                     setModalIsOpen(false)
-                    sliderS !== null && sliderS.slickGoTo(currentSlideS)
+                    sliderD !== null && sliderD.slickGoTo(currentSlideS)
                 }}
                 initialSlideIndex={currentSlideS}
             />
