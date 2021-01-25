@@ -111,6 +111,9 @@ const WrapperDesktop = styled(Wrapper)`
     display: none;
     @media (min-width: ${displayWidth.tablet}) {
         display: flex;
+        ::last-child {
+            margin-bottom: 30px;
+        }
     }
 `
 const FullScreenButton = styled(FullScreen)`
@@ -143,10 +146,10 @@ const Counter = styled.div`
     line-height: 35px;
     z-index: 10;
     width: 111px;
-    height: 65px;
+    height: 40px;
     position: absolute;
     bottom: 0px;
-    right: 16px;
+    left: calc(50% - 55px);
     background-color: ${colors.white};
     span {
         opacity: 0.6;
@@ -186,6 +189,9 @@ const ListNumbers = styled.ul<{ listWisible: boolean }>`
     li :hover {
         text-decoration: underline;
     }
+`
+const SliderComponentS = styled(SliderComponent)`
+    margin-bottom: 15px;
 `
 export const ExamplesOfProjects3d = () => {
     const { t } = useTranslation()
@@ -234,10 +240,12 @@ export const ExamplesOfProjects3d = () => {
     const sliderS = sliderRef.current
 
     function handleListOpen() {
-        if (document.getElementById(`number${currentSlideS}`) !== null) {
-            document
-                .getElementById(`number${currentSlideS}`)!
-                .scrollIntoView({ block: 'center', behavior: 'smooth' })
+        let parrent = document.getElementById('ListNumbers')
+        let child = document.getElementById(`number${currentSlideS}`)
+        if (child !== null && parrent !== null) {
+            let pos = child.offsetTop - parrent.offsetTop
+
+            parrent.scrollTop = pos
         }
     }
 
@@ -285,7 +293,9 @@ export const ExamplesOfProjects3d = () => {
                         <p
                             onClick={() => {
                                 setListWisible(!listWisible)
-                                handleListOpen()
+                                setTimeout(() => {
+                                    handleListOpen()
+                                }, 100)
                             }}
                         >
                             {currentSlideS + 1}
@@ -293,6 +303,7 @@ export const ExamplesOfProjects3d = () => {
                         </p>
 
                         <ListNumbers
+                            id="ListNumbers"
                             onMouseLeave={() => setListWisible(false)}
                             listWisible={listWisible}
                         >
@@ -324,7 +335,7 @@ export const ExamplesOfProjects3d = () => {
                             })
                         }}
                     />
-                    <SliderComponent
+                    <SliderComponentS
                         {...sliderSettings}
                         forwardRef={sliderRef}
                         afterChange={(current: number) => {
@@ -367,7 +378,7 @@ export const ExamplesOfProjects3d = () => {
                                 )
                             }
                         )}
-                    </SliderComponent>
+                    </SliderComponentS>
                 </WrapperDesktop>
                 <WrapperMobile>
                     <SliderComponent
